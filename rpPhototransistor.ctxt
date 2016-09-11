@@ -1,0 +1,16 @@
+#BlueJ class context
+comment0.params=
+comment0.target=rpPhototransistor()
+comment1.params=pPin
+comment1.target=void\ set_Pin(int)
+comment2.params=
+comment2.target=int\ gib_Pin()
+comment3.params=
+comment3.target=boolean\ ist_lichteinfall()
+comment4.params=
+comment4.target=void\ ueberwache_10_mal()
+comment5.params=
+comment5.target=void\ destroy()
+comment6.params=args
+comment6.target=void\ main(java.lang.String[])
+numComments=7

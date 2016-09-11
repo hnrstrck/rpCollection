@@ -1,0 +1,24 @@
+#BlueJ class context
+comment0.params=
+comment0.target=rpDiode()
+comment1.params=pPin
+comment1.target=void\ set_Pin(int)
+comment10.params=args
+comment10.target=void\ main(java.lang.String[])
+comment2.params=
+comment2.target=int\ gib_Pin()
+comment3.params=
+comment3.target=void\ an()
+comment4.params=
+comment4.target=void\ blinke()
+comment5.params=
+comment5.target=void\ aus()
+comment6.params=
+comment6.target=void\ wechsel()
+comment7.params=
+comment7.target=boolean\ ist_an()
+comment8.params=
+comment8.target=boolean\ ist_aus()
+comment9.params=
+comment9.target=void\ destroy()
+numComments=11
