@@ -30,7 +30,7 @@ public final class rpDiode {
         System.out.println("Output-Pin gesetzt:");
 
         try {
-			pin = gpio.provisionDigitalOutputPin(pinArray[pin]);
+			pin = gpio.provisionDigitalOutputPin(pinArray[pPin]);
 			pin.setShutdownOptions(true, PinState.LOW);
 			System.out.println("Pin " + pPin + " gesetzt");
 
