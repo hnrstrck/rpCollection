@@ -1,316 +1,192 @@
-import com.pi4j.io.gpio.GpioController;
-import com.pi4j.io.gpio.GpioFactory;
-import com.pi4j.io.gpio.GpioPinDigitalOutput;
-import com.pi4j.io.gpio.PinState;
-import com.pi4j.io.gpio.RaspiPin;
+import com.pi4j.io.gpio.*;
 
 public final class rpRGB {
 
-    private GpioPinDigitalOutput pins[];
+    private GpioPinDigitalOutput pin_r, pin_g, pin_b;
     private GpioController gpio;
-    private boolean bool_initialisierung_erfolgt;
-    private int intPinR, intPinG, intPinB;
+
+    private boolean boolInitialisierungErfolgt;
+    private int[] intPins;
     private int anteil_r, anteil_g, anteil_b;
+    private static final Pin[] pinArray = new Pin[] {RaspiPin.GPIO_00, 
+            RaspiPin.GPIO_01, RaspiPin.GPIO_02, RaspiPin.GPIO_03, RaspiPin.GPIO_04, 
+            RaspiPin.GPIO_05, RaspiPin.GPIO_06, RaspiPin.GPIO_07, RaspiPin.GPIO_08, 
+            RaspiPin.GPIO_09, RaspiPin.GPIO_10, RaspiPin.GPIO_11, RaspiPin.GPIO_12, 
+            RaspiPin.GPIO_13, RaspiPin.GPIO_14, RaspiPin.GPIO_15, RaspiPin.GPIO_16, 
+            RaspiPin.GPIO_17, RaspiPin.GPIO_18, RaspiPin.GPIO_19, RaspiPin.GPIO_20};
 
     rpRGB() {
         gpio = GpioFactory.getInstance();
-        pins = new GpioPinDigitalOutput[3];
-        bool_initialisierung_erfolgt = false;
+        intPins = new int[3];
+        boolInitialisierungErfolgt = false;
     }
 
-    
-    public void set_Pins(int roterPin, int gelberPin, int blauerPin){
+    public void setPins(int roterPin, int gelberPin, int blauerPin){
         System.out.println("Setze Pins:");
-        set_R_Pin(roterPin);     
-        set_G_Pin(gelberPin);  
-        set_B_Pin(blauerPin);    
+        setPinRot(roterPin);     
+        setPinGelb(gelberPin);  
+        setPinBlau(blauerPin);    
     }
 
-    
-    public void set_R_Pin(int roterPin){
-        System.out.println("ROT gesetzt:");
-        set_Pin(0, roterPin);
-        intPinR = roterPin;        
-    }
+    private void setPinRot(int pPin) {
+        pin_r = null;
 
-    
-    public void set_G_Pin(int gelberPin){
-        System.out.println("GELB gesetzt:");
-        set_Pin(1, gelberPin);    
-        intPinG = gelberPin;  
-    }
-
-    
-    public void set_B_Pin(int blauerPin){
-        System.out.println("BLAU gesetzt:");
-        set_Pin(2, blauerPin); 
-        intPinB = blauerPin;       
-    }
-
-    
-    private void set_Pin(int pNr, int pPin) {
-        pins = null;
-
-        System.out.println("Output-Pin gesetzt:");
+        System.out.println("Output-Pin gesetzt fuer ROT:");
 
         try {
-            switch(pPin) {
+            pin_r = gpio.provisionDigitalOutputPin(pinArray[pPin]);
+            pin_r.setShutdownOptions(true, PinState.LOW);
 
-                case 0: {
-                    pins[pNr] = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_00);
-                    pins[pNr].setShutdownOptions(true, PinState.LOW);
-                    System.out.println("Pin 0 gesetzt");
-                    break;
-                }
+            System.out.println("Pin " + pPin + " gesetzt");
+            boolInitialisierungErfolgt = true;
 
-                case 1: {
-                    pins[pNr] = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_01);
-                    pins[pNr].setShutdownOptions(true, PinState.LOW);
-                    System.out.println("Pin 1 gesetzt");
-                    break;
-                }
-
-                case 2: {
-                    pins[pNr] = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_02);
-                    pins[pNr].setShutdownOptions(true, PinState.LOW);
-                    System.out.println("Pin 2 gesetzt");
-                    break;
-                }
-
-                case 3: {
-                    pins[pNr] = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_03);
-                    pins[pNr].setShutdownOptions(true, PinState.LOW);
-                    System.out.println("Pin 3 gesetzt");
-                    break;
-                }
-
-                case 4: {
-                    pins[pNr] = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_04);
-                    pins[pNr].setShutdownOptions(true, PinState.LOW);
-                    System.out.println("Pin 4 gesetzt");
-                    break;
-                }
-
-                case 5: {
-                    pins[pNr] = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_05);
-                    pins[pNr].setShutdownOptions(true, PinState.LOW);
-                    System.out.println("Pin 5 gesetzt");
-                    break;
-                }
-
-                case 6: {
-                    pins[pNr] = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_06);
-                    pins[pNr].setShutdownOptions(true, PinState.LOW);
-                    System.out.println("Pin 6 gesetzt");
-                    break;
-                }
-
-                case 7: {
-                    pins[pNr] = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_07);
-                    pins[pNr].setShutdownOptions(true, PinState.LOW);
-                    System.out.println("Pin 7 gesetzt");
-                    break;
-                }
-
-                case 8: {
-                    pins[pNr] = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_08);
-                    pins[pNr].setShutdownOptions(true, PinState.LOW);
-                    System.out.println("Pin 8 gesetzt");
-                    break;
-                }
-
-                case 9: {
-                    pins[pNr] = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_09);
-                    pins[pNr].setShutdownOptions(true, PinState.LOW);
-                    System.out.println("Pin 9 gesetzt");
-                    break;
-                }
-
-                case 10: {
-                    pins[pNr] = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_10);
-                    pins[pNr].setShutdownOptions(true, PinState.LOW);
-                    System.out.println("Pin 10 gesetzt");
-                    break;
-                }
-
-                case 11: {
-                    pins[pNr] = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_11);
-                    pins[pNr].setShutdownOptions(true, PinState.LOW);
-                    System.out.println("Pin 11 gesetzt");
-                    break;
-                }
-
-                case 12: {
-                    pins[pNr] = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_12);
-                    pins[pNr].setShutdownOptions(true, PinState.LOW);
-                    System.out.println("Pin 12 gesetzt");
-                    break;
-                }
-
-                case 13: {
-                    pins[pNr] = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_13);
-                    pins[pNr].setShutdownOptions(true, PinState.LOW);
-                    System.out.println("Pin 13 gesetzt");
-                    break;
-                }
-
-                case 14: {
-                    pins[pNr] = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_14);
-                    pins[pNr].setShutdownOptions(true, PinState.LOW);
-                    System.out.println("Pin 14 gesetzt");
-                    break;
-                }
-
-                case 15: {
-                    pins[pNr] = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_15);
-                    pins[pNr].setShutdownOptions(true, PinState.LOW);
-                    System.out.println("Pin 15 gesetzt");
-                    break;
-                }
-
-                case 16: {
-                    pins[pNr] = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_16);
-                    pins[pNr].setShutdownOptions(true, PinState.LOW);
-                    System.out.println("Pin 16 gesetzt");
-                    break;
-                }
-
-                case 17: {
-                    pins[pNr] = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_17);
-                    pins[pNr].setShutdownOptions(true, PinState.LOW);
-                    System.out.println("Pin 17 gesetzt");
-                    break;
-                }
-
-                case 18: {
-                    pins[pNr] = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_18);
-                    pins[pNr].setShutdownOptions(true, PinState.LOW);
-                    System.out.println("Pin 18 gesetzt");
-                    break;
-                }
-
-                case 19: {
-                    pins[pNr] = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_19);
-                    pins[pNr].setShutdownOptions(true, PinState.LOW);
-                    System.out.println("Pin 19 gesetzt");
-                    break;
-                }
-
-                case 20: {
-                    pins[pNr] = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_20);
-                    pins[pNr].setShutdownOptions(true, PinState.LOW);
-                    System.out.println("Pin 20 gesetzt");
-                    break;
-                }
-
-            }
-            bool_initialisierung_erfolgt = true;
+            intPins[0] = pPin;
         } catch (NullPointerException f){
             System.out.println("Error: Pin nicht definiert? (NullPointerException)");
+        } catch (com.pi4j.io.gpio.exception.GpioPinExistsException e){
+            System.out.println("Error: Pin doppelt definiert? (GpioPinExistsException)");
         }
+
     }
 
-    
-    public int gib_Pin_R(){
-        return intPinR;
+    private void setPinGelb(int pPin) {
+        pin_g = null;
+
+        System.out.println("Output-Pin gesetzt fuer GELB:");
+
+        try {
+            pin_g = gpio.provisionDigitalOutputPin(pinArray[pPin]);
+            pin_g.setShutdownOptions(true, PinState.LOW);
+
+            System.out.println("Pin " + pPin + " gesetzt");
+            boolInitialisierungErfolgt = true;
+
+            intPins[1] = pPin;
+        } catch (NullPointerException f){
+            System.out.println("Error: Pin nicht definiert? (NullPointerException)");
+        } catch (com.pi4j.io.gpio.exception.GpioPinExistsException e){
+            System.out.println("Error: Pin doppelt definiert? (GpioPinExistsException)");
+        }
+
     }
 
-    
-    public int gib_Pin_G(){
-        return intPinG;
+    private void setPinBlau(int pPin) {
+        pin_b = null;
+
+        System.out.println("Output-Pin gesetzt fuer BLAU:");
+
+        try {
+            pin_b = gpio.provisionDigitalOutputPin(pinArray[pPin]);
+            pin_b.setShutdownOptions(true, PinState.LOW);
+
+            System.out.println("Pin " + pPin + " gesetzt");
+            boolInitialisierungErfolgt = true;
+
+            intPins[2] = pPin;
+        } catch (NullPointerException f){
+            System.out.println("Error: Pin nicht definiert? (NullPointerException)");
+        } catch (com.pi4j.io.gpio.exception.GpioPinExistsException e){
+            System.out.println("Error: Pin doppelt definiert? (GpioPinExistsException)");
+        }
+
     }
 
-    
-    public int gib_Pin_B(){
-        return intPinB;
+    public int gibPinRot(){
+        return intPins[0];
     }
 
-    
-    public void R_an() {
-        if (bool_initialisierung_erfolgt == true){
+    public int gibPinGelb(){
+        return intPins[1];
+    }
+
+    public int gibPinBlau(){
+        return intPins[2];
+    }
+
+    public void rotAn() {
+        if (boolInitialisierungErfolgt == true){
             try{
-                pins[0].setState(PinState.HIGH);
-                pins[1].setState(PinState.LOW);
-                pins[2].setState(PinState.LOW);
+                pin_r.setState(PinState.HIGH);
+                pin_g.setState(PinState.LOW);
+                pin_b.setState(PinState.LOW);
             } catch (NullPointerException f){
-                System.out.println("Error: Pin nicht definiert? (NullPointerException)");
+                System.out.println("Error: Pins nicht definiert? (NullPointerException)");
             }
         } else {
-            System.out.println("Zuerst Pin fuer die Diode angeben");
+            System.out.println("Zuerst Pins fuer die Diode angeben");
         }
     }
 
-    
-    public void G_an() {
-        if (bool_initialisierung_erfolgt == true){
+    public void gelbAn() {
+        if (boolInitialisierungErfolgt == true){
             try{
-                pins[0].setState(PinState.LOW);
-                pins[1].setState(PinState.HIGH);
-                pins[2].setState(PinState.LOW);
+                pin_r.setState(PinState.LOW);
+                pin_g.setState(PinState.HIGH);
+                pin_b.setState(PinState.LOW);
             } catch (NullPointerException f){
-                System.out.println("Error: Pin nicht definiert? (NullPointerException)");
+                System.out.println("Error: Pins nicht definiert? (NullPointerException)");
             }
         } else {
-            System.out.println("Zuerst Pin fuer die Diode angeben");
+            System.out.println("Zuerst Pins fuer die Diode angeben");
         }
     }
 
-    
-    public void B_an() {
-        if (bool_initialisierung_erfolgt == true){
+    public void blauAn() {
+        if (boolInitialisierungErfolgt == true){
             try{
-                pins[0].setState(PinState.LOW);
-                pins[1].setState(PinState.LOW);
-                pins[2].setState(PinState.HIGH);
+                pin_r.setState(PinState.LOW);
+                pin_g.setState(PinState.LOW);
+                pin_b.setState(PinState.HIGH);
             } catch (NullPointerException f){
-                System.out.println("Error: Pin nicht definiert? (NullPointerException)");
+                System.out.println("Error: Pins nicht definiert? (NullPointerException)");
             }
         } else {
-            System.out.println("Zuerst Pin fuer die Diode angeben");
+            System.out.println("Zuerst Pins fuer die Diode angeben");
         }
     }
 
-    
     public void an() {
-        if (bool_initialisierung_erfolgt == true){
+        if (boolInitialisierungErfolgt == true){
             try{
-                pins[0].setState(PinState.HIGH);
-                pins[1].setState(PinState.HIGH);
-                pins[2].setState(PinState.HIGH);
+                pin_r.setState(PinState.HIGH);
+                pin_g.setState(PinState.HIGH);
+                pin_b.setState(PinState.HIGH);
             } catch (NullPointerException f){
                 System.out.println("Error: Pin nicht definiert? (NullPointerException)");
             }
         } else {
-            System.out.println("Zuerst Pin fuer die Diode angeben");
+            System.out.println("Zuerst Pins fuer die Diode angeben");
         }
     }
 
-
-    public void blinke ()
-    {
-        if (bool_initialisierung_erfolgt == true){
+    public void blinke()    {
+        if (boolInitialisierungErfolgt == true){
             try{
                 for (int i = 0; i <= 5; i++) {
-                    pins[1].toggle();
+                    /**
+                     * Hier evtl. anders blinken lassen
+                     */
+                    pin_r.toggle();
+                    pin_g.toggle();
+                    pin_b.toggle();
                     Thread.sleep(300);
                 }
             } catch (InterruptedException e) {
                 System.out.println("Error: Timeout (InterruptedException)");
             } catch (NullPointerException f){
-                System.out.println("Error: Pin nicht definiert? (NullPointerException)");
+                System.out.println("Error: Pins nicht definiert? (NullPointerException)");
             }
         } else {
-            System.out.println("Zuerst Pin fuer die Diode angeben");
+            System.out.println("Zuerst Pins fuer die Diode angeben");
         }
     }
 
-    
     public void aus() {
-        if (bool_initialisierung_erfolgt == true){
+        if (boolInitialisierungErfolgt == true){
             try{
-                pins[0].setState(PinState.LOW);
-                pins[1].setState(PinState.LOW);
-                pins[2].setState(PinState.LOW);
+                pin_r.setState(PinState.LOW);
+                pin_g.setState(PinState.LOW);
+                pin_b.setState(PinState.LOW);
             } catch (NullPointerException f){
                 System.out.println("Error: Pin(s) nicht definiert? (NullPointerException)");
             }
@@ -319,14 +195,13 @@ public final class rpRGB {
         }
     }
 
-
-    public void setze_Farbe(int r, int g, int b) {
+    public void setzeFarbe(int r, int g, int b) {
         if (b <= 255){
-            if (bool_initialisierung_erfolgt == true){
+            if (boolInitialisierungErfolgt == true){
                 try{
-                    pins[0].setState(PinState.HIGH);
-                    pins[1].setState(PinState.LOW);
-                    pins[2].setState(PinState.LOW);
+                    pin_r.setState(PinState.HIGH);
+                    pin_g.setState(PinState.LOW);
+                    pin_b.setState(PinState.LOW);
 
                     anteil_r = r;
                     anteil_g = g;
@@ -335,18 +210,17 @@ public final class rpRGB {
                     System.out.println("Error: Pin nicht definiert? (NullPointerException)");
                 }
             } else {
-                System.out.println("Zuerst Pin fuer die Diode angeben");
+                System.out.println("Zuerst Pins fuer die Diode angeben");
             }
         } else {
             System.out.println("Falsche Zahlenbereiche angegeben. R, G, B müssen zwischen 0 und 255 (jew. einschliesslich) liegen");
         }
     }
 
-    
-    public boolean ist_an() {
-        if (bool_initialisierung_erfolgt == true){
+    public boolean istAn() {
+        if (boolInitialisierungErfolgt == true){
             try{
-                if (pins[0].getState() == PinState.HIGH) {
+                if (pin_r.getState() == PinState.HIGH) {
                     System.out.println("Ja, Diode ist an");
                     return true;
                 } else {
@@ -358,16 +232,15 @@ public final class rpRGB {
                 return false;
             }
         } else {
-            System.out.println("Zuerst Pin fuer die Diode angeben");
+            System.out.println("Zuerst Pins fuer die Diode angeben");
             return false;
         }    
     }
 
-    
-    public boolean ist_aus() {
-        if (bool_initialisierung_erfolgt == true){
+    public boolean istAus() {
+        if (boolInitialisierungErfolgt == true){
             try{
-                if (pins[0].getState() == PinState.HIGH) {
+                if (pin_r.getState() == PinState.HIGH) {
                     System.out.println("Ja, Diode ist an");
                     return true;
                 } else {
@@ -379,28 +252,24 @@ public final class rpRGB {
                 return false;
             }
         } else {
-            System.out.println("Zuerst Pin fuer die Diode angeben");
+            System.out.println("Zuerst Pins fuer die Diode angeben");
             return false;
         }    
     }
 
-    
-    public int gib_Anteil_R(){
+    public int gibAnteilRot(){
         return anteil_r;
     }
 
-    
-    public int gib_Anteil_G(){
+    public int gibAnteilGelb(){
         return anteil_g;
     }
 
-    
-    public int gib_Anteil_B(){
+    public int gibAnteilBlau(){
         return anteil_b;
     }
 
-	
-    public int[] gib_Farbe(){
+    public int[] gibFarbe(){
         int return_array[];
         return_array = new int[3];
 
@@ -411,14 +280,14 @@ public final class rpRGB {
         return return_array;
     }
 
-    
     public void destroy() {
         gpio.shutdown();
         gpio = null;
-        pins = null;
+        pin_r = null;
+        pin_g = null;
+        pin_b = null;
     }
 
-    
     public static void main(String[] args){
         System.out.println("start");
     }
