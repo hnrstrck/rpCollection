@@ -1,6 +1,6 @@
 import com.pi4j.io.gpio.*;
 
-public final class led {
+public final class led_test {
 
     private GpioPinDigitalOutput pin_r;
     private GpioController gpio;
@@ -15,7 +15,7 @@ public final class led {
 
     private int intPin;
 
-    led() {
+    led_test() {
         gpio = GpioFactory.getInstance();
         boolInitialisierungErfolgt = false;
     }
