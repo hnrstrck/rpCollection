@@ -107,8 +107,6 @@ public final class rpRGB {
         if (boolInitialisierungErfolgt == true){
             try{
                 pin_r.setState(PinState.HIGH);
-                pin_g.setState(PinState.LOW);
-                pin_b.setState(PinState.LOW);
             } catch (NullPointerException f){
                 System.out.println("Error: Pins nicht definiert? (NullPointerException)");
             }
@@ -120,9 +118,7 @@ public final class rpRGB {
     public void gelbAn() {
         if (boolInitialisierungErfolgt == true){
             try{
-                pin_r.setState(PinState.LOW);
                 pin_g.setState(PinState.HIGH);
-                pin_b.setState(PinState.LOW);
             } catch (NullPointerException f){
                 System.out.println("Error: Pins nicht definiert? (NullPointerException)");
             }
@@ -134,8 +130,6 @@ public final class rpRGB {
     public void blauAn() {
         if (boolInitialisierungErfolgt == true){
             try{
-                pin_r.setState(PinState.LOW);
-                pin_g.setState(PinState.LOW);
                 pin_b.setState(PinState.HIGH);
             } catch (NullPointerException f){
                 System.out.println("Error: Pins nicht definiert? (NullPointerException)");
@@ -145,6 +139,42 @@ public final class rpRGB {
         }
     }
 
+    public void rotAus() {
+        if (boolInitialisierungErfolgt == true){
+            try{
+                pin_r.setState(PinState.LOW);
+            } catch (NullPointerException f){
+                System.out.println("Error: Pins nicht definiert? (NullPointerException)");
+            }
+        } else {
+            System.out.println("Zuerst Pins fuer die Diode angeben");
+        }
+    }
+
+    public void gelbAus() {
+        if (boolInitialisierungErfolgt == true){
+            try{
+                pin_g.setState(PinState.LOW);
+            } catch (NullPointerException f){
+                System.out.println("Error: Pins nicht definiert? (NullPointerException)");
+            }
+        } else {
+            System.out.println("Zuerst Pins fuer die Diode angeben");
+        }
+    }
+
+    public void blauAus() {
+        if (boolInitialisierungErfolgt == true){
+            try{
+                pin_b.setState(PinState.LOW);
+            } catch (NullPointerException f){
+                System.out.println("Error: Pins nicht definiert? (NullPointerException)");
+            }
+        } else {
+            System.out.println("Zuerst Pins fuer die Diode angeben");
+        }
+    }
+    
     public void an() {
         if (boolInitialisierungErfolgt == true){
             try{
