@@ -9,6 +9,14 @@ public final class rpDiode {
     private GpioPinDigitalOutput pin;
     private GpioController gpio;
     private boolean boolinitialisierungerfolgt;
+    
+	private static final Pin[] pinArray = new Pin[] {RaspiPin.GPIO_00, 
+	RaspiPin.GPIO_01, RaspiPin.GPIO_02, RaspiPin.GPIO_03, RaspiPin.GPIO_04, 
+	RaspiPin.GPIO_05, RaspiPin.GPIO_06, RaspiPin.GPIO_07, RaspiPin.GPIO_08, 
+	RaspiPin.GPIO_09, RaspiPin.GPIO_10, RaspiPin.GPIO_11, RaspiPin.GPIO_12, 
+	RaspiPin.GPIO_13, RaspiPin.GPIO_14, RaspiPin.GPIO_15, RaspiPin.GPIO_16, 
+	RaspiPin.GPIO_17, RaspiPin.GPIO_18, RaspiPin.GPIO_19, RaspiPin.GPIO_20};
+
     private int intPin;
 
     rpDiode() {
@@ -22,158 +30,9 @@ public final class rpDiode {
         System.out.println("Output-Pin gesetzt:");
 
         try {
-            switch(pPin) {
-
-                case 0: {
-                    pin = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_00);
-                    pin.setShutdownOptions(true, PinState.LOW);
-                    System.out.println("Pin 0 gesetzt");
-                    break;
-                }
-
-                case 1: {
-                    pin = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_01);
-                    pin.setShutdownOptions(true, PinState.LOW);
-                    System.out.println("Pin 1 gesetzt");
-                    break;
-                }
-
-                case 2: {
-                    pin = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_02);
-                    pin.setShutdownOptions(true, PinState.LOW);
-                    System.out.println("Pin 2 gesetzt");
-                    break;
-                }
-
-                case 3: {
-                    pin = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_03);
-                    pin.setShutdownOptions(true, PinState.LOW);
-                    System.out.println("Pin 3 gesetzt");
-                    break;
-                }
-
-                case 4: {
-                    pin = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_04);
-                    pin.setShutdownOptions(true, PinState.LOW);
-                    System.out.println("Pin 4 gesetzt");
-                    break;
-                }
-
-                case 5: {
-                    pin = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_05);
-                    pin.setShutdownOptions(true, PinState.LOW);
-                    System.out.println("Pin 5 gesetzt");
-                    break;
-                }
-
-                case 6: {
-                    pin = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_06);
-                    pin.setShutdownOptions(true, PinState.LOW);
-                    System.out.println("Pin 6 gesetzt");
-                    break;
-                }
-
-                case 7: {
-                    pin = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_07);
-                    pin.setShutdownOptions(true, PinState.LOW);
-                    System.out.println("Pin 7 gesetzt");
-                    break;
-                }
-
-                case 8: {
-                    pin = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_08);
-                    pin.setShutdownOptions(true, PinState.LOW);
-                    System.out.println("Pin 8 gesetzt");
-                    break;
-                }
-
-                case 9: {
-                    pin = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_09);
-                    pin.setShutdownOptions(true, PinState.LOW);
-                    System.out.println("Pin 9 gesetzt");
-                    break;
-                }
-
-
-                case 10: {
-                    pin = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_10);
-                    pin.setShutdownOptions(true, PinState.LOW);
-                    System.out.println("Pin 10 gesetzt");
-                    break;
-                }
-
-                case 11: {
-                    pin = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_11);
-                    pin.setShutdownOptions(true, PinState.LOW);
-                    System.out.println("Pin 11 gesetzt");
-                    break;
-                }
-
-                case 12: {
-                    pin = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_12);
-                    pin.setShutdownOptions(true, PinState.LOW);
-                    System.out.println("Pin 12 gesetzt");
-                    break;
-                }
-
-                case 13: {
-                    pin = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_13);
-                    pin.setShutdownOptions(true, PinState.LOW);
-                    System.out.println("Pin 13 gesetzt");
-                    break;
-                }
-
-                case 14: {
-                    pin = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_14);
-                    pin.setShutdownOptions(true, PinState.LOW);
-                    System.out.println("Pin 14 gesetzt");
-                    break;
-                }
-
-                case 15: {
-                    pin = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_15);
-                    pin.setShutdownOptions(true, PinState.LOW);
-                    System.out.println("Pin 15 gesetzt");
-                    break;
-                }
-
-                case 16: {
-                    pin = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_16);
-                    pin.setShutdownOptions(true, PinState.LOW);
-                    System.out.println("Pin 16 gesetzt");
-                    break;
-                }
-
-                case 17: {
-                    pin = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_17);
-                    pin.setShutdownOptions(true, PinState.LOW);
-                    System.out.println("Pin 17 gesetzt");
-                    break;
-                }
-
-                case 18: {
-                    pin = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_18);
-                    pin.setShutdownOptions(true, PinState.LOW);
-                    System.out.println("Pin 18 gesetzt");
-                    break;
-                }
-
-                case 19: {
-                    pin = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_19);
-                    pin.setShutdownOptions(true, PinState.LOW);
-                    System.out.println("Pin 19 gesetzt");
-                    break;
-                }
-
-                case 20: {
-                    pin = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_20);
-                    pin.setShutdownOptions(true, PinState.LOW);
-                    System.out.println("Pin 20 gesetzt");
-                    break;
-                }
-
-
-            }
+			pin = gpio.provisionDigitalOutputPin(pinArray[pin]);
+			pin.setShutdownOptions(true, PinState.LOW);
+			System.out.println("Pin " + pPin + " gesetzt");
 
             boolinitialisierungerfolgt = true;
             
@@ -203,7 +62,7 @@ public final class rpDiode {
     }
     
 
-    public void blinke () {
+    public void blinke() {
         if (boolinitialisierungerfolgt == true){
             try{
                 for (int i = 0; i <= 5; i++) {
@@ -250,7 +109,7 @@ public final class rpDiode {
     }
 
 
-    public boolean istan() {
+    public boolean istAn() {
         if (boolinitialisierungerfolgt == true){
             try{
                 if (pin.getState() == PinState.HIGH) {
@@ -270,7 +129,7 @@ public final class rpDiode {
         }    
     }
 
-    public boolean istaus() {
+    public boolean istAus() {
         if (boolinitialisierungerfolgt == true){
             try{
                 if (pin.getState() == PinState.LOW) {
