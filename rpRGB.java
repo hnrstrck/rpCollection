@@ -52,7 +52,7 @@ public final class rpRGB {
     private void setPinGelb(int pPin) {
         pin_g = null;
 
-        System.out.println("Output-Pin gesetzt fuer GELB:");
+        System.out.println("Output-Pin gesetzt fuer GRUEN:");
 
         try {
             pin_g = gpio.provisionDigitalOutputPin(pinArray[pPin]);
@@ -226,9 +226,11 @@ public final class rpRGB {
     }
 
     public void setzeFarbe(int r, int g, int b) {
-        if (b <= 255){
+        if (((b <= 255) && (b >= 0)) && (g <= 255) && (g >= 0) && (b <= 255) && (b >= 0)){
             if (boolInitialisierungErfolgt == true){
                 try{
+					
+					//TODO: Hier Modulation fuer Farbe
                     pin_r.setState(PinState.HIGH);
                     pin_g.setState(PinState.LOW);
                     pin_b.setState(PinState.LOW);
@@ -243,14 +245,14 @@ public final class rpRGB {
                 System.out.println("Zuerst Pins fuer die Diode angeben");
             }
         } else {
-            System.out.println("Falsche Zahlenbereiche angegeben. R, G, B müssen zwischen 0 und 255 (jew. einschliesslich) liegen");
+            System.out.println("Falsche Zahlenbereiche angegeben. r, g, b müssen zwischen 0 und 255 (jew. einschliesslich) liegen");
         }
     }
 
     public boolean istAn() {
         if (boolInitialisierungErfolgt == true){
             try{
-                if (pin_r.getState() == PinState.HIGH) {
+                if (pin_r.getState() == PinState.HIGH || pin_g.getState() == PinState.HIGH || pin_b.getState() == PinState.HIGH ) {
                     System.out.println("Ja, Diode ist an");
                     return true;
                 } else {
@@ -258,7 +260,7 @@ public final class rpRGB {
                     return false; 
                 }
             } catch (NullPointerException f){
-                System.out.println("Error: Pin nicht definiert? (NullPointerException)");
+                System.out.println("Error: Pins nicht definiert? (NullPointerException)");
                 return false;
             }
         } else {
@@ -278,7 +280,7 @@ public final class rpRGB {
                     return false; 
                 }
             } catch (NullPointerException f){
-                System.out.println("Error: Pin nicht definiert? (NullPointerException)");
+                System.out.println("Error: Pins nicht definiert? (NullPointerException)");
                 return false;
             }
         } else {
@@ -291,7 +293,7 @@ public final class rpRGB {
         return anteil_r;
     }
 
-    public int gibAnteilGelb(){
+    public int gibAnteilGruen(){
         return anteil_g;
     }
 
@@ -316,9 +318,5 @@ public final class rpRGB {
         pin_r = null;
         pin_g = null;
         pin_b = null;
-    }
-
-    public static void main(String[] args){
-        System.out.println("start");
     }
 }
