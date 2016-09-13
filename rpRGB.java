@@ -21,10 +21,10 @@ public final class rpRGB {
         boolInitialisierungErfolgt = false;
     }
 
-    public void setPins(int roterPin, int gelberPin, int blauerPin){
+    public void setPins(int roterPin, int gruenerPin, int blauerPin){
         System.out.println("Setze Pins:");
         setPinRot(roterPin);     
-        setPinGelb(gelberPin);  
+        setPingruen(gruenerPin);  
         setPinBlau(blauerPin);    
     }
 
@@ -49,10 +49,10 @@ public final class rpRGB {
 
     }
 
-    private void setPinGelb(int pPin) {
+    private void setPingruen(int pPin) {
         pin_g = null;
 
-        System.out.println("Output-Pin gesetzt fuer GELB:");
+        System.out.println("Output-Pin gesetzt fuer gruen:");
 
         try {
             pin_g = gpio.provisionDigitalOutputPin(pinArray[pPin]);
@@ -95,7 +95,7 @@ public final class rpRGB {
         return intPins[0];
     }
 
-    public int gibPinGelb(){
+    public int gibPingruen(){
         return intPins[1];
     }
 
@@ -115,7 +115,7 @@ public final class rpRGB {
         }
     }
 
-    public void gelbAn() {
+    public void gruenAn() {
         if (boolInitialisierungErfolgt == true){
             try{
                 pin_g.setState(PinState.HIGH);
@@ -151,7 +151,7 @@ public final class rpRGB {
         }
     }
 
-    public void gelbAus() {
+    public void gruenAus() {
         if (boolInitialisierungErfolgt == true){
             try{
                 pin_g.setState(PinState.LOW);
@@ -291,7 +291,7 @@ public final class rpRGB {
         return anteil_r;
     }
 
-    public int gibAnteilGelb(){
+    public int gibAnteilgruen(){
         return anteil_g;
     }
 
