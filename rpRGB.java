@@ -274,7 +274,7 @@ public final class rpRGB {
                 System.out.println("Zuerst Pins fuer die Diode angeben");
             }
         } else {
-            System.out.println("Falsche Zahlenbereiche angegeben. r, g, b müssen zwischen 0 und 255 (jew. einschliesslich) liegen");
+            System.out.println("Falsche Zahlenbereiche angegeben. r, g, b muessen zwischen 0 und 255 (jew. einschliesslich) liegen");
         }
     }
 
