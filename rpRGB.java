@@ -1,4 +1,5 @@
 import com.pi4j.io.gpio.*;
+import com.pi4j.wiringpi.*;
 
 public final class rpRGB {
 
@@ -14,17 +15,21 @@ public final class rpRGB {
             RaspiPin.GPIO_09, RaspiPin.GPIO_10, RaspiPin.GPIO_11, RaspiPin.GPIO_12, 
             RaspiPin.GPIO_13, RaspiPin.GPIO_14, RaspiPin.GPIO_15, RaspiPin.GPIO_16, 
             RaspiPin.GPIO_17, RaspiPin.GPIO_18, RaspiPin.GPIO_19, RaspiPin.GPIO_20};
+            
 
     rpRGB() {
         gpio = GpioFactory.getInstance();
         intPins = new int[3];
         boolInitialisierungErfolgt = false;
+        anteil_r = 0;
+        anteil_g = 0;
+        anteil_b = 0;
     }
 
-    public void setPins(int roterPin, int gelberPin, int blauerPin){
+    public void setPins(int roterPin, int gruenerPin, int blauerPin){
         System.out.println("Setze Pins:");
         setPinRot(roterPin);     
-        setPinGelb(gelberPin);  
+        setPinGruen(gruenerPin);  
         setPinBlau(blauerPin);    
     }
 
@@ -34,8 +39,14 @@ public final class rpRGB {
         System.out.println("Output-Pin gesetzt fuer ROT:");
 
         try {
-            pin_r = gpio.provisionDigitalOutputPin(pinArray[pPin]);
+			
+			pin_r = gpio.provisionDigitalOutputPin(pinArray[pPin]);
             pin_r.setShutdownOptions(true, PinState.LOW);
+            
+            
+            SoftPwm.softPwmCreate(pPin,0,100);
+
+     
 
             System.out.println("Pin " + pPin + " gesetzt");
             boolInitialisierungErfolgt = true;
@@ -49,14 +60,18 @@ public final class rpRGB {
 
     }
 
-    private void setPinGelb(int pPin) {
+    private void setPinGruen(int pPin) {
         pin_g = null;
 
         System.out.println("Output-Pin gesetzt fuer GRUEN:");
 
         try {
-            pin_g = gpio.provisionDigitalOutputPin(pinArray[pPin]);
+			
+			pin_g = gpio.provisionDigitalOutputPin(pinArray[pPin]);
             pin_g.setShutdownOptions(true, PinState.LOW);
+            
+            SoftPwm.softPwmCreate(pPin,0,100);
+
 
             System.out.println("Pin " + pPin + " gesetzt");
             boolInitialisierungErfolgt = true;
@@ -76,8 +91,12 @@ public final class rpRGB {
         System.out.println("Output-Pin gesetzt fuer BLAU:");
 
         try {
-            pin_b = gpio.provisionDigitalOutputPin(pinArray[pPin]);
+			
+			pin_b = gpio.provisionDigitalOutputPin(pinArray[pPin]);
             pin_b.setShutdownOptions(true, PinState.LOW);
+            
+            SoftPwm.softPwmCreate(pPin,0,100);
+
 
             System.out.println("Pin " + pPin + " gesetzt");
             boolInitialisierungErfolgt = true;
@@ -95,7 +114,7 @@ public final class rpRGB {
         return intPins[0];
     }
 
-    public int gibPinGelb(){
+    public int gibPinGruen(){
         return intPins[1];
     }
 
@@ -106,7 +125,8 @@ public final class rpRGB {
     public void rotAn() {
         if (boolInitialisierungErfolgt == true){
             try{
-                pin_r.setState(PinState.HIGH);
+                 SoftPwm.softPwmWrite(intPins[0],100);
+                 anteil_r = 255;
             } catch (NullPointerException f){
                 System.out.println("Error: Pins nicht definiert? (NullPointerException)");
             }
@@ -115,10 +135,11 @@ public final class rpRGB {
         }
     }
 
-    public void gelbAn() {
+    public void gruenAn() {
         if (boolInitialisierungErfolgt == true){
             try{
-                pin_g.setState(PinState.HIGH);
+                 SoftPwm.softPwmWrite(intPins[1],100);
+                 anteil_g = 255;
             } catch (NullPointerException f){
                 System.out.println("Error: Pins nicht definiert? (NullPointerException)");
             }
@@ -130,7 +151,8 @@ public final class rpRGB {
     public void blauAn() {
         if (boolInitialisierungErfolgt == true){
             try{
-                pin_b.setState(PinState.HIGH);
+                 SoftPwm.softPwmWrite(intPins[2],100);
+                 anteil_b = 255;
             } catch (NullPointerException f){
                 System.out.println("Error: Pins nicht definiert? (NullPointerException)");
             }
@@ -142,7 +164,8 @@ public final class rpRGB {
     public void rotAus() {
         if (boolInitialisierungErfolgt == true){
             try{
-                pin_r.setState(PinState.LOW);
+                 SoftPwm.softPwmWrite(intPins[0],0);
+                 anteil_r = 0;
             } catch (NullPointerException f){
                 System.out.println("Error: Pins nicht definiert? (NullPointerException)");
             }
@@ -151,10 +174,11 @@ public final class rpRGB {
         }
     }
 
-    public void gelbAus() {
+    public void gruenAus() {
         if (boolInitialisierungErfolgt == true){
             try{
-                pin_g.setState(PinState.LOW);
+                 SoftPwm.softPwmWrite(intPins[1],0);
+                 anteil_g = 0;
             } catch (NullPointerException f){
                 System.out.println("Error: Pins nicht definiert? (NullPointerException)");
             }
@@ -166,7 +190,8 @@ public final class rpRGB {
     public void blauAus() {
         if (boolInitialisierungErfolgt == true){
             try{
-                pin_b.setState(PinState.LOW);
+                 SoftPwm.softPwmWrite(intPins[2],0);
+                 anteil_b = 0;
             } catch (NullPointerException f){
                 System.out.println("Error: Pins nicht definiert? (NullPointerException)");
             }
@@ -178,9 +203,13 @@ public final class rpRGB {
     public void an() {
         if (boolInitialisierungErfolgt == true){
             try{
-                pin_r.setState(PinState.HIGH);
-                pin_g.setState(PinState.HIGH);
-                pin_b.setState(PinState.HIGH);
+				SoftPwm.softPwmWrite(intPins[0],100);
+                SoftPwm.softPwmWrite(intPins[1],100);
+                SoftPwm.softPwmWrite(intPins[2],100);
+                anteil_r = 255;
+                anteil_g = 255;
+                anteil_b = 255;
+
             } catch (NullPointerException f){
                 System.out.println("Error: Pin nicht definiert? (NullPointerException)");
             }
@@ -192,13 +221,12 @@ public final class rpRGB {
     public void blinke()    {
         if (boolInitialisierungErfolgt == true){
             try{
+				int temp_farbe[] = gibFarbe();
+				
                 for (int i = 0; i <= 5; i++) {
-                    /**
-                     * Hier evtl. anders blinken lassen
-                     */
-                    pin_r.toggle();
-                    pin_g.toggle();
-                    pin_b.toggle();
+                  	aus();
+                    Thread.sleep(300);
+                    setzeFarbe(temp_farbe[0], temp_farbe[1], temp_farbe[2]);
                     Thread.sleep(300);
                 }
             } catch (InterruptedException e) {
@@ -214,9 +242,12 @@ public final class rpRGB {
     public void aus() {
         if (boolInitialisierungErfolgt == true){
             try{
-                pin_r.setState(PinState.LOW);
-                pin_g.setState(PinState.LOW);
-                pin_b.setState(PinState.LOW);
+             	SoftPwm.softPwmWrite(intPins[0],0);
+                SoftPwm.softPwmWrite(intPins[1],0);
+                SoftPwm.softPwmWrite(intPins[2],0);
+                anteil_r = 0;
+                anteil_g = 0;
+                anteil_b = 0;
             } catch (NullPointerException f){
                 System.out.println("Error: Pin(s) nicht definiert? (NullPointerException)");
             }
@@ -230,14 +261,18 @@ public final class rpRGB {
             if (boolInitialisierungErfolgt == true){
                 try{
 					
-					//TODO: Hier Modulation fuer Farbe
-                    pin_r.setState(PinState.HIGH);
-                    pin_g.setState(PinState.LOW);
-                    pin_b.setState(PinState.LOW);
-
-                    anteil_r = r;
-                    anteil_g = g;
-                    anteil_b = b;
+				  anteil_r = r;
+                  anteil_g = g;
+                  anteil_b = b;
+                  
+                  int val_r = (int)Math.round(((float)r/255f)*100f);
+                  int val_g = (int)Math.round(((float)g/255f)*100f);
+                  int val_b = (int)Math.round(((float)b/255f)*100f);
+                  				
+                  SoftPwm.softPwmWrite(intPins[0],val_r);
+                  SoftPwm.softPwmWrite(intPins[1],val_g);
+                  SoftPwm.softPwmWrite(intPins[2],val_b);
+                              
                 } catch (NullPointerException f){
                     System.out.println("Error: Pin nicht definiert? (NullPointerException)");
                 }
@@ -273,10 +308,10 @@ public final class rpRGB {
         if (boolInitialisierungErfolgt == true){
             try{
                 if (pin_r.getState() == PinState.HIGH) {
-                    System.out.println("Ja, Diode ist an");
+                    System.out.println("Nein, Diode ist an");
                     return true;
                 } else {
-                    System.out.println("Nein, Diode ist aus");
+                    System.out.println("Ja, Diode ist aus");
                     return false; 
                 }
             } catch (NullPointerException f){
@@ -303,6 +338,7 @@ public final class rpRGB {
 
     public int[] gibFarbe(){
         int return_array[];
+        
         return_array = new int[3];
 
         return_array[0] = anteil_r;
