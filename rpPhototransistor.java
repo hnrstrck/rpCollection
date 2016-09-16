@@ -64,7 +64,7 @@ public final class rpPhototransistor {
     }
 
     public void ueberwache10Mal() {
-        System.out.println("Ueberwache 10 mal");
+        System.out.println("Ueberwache 10 mal den Phototransistor");
 
         for (int count = 1; count <= 10; count++){
             System.out.println("Ueberwache " + count + "/10: " + istLichteinfall());
