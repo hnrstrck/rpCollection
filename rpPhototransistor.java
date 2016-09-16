@@ -80,10 +80,6 @@ public final class rpPhototransistor {
         pin = null;
     }
 
-    public static void main(String[] args){
-        System.out.println("start");
-    }
-
     public void sleepMilliseconds(int milliseconds){
         try{
             Thread.sleep(milliseconds);
