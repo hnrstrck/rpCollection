@@ -29,7 +29,7 @@ public final class rpPhototransistor {
 
             pin = gpio.provisionDigitalInputPin(pinArray[pPin]);
             pin.setShutdownOptions(true, PinState.LOW);
-            System.out.println("Pin " + pPin + "I gesetzt");
+            System.out.println("Pin " + pPin + " gesetzt");
 
             boolInitialisierungErfolgt = true;
             intPin = pPin;
