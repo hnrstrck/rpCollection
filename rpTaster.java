@@ -43,7 +43,7 @@ public final class rpTaster {
         return intPin;
     }
 
-    public boolean istGedrueckt {
+    public boolean istGedrueckt() {
         if (boolInitialisierungErfolgt == true){
             try{
                 if (pin.getState() == PinState.HIGH) {
