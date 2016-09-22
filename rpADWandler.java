@@ -94,6 +94,10 @@ public final class rpADWandler {
         return prozentWert;
     }
 
+	public void destroy(){
+		spi = null;
+		boolInitialisierungErfolgt = false;
+	}
 
 
 }
