@@ -88,5 +88,6 @@ public final class rpTaster {
         gpio.shutdown();
         gpio = null;
         pin = null;
+        boolInitialisierungErfolgt = false;
     }
 }

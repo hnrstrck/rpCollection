@@ -348,5 +348,6 @@ public final class rpRGB {
         pin_r = null;
         pin_g = null;
         pin_b = null;
+        boolInitialisierungErfolgt = false;
     }
 }

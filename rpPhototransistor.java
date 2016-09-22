@@ -74,11 +74,7 @@ public final class rpPhototransistor {
         System.out.println("Ueberwachung beendet");
     }
 
-    public void destroy() {
-        gpio.shutdown();
-        gpio = null;
-        pin = null;
-    }
+
 
     public void sleepMilliseconds(int milliseconds){
         try{
@@ -89,4 +85,11 @@ public final class rpPhototransistor {
             System.out.println("Error: Thread-Sleep unterbrochen (InterruptedException)");
         }
     }
+    
+       public void destroy() {
+        gpio.shutdown();
+        gpio = null;
+        pin = null;
+        boolInitialisierungErfolgt = false;
+   }
 }
