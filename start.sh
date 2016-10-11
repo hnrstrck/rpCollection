@@ -8,6 +8,8 @@ echo "******************"
 echo " "
 
 echo "Kompiliere *.java-Dateien"
+echo " "
+
 javac -classpath '.:classes:/opt/pi4j/lib/*' classes/*.java
 # fuer aeltere Java-Versionen 
 # javac -classpath '.:classes:/opt/pi4j/lib/*' -target 1.7 classes/*.java
@@ -15,5 +17,7 @@ javac -classpath '.:classes:/opt/pi4j/lib/*' classes/*.java
 
 echo "Starte Groovy-Shell."
 echo "Dies kann einen Moment dauern..."
+echo " "
+
 cd classes && sudo groovysh -classpath '.classes:/opt/pi4j/lib/*'
 
