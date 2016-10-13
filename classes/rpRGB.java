@@ -9,12 +9,13 @@ public final class rpRGB {
     private boolean boolInitialisierungErfolgt;
     private int[] intPins;
     private int anteil_r, anteil_g, anteil_b;
-    private static final Pin[] pinArray = new Pin[] {RaspiPin.GPIO_00, 
-            RaspiPin.GPIO_01, RaspiPin.GPIO_02, RaspiPin.GPIO_03, RaspiPin.GPIO_04, 
-            RaspiPin.GPIO_05, RaspiPin.GPIO_06, RaspiPin.GPIO_07, RaspiPin.GPIO_08, 
-            RaspiPin.GPIO_09, RaspiPin.GPIO_10, RaspiPin.GPIO_11, RaspiPin.GPIO_12, 
-            RaspiPin.GPIO_13, RaspiPin.GPIO_14, RaspiPin.GPIO_15, RaspiPin.GPIO_16, 
-            RaspiPin.GPIO_17, RaspiPin.GPIO_18, RaspiPin.GPIO_19, RaspiPin.GPIO_20};
+
+    /*
+     * Damit es nur einen (!) Blinken-Thead gibt
+     */
+    public Thread threadEndlosBlinken;
+
+    private boolean blinktGerade = false;
 
     rpRGB() {
         gpio = GpioFactory.getInstance();
@@ -23,6 +24,17 @@ public final class rpRGB {
         anteil_r = 0;
         anteil_g = 0;
         anteil_b = 0;
+    }
+
+    rpRGB(int roterPin, int gruenerPin, int blauerPin) {
+        gpio = GpioFactory.getInstance();
+        intPins = new int[3];
+        boolInitialisierungErfolgt = false;
+        anteil_r = 0;
+        anteil_g = 0;
+        anteil_b = 0;
+
+        this.setPins(roterPin, gruenerPin, blauerPin);
     }
 
     public void setPins(int roterPin, int gruenerPin, int blauerPin){
@@ -39,11 +51,11 @@ public final class rpRGB {
 
         try {
 
-            pin_r = gpio.provisionDigitalOutputPin(pinArray[pPin]);
+            pin_r = gpio.provisionDigitalOutputPin(rpHelper.pinArray[pPin]);
             pin_r.setShutdownOptions(true, PinState.LOW);
 
             SoftPwm.softPwmCreate(pPin,0,100);
-     
+
             System.out.println("Pin " + pPin + " gesetzt");
             boolInitialisierungErfolgt = true;
 
@@ -63,7 +75,7 @@ public final class rpRGB {
 
         try {
 
-            pin_g = gpio.provisionDigitalOutputPin(pinArray[pPin]);
+            pin_g = gpio.provisionDigitalOutputPin(rpHelper.pinArray[pPin]);
             pin_g.setShutdownOptions(true, PinState.LOW);
 
             SoftPwm.softPwmCreate(pPin,0,100);
@@ -87,7 +99,7 @@ public final class rpRGB {
 
         try {
 
-            pin_b = gpio.provisionDigitalOutputPin(pinArray[pPin]);
+            pin_b = gpio.provisionDigitalOutputPin(rpHelper.pinArray[pPin]);
             pin_b.setShutdownOptions(true, PinState.LOW);
 
             SoftPwm.softPwmCreate(pPin,0,100);
@@ -125,7 +137,7 @@ public final class rpRGB {
                 System.out.println("Error: Pins nicht definiert? (NullPointerException)");
             }
         } else {
-            System.out.println("Zuerst Pins fuer die Diode angeben");
+            System.out.println("Zuerst Pins fuer die RGB-LED angeben");
         }
     }
 
@@ -138,7 +150,7 @@ public final class rpRGB {
                 System.out.println("Error: Pins nicht definiert? (NullPointerException)");
             }
         } else {
-            System.out.println("Zuerst Pins fuer die Diode angeben");
+            System.out.println("Zuerst Pins fuer die RGB-LED angeben");
         }
     }
 
@@ -151,7 +163,7 @@ public final class rpRGB {
                 System.out.println("Error: Pins nicht definiert? (NullPointerException)");
             }
         } else {
-            System.out.println("Zuerst Pins fuer die Diode angeben");
+            System.out.println("Zuerst Pins fuer die RGB-LED angeben");
         }
     }
 
@@ -164,7 +176,7 @@ public final class rpRGB {
                 System.out.println("Error: Pins nicht definiert? (NullPointerException)");
             }
         } else {
-            System.out.println("Zuerst Pins fuer die Diode angeben");
+            System.out.println("Zuerst Pins fuer die RGB-LED angeben");
         }
     }
 
@@ -177,7 +189,7 @@ public final class rpRGB {
                 System.out.println("Error: Pins nicht definiert? (NullPointerException)");
             }
         } else {
-            System.out.println("Zuerst Pins fuer die Diode angeben");
+            System.out.println("Zuerst Pins fuer die RGB-LED angeben");
         }
     }
 
@@ -190,7 +202,7 @@ public final class rpRGB {
                 System.out.println("Error: Pins nicht definiert? (NullPointerException)");
             }
         } else {
-            System.out.println("Zuerst Pins fuer die Diode angeben");
+            System.out.println("Zuerst Pins fuer die RGB-LED angeben");
         }
     }
 
@@ -208,28 +220,7 @@ public final class rpRGB {
                 System.out.println("Error: Pin nicht definiert? (NullPointerException)");
             }
         } else {
-            System.out.println("Zuerst Pins fuer die Diode angeben");
-        }
-    }
-
-    public void blinke()    {
-        if (boolInitialisierungErfolgt == true){
-            try{
-                int temp_farbe[] = gibFarbe();
-
-                for (int i = 0; i <= 5; i++) {
-                    aus();
-                    Thread.sleep(300);
-                    setzeFarbe(temp_farbe[0], temp_farbe[1], temp_farbe[2]);
-                    Thread.sleep(300);
-                }
-            } catch (InterruptedException e) {
-                System.out.println("Error: Timeout (InterruptedException)");
-            } catch (NullPointerException f){
-                System.out.println("Error: Pins nicht definiert? (NullPointerException)");
-            }
-        } else {
-            System.out.println("Zuerst Pins fuer die Diode angeben");
+            System.out.println("Zuerst Pins fuer die RGB-LED angeben");
         }
     }
 
@@ -246,7 +237,7 @@ public final class rpRGB {
                 System.out.println("Error: Pin(s) nicht definiert? (NullPointerException)");
             }
         } else {
-            System.out.println("Zuerst Pins fuer die Diode angeben");
+            System.out.println("Zuerst Pins fuer die RGB-LED angeben");
         }
     }
 
@@ -271,7 +262,7 @@ public final class rpRGB {
                     System.out.println("Error: Pin nicht definiert? (NullPointerException)");
                 }
             } else {
-                System.out.println("Zuerst Pins fuer die Diode angeben");
+                System.out.println("Zuerst Pins fuer die RGB-LED angeben");
             }
         } else {
             System.out.println("Falsche Zahlenbereiche angegeben. r, g, b muessen zwischen 0 und 255 (jew. einschliesslich) liegen");
@@ -282,10 +273,10 @@ public final class rpRGB {
         if (boolInitialisierungErfolgt == true){
             try{
                 if (pin_r.getState() == PinState.HIGH || pin_g.getState() == PinState.HIGH || pin_b.getState() == PinState.HIGH ) {
-                    System.out.println("Ja, Diode ist an");
+                    System.out.println("Ja, RGB-LED ist an");
                     return true;
                 } else {
-                    System.out.println("Nein, Diode ist aus");
+                    System.out.println("Nein, RGB-LED ist aus");
                     return false; 
                 }
             } catch (NullPointerException f){
@@ -293,7 +284,7 @@ public final class rpRGB {
                 return false;
             }
         } else {
-            System.out.println("Zuerst Pins fuer die Diode angeben");
+            System.out.println("Zuerst Pins fuer die RGB-LED angeben");
             return false;
         }    
     }
@@ -301,19 +292,19 @@ public final class rpRGB {
     public boolean istAus() {
         if (boolInitialisierungErfolgt == true){
             try{
-                if (pin_r.getState() == PinState.HIGH) {
-                    System.out.println("Nein, Diode ist an");
-                    return true;
+                if (pin_r.getState() == PinState.HIGH || pin_g.getState() == PinState.HIGH || pin_b.getState() == PinState.HIGH ) {
+                    System.out.println("Nein, RGB-LED ist an");
+                    return false;
                 } else {
-                    System.out.println("Ja, Diode ist aus");
-                    return false; 
+                    System.out.println("Ja, RGB-LED ist aus");
+                    return true; 
                 }
             } catch (NullPointerException f){
                 System.out.println("Error: Pins nicht definiert? (NullPointerException)");
                 return false;
             }
         } else {
-            System.out.println("Zuerst Pins fuer die Diode angeben");
+            System.out.println("Zuerst Pins fuer die RGB-LED angeben");
             return false;
         }    
     }
@@ -340,6 +331,161 @@ public final class rpRGB {
         return_array[2] = anteil_b;
 
         return return_array;
+    }
+
+    public void blinke()    {
+        if (boolInitialisierungErfolgt == true){
+            try{
+                int temp_farbe[] = gibFarbe();
+
+                for (int i = 0; i <= 5; i++) {
+                    aus();
+                    Thread.sleep(200);
+                    setzeFarbe(temp_farbe[0], temp_farbe[1], temp_farbe[2]);
+                    Thread.sleep(200);
+                }
+            } catch (InterruptedException e) {
+                System.out.println("Error: Timeout (InterruptedException)");
+            } catch (NullPointerException f){
+                System.out.println("Error: Pins nicht definiert? (NullPointerException)");
+            }
+        } else {
+            System.out.println("Zuerst Pins fuer die RGB-LED angeben");
+        }
+    }
+
+    private void startBlinken(int pIntervall) {
+        if (boolInitialisierungErfolgt == true){
+            threadEndlosBlinken = new Thread(){
+
+                public void run()  {
+                    int temp_farbe[] = gibFarbe();
+
+                    try {
+
+                        while(true){
+
+                            //Signal endlos blinken
+                            aus();
+                            Thread.sleep(pIntervall);     
+                            setzeFarbe(temp_farbe[0], temp_farbe[1], temp_farbe[2]);
+                            Thread.sleep(pIntervall); 
+                            temp_farbe = gibFarbe();
+
+                        }
+
+                    } catch (InterruptedException e) {
+                        System.out.println("Blinken beendet");
+                        Thread.currentThread().interrupt();
+                        return;
+                    }
+
+                }
+            };
+            threadEndlosBlinken.start();
+        } else {
+            System.out.println("Zuerst Pin fuer die RGB-LED angeben");
+        }
+    }
+
+    private void startBlinkenVariabel(rpADWandler meinWandler, int pChannel) {
+        if (boolInitialisierungErfolgt == true){
+
+            threadEndlosBlinken = new Thread(){
+
+                public void run()  {
+                    try {
+
+                        int temp_farbe[] = gibFarbe();
+
+                        while(true){
+                            //Signal endlos blinken
+                            aus();
+                            Thread.sleep((int)Math.round(    ((100f - (float)(rpADWandler.gibProzentwertVonChannel(pChannel,0)))/100f)*300f)      );     
+                            setzeFarbe(temp_farbe[0], temp_farbe[1], temp_farbe[2]);
+                            Thread.sleep((int)Math.round(    ((100f - (float)(rpADWandler.gibProzentwertVonChannel(pChannel,0)))/100f)*300f)      );     
+                            temp_farbe = gibFarbe();
+                        }
+
+                    } catch (InterruptedException e) {
+                        System.out.println("Blinken beendet");
+                        Thread.currentThread().interrupt();
+                        return;
+                    }
+
+                }
+            };
+            threadEndlosBlinken.start();
+        } else {
+            System.out.println("Zuerst Pin fuer die RGB-LED angeben");
+        }
+    }
+
+    public void blinkeEndlosStart(){
+        if (boolInitialisierungErfolgt == true){
+
+            if(!blinktGerade){
+                startBlinken(200);
+                blinktGerade = true;
+            } else {
+                System.out.println("RGB-LED blinkt schon");
+            }
+
+        } else {
+            System.out.println("Zuerst Pin fuer die RGB-LED angeben");
+        }
+    }
+
+    public void blinkeEndlosStart(int pIntervall){
+        if (boolInitialisierungErfolgt == true){
+
+            if(!blinktGerade){
+
+                if(istAn()){
+                    startBlinken(pIntervall);
+                    blinktGerade = true;
+                } else {
+                    System.out.println("RGB-LED zuerst einschlaten, damit eine Farbe vorhanden ist");
+                }
+
+            } else {
+                System.out.println("RGB-LED blinkt schon");
+            }
+
+        } else {
+            System.out.println("Zuerst Pin fuer die RGB-LED angeben");
+        }
+    }
+
+    public void blinkeEndlosStart(rpADWandler pWandler, int pChannel){
+        if (boolInitialisierungErfolgt == true){
+
+            if(!blinktGerade){
+
+                if(istAn()){
+                    startBlinkenVariabel(pWandler, pChannel);
+                    blinktGerade = true;
+                } else {
+                    System.out.println("RGB-LED zuerst einschlaten, damit eine Farbe vorhanden ist");
+                }
+
+            } else {
+                System.out.println("RGB-LED blinkt schon");
+            }
+        } else {
+            System.out.println("Zuerst Pins fuer die RGB-LED angeben");
+        }
+
+    }
+
+    public void blinkeEndlosStop(){
+        if (boolInitialisierungErfolgt == true){
+            threadEndlosBlinken.interrupt();
+            blinktGerade = false;
+            aus();
+        } else {
+            System.out.println("Zuerst Pins fuer die RGB-LED angeben");
+        }
     }
 
     public void destroy() {
