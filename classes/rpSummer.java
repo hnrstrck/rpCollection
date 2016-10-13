@@ -8,16 +8,16 @@ public final class rpSummer {
     private boolean boolInitialisierungErfolgt;
     private int intPin;
 
-    private static final Pin[] pinArray = new Pin[] {RaspiPin.GPIO_00, 
-            RaspiPin.GPIO_01, RaspiPin.GPIO_02, RaspiPin.GPIO_03, RaspiPin.GPIO_04, 
-            RaspiPin.GPIO_05, RaspiPin.GPIO_06, RaspiPin.GPIO_07, RaspiPin.GPIO_08, 
-            RaspiPin.GPIO_09, RaspiPin.GPIO_10, RaspiPin.GPIO_11, RaspiPin.GPIO_12, 
-            RaspiPin.GPIO_13, RaspiPin.GPIO_14, RaspiPin.GPIO_15, RaspiPin.GPIO_16, 
-            RaspiPin.GPIO_17, RaspiPin.GPIO_18, RaspiPin.GPIO_19, RaspiPin.GPIO_20};
-
     rpSummer() {
         gpio = GpioFactory.getInstance();
         boolInitialisierungErfolgt = false;
+    }
+
+    rpSummer(int pPin) {
+        gpio = GpioFactory.getInstance();
+        boolInitialisierungErfolgt = false;
+
+        this.setPin(pPin);
     }
 
     public void setPin(int pPin) {
@@ -27,7 +27,7 @@ public final class rpSummer {
 
         try {
 
-            pin = gpio.provisionDigitalOutputPin(pinArray[pPin]);
+            pin = gpio.provisionDigitalOutputPin(rpHelper.pinArray[pPin]);
             pin.setShutdownOptions(true, PinState.LOW);
             System.out.println("Pin " + pPin + " gesetzt");
 
@@ -42,9 +42,8 @@ public final class rpSummer {
     public int gibPin(){
         return intPin;
     }
-    
-    
-     public void an() {
+
+    public void an() {
         if (boolInitialisierungErfolgt == true){
             try{
                 pin.setState(PinState.HIGH);
@@ -59,10 +58,10 @@ public final class rpSummer {
     public void beep() {
         if (boolInitialisierungErfolgt == true){
             try{
-            	this.an();
- 				Thread.sleep(200);
-            	this.aus();
-               
+                this.an();
+                Thread.sleep(200);
+                this.aus();
+
             } catch (InterruptedException e) {
                 System.out.println("Error: Timeout (InterruptedException)");
             } catch (NullPointerException f){
@@ -72,18 +71,18 @@ public final class rpSummer {
             System.out.println("Zuerst Pin fuer den Summer angeben");
         }
     }
-    
+
     public void beepbeep() {
         if (boolInitialisierungErfolgt == true){
             try{
-            	this.an();
- 				Thread.sleep(200);
-            	this.aus();
-            	Thread.sleep(100);
-            	this.an();
- 				Thread.sleep(200);
-            	this.aus();
-               
+                this.an();
+                Thread.sleep(200);
+                this.aus();
+                Thread.sleep(100);
+                this.an();
+                Thread.sleep(200);
+                this.aus();
+
             } catch (InterruptedException e) {
                 System.out.println("Error: Timeout (InterruptedException)");
             } catch (NullPointerException f){
@@ -93,7 +92,6 @@ public final class rpSummer {
             System.out.println("Zuerst Pin fuer die Summer angeben");
         }
     }
-
 
     public void aus() {
         if (boolInitialisierungErfolgt == true){
@@ -106,7 +104,6 @@ public final class rpSummer {
             System.out.println("Zuerst Pin fuer den Summer angeben");
         }
     }
-
 
     public boolean istAn() {
         if (boolInitialisierungErfolgt == true){
@@ -153,5 +150,5 @@ public final class rpSummer {
         gpio = null;
         pin = null;
     }
-    
+
 }

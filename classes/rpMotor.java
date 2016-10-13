@@ -8,16 +8,16 @@ public final class rpMotor {
     private boolean boolInitialisierungErfolgt;
     private int intPin;
 
-    private static final Pin[] pinArray = new Pin[] {RaspiPin.GPIO_00, 
-            RaspiPin.GPIO_01, RaspiPin.GPIO_02, RaspiPin.GPIO_03, RaspiPin.GPIO_04, 
-            RaspiPin.GPIO_05, RaspiPin.GPIO_06, RaspiPin.GPIO_07, RaspiPin.GPIO_08, 
-            RaspiPin.GPIO_09, RaspiPin.GPIO_10, RaspiPin.GPIO_11, RaspiPin.GPIO_12, 
-            RaspiPin.GPIO_13, RaspiPin.GPIO_14, RaspiPin.GPIO_15, RaspiPin.GPIO_16, 
-            RaspiPin.GPIO_17, RaspiPin.GPIO_18, RaspiPin.GPIO_19, RaspiPin.GPIO_20};
-
     rpMotor() {
         gpio = GpioFactory.getInstance();
         boolInitialisierungErfolgt = false;
+    }
+
+    rpMotor(int pPinE, int pPinDIR1, int pPinDIR2){
+        gpio = GpioFactory.getInstance();
+        boolInitialisierungErfolgt = false;
+
+        //this.setPins(pPinE, pPinDIR1, pPinDIR);
     }
 
     public void setPin(int pPin) {
@@ -27,7 +27,7 @@ public final class rpMotor {
 
         try {
 
-            pin = gpio.provisionDigitalInputPin(pinArray[pPin]);
+            pin = gpio.provisionDigitalInputPin(rpHelper.pinArray[pPin]);
             pin.setShutdownOptions(true, PinState.LOW);
             System.out.println("Pin " + pPin + " gesetzt");
 
