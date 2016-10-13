@@ -1,0 +1,41 @@
+% Dieses Dokument ist von Johannes Pieper erstellt worden.
+%
+% Das Dokument steht unter der Lizenz: Creative Commons by-nc-sa Version 4.0
+% http://creativecommons.org/licenses/by-nc-sa/4.0/deed.de
+%
+% Nach dieser Lizenz darf das Dokument beliebig kopiert und bearbeitet werden,
+% sofern das Folgeprodukt wiederum unter gleichen Lizenzbedingungen vertrieben
+% und auf die ursprünglichen Urheber verwiesen wird.
+% Eine kommerzielle Nutzung ist ausdrücklich ausgeschlossen.
+%
+% Die Namensnennung durch einen Verweis und die Lizenzangabe der ursprünglichen
+% Urheber auf den Materialien für Schülerinnen und Schüler ist erforderlich.
+%
+
+\begin{tikzpicture}
+	\draw (0,-1.27mm) rectangle (0.8,29.21mm);
+	\draw (0,6.35mm) -- ++(0.8,0);
+	\draw (0,13.97mm) -- ++(0.8,0);
+	\draw (0,21.59mm) -- ++(0.8,0);
+	
+	\begin{scope}[every node/.style={right}]
+		\draw (0 mm, 0mm) node[] {\tiny{L}}
+			++(0,2.54mm) node[] {\tiny{R}}
+			++(0,2.54mm) node[] {\tiny{E}}
+			++(0,2.54mm) node[] {\tiny{L}}
+			++(0,2.54mm) node[] {\tiny{R}}
+			++(0,2.54mm) node[] {\tiny{E}}
+			++(0,2.54mm) node[] {\tiny{L}}
+			++(0,2.54mm) node[] {\tiny{R}}
+			++(0,2.54mm) node[] {\tiny{E}}
+			++(0,2.54mm) node[] {\tiny{L}}
+			++(0,2.54mm) node[] {\tiny{R}}
+			++(0,2.54mm) node[] {\tiny{E}};
+		\draw (3mm, 2.54mm) node[] {\tiny{4}}
+			++(0mm, 7.62mm) node[] {\tiny{3}}
+			++(0mm, 7.62mm) node[] {\tiny{2}}
+			++(0mm, 7.62mm) node[] {\tiny{1}};
+	\end{scope}
+	
+
+\end{tikzpicture}
