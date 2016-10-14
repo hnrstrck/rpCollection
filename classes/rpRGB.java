@@ -44,7 +44,7 @@ public final class rpRGB {
         setPinBlau(blauerPin);    
     }
 
-    private void setPinRot(int pPin) {
+    public void setPinRot(int pPin) {
         pin_r = null;
 
         System.out.println("Output-Pin gesetzt fuer ROT:");
@@ -68,7 +68,7 @@ public final class rpRGB {
 
     }
 
-    private void setPinGruen(int pPin) {
+    public void setPinGruen(int pPin) {
         pin_g = null;
 
         System.out.println("Output-Pin gesetzt fuer GRUEN:");
@@ -92,7 +92,7 @@ public final class rpRGB {
 
     }
 
-    private void setPinBlau(int pPin) {
+    public void setPinBlau(int pPin) {
         pin_b = null;
 
         System.out.println("Output-Pin gesetzt fuer BLAU:");
@@ -384,7 +384,7 @@ public final class rpRGB {
             };
             threadEndlosBlinken.start();
         } else {
-            System.out.println("Zuerst Pin fuer die RGB-LED angeben");
+            System.out.println("Zuerst Pins fuer die RGB-LED angeben");
         }
     }
 
@@ -417,7 +417,7 @@ public final class rpRGB {
             };
             threadEndlosBlinken.start();
         } else {
-            System.out.println("Zuerst Pin fuer die RGB-LED angeben");
+            System.out.println("Zuerst Pins fuer die RGB-LED angeben");
         }
     }
 
@@ -425,14 +425,20 @@ public final class rpRGB {
         if (boolInitialisierungErfolgt == true){
 
             if(!blinktGerade){
-                startBlinken(200);
-                blinktGerade = true;
+               if(pin_r.getState() == PinState.HIGH || pin_g.getState() == PinState.HIGH || pin_b.getState() == PinState.HIGH){
+                    startBlinken(200);
+                    blinktGerade = true;
+                    System.out.println("Blinken gestartet");
+                } else {
+                    System.out.println("RGB-LED zuerst einschlaten, damit eine Farbe vorhanden ist");
+                }          
+                
             } else {
                 System.out.println("RGB-LED blinkt schon");
             }
 
         } else {
-            System.out.println("Zuerst Pin fuer die RGB-LED angeben");
+            System.out.println("Zuerst Pins fuer die RGB-LED angeben");
         }
     }
 
@@ -441,9 +447,10 @@ public final class rpRGB {
 
             if(!blinktGerade){
 
-                if(istAn()){
+                if(pin_r.getState() == PinState.HIGH || pin_g.getState() == PinState.HIGH || pin_b.getState() == PinState.HIGH){
                     startBlinken(pIntervall);
                     blinktGerade = true;
+                    System.out.println("Blinken gestartet");
                 } else {
                     System.out.println("RGB-LED zuerst einschlaten, damit eine Farbe vorhanden ist");
                 }
@@ -453,7 +460,7 @@ public final class rpRGB {
             }
 
         } else {
-            System.out.println("Zuerst Pin fuer die RGB-LED angeben");
+            System.out.println("Zuerst Pins fuer die RGB-LED angeben");
         }
     }
 
@@ -462,9 +469,10 @@ public final class rpRGB {
 
             if(!blinktGerade){
 
-                if(istAn()){
+                if(pin_r.getState() == PinState.HIGH || pin_g.getState() == PinState.HIGH || pin_b.getState() == PinState.HIGH){
                     startBlinkenVariabel(pWandler, pChannel);
                     blinktGerade = true;
+                    System.out.println("Blinken gestartet");
                 } else {
                     System.out.println("RGB-LED zuerst einschlaten, damit eine Farbe vorhanden ist");
                 }
@@ -494,6 +502,5 @@ public final class rpRGB {
         pin_r = null;
         pin_g = null;
         pin_b = null;
-        boolInitialisierungErfolgt = false;
     }
 }
