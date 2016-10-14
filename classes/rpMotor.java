@@ -139,7 +139,7 @@ public final class rpMotor {
             threadEndlosMotorlaufen.start();
 
         } else {
-            System.out.println("Zuerst Pin fuer die RGB-LED angeben");
+            System.out.println("Zuerst Pins fuer den Motor angeben (EN 1, IN 1.1, IN 1.2)");
         }
     }
 
@@ -166,7 +166,7 @@ public final class rpMotor {
             threadEndlosMotorlaufen.start();
 
         } else {
-            System.out.println("Zuerst Pins fuer die RGB-LED angeben");
+            System.out.println("Zuerst Pins fuer den Motor angeben (EN 1, IN 1.1, IN 1.2)");
         }
     }
 
