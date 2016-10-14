@@ -4,7 +4,7 @@ public class rpHelper
 {
 
     /*
-     * Zuordnung Eingabe (int) -> Pin erfolgt über Position des Arrays
+     * Zuordnung Eingabe (int) -> Pin erfolgt ueber Position des Arrays
      */
 
     
