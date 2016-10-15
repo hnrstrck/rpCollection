@@ -13,9 +13,12 @@
 %
 
 \begin{tikzpicture}
-	\draw (0,1.27mm) rectangle (0.9,-6.35mm);
+	\draw (0,1.27mm) rectangle (0.9,-13.97mm);
 	\begin{scope}[every node/.style={right}]
-		\draw (0 mm, 0mm) node[] {\tiny{PIN}}
+		\draw (0 mm, 0mm) node[] {\tiny{IO 8}}
+			++(0,-2.54mm) node[] {\tiny{IO 10}}
+			++(0,-2.54mm) node[] {\tiny{IO 9}}
+			++(0,-2.54mm) node[] {\tiny{IO 11}}
 			++(0,-2.54mm) node[red] {\tiny{+3,3V}}
 			++(0,-2.54mm) node[blue] {\tiny{GND}};
 	\end{scope}

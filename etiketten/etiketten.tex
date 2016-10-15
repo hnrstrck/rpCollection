@@ -1,17 +1,34 @@
 \documentclass[a4paper,10pt]{scrartcl}
 \usepackage[utf8]{inputenc}
 \usepackage{tikz}
+\usepackage{multicol}
 
 \pagestyle{empty}
 
 
 \begin{document}
+\begin{multicols}{4}
+
+	\input{diode.cir}
+	\input{diode.cir}
+	\input{diode.cir}
+	\input{diode.cir}
+	\input{diode.cir}
+	\input{diode.cir}
+	\input{diode.cir}
 	\input{diode.cir}
 
 	\vspace{0.5cm}
 	\input{motor_eingang.cir}
 
 	\vspace{0.5cm}
+	\input{schalter.cir}
+	\input{schalter.cir}
+	\input{schalter.cir}
+	\input{schalter.cir}
+	\input{schalter.cir}
+	\input{schalter.cir}
+	\input{schalter.cir}
 	\input{schalter.cir}
 
 	\vspace{0.5cm}
@@ -23,5 +40,14 @@
 	\vspace{0.5cm}
 	\input{motor_eingang_extern_prototype.cir}
 
+	\vspace{0.5cm}
+	\input{rgb.cir}
+	\input{rgb.cir}
+	\input{rgb.cir}
+	\input{rgb.cir}
+
+	\vspace{0.5cm}
+	\input{ad_wandler.cir}
+\end{multicols}
 
 \end{document}
