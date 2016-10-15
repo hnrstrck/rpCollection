@@ -13,8 +13,8 @@ public final class rpADWandler {
     private GpioController gpio;
     private static boolean boolInitialisierungErfolgt;
 
-    public  static SpiDevice spi = null;
-    public  static byte INIT_CMD = (byte) 0xD0; // 11010000
+    private static SpiDevice spi = null;
+    private static byte INIT_CMD = (byte) 0xD0; // 11010000
     private static int gelesenerWert = 0;
     private static int prozentWert = 0;
 
@@ -55,7 +55,7 @@ public final class rpADWandler {
         System.out.println("Initialisierung des AD-Wandlers erfolgreich");
     }
 
-    public static int readChannel(int channel) throws IOException {
+    private static int readChannel(int channel) throws IOException {
         // 10-bit ADC MCP3008
         byte packet[] = new byte[3];
         packet[0] = 0x01;  // INIT_CMD;  // address byte
@@ -65,12 +65,6 @@ public final class rpADWandler {
         byte[] result = spi.write(packet);
         return (((result[1] & 0x03 ) << 8) | (result[2] & 0xff) );
 
-    }
-
-    public int gibProzentwertVonChannel2(int channel){
-        int x = 15;
-        x = this.gibWertVonChannel(0);
-        return x;
     }
 
     public static int gibWertVonChannel(int channel, int ausgabe){
@@ -128,7 +122,7 @@ public final class rpADWandler {
     }
 
     public static int gibProzentwertVonChannel(int channel){
-        return gibWertVonChannel(channel, 1);
+        return gibProzentwertVonChannel(channel, 1);
     }
 
     public void destroy(){
