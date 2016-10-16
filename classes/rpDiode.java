@@ -273,7 +273,6 @@ public final class rpDiode {
         gpio.shutdown();
         gpio = null;
         pin = null;
-        boolInitialisierungErfolgt = false;
     }
 
 }
