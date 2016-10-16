@@ -2,11 +2,13 @@ import com.pi4j.io.gpio.*;
 
 public class rpHelper
 {
-
-    /*
-     * Zuordnung Eingabe (int) -> BCM-Pin / J8-Pin erfolgt ueber Position des Arrays
+    /**
+     * Erstelle ein neues Objekt der Klasse rpHelper, um die Methoden aufrufen zu koennen.
      */
-
+	public rpHelper(){
+		System.out.println("Helferobjekt erstellt.");   
+    }
+ 
     /**
      * J8-Pin Nummerierung wie auf der Pi4J Website 
      */
@@ -55,7 +57,7 @@ public class rpHelper
         };
 
     /**
-     * BCM-Nummerierung wie auf dem GPIO-Controller gedruckt
+     * BCM-Nummerierung wie auf dem GPIO-Controller gedruckt.
      */
     public static Pin[] pinArrayBCM = new Pin[] {
             null,  //0
@@ -102,7 +104,7 @@ public class rpHelper
         };
 
 	/**
-     * Integer-Array mit der Zuordnung: BCM --> J8 (fuer wiringpi, da dieses bei der Pin-Erstellung einen Integer-Wert fuer den Pin erwartet und keinen Enum RaspiPin.GPIO_xx)
+     * Integer-Array mit der Zuordnung: BCM --> J8 (fuer Wiringpi, da dieses bei der Pin-Erstellung einen Integer-Wert fuer den Pin erwartet und keinen Enum RaspiPin.GPIO_xx).
      */
     public static Integer[] pinZuordnungBCMzuJ8 = new Integer[] {
             null,  	//0
@@ -148,24 +150,30 @@ public class rpHelper
             null,   //40
         };
 
-    /*
-     * Standard-Pin-Belegung: BCM, auch booleans aendern!
+    /**
+     * Fuer den Zugriff von Klassen, die lediglich Pi4J verwenden.
      */
     public static Pin[] pinArray = pinArrayBCM;
 
-
-	/*
-     * Falls waehrend des Ablaufes gewechselt wird (zur Abfrage)
+	/**
+     * boolean, je nachdem, ob das BCM-Layout verwendet wird.
      */
     public static boolean istBCMLayout = true;
+    
+    /**
+	 * boolean, je nachdem, ob das J8-Layout verwendet wird.
+     */
     public static boolean istJ8Layout = false;
 
-
-    /*
-     * Standard-AD-Wandler: MCP 3208 mit 12 Bit Aufloesung = 4096 Aufloesungswerte
+    /**
+     * Standard-AD-Wandler: MCP 3208 mit 12 Bit Aufloesung = 4096 Aufloesungswerte, also aufloesungADWandler = 4096.
      */
     public static int aufloesungADWandler = 4096;
-
+    
+    /**
+     * Aendere das Pin-Layout auf BCM oder J8.
+     * @param PinLayout String des Pin-Layouts (muss "BCM" oder "J8" lauten).
+     */
     public static void setzePinLayout(String PinLayout){
         if (PinLayout.equals("BCM")){
             pinArray = pinArrayBCM;
@@ -181,11 +189,19 @@ public class rpHelper
         }
     }
 
+	/**
+	* Setzt die Maximalaufloesung des AD-Wandlers.
+	* @param pAufloesung Maximalaufloesung des AD-Wandlers.
+	*/
     public void setzeADWandlerAufloesung(int pAufloesung){
         aufloesungADWandler = pAufloesung;
         System.out.println("AD-Wandler-Aufloesung geaendert auf: " + pAufloesung);
     }
-
+    
+    /**
+     * Aendere den verwendeten AD-Wandler auf MCP3008 oder MCP3208.
+     * @param PinLayout String des Pin-Layouts (muss "MCP3008" oder "MCP3208" lauten).
+     */
     public static void setzeADWandler(String ADWandlerName){
         if (ADWandlerName.equals("MCP3008")){
             aufloesungADWandler = 1024;
