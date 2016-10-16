@@ -18,21 +18,6 @@ public final class rpADWandler {
     private static int gelesenerWert = 0;
     private static int prozentWert = 0;
 
-    /**
-     * Hier aendern:
-     * 
-     * CHIP-Aufloesung - Anzahl an Rueckgaben des MCP-Chips
-     * 
-     * MCP 3008: 	1024
-     * MCP 3208:	4096
-     * 
-     * Eine - und nur eine - Zeile stehen lassen: 
-     *    
-     */
-
-    private static int aufloesung_chip = 1024;
-    //private static int aufloesung_chip = 4096;
-
     rpADWandler() {
         try{
             this.initialisiere();
@@ -102,7 +87,7 @@ public final class rpADWandler {
                 try{
 
                     //Berechne Prozent:
-                    prozentWert = (int)((float)readChannel(channel)/(float)(aufloesung_chip-1) * 100f); 
+                    prozentWert = (int)((float)readChannel(channel)/(float)(rpHelper.aufloesungADWandler-1) * 100f); 
 
                     if(ausgabe == 1){
                         System.out.println("Einstellung in Prozent: " + prozentWert + "%");
