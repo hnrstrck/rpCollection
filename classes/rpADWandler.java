@@ -54,8 +54,8 @@ public final class rpADWandler {
     /**
     * Liest den uebergebenen Channel aus.
     *
-    * @param channel Der Channel des AD-Wandlers (0, 1, 2, ..., 7)
-    * @return Der gelesene Wert des Channels
+    * @param channel Der Channel des AD-Wandlers (0, 1, 2, ..., 7).
+    * @return Der gelesene Wert des Channels.
     */
     private static int readChannel(int channel) throws IOException {
         // 10-bit ADC MCP3008
@@ -72,9 +72,9 @@ public final class rpADWandler {
     /**
     * Liest den uebergebenen Channel aus.
     *
-    * @param channel Der Channel des AD-Wandlers (0, 1, 2, ..., 7)
-    * @param ausgabe Die Ausgabe in der Shell kann durch Setzen dieses Wertes verhindert / veranlasst werden (1 = Ausgabe, andere Werte = keine Ausgabe)
-    * @return Der gelesene Wert des Channels (Achtung: richtigen AD-Wandler auswaehlen)
+    * @param channel Der Channel des AD-Wandlers (0, 1, 2, ..., 7).
+    * @param ausgabe Die Ausgabe in der Shell kann durch Setzen dieses Wertes verhindert / veranlasst werden (1 = Ausgabe, andere Werte = keine Ausgabe).
+    * @return Der gelesene Wert des Channels (Achtung: richtigen AD-Wandler auswaehlen).
     * @see rpHelper
     */
     public static int gibWertVonChannel(int channel, int ausgabe){
@@ -103,8 +103,8 @@ public final class rpADWandler {
     /**
     * Liest den uebergebenen Channel aus. Die Ausgabe erfolgt in der Shell.
     *
-    * @param channel Der Channel des AD-Wandlers (0, 1, 2, ..., 7)
-    * @return Der gelesene Wert des Channels (Achtung: richtigen AD-Wandler auswaehlen)
+    * @param channel Der Channel des AD-Wandlers (0, 1, 2, ..., 7).
+    * @return Der gelesene Wert des Channels (Achtung: richtigen AD-Wandler auswaehlen).
     * @see rpHelper
     */
     public static int gibWertVonChannel(int channel){
@@ -114,9 +114,9 @@ public final class rpADWandler {
     /**
     * Liest den uebergebenen Channel aus und gibt die Stellung des Potentiometers in Prozent zurueck (als int, ohne "%", also zum Beispiel 37 fuer eine Stellung von 37%).
     *
-    * @param channel Der Channel des AD-Wandlers (0, 1, 2, ..., 7)
-    * @param ausgabe Die Ausgabe in der Shell kann durch Setzen dieses Wertes verhindert / veranlasst werden (1 = Ausgabe, andere Werte = keine Ausgabe)
-    * @return Der gelesene Wert des Channels in Prozent (Achtung: richtigen AD-Wandler auswaehlen)
+    * @param channel Der Channel des AD-Wandlers (0, 1, 2, ..., 7).
+    * @param ausgabe Die Ausgabe in der Shell kann durch Setzen dieses Wertes verhindert / veranlasst werden (1 = Ausgabe, andere Werte = keine Ausgabe).
+    * @return Der gelesene Wert des Channels in Prozent (Achtung: richtigen AD-Wandler auswaehlen).
     * @see rpHelper
     */
     public static int gibProzentwertVonChannel(int channel, int ausgabe){
@@ -148,8 +148,8 @@ public final class rpADWandler {
     /**
     * Liest den uebergebenen Channel aus und gibt die Stellung des Potentiometers in Prozent zurueck (als int, ohne "%", also zum Beispiel 37 fuer eine Stellung von 37%). Die Ausgabe erfolgt in der Shell. 
     *
-    * @param channel Der Channel des AD-Wandlers (0, 1, 2, ..., 7)
-    * @return Der gelesene Wert des Channels in Prozent (Achtung: richtigen AD-Wandler auswaehlen)
+    * @param channel Der Channel des AD-Wandlers (0, 1, 2, ..., 7).
+    * @return Der gelesene Wert des Channels in Prozent (Achtung: richtigen AD-Wandler auswaehlen).
     * @see rpHelper
     */
     public static int gibProzentwertVonChannel(int channel){

@@ -16,7 +16,7 @@ public class rpHelper
     }
  
     /**
-     * J8-Pin Nummerierung wie auf der Pi4J Website 
+     * J8-Pin Nummerierung wie auf der Pi4J Website: <a href="http://pi4j.com/pin-numbering-scheme.html">http://pi4j.com/pin-numbering-scheme.html</a>
      */
     public static Pin[] pinArrayJ8 = new Pin[] {
             RaspiPin.GPIO_00,  //0

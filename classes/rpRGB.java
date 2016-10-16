@@ -592,6 +592,7 @@ public final class rpRGB {
     * @param meinWandler Objekt der Klasse rpADWandler.
     * @param pChannel Channel des AD-Wandlers, an dem das Potentiometer angeschlossen ist (Channel 0, 1, 2, ..., 7).
     * @see rpADWandler
+    * @see rpHelper
     */
     private void startBlinkenVariabel(rpADWandler meinWandler, int pChannel) {
         if (boolInitialisierungErfolgt == true){

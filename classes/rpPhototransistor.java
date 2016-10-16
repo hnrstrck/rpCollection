@@ -58,7 +58,7 @@ public final class rpPhototransistor {
 
     /**
     * Gibt den definierten Pin des Phototransistors zurueck.
-    * @return Der Pin des Phototransistors
+    * @return Der Pin des Phototransistors.
     */
     public int gibPin(){
         return intPin;
@@ -66,7 +66,7 @@ public final class rpPhototransistor {
 
     /**
     * Ueberprueft, ob der Phototransistor Lichteinfall hat.
-    * @return true oder false, je nach dem, ob der Phototransistor Lichteinfall hat (true = Phototransistor hat Lichteinfall, false = Phototransistor hat keinen Lichteinfall)
+    * @return true oder false, je nach dem, ob der Phototransistor Lichteinfall hat (true = Phototransistor hat Lichteinfall, false = Phototransistor hat keinen Lichteinfall).
     */
     public boolean istLichteinfall() {
         if (boolInitialisierungErfolgt == true){

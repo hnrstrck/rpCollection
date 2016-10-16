@@ -66,7 +66,7 @@ public final class rpTaster {
 
     /**
     * Ueberprueft, ob der Taster gedrueckt ist.
-    * @return true oder false, je nach dem, ob der Taster an ist (true = Taster gedrueckt, false = Taster gedrueckt)
+    * @return true oder false, je nach dem, ob der Taster an ist (true = Taster gedrueckt, false = Taster gedrueckt).
     */
     public boolean istGedrueckt() {
         if (boolInitialisierungErfolgt == true){

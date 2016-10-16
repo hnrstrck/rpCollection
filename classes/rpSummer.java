@@ -59,7 +59,7 @@ public final class rpSummer {
 
     /**
     * Gibt den definierten Pin des Summers zurueck.
-    * @return Der Pin des Summers
+    * @return Der Pin des Summers.
     */
     public int gibPin(){
         return intPin;
@@ -141,7 +141,7 @@ public final class rpSummer {
 
     /**
     * Ueberprueft, ob der Summer an ist.
-    * @return true oder false, je nach dem, ob der Summer an ist (true = Summer an, false = Summer aus)
+    * @return true oder false, je nach dem, ob der Summer an ist (true = Summer an, false = Summer aus).
     */
     public boolean istAn() {
         if (boolInitialisierungErfolgt == true){
@@ -165,7 +165,7 @@ public final class rpSummer {
 
     /**
     * Ueberprueft, ob der Summer aus ist.
-    * @return true oder false, je nach dem, ob der Summer aus ist (true = Summer aus, false = Summer an)
+    * @return true oder false, je nach dem, ob der Summer aus ist (true = Summer aus, false = Summer an).
     */    
     public boolean istAus() {
         if (boolInitialisierungErfolgt == true){

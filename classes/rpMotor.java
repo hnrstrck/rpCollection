@@ -381,7 +381,7 @@ public final class rpMotor {
 
     /**
     * Stoppt den Motor. 
-    * Extra Methoden ist notwenig, da innerhalb des Threads nicht this.stop() aufgerufen werden kann (stop() ist schon eine Methode im Thread).
+    * Extra Methoden ist notwenig, da innerhalb des Threads nicht this.stop() aufgerufen werden kann (stop() ist schon eine eigene Methode im Thread).
     */
     private void motorstop() {
         if (boolInitialisierungErfolgt == true){
