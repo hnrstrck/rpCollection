@@ -12,7 +12,7 @@ public final class rpMotor {
     /*
      * Damit es nur einen (!) Motor-Thead gibt
      */
-    public Thread threadEndlosMotorlaufen;
+    private Thread threadEndlosMotorlaufen;
 
     private boolean laeuftGerade = false;
 

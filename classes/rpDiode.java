@@ -11,7 +11,7 @@ public final class rpDiode {
     /*
      * Damit es nur einen (!) Blinken-Thead gibt
      */
-    public Thread threadEndlosBlinken;
+    private Thread threadEndlosBlinken;
 
     private boolean blinktGerade = false;
 

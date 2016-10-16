@@ -13,7 +13,7 @@ public final class rpRGB {
     /*
      * Damit es nur einen (!) Blinken-Thead gibt
      */
-    public Thread threadEndlosBlinken;
+    private Thread threadEndlosBlinken;
 
     private boolean blinktGerade = false;
 
