@@ -1,5 +1,11 @@
 import com.pi4j.io.gpio.*;
 
+/**
+ * Klasse zum Anschluss einer Diode an den Raspberry Pi. Die Diode kann an- und ausgeschaltet werden, blinken und auch in ihrer Blinkfrequenz geaendert weden (auch mit einem AD-Wandler).
+ * 
+ * @author Heiner Stroick
+ * @version 0.9
+ */
 public final class rpDiode {
 
     private GpioPinDigitalOutput pin;
@@ -9,17 +15,24 @@ public final class rpDiode {
     private int intPin;
 
     /*
-     * Damit es nur einen (!) Blinken-Thead gibt
+     * Damit es nur einen (!) Blinken-Thead gibt.
      */
     private Thread threadEndlosBlinken;
 
     private boolean blinktGerade = false;
 
+    /**
+    * Erstellt ein Objekt der Klasse rpDiode, ohne einen Pin anzugeben.
+    */
     rpDiode() {
         gpio = GpioFactory.getInstance();
         boolInitialisierungErfolgt = false;
     }
 
+    /**
+    * Erstellt ein Objekt der Klasse rpDiode.
+    * @param pPin Der Pin, an dem die Diode angeschlossen ist.
+    */
     rpDiode(int pPin) {
         gpio = GpioFactory.getInstance();
         boolInitialisierungErfolgt = false;
@@ -27,6 +40,10 @@ public final class rpDiode {
         this.setPin(pPin);
     }
 
+    /**
+    * Setzt den Pin fuer die Diode.
+    * @param pPin Der Pin, an dem die Diode angeschlossen ist.
+    */
     public void setPin(int pPin) {
         pin = null;
 
@@ -46,10 +63,17 @@ public final class rpDiode {
         }
     }
 
+    /**
+    * Gibt den Pin der Diode zurueck.
+    * @return Pin der Diode
+    */
     public int gibPin() {
         return intPin;
     }
 
+    /**
+    * Schaltet die Diode an.
+    */
     public void an() {
         if (boolInitialisierungErfolgt == true){
             try{
@@ -62,6 +86,9 @@ public final class rpDiode {
         }
     }
 
+    /**
+    * Schaltet die Diode aus.
+    */    
     public void aus() {
         if (boolInitialisierungErfolgt == true){
             try{
@@ -74,6 +101,9 @@ public final class rpDiode {
         }
     }
 
+    /**
+    * Schaltet die Diode an oder aus, je nach dem, was vorher vorlag (toogle).
+    */
     public void wechsel() {
         if (boolInitialisierungErfolgt == true){
             try{
@@ -86,6 +116,10 @@ public final class rpDiode {
         }
     }
 
+    /**
+    * Ueberprueft, ob die Diode an ist.
+    * @return true oder false, je nach dem, ob die Diode an ist (true = Diode an, false = Diode aus).
+    */
     public boolean istAn() {
         if (boolInitialisierungErfolgt == true){
             try{
@@ -106,6 +140,10 @@ public final class rpDiode {
         }    
     }
 
+    /**
+    * Ueberprueft, ob die Diode aus ist.
+    * @return true oder false, je nach dem, ob die Diode aus ist (true = Diode aus, false = Diode an).
+    */
     public boolean istAus() {
         if (boolInitialisierungErfolgt == true){
             try{
@@ -127,10 +165,9 @@ public final class rpDiode {
     }
 
     
-    /*
-     * Blinken
-     */
-
+    /**
+    * Laesst die Diode fuer kurze Zeit blinken.
+    */
     public void blinke() {
         if (boolInitialisierungErfolgt == true){
             try{
@@ -148,7 +185,10 @@ public final class rpDiode {
         }
     }
 
-    
+    /**
+    * Laesst die Diode blinken (auf unbestimmte Zeit). Die Frequenz kann in Millisekunden angepasst werden.
+    * @param pIntervall Regelt die Blinkfrequenz ueber Pulsweitenmodulation (Angabe in Millisekunden).
+    */    
     private void startBlinken(int pIntervall) {
         if (boolInitialisierungErfolgt == true){
             threadEndlosBlinken = new Thread(){
@@ -180,6 +220,12 @@ public final class rpDiode {
         }
     }
 
+    /**
+    * Laesst die Diode blinken (auf unbestimmte Zeit). Die Frequenz kann mit einem AD-Wandler angepasst werden.
+    * @param meinWandler Objekt der Klasse rpADWandler.
+    * @param pChannel Channel des AD-Wandlers, an dem das Potentiometer angeschlossen ist (Channel 0, 1, 2, ..., 7).
+    * @see rpADWandler
+    */  
     private void startBlinkenVariabel(rpADWandler meinWandler, int pChannel) {
         if (boolInitialisierungErfolgt == true){
 
@@ -211,6 +257,9 @@ public final class rpDiode {
         }
     }
 
+    /**
+    * Laesst die Diode blinken (auf unbestimmte Zeit). Die Frequenz ist voreingestellt (200 Millisekunden).
+    */  
     public void blinkeEndlosStart(){
         if (boolInitialisierungErfolgt == true){
 
@@ -226,6 +275,10 @@ public final class rpDiode {
         }
     }
 
+    /**
+    * Laesst die Diode blinken (auf unbestimmte Zeit). Die Frequenz kann in Millisekunden angepasst werden.
+    * @param pIntervall Regelt die Blinkfrequenz ueber Pulsweitenmodulation (Angabe in Millisekunden).
+    */   
     public void blinkeEndlosStart(int pIntervall){
         if (boolInitialisierungErfolgt == true){
 
@@ -241,6 +294,12 @@ public final class rpDiode {
         }
     }
 
+    /**
+    * Laesst die Diode blinken (auf unbestimmte Zeit). Die Frequenz kann mit einem AD-Wandler angepasst werden.
+    * @see rpADWandler
+    * @param meinWandler Objekt der Klasse rpADWandler.
+    * @param pChannel Channel des AD-Wandlers, an dem das Potentiometer angeschlossen ist (Channel 0, 1, 2, ..., 7).
+    */  
     public void blinkeEndlosStart(rpADWandler pWandler, int pChannel){
         if (boolInitialisierungErfolgt == true){
 
@@ -257,6 +316,9 @@ public final class rpDiode {
 
     }
 
+    /**
+    * Beendet das endlose blinken der Diode.
+    */  
     public void blinkeEndlosStop(){
         if (boolInitialisierungErfolgt == true){
 
@@ -268,7 +330,10 @@ public final class rpDiode {
             System.out.println("Zuerst Pin fuer die Diode angeben");
         }
     }
-
+    
+    /**
+    * Schalte GPIO ab und dereferenziere den GPIO und den Pin.
+    */  
     public void destroy() {
         gpio.shutdown();
         gpio = null;

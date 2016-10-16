@@ -1,6 +1,12 @@
 import com.pi4j.io.gpio.*;
 import com.pi4j.wiringpi.*;
 
+/**
+ * Klasse zum Anschluss eines Fischertechnik-Motors am Raspberry Pi. Der Motor kann auf unbestimmte Zeit laufen oder nur fuer ein paar Sekunden. Zudem kann die Laufrichtung geaendert werden (waehrend der Motor laeuft).
+ * 
+ * @author Heiner Stroick
+ * @version 0.9
+ */
 public final class rpMotor {
 
     private GpioPinDigitalOutput pin_EN1, pin_IN11, pin_IN12;
@@ -10,18 +16,27 @@ public final class rpMotor {
     private int[] intPins;
 
     /*
-     * Damit es nur einen (!) Motor-Thead gibt
+     * Damit es nur einen (!) Motor-Thead gibt.
      */
     private Thread threadEndlosMotorlaufen;
 
     private boolean laeuftGerade = false;
-
+    
+    /**
+    * Erstellt ein Objekt der Klasse rpMotor, ohne die Pinne anzugeben.
+    */
     rpMotor() {
         gpio = GpioFactory.getInstance();
         intPins = new int[3];
         boolInitialisierungErfolgt = false;
     }
 
+    /**
+    * Erstellt ein Objekt der Klasse rpMotor.
+    * @param pin_EN1 Der Pin fuer EN1.
+    * @param pin_IN11 Der Pin fuer IN11.
+    * @param pin_IN12 Der Pin fuer IN12.
+    */
     rpMotor(int pin_EN1, int pin_IN11, int pin_IN12) {
         gpio = GpioFactory.getInstance();
         intPins = new int[3];
@@ -30,6 +45,12 @@ public final class rpMotor {
         this.setPins(pin_EN1, pin_IN11, pin_IN12);
     }
 
+    /**
+    * Setzt die Pinne fuer den Motor.
+    * @param pin_EN1 Der Pin fuer EN1.
+    * @param pin_IN11 Der Pin fuer IN11.
+    * @param pin_IN12 Der Pin fuer IN12.
+    */
     public void setPins(int pin_EN1, int pin_IN11, int pin_IN12){
         System.out.println("Setze Pins:");
         
@@ -37,7 +58,11 @@ public final class rpMotor {
         setPinIN11(pin_IN11);  
         setPinIN12(pin_IN12);    
     }
-
+    
+    /**
+    * Setzt den Pin fuer EN1.
+    * @param pPin Der Pin fuer EN1.
+    */
     public void setPinEN1(int pPin) {
         pin_EN1 = null;
 
@@ -74,6 +99,10 @@ public final class rpMotor {
         }
     }
 
+    /**
+    * Setzt den Pin fuer IN11.
+    * @param pPin Der Pin fuer IN11.
+    */
     public void setPinIN11(int pPin) {
         pin_IN11 = null;
 
@@ -110,6 +139,10 @@ public final class rpMotor {
         }
     }
 
+    /**
+    * Setzt den Pin fuer IN12.
+    * @param pPin Der Pin fuer IN12.
+    */
     public void setPinIN12(int pPin) {
         pin_IN12 = null;
 
@@ -146,18 +179,34 @@ public final class rpMotor {
         }
     }
 
+    /**
+    * Gibt den Pin des Motors fuer EN1 zurueck.
+    * @return Pin des Motors fuer EN1.
+    */
     public int gibPinEN1(){
         return intPins[0];
     }
 
+    /**
+    * Gibt den Pin des Motors fuer IN11 zurueck.
+    * @return Pin des Motors fuer IN11.
+    */
     public int gibPinIN11(){
         return intPins[1];
     }
 
+    /**
+    * Gibt den Pin des Motors fuer IN12 zurueck.
+    * @return Pin des Motors fuer IN12. 
+    */
     public int gibPinIN12(){
         return intPins[2];
     } 
 
+    /**
+    * Startet den Motor (auf unbestimmte Zeit).
+    * @param pGeschwindigkeit Geschwindigkeit des Motors in Prozent fuer die Pulsweitenmodulation 
+    */
     private void starteMotorGeschwindigkeit(int pGeschwindigkeit) {
         if (boolInitialisierungErfolgt == true){
 
@@ -190,6 +239,11 @@ public final class rpMotor {
         }
     }
 
+    /**
+    * Startet den Motor (auf unbestimmte Zeit).
+    * @param pIntervall Zeitspanne (in Sekunden), die der Motor an sein soll.
+    * @param pGeschwindigkeit Geschwindigkeit des Motors in Prozent fuer die Pulsweitenmodulation (ungueltige Prozentangaben werden ignoriert).
+    */
     private void starteMotorZeitintervallGeschwindigkeit(int pIntervall, int pGeschwindigkeit) {
         if (boolInitialisierungErfolgt == true){
 
@@ -225,6 +279,9 @@ public final class rpMotor {
         }
     }
 
+    /**
+    * Startet den Motor (auf unbestimmte Zeit) mit voller Geschwindigkeit (100%).
+    */
     public void start() {
         if (boolInitialisierungErfolgt == true){
 
@@ -245,6 +302,10 @@ public final class rpMotor {
         }
     }
 
+    /**
+    * Startet den Motor (auf unbestimmte Zeit) mit voller Geschwindigkeit (100%).
+    * @param pGeschwindigkeit Geschwindigkeit des Motors in Prozent (ungueltige Prozentangaben werden ignoriert).
+    */
     public void start(int pGeschwindigkeit) {
         if (boolInitialisierungErfolgt == true){
 
@@ -264,6 +325,10 @@ public final class rpMotor {
         }
     }
 
+    /**
+    * Startet den Motor mit voller Geschwindigkeit (100%) fuer die angegebene Zeitspanne (in Sekunden).
+    * @param pSekunden Zeitspanne (in Sekunden), die der Motor an sein soll.
+    */
     public void startZeitintervall(int pSekunden) {
         if (boolInitialisierungErfolgt == true){
 
@@ -283,6 +348,11 @@ public final class rpMotor {
         }
     }
 
+    /**
+    * Startet den Motor in der angegebenen Geschwindigkeit (in Prozent) fuer die angegebene Zeitspanne (in Sekunden). Ungueltige Prozentangaben werden ignoriert.
+    * @param pSekunden Zeitspanne (in Sekunden), die der Motor an sein soll.
+    * @param pGeschwindigkeit Geschwindigkeit des Motors in Prozent (ungueltige Prozentangaben werden ignoriert).
+    */
     public void startZeitintervall(int pSekunden, int pGeschwindigkeit) {
         if (boolInitialisierungErfolgt == true){
 
@@ -302,10 +372,17 @@ public final class rpMotor {
         }
     }
 
+    /**
+    * Stoppt den Motor.
+    */
     public void stop(){
         this.motorstop();
     }
 
+    /**
+    * Stoppt den Motor. 
+    * Extra Methoden ist notwenig, da innerhalb des Threads nicht this.stop() aufgerufen werden kann (stop() ist schon eine Methode im Thread).
+    */
     private void motorstop() {
         if (boolInitialisierungErfolgt == true){
             try{
@@ -330,8 +407,9 @@ public final class rpMotor {
     }
 
     /**
-     * int pRichtung entspricht:   0 = links,   1 = rechts
-     */
+    * Setzt die Laufrichtung des Motors.
+    * @param pRichtung Die Richtung des Motors (0 = links, 1 = rechts).
+    */
     public void setzeLaufrichtung(int pRichtung) {
         if (boolInitialisierungErfolgt == true){
             if (pRichtung == 0 || pRichtung == 1){
@@ -377,6 +455,9 @@ public final class rpMotor {
         }
     }
 
+    /**
+    * Wechselt die Laufrichtung des Motors.
+    */
     public void wechselLaufrichtung() {
         if (boolInitialisierungErfolgt == true){
             if (pin_IN11.getState() == PinState.HIGH || pin_IN12.getState() == PinState.HIGH){
@@ -423,6 +504,10 @@ public final class rpMotor {
         }
     }
 
+    /**
+    * Ueberprueft, ob der Motor an ist.
+    * @return true oder false, je nach dem, ob der Motor an ist (true = Motor an, false = Motor aus).
+    */
     public boolean istAn() {
         if (boolInitialisierungErfolgt == true){
             try{
@@ -443,6 +528,10 @@ public final class rpMotor {
         }    
     }
 
+    /**
+    * Ueberprueft, ob der Motor aus ist.
+    * @return true oder false, je nach dem, ob der Motor aus ist (true = Motor aus, false = Motor an).
+    */
     public boolean istAus() {
         if (boolInitialisierungErfolgt == true){
             try{
@@ -463,6 +552,10 @@ public final class rpMotor {
         }    
     } 
 
+    /**
+    * Ueberprueft, ob der Motor gerade nach links laeuft.
+    * @return true oder false, je nach dem, ob der Motor gerade nach links laeuft (true = Motor laeuft nach links, false = Motor laeuft nicht oder nicht nach links).
+    */
     public boolean hatLaufrichtungLinks() {
         if (boolInitialisierungErfolgt == true){
             try{
@@ -483,6 +576,10 @@ public final class rpMotor {
         }    
     }
 
+    /**
+    * Ueberprueft, ob der Motor gerade nach rechts laeuft.
+    * @return true oder false, je nach dem, ob der Motor gerade nach rechts laeuft (true = Motor laeuft nach rechts, false = Motor laeuft nicht oder nicht nach rechts).
+    */
     public boolean hatLaufrichtungRechts() {
         if (boolInitialisierungErfolgt == true){
             try{
@@ -503,6 +600,9 @@ public final class rpMotor {
         }    
     } 
 
+    /**
+    * Schalte GPIO ab und dereferenziere den GPIO und die Pins (EN1, IN11, IN12).
+    */  
     public void destroy() {
         gpio.shutdown();
         gpio = null;

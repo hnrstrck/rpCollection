@@ -89,7 +89,7 @@ public final class rpTaster {
     }
     
     /**
-    *  Ueberprueft 10 Mal, ob der Taster gedrueckt ist (keie Rueckgabe). Die Ergebnisse werden in der Shell ausgegeben. 
+    * Ueberprueft 10 Mal, ob der Taster gedrueckt ist (keie Rueckgabe). Die Ergebnisse werden in der Shell ausgegeben. 
     */ 
     public void ueberwache10Mal() {
         System.out.println("Ueberwache 10 mal den Taster");

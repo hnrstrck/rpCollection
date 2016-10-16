@@ -1,5 +1,11 @@
 import com.pi4j.io.gpio.*;
 
+/**
+ * Helferklasse. Stellt die Pin-Belegung bereit und ermoeglicht es, den AD-Wandler zu wechseln. Achtung: Dazu muss in der Groovy-Shell zuvor ein Objekt der Klasse rpHelper erstellt werden.
+ * 
+ * @author Heiner Stroick
+ * @version 0.9
+ */
 public class rpHelper
 {
     /**

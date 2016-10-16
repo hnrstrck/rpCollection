@@ -1,6 +1,13 @@
 import com.pi4j.io.gpio.*;
 import com.pi4j.wiringpi.*;
 
+/**
+ * Klasse zum Anschluss einer RGB-LED an den Raspberry Pi. Insgesamt stehen ganz aehnliche Funktionen wie bei der noramlen LED zur Verfuegung (rpDiode) mit dem Zusatz, dass hier die Farbe frei gewaehlt werden kann.
+ * 
+ * @author Heiner Stroick
+ * @version 0.9
+ * @see rpDiode
+ */
 public final class rpRGB {
 
     private GpioPinDigitalOutput pin_r, pin_g, pin_b;
@@ -11,12 +18,15 @@ public final class rpRGB {
     private int anteil_r, anteil_g, anteil_b;
 
     /*
-     * Damit es nur einen (!) Blinken-Thead gibt
+     * Damit es nur einen (!) Blinken-Thead gibt.
      */
     private Thread threadEndlosBlinken;
 
     private boolean blinktGerade = false;
 
+    /**
+    * Erstellt ein Objekt der Klasse rpRGB, ohne die Pinne anzugeben.
+    */
     rpRGB() {
         gpio = GpioFactory.getInstance();
         intPins = new int[3];
@@ -26,6 +36,12 @@ public final class rpRGB {
         anteil_b = 0;
     }
 
+    /**
+    * Erstellt ein Objekt der Klasse rpRGB und setzt die Pinne fuer die drei Farben.
+    * @param roterPin Der Pin fuer die rote LED.
+    * @param gruenerPin Der Pin fuer die gruene LED.
+    * @param blauerPin Der Pin fuer die blaue LED.
+    */
     rpRGB(int roterPin, int gruenerPin, int blauerPin) {
         gpio = GpioFactory.getInstance();
         intPins = new int[3];
@@ -37,6 +53,12 @@ public final class rpRGB {
         this.setPins(roterPin, gruenerPin, blauerPin);
     }
 
+    /**
+    * Setzt die Pinne fuer die RGB-LED.
+    * @param roterPin Der Pin fuer die rote LED.
+    * @param gruenerPin Der Pin fuer die gruene LED.
+    * @param blauerPin Der Pin fuer die blaue LED.
+    */
     public void setPins(int roterPin, int gruenerPin, int blauerPin){
         System.out.println("Setze Pins:");
         setPinRot(roterPin);     
@@ -44,6 +66,10 @@ public final class rpRGB {
         setPinBlau(blauerPin);    
     }
 
+    /**
+    * Setzt die Pin fuer die rote Farbe (die rote LED).
+    * @param pPin Der Pin fuer die rote LED.
+    */
     public void setPinRot(int pPin) {
         pin_r = null;
 
@@ -79,6 +105,10 @@ public final class rpRGB {
 
     }
 
+    /**
+    * Setzt die Pin fuer die gruene Farbe (die gruene LED).
+    * @param pPin Der Pin fuer die gruene LED.
+    */
     public void setPinGruen(int pPin) {
         pin_g = null;
 
@@ -115,6 +145,10 @@ public final class rpRGB {
 
     }
 
+    /**
+    * Setzt die Pin fuer die blaue Farbe (die blaue LED).
+    * @param pPin Der Pin fuer die blaue LED.
+    */
     public void setPinBlau(int pPin) {
         pin_b = null;
 
@@ -150,18 +184,33 @@ public final class rpRGB {
 
     }
 
+    /**
+    * Gibt den Pin der roten LED / der roten Farbe zurueck.
+    * @return Pin der RGB-LED fuer die rote Farbe.
+    */
     public int gibPinRot(){
         return intPins[0];
     }
 
+    /**
+    * Gibt den Pin der gruenen LED / der gruenen Farbe zurueck.
+    * @return Pin der RGB-LED fuer die gruene Farbe.
+    */
     public int gibPinGruen(){
         return intPins[1];
     }
 
+    /**
+    * Gibt den Pin der blauen LED / der blauen Farbe zurueck.
+    * @return Pin der RGB-LED fuer die blaue Farbe.
+    */
     public int gibPinBlau(){
         return intPins[2];
     }
 
+    /**
+    * Schaltet die rote Farbe an.
+    */
     public void rotAn() {
         if (boolInitialisierungErfolgt == true){
             try{
@@ -184,6 +233,9 @@ public final class rpRGB {
         }
     }
 
+    /**
+    * Schaltet die gruene Farbe an.
+    */
     public void gruenAn() {
         if (boolInitialisierungErfolgt == true){
             try{
@@ -205,6 +257,9 @@ public final class rpRGB {
         }
     }
 
+    /**
+    * Schaltet die blaue Farbe an.
+    */
     public void blauAn() {
         if (boolInitialisierungErfolgt == true){
             try{
@@ -226,6 +281,9 @@ public final class rpRGB {
         }
     }
 
+    /**
+    * Schaltet die rote Farbe aus.
+    */
     public void rotAus() {
         if (boolInitialisierungErfolgt == true){
             try{
@@ -247,6 +305,9 @@ public final class rpRGB {
         }
     }
 
+    /**
+    * Schaltet die gruene Farbe aus.
+    */
     public void gruenAus() {
         if (boolInitialisierungErfolgt == true){
             try{
@@ -268,6 +329,9 @@ public final class rpRGB {
         }
     }
 
+    /**
+    * Schaltet die blaue Farbe aus.
+    */
     public void blauAus() {
         if (boolInitialisierungErfolgt == true){
             try{
@@ -289,6 +353,9 @@ public final class rpRGB {
         }
     }
 
+    /**
+    * Schaltet die RGB-LED an (alle Farben an; volle Leuchtkraft).
+    */
     public void an() {
         if (boolInitialisierungErfolgt == true){
             try{
@@ -307,6 +374,9 @@ public final class rpRGB {
         }
     }
 
+    /**
+    * Schaltet die RGB-LED aus (alle Farben aus).
+    */
     public void aus() {
         if (boolInitialisierungErfolgt == true){
             try{
@@ -324,6 +394,12 @@ public final class rpRGB {
         }
     }
 
+    /**
+    * Setzt eine beliebige Farbe fuer die RGB-LED.
+    * @param r Anteil rot (0 <= r <= 255).
+    * @param g Anteil gruen (0 <= g <= 255).
+    * @param b Anteil blau (0 <= b <= 255).
+    */
     public void setzeFarbe(int r, int g, int b) {
         if (((b <= 255) && (b >= 0)) && (g <= 255) && (g >= 0) && (b <= 255) && (b >= 0)){
             if (boolInitialisierungErfolgt == true){
@@ -361,6 +437,10 @@ public final class rpRGB {
         }
     }
 
+    /**
+    * Ueberprueft, ob die RGB-LED an ist.
+    * @return true oder false, je nach dem, ob die RGB-LED an ist (true = RGB-LED an, false = RGB-LED aus).
+    */
     public boolean istAn() {
         if (boolInitialisierungErfolgt == true){
             try{
@@ -381,6 +461,10 @@ public final class rpRGB {
         }    
     }
 
+    /**
+    * Ueberprueft, ob die RGB-LED aus ist.
+    * @return true oder false, je nach dem, ob die RGB-LED aus ist (true = RGB-LED aus, false = RGB-LED an).
+    */
     public boolean istAus() {
         if (boolInitialisierungErfolgt == true){
             try{
@@ -401,18 +485,34 @@ public final class rpRGB {
         }    
     }
 
+    /**
+    * Gibt den Anteil der roten Farbe zurueck.
+    * @return Anteil der roten Farbe (zwischen 0 und 255).
+    */
     public int gibAnteilRot(){
         return anteil_r;
     }
 
+    /**
+    * Gibt den Anteil der gruenen Farbe zurueck.
+    * @return Anteil der gruenen Farbe (zwischen 0 und 255).
+    */
     public int gibAnteilGruen(){
         return anteil_g;
     }
 
+    /**
+    * Gibt den Anteil der blauen Farbe zurueck.
+    * @return Anteil der blauen Farbe (zwischen 0 und 255).
+    */
     public int gibAnteilBlau(){
         return anteil_b;
     }
 
+    /**
+    * Gibt ein Array mit allen drei Farben zurueck.
+    * @return Array mit drei Eintraegen fuer die Anteile der drei Farben (Rot, Gruen, Blau). Reihenfolge im Array ist auch R, G, B.
+    */
     public int[] gibFarbe(){
         int return_array[];
 
@@ -425,6 +525,9 @@ public final class rpRGB {
         return return_array;
     }
 
+    /**
+    * Laesst die RGB-LED kurz blinken.
+    */
     public void blinke()    {
         if (boolInitialisierungErfolgt == true){
             try{
@@ -446,6 +549,10 @@ public final class rpRGB {
         }
     }
 
+    /**
+    * Laesst die RGB-LED blinken (auf unbestimmte Zeit).
+    * @param pIntervall Angabe fuer die Blinkfrequenz in Millisekunden fuer die Pulsweitenmodulation der RGB-LED.
+    */
     private void startBlinken(int pIntervall) {
         if (boolInitialisierungErfolgt == true){
             threadEndlosBlinken = new Thread(){
@@ -480,6 +587,12 @@ public final class rpRGB {
         }
     }
 
+    /**
+    * Laesst die RGB-LED blinken (auf unbestimmte Zeit). Die Frequenz kann mit einem AD-Wandler angepasst werden.
+    * @param meinWandler Objekt der Klasse rpADWandler.
+    * @param pChannel Channel des AD-Wandlers, an dem das Potentiometer angeschlossen ist (Channel 0, 1, 2, ..., 7).
+    * @see rpADWandler
+    */
     private void startBlinkenVariabel(rpADWandler meinWandler, int pChannel) {
         if (boolInitialisierungErfolgt == true){
 
@@ -513,6 +626,9 @@ public final class rpRGB {
         }
     }
 
+    /**
+    * Laesst die RGB-LED blinken (auf unbestimmte Zeit). 
+    */
     public void blinkeEndlosStart(){
         if (boolInitialisierungErfolgt == true){
 
@@ -534,6 +650,10 @@ public final class rpRGB {
         }
     }
 
+    /**
+    * Laesst die RGB-LED blinken (auf unbestimmte Zeit). Die Frequenz kann in Millisekunden angepasst werden.
+    * @param pIntervall Regelt die Blinkfrequenz ueber Pulsweitenmodulation (Angabe in Millisekunden).
+    */
     public void blinkeEndlosStart(int pIntervall){
         if (boolInitialisierungErfolgt == true){
 
@@ -556,6 +676,12 @@ public final class rpRGB {
         }
     }
 
+    /**
+    * Laesst die RGB-LED blinken (auf unbestimmte Zeit). Die Frequenz kann mit einem AD-Wandler angepasst werden.
+    * @see rpADWandler
+    * @param meinWandler Objekt der Klasse rpADWandler.
+    * @param pChannel Channel des AD-Wandlers, an dem das Potentiometer angeschlossen ist (Channel 0, 1, 2, ..., 7).
+    */  
     public void blinkeEndlosStart(rpADWandler pWandler, int pChannel){
         if (boolInitialisierungErfolgt == true){
 
@@ -578,6 +704,9 @@ public final class rpRGB {
 
     }
 
+    /**
+    * Beendet das endlose blinken der RGB-LED.
+    */   
     public void blinkeEndlosStop(){
         if (boolInitialisierungErfolgt == true){
             threadEndlosBlinken.interrupt();
@@ -588,6 +717,9 @@ public final class rpRGB {
         }
     }
 
+    /**
+    * Schalte GPIO ab und dereferenziere den GPIO und die Pinne (roter Pin, gruener Pin, blauer Pin).
+    */  
     public void destroy() {
         gpio.shutdown();
         gpio = null;
