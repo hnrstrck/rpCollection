@@ -38,17 +38,30 @@ public final class rpMotor {
         setPinIN12(pin_IN12);    
     }
 
-    private void setPinEN1(int pPin) {
+    public void setPinEN1(int pPin) {
         pin_EN1 = null;
 
         System.out.println("Output-Pin gesetzt fuer Enable 1 (EN 1):");
 
         try {
+			
+			if (rpHelper.istBCMLayout == true){
 
-            pin_EN1 = gpio.provisionDigitalOutputPin(rpHelper.pinArray[pPin]);
-            pin_EN1.setShutdownOptions(true, PinState.LOW);
+				pin_EN1 = gpio.provisionDigitalOutputPin(rpHelper.pinArrayJ8[rpHelper.pinZuordnungBCMzuJ8[pPin]]);
+				pin_EN1.setShutdownOptions(true, PinState.LOW);
 
-            SoftPwm.softPwmCreate(pPin,0,100);
+				SoftPwm.softPwmCreate(rpHelper.pinZuordnungBCMzuJ8[pPin],0,100);
+            
+			}
+			
+			if (rpHelper.istJ8Layout == true){
+			
+				pin_EN1 = gpio.provisionDigitalOutputPin(rpHelper.pinArrayJ8[pPin]);
+				pin_EN1.setShutdownOptions(true, PinState.LOW);
+
+				SoftPwm.softPwmCreate(pPin,0,100);	 
+				 
+			}
 
             System.out.println("Pin " + pPin + " gesetzt");
             boolInitialisierungErfolgt = true;
@@ -61,17 +74,30 @@ public final class rpMotor {
         }
     }
 
-    private void setPinIN11(int pPin) {
+    public void setPinIN11(int pPin) {
         pin_IN11 = null;
 
         System.out.println("Output-Pin gesetzt fuer Input 1.1 (IN 1.1):");
 
         try {
 
-            pin_IN11 = gpio.provisionDigitalOutputPin(rpHelper.pinArray[pPin]);
-            pin_IN11.setShutdownOptions(true, PinState.LOW);
+            if (rpHelper.istBCMLayout == true){
 
-            SoftPwm.softPwmCreate(pPin,0,100);
+				pin_IN11 = gpio.provisionDigitalOutputPin(rpHelper.pinArrayJ8[rpHelper.pinZuordnungBCMzuJ8[pPin]]);
+				pin_IN11.setShutdownOptions(true, PinState.LOW);
+
+				SoftPwm.softPwmCreate(rpHelper.pinZuordnungBCMzuJ8[pPin],0,100);
+            
+			}
+			
+			if (rpHelper.istJ8Layout == true){
+			
+				pin_IN11 = gpio.provisionDigitalOutputPin(rpHelper.pinArrayJ8[pPin]);
+				pin_IN11.setShutdownOptions(true, PinState.LOW);
+
+				SoftPwm.softPwmCreate(pPin,0,100);	 
+				 
+			}
 
             System.out.println("Pin " + pPin + " gesetzt");
             boolInitialisierungErfolgt = true;
@@ -84,17 +110,30 @@ public final class rpMotor {
         }
     }
 
-    private void setPinIN12(int pPin) {
+    public void setPinIN12(int pPin) {
         pin_IN12 = null;
 
         System.out.println("Output-Pin gesetzt fuer Input 1.2 (IN 1.2):");
 
         try {
 
-            pin_IN12 = gpio.provisionDigitalOutputPin(rpHelper.pinArray[pPin]);
-            pin_IN12.setShutdownOptions(true, PinState.LOW);
+            if (rpHelper.istBCMLayout == true){
 
-            SoftPwm.softPwmCreate(pPin,0,100);
+				pin_IN12 = gpio.provisionDigitalOutputPin(rpHelper.pinArrayJ8[rpHelper.pinZuordnungBCMzuJ8[pPin]]);
+				pin_IN12.setShutdownOptions(true, PinState.LOW);
+
+				SoftPwm.softPwmCreate(rpHelper.pinZuordnungBCMzuJ8[pPin],0,100);
+            
+			}
+			
+			if (rpHelper.istJ8Layout == true){
+			
+				pin_IN12 = gpio.provisionDigitalOutputPin(rpHelper.pinArrayJ8[pPin]);
+				pin_IN12.setShutdownOptions(true, PinState.LOW);
+
+				SoftPwm.softPwmCreate(pPin,0,100);	 
+				 
+			}
 
             System.out.println("Pin " + pPin + " gesetzt");
             boolInitialisierungErfolgt = true;
@@ -126,7 +165,15 @@ public final class rpMotor {
 				
                 public void run() {
                     try {
-                        SoftPwm.softPwmWrite(intPins[0],pGeschwindigkeit);
+                        
+						if (rpHelper.istBCMLayout == true){
+							SoftPwm.softPwmWrite(rpHelper.pinZuordnungBCMzuJ8[intPins[0]],pGeschwindigkeit);
+            			}
+			
+						if (rpHelper.istJ8Layout == true){
+							SoftPwm.softPwmWrite(intPins[0],pGeschwindigkeit);	
+						}
+                                                
                         Thread.sleep(15*200);
                     } catch (InterruptedException e) {
                         System.out.println("Motor beendet");
@@ -150,7 +197,15 @@ public final class rpMotor {
 
                 public void run() {
                     try {
-                        SoftPwm.softPwmWrite(intPins[0],pGeschwindigkeit);
+                        
+                        if (rpHelper.istBCMLayout == true){
+							SoftPwm.softPwmWrite(rpHelper.pinZuordnungBCMzuJ8[intPins[0]],pGeschwindigkeit);
+            			}
+			
+						if (rpHelper.istJ8Layout == true){
+							SoftPwm.softPwmWrite(intPins[0],pGeschwindigkeit);	
+						}
+                               
                         Thread.sleep(pIntervall * 1000);
                         Thread.sleep(20);
                         throw new InterruptedException(); 
@@ -255,7 +310,16 @@ public final class rpMotor {
         if (boolInitialisierungErfolgt == true){
             try{
                 threadEndlosMotorlaufen.interrupt();
-                SoftPwm.softPwmWrite(intPins[0],0);
+                
+                if (rpHelper.istBCMLayout == true){
+					SoftPwm.softPwmWrite(rpHelper.pinZuordnungBCMzuJ8[intPins[0]],0);
+            	}
+			
+				if (rpHelper.istJ8Layout == true){
+					SoftPwm.softPwmWrite(intPins[0],0);	
+				}
+          
+                
                 laeuftGerade = false;
             } catch (NullPointerException f){
                 System.out.println("Error: Pins nicht definiert? (NullPointerException)");
@@ -273,15 +337,33 @@ public final class rpMotor {
             if (pRichtung == 0 || pRichtung == 1){
                 if (pRichtung == 0){
                     try{
-                        SoftPwm.softPwmWrite(intPins[1],100);
-                        SoftPwm.softPwmWrite(intPins[2],0);
+								
+						if (rpHelper.istBCMLayout == true){
+							SoftPwm.softPwmWrite(rpHelper.pinZuordnungBCMzuJ8[intPins[1]],100);
+							SoftPwm.softPwmWrite(rpHelper.pinZuordnungBCMzuJ8[intPins[2]],0);
+						}
+			
+						if (rpHelper.istJ8Layout == true){
+							SoftPwm.softPwmWrite(intPins[1],100);
+							SoftPwm.softPwmWrite(intPins[2],0);	
+						}		
+
                     } catch (NullPointerException f){
                         System.out.println("Error: Pins nicht definiert? (NullPointerException)");
                     }
                 } else {
                     try{
-                        SoftPwm.softPwmWrite(intPins[1],0);
-                        SoftPwm.softPwmWrite(intPins[2],100);
+                        
+                        if (rpHelper.istBCMLayout == true){
+							SoftPwm.softPwmWrite(rpHelper.pinZuordnungBCMzuJ8[intPins[1]],0);
+							SoftPwm.softPwmWrite(rpHelper.pinZuordnungBCMzuJ8[intPins[2]],100);
+						}
+			
+						if (rpHelper.istJ8Layout == true){
+							SoftPwm.softPwmWrite(intPins[1],0);
+							SoftPwm.softPwmWrite(intPins[2],100);	
+						}		
+
 
                     } catch (NullPointerException f){
                         System.out.println("Error: Pins nicht definiert? (NullPointerException)");
@@ -300,16 +382,34 @@ public final class rpMotor {
             if (pin_IN11.getState() == PinState.HIGH || pin_IN12.getState() == PinState.HIGH){
                 if (pin_IN11.getState() == PinState.HIGH){
                     try{
-                        SoftPwm.softPwmWrite(intPins[1],0);
-                        SoftPwm.softPwmWrite(intPins[2],100);
+						
+						if (rpHelper.istBCMLayout == true){
+							SoftPwm.softPwmWrite(rpHelper.pinZuordnungBCMzuJ8[intPins[1]],0);
+							SoftPwm.softPwmWrite(rpHelper.pinZuordnungBCMzuJ8[intPins[2]],100);
+						}
+			
+						if (rpHelper.istJ8Layout == true){
+							SoftPwm.softPwmWrite(intPins[1],0);
+							SoftPwm.softPwmWrite(intPins[2],100);	
+						}	
+						
                         System.out.println("Laufrichtung geaendert");
                     } catch (NullPointerException f){
                         System.out.println("Error: Pins nicht definiert? (NullPointerException)");
                     }
                 } else {
                     try{
-                        SoftPwm.softPwmWrite(intPins[1],100);
-                        SoftPwm.softPwmWrite(intPins[2],0);
+						
+                        if (rpHelper.istBCMLayout == true){
+							SoftPwm.softPwmWrite(rpHelper.pinZuordnungBCMzuJ8[intPins[1]],100);
+							SoftPwm.softPwmWrite(rpHelper.pinZuordnungBCMzuJ8[intPins[2]],0);
+						}
+			
+						if (rpHelper.istJ8Layout == true){
+							SoftPwm.softPwmWrite(intPins[1],100);
+							SoftPwm.softPwmWrite(intPins[2],0);	
+						}		
+						
                         System.out.println("Laufrichtung geaendert");
                     } catch (NullPointerException f){
                         System.out.println("Error: Pins nicht definiert? (NullPointerException)");
