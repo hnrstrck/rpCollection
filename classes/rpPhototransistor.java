@@ -75,7 +75,7 @@ public final class rpPhototransistor {
     }
 
 
-    public void sleepMilliseconds(int milliseconds){
+    private void sleepMilliseconds(int milliseconds){
         try{
             Thread.sleep(milliseconds);
         }
