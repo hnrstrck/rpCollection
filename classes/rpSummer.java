@@ -1,5 +1,11 @@
 import com.pi4j.io.gpio.*;
 
+/**
+ * Klasse fuer den Anschluss eines 3 Volt Summers an den Raspberry Pi. Der Summer kann angeschaltet und abgeschaltet werden. Mehtoden zum einfahcen beepen (zum Beispiel als Bestaetigung) stehen bereit. Der Summer kann auch gefragt werden, ob er gerade an ist oder aus ist.
+ * 
+ * @author Heiner Stroick
+ * @version 0.9
+ */
 public final class rpSummer {
 
     private GpioPinDigitalOutput pin;
@@ -8,11 +14,18 @@ public final class rpSummer {
     private boolean boolInitialisierungErfolgt;
     private int intPin;
 
+    /**
+    * Erstellt ein neues Objekt der Klasse rpSummer, ohne einen Pin anzugeben.
+    */
     rpSummer() {
         gpio = GpioFactory.getInstance();
         boolInitialisierungErfolgt = false;
     }
 
+   /**
+    * Erstellt ein neues Objekt der Klasse rpSummer.
+    * @param pPin Der Pin, an dem der Summer angeschlossen ist.
+    */
     rpSummer(int pPin) {
         gpio = GpioFactory.getInstance();
         boolInitialisierungErfolgt = false;
@@ -20,6 +33,11 @@ public final class rpSummer {
         this.setPin(pPin);
     }
 
+
+    /**
+    * Setzt den Pin fuer den Summer.
+    * @param pPin Der Pin, an dem der Summer angeschlossen ist.
+    */
     public void setPin(int pPin) {
         pin = null;
 
@@ -39,10 +57,17 @@ public final class rpSummer {
         }
     }
 
+    /**
+    * Gibt den definierten Pin des Summers zurueck.
+    * @return Der Pin des Summers
+    */
     public int gibPin(){
         return intPin;
     }
 
+    /**
+    * Schaltet den Summer an (auf unbestimmte Zeit).
+    */
     public void an() {
         if (boolInitialisierungErfolgt == true){
             try{
@@ -55,6 +80,9 @@ public final class rpSummer {
         }
     }
 
+    /**
+    * Laesst den Summer kurz beepen.
+    */
     public void beep() {
         if (boolInitialisierungErfolgt == true){
             try{
@@ -72,6 +100,9 @@ public final class rpSummer {
         }
     }
 
+    /**
+    * Laesst den Summer kurz zweimal beepen.
+    */
     public void beepbeep() {
         if (boolInitialisierungErfolgt == true){
             try{
@@ -93,6 +124,9 @@ public final class rpSummer {
         }
     }
 
+    /**
+    * Schaltet den Summer aus.
+    */
     public void aus() {
         if (boolInitialisierungErfolgt == true){
             try{
@@ -105,6 +139,10 @@ public final class rpSummer {
         }
     }
 
+    /**
+    * Ueberprueft, ob der Summer an ist.
+    * @return true oder false, je nach dem, ob der Summer an ist (true = Summer an, false = Summer aus)
+    */
     public boolean istAn() {
         if (boolInitialisierungErfolgt == true){
             try{
@@ -125,6 +163,10 @@ public final class rpSummer {
         }    
     }
 
+    /**
+    * Ueberprueft, ob der Summer aus ist.
+    * @return true oder false, je nach dem, ob der Summer aus ist (true = Summer aus, false = Summer an)
+    */    
     public boolean istAus() {
         if (boolInitialisierungErfolgt == true){
             try{
@@ -144,7 +186,10 @@ public final class rpSummer {
             return false;
         }    
     }
-
+    
+    /**
+    * Schalte GPIO ab und dereferenziere den GPIO und den Pin.
+    */  
     public void destroy() {
         gpio.shutdown();
         gpio = null;

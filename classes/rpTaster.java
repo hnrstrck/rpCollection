@@ -1,5 +1,11 @@
 import com.pi4j.io.gpio.*;
 
+/**
+ * Klasse fuer den Anschluss eines einfachen Tasters an den Raspberry Pi. Der Taster kann gefragt werden, ob er gerade gedrueckt ist. Ausserdem kann er fuer 10 Mal hintereinander gefragt werden, ob er gerade gedrueckt ist, oder nicht.
+ * 
+ * @author Heiner Stroick
+ * @version 0.9
+ */
 public final class rpTaster {
 
     private GpioPinDigitalInput pin;
@@ -8,11 +14,18 @@ public final class rpTaster {
     private boolean boolInitialisierungErfolgt;
     private int intPin;
 
+    /**
+    * Erstellt ein neues Objekt der Klasse rpTaster, ohne einen Pin anzugeben.
+    */
     rpTaster() {
         gpio = GpioFactory.getInstance();
         boolInitialisierungErfolgt = false;
     }
 
+    /**
+    * Erstellt ein neues Objekt der Klasse rpTaster.
+    * @param pPin Der Pin, an dem der Taster angeschlossen ist.
+    */
     rpTaster(int pPin) {
         gpio = GpioFactory.getInstance();
         boolInitialisierungErfolgt = false;
@@ -20,6 +33,10 @@ public final class rpTaster {
         this.setPin(pPin);
     }
 
+    /**
+    * Setzt den Pin fuer den Taster.
+    * @param pPin Der Pin, an dem der Taster angeschlossen ist.
+    */
     public void setPin(int pPin) {
         pin = null;
 
@@ -39,10 +56,18 @@ public final class rpTaster {
         }
     }
 
+    /**
+    * Gibt den definierten Pin des Tasters zurueck.
+    * @return Der Pin des Tasters
+    */
     public int gibPin(){
         return intPin;
     }
 
+    /**
+    * Ueberprueft, ob der Taster gedrueckt ist.
+    * @return true oder false, je nach dem, ob der Taster an ist (true = Taster gedrueckt, false = Taster gedrueckt)
+    */
     public boolean istGedrueckt() {
         if (boolInitialisierungErfolgt == true){
             try{
@@ -62,7 +87,10 @@ public final class rpTaster {
             return false;
         }    
     }
-
+    
+    /**
+    *  Ueberprueft 10 Mal, ob der Taster gedrueckt ist (keie Rueckgabe). Die Ergebnisse werden in der Shell ausgegeben. 
+    */ 
     public void ueberwache10Mal() {
         System.out.println("Ueberwache 10 mal den Taster");
 
@@ -74,6 +102,10 @@ public final class rpTaster {
         System.out.println("Ueberwachung beendet");
     }
 
+    /**
+    * Wartet die angegebene Zeit.
+    * @param milliseconds Haelt den Thread fuer milliseconds Millisekunden an.
+    */
     private void sleepMilliseconds(int milliseconds){
         try{
             Thread.sleep(milliseconds);
@@ -83,7 +115,10 @@ public final class rpTaster {
             System.out.println("Error: Thread-Sleep unterbrochen (InterruptedException)");
         }
     }
-
+    
+    /**
+    * Schalte GPIO ab und dereferenziere den GPIO und den Pin.
+    */ 
     public void destroy() {
         gpio.shutdown();
         gpio = null;
