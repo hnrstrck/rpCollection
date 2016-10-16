@@ -192,9 +192,9 @@ public final class rpDiode {
 
                             //Signal endlos blinken
                             an();
-                            Thread.sleep((int)Math.round(    ((100f - (float)(rpADWandler.gibProzentwertVonChannel(pChannel,0)))/100f)*300f)      );     
+                            Thread.sleep((int)Math.round(((100f - (float)(rpADWandler.gibProzentwertVonChannel(pChannel,0)))/100f)*300f));     
                             aus();
-                            Thread.sleep((int)Math.round(    ((100f - (float)(rpADWandler.gibProzentwertVonChannel(pChannel,0)))/100f)*300f)      );     
+                            Thread.sleep((int)Math.round(((100f - (float)(rpADWandler.gibProzentwertVonChannel(pChannel,0)))/100f)*300f));     
 
                         }
                     } catch (InterruptedException e) {
