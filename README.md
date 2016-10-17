@@ -25,6 +25,9 @@ Es stehen folgende Bauteile bereit:
 ## Voraussetzungen:
 ### Hardware
 * Raspberry Pi
+* GPIO
+* Steckbrett
+* Kabel zum Anschluss des GPIO an den Raspberry Pi (Flachbandkabel)
 * Bauteile (Bauanleitungen und Bilder folgen)
 
 
