@@ -4,7 +4,7 @@ _**Java-Objekte zum Anfassen**_
 ## Beschreibung:
 Bei der Objektorientierten Modellierung (OOM) spielen Objekte eine fundamentale Rolle. Der klassische Ansatz im Unterricht arbeitet mit rein virtuellen Objekten -- sämtliche Interaktion und auch die Objektkommunikation spielt sich im Rechner ab. Nicht selten kommt es dabei vor, dass man Objekte im wahrsten Sinne des Wortes gar nicht "sieht".
 
-Ziel dieses Projektes ist es, Objekte begreifbar zu machen und Objektkommunikation zu visualisieren. Dafür stehen für den Unterricht Bauteile bereit, mit denen sich verschiedene Szenarien modellieren lassen. Die Schülerinnen und Schüler bekommen so die Möglichkeit, Objekte tatsächlich anzufassen und ihren aktuellen State (Zustand) nicht nur über Methoden zu erfragen, sondern auch zu *sehen* (Bauteil: RGB-LED) oder zu *hören* (Bauteil: Summer). Auch die Kommunikation ist dabei dabei zu verfolgen (pinke Pfeile). Die Idee ist im folgenden Bild veranschaulicht.
+Ziel dieses Projektes ist es, Objekte begreifbar zu machen und Objektkommunikation zu visualisieren. Dafür stehen für den Unterricht Bauteile bereit, mit denen sich verschiedene Szenarien modellieren lassen. Die Schülerinnen und Schüler bekommen so die Möglichkeit, Objekte tatsächlich anzufassen und ihren aktuellen State (Zustand) nicht nur über Methoden zu erfragen, sondern auch zu *sehen* (Bauteil: RGB-LED) oder zu *hören* (Bauteil: Summer). Auch die Kommunikation ist dabei dabei zu verfolgen. Die Idee ist im folgenden Bild veranschaulicht (pinke Kreise = am Raspberry Pi angeschlossene Bauteile (über Steckbrett), pinke Pfeile = Objektkommunikation).
 
 <div align="center">
 <img src="ReadMe/objektkommunikation_am_Raspberry_Pi.png" alt="Objektkommunikation der Bauteile am Raspberry Pi" width="300px">
