@@ -1,0 +1,27 @@
+% !TEX root = aufkleber_druck.tex
+
+\documentclass[border=12pt,pstricks]{standalone}
+\usepackage{pstricks}
+
+\usepackage[applemac]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage[T1]{fontenc}
+
+\begin{document}
+
+\begin{pspicture}(0cm,-1.8cm)(2.6cm,2.8cm)
+\definecolor{grey}{rgb}{0.98,0.98,0.98}
+\definecolor{darkgrey}{rgb}{0.92,0.92,0.92}
+\psframe[linecolor=darkgrey, linewidth=0.03, fillstyle=solid,fillcolor=grey, dimen=outer, framearc=0.3](1.3,2.6)(0.0,-0.4)
+\rput[bl](0.15cm,2.032cm){{\footnotesize ~DIR 2}}
+\rput[bl](0.15cm,1.778cm){{\footnotesize ~DIR 1}}
+\rput[bl](0.15cm,1.524cm){{\footnotesize E 3}}
+\rput[bl](0.15cm,1.27cm){{\footnotesize ~DIR 2}}
+\rput[bl](0.15cm,1.016cm){{\footnotesize ~DIR 1}}
+\rput[bl](0.15cm,0.762cm){{\footnotesize E 2}}
+\rput[bl](0.15cm,0.508cm){{\footnotesize ~DIR 2}}
+\rput[bl](0.15cm,0.254cm){{\footnotesize ~DIR 1}}
+\rput[bl](0.15cm,0.0cm){{\footnotesize E 1}}
+\end{pspicture}
+
+\end{document}
