@@ -1,0 +1,27 @@
+% Dieses Dokument ist von Johannes Pieper erstellt worden.
+%
+% Das Dokument steht unter der Lizenz: Creative Commons by-nc-sa Version 4.0
+% http://creativecommons.org/licenses/by-nc-sa/4.0/deed.de
+%
+% Nach dieser Lizenz darf das Dokument beliebig kopiert und bearbeitet werden,
+% sofern das Folgeprodukt wiederum unter gleichen Lizenzbedingungen vertrieben
+% und auf die ursprünglichen Urheber verwiesen wird.
+% Eine kommerzielle Nutzung ist ausdrücklich ausgeschlossen.
+%
+% Die Namensnennung durch einen Verweis und die Lizenzangabe der ursprünglichen
+% Urheber auf den Materialien für Schülerinnen und Schüler ist erforderlich.
+%
+
+\begin{tikzpicture}
+	\draw (0,0mm) rectangle (-12mm,-20.32mm);
+	\draw (0,-5.08mm) -- ++(-12mm,0);
+	\draw (0,-10.16mm) -- ++(-12mm,0);
+	\draw (0,-15.24mm) -- ++(-12mm,0);
+	\begin{scope}[every node/.style={left}]
+		\draw (0 mm, -2.54mm) node[] {\tiny{M1 OUT}}
+			++(0,-5.08mm) node[] {\tiny{M2 OUT}}
+			++(0,-5.08mm) node[] {\tiny{M3 OUT}}
+			++(0,-5.08mm) node[] {\tiny{M4 OUT}};
+	\end{scope}
+
+\end{tikzpicture}
