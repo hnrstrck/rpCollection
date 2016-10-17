@@ -396,9 +396,9 @@ public final class rpRGB {
 
     /**
     * Setzt eine beliebige Farbe fuer die RGB-LED.
-    * @param r Anteil rot (0 <= r <= 255).
-    * @param g Anteil gruen (0 <= g <= 255).
-    * @param b Anteil blau (0 <= b <= 255).
+    * @param r Anteil rot (0 &lt;= r &lt;= 255).
+    * @param g Anteil gruen (0 &lt;= g &lt;= 255).
+    * @param b Anteil blau (0 &lt;= b &lt;= 255).
     */
     public void setzeFarbe(int r, int g, int b) {
         if (((b <= 255) && (b >= 0)) && (g <= 255) && (g >= 0) && (b <= 255) && (b >= 0)){
@@ -680,7 +680,7 @@ public final class rpRGB {
     /**
     * Laesst die RGB-LED blinken (auf unbestimmte Zeit). Die Frequenz kann mit einem AD-Wandler angepasst werden.
     * @see rpADWandler
-    * @param meinWandler Objekt der Klasse rpADWandler.
+    * @param pWandler Objekt der Klasse rpADWandler.
     * @param pChannel Channel des AD-Wandlers, an dem das Potentiometer angeschlossen ist (Channel 0, 1, 2, ..., 7).
     */  
     public void blinkeEndlosStart(rpADWandler pWandler, int pChannel){

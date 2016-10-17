@@ -110,7 +110,7 @@ public class rpHelper
         };
 
 	/**
-     * Integer-Array mit der Zuordnung: BCM --> J8 (fuer Wiringpi, da dieses bei der Pin-Erstellung einen Integer-Wert fuer den Pin erwartet und keinen Enum RaspiPin.GPIO_xx).
+     * Integer-Array mit der Zuordnung: BCM &#8594; J8 (fuer Wiringpi, da dieses bei der Pin-Erstellung einen Integer-Wert fuer den Pin erwartet und keinen Enum RaspiPin.GPIO_xx).
      */
     public static Integer[] pinZuordnungBCMzuJ8 = new Integer[] {
             null,  	//0
@@ -162,12 +162,12 @@ public class rpHelper
     public static Pin[] pinArray = pinArrayBCM;
 
 	/**
-     * boolean, je nachdem, ob das BCM-Layout verwendet wird.
+     * boolean (true oder false - je nachdem, ob das BCM-Layout verwendet wird).
      */
     public static boolean istBCMLayout = true;
     
     /**
-	 * boolean, je nachdem, ob das J8-Layout verwendet wird.
+	 * boolean (true oder false - je nachdem, ob das J8-Layout verwendet wird).
      */
     public static boolean istJ8Layout = false;
 
@@ -206,7 +206,7 @@ public class rpHelper
     
     /**
      * Aendere den verwendeten AD-Wandler auf MCP3008 oder MCP3208.
-     * @param PinLayout String des Pin-Layouts (muss "MCP3008" oder "MCP3208" lauten).
+     * @param ADWandlerName String des Namen des AD-Wandlers (muss "MCP3008" oder "MCP3208" lauten).
      */
     public static void setzeADWandler(String ADWandlerName){
         if (ADWandlerName.equals("MCP3008")){

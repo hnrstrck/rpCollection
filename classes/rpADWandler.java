@@ -40,6 +40,8 @@ public final class rpADWandler {
 
     /**
     * Initialisiert den AD-Wandler.
+    * @throws InterruptedException Wirft InterruptedException, falls Anschluesse falsch sind (Speed)
+    * @throws IOException Wirft IOException, falls Anschluesse falsch sind (Mode)
     */
     public void initialisiere() throws InterruptedException, IOException {
         spi = SpiFactory.getInstance(SpiChannel.CS0,

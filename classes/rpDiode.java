@@ -298,7 +298,7 @@ public final class rpDiode {
     /**
     * Laesst die Diode blinken (auf unbestimmte Zeit). Die Frequenz kann mit einem AD-Wandler angepasst werden.
     * @see rpADWandler
-    * @param meinWandler Objekt der Klasse rpADWandler.
+    * @param pWandler Objekt der Klasse rpADWandler.
     * @param pChannel Channel des AD-Wandlers, an dem das Potentiometer angeschlossen ist (Channel 0, 1, 2, ..., 7).
     */  
     public void blinkeEndlosStart(rpADWandler pWandler, int pChannel){
