@@ -6,7 +6,7 @@ Bei der Objektorientierten Modellierung (OOM) spielen Objekte eine fundamentale 
 
 Ziel dieses Projektes ist es, Objekte begreifbar zu machen und Objektkommunikation zu visualisieren. Dafür stehen für den Unterricht Bauteile bereit, mit denen sich verschiedene Szenarien modellieren lassen. Die Schülerinnen und Schüler bekommen so die Möglichkeit, Objekte tatsächlich anzufassen und ihren aktuellen State (Zustand) nicht nur über Methoden zu erfragen, sondern auch zu *sehen* (Bauteil: RGB-LED) oder zu *hören* (Bauteil: Summer). Auch die Kommunikation ist dabei dabei zu verfolgen (pinke Pfeile). Die Idee ist im folgenden Bild veranschaulicht.
 
-![Objektkommunikation der Bauteile am Raspberry Pi](ReadMe/objektkommunikation_am_Raspberry_Pi.png = 300px)
+<img src="ReadMe/objektkommunikation_am_Raspberry_Pi.png" alt="Objektkommunikation der Bauteile am Raspberry Pi" width="300px">
 
 Die Umsetzung im Unterricht setzt auf Groovy (genauer: die Groovy-Shell), in der sich mit korrekter Java-Syntax mit den Objekten praktisch arbeiten lässt (Objekte erstelen, Objekte modifizieren, Methoden aufrufen, Attribute abfragen etc.)
 
