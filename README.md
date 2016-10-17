@@ -30,7 +30,7 @@ Es stehen folgende Bauteile bereit:
 
 
 ### Software
-* Pi4J (mit dem Raspberry Pi standardmäßig ausgeliefert) [Website](http://pi4j.com$
+* Pi4J (mit dem Raspberry Pi standardmäßig ausgeliefert) [Website](http://pi4j.com)
 * WiringPi (wird auch standardmäßig mitgeliefert) [Website](http://wiringpi.com/)
 * Groovy (ist i.d.R. noch zu installieren) [Website](http://groovy-lang.org/)
 
