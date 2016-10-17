@@ -10,7 +10,7 @@ Ziel dieses Projektes ist es, Objekte begreifbar zu machen und Objektkommunikati
 <img src="ReadMe/objektkommunikation_am_Raspberry_Pi.png" alt="Objektkommunikation der Bauteile am Raspberry Pi" width="300px">
 </div>
 
-Die Umsetzung im Unterricht setzt auf Groovy (genauer: die Groovy-Shell), in der sich mit korrekter Java-Syntax mit den Objekten praktisch arbeiten lässt (Objekte erstelen, Objekte modifizieren, Methoden aufrufen, Attribute abfragen etc.)
+Die Umsetzung im Unterricht setzt auf Groovy (genauer: die Groovy-Shell), in der sich mit korrekter Java-Syntax mit den Objekten praktisch arbeiten lässt (Objekte erstelen, Objekte modifizieren, Methoden aufrufen, Attribute abfragen etc.).
 
 Es stehen folgende Bauteile bereit:
 * Diode (LED)
