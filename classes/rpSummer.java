@@ -15,7 +15,7 @@ public final class rpSummer {
     private int intPin;
 
     /**
-    * Erstellt ein neues Objekt der Klasse rpSummer, ohne einen Pin anzugeben.
+    * Erstellt ein neues Objekt der Klasse rpSummer, ohne einen Pin anzugeben.
     */
     rpSummer() {
         gpio = GpioFactory.getInstance();
@@ -23,7 +23,7 @@ public final class rpSummer {
     }
 
    /**
-    * Erstellt ein neues Objekt der Klasse rpSummer.
+    * Erstellt ein neues Objekt der Klasse rpSummer.
     * @param pPin Der Pin, an dem der Summer angeschlossen ist.
     */
     rpSummer(int pPin) {
