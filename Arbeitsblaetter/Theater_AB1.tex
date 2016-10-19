@@ -1,0 +1,66 @@
+\documentclass[11pt, a4paper]{article}
+\include{style}
+\begin{document}
+\textbf{{\Large Die Lichtanlage für eine Theateraufführung}}\\
+
+Für das Schultheater-Aufführung des Stückes \enquote{Mac Bath} von Shakebeer soll mit Hilfe des Raspberry Pis die Lichtanlage gesteuert werden. Alle Scheinwerfer sind über der Bühne an einem Gerüst angebracht und können ihre Position nicht verändern. Martin ist für das Licht verantwortlich. \\
+
+Hier ist ein Ausschnitt seiner Arbeit:
+\begin{mdframed}
+%Zunächst muss für die Steuerung eines Scheinwerfers ein Objekt der Klasse \texttt{rpDiode} erzeugt werden. Damit der Scheinwerfer angesteuert werden kann, muss dann der Pin ausgewählt werden, an dem er am Raspberry Pi angeschlossen ist. Dann kann der Scheinwerfer angeschaltet werden. Für einen weiteren Scheinwerfer ist ein neues Objekt der Klasse \texttt{rpDiode} zu erzeugen.\\
+
+%Einfache Dioden schalten:
+Martin schaltet zunächst den grünen, blauen und roten Scheinwerfer an. Nachdem er etwa 20 Sekunden gewartet hat, schaltet er auch den weißen Scheinwerfer an und schaltet den grünen aus. Nach weiteren 10 Sekunden lässt er die rote Lampe kurz blinken und schaltet dann das gesamte Licht aus.\\
+
+%RGB-LED verwenden: Setzten von zwei festen Werten für R, G und Auslesen des ADW für den Anteil von B
+Dann arbeitet Martin mit dem Full-Color-Scheinwerfer (FC-Scheinwerfer): Er dreht den Regler für den blauen Farbanteil auf 0 (ganz nach links) und befiehlt dem FC-Scheinwerfer, eine Farbe von 125 für grün, 30 für rot und die Stellung des blauen Reglers für blau anzunehmen.\footnote{Der Regler gibt Werte von 0 bis 100 zurück (Stellung in Prozent), der FC-Scheinwerfer kann aber pro Farbkanal 256 Stufen unterscheiden: 0 -- aus und 255 -- volle Leuchtkraft. Martin hat sich im Vorhinein einen Weg überlegt, wie er durch die Stellung des Reglers doch das volle Leuchtspektrum vom Scheinwerfer ausnutzen kann...} Dann dreht Martin den Regler ganz langsam auf und setzt alle 2 Sekunden eine neue Farbe für den Scheinwerfer, sodass der Effekt entsteht, dass das blaue Licht langsam an geht...\\
+
+%RGB-LED verwenden: Setzten aller Anteile (R, G, B) mit dem ADW
+Dann schaltet Martin den FC-Scheinwerfer ab und schaltet den grünen Scheinwerfer an. Dann liest er die Stellung des roten, grünen und blauen Reglers aus und setzt die Farbe des FC-Scheinwerfers. Nach 5 Sekunden schaltet er zur Verstärkung des roten Lichts auch den (normalen) roten Scheinwerfer dazu. Nach weiteren fünf Sekunden (in der Zwischenzeit hat Martin die Stellung des grünen und blauen Reglers ein bisschen verändert) sendet der wieder den Befehl an den FC-Scheinwerfer, die eingestellte Farbe anzunehmen.\\
+
+%Arbeiten mit der Methode blinkeEndlosStart(int pIntervall)
+Nach 10 Sekunden schaltet Martin alle Lichter aus und möchte mit dem Stroboskop arbeiten. Er startet das endlose Blinken des weißen Scheinwerfers und stellt zunächst eine Blinkfrequenz von 180 Millisekunden ein. Nach 5 Sekunden ändert er die Frequenz auf 140 Millisekunden, nach weiteren 5 Sekunden auf 90 Millisekunden und dann auf 35 Millisekunden. Nach 10 Sekunden schaltet Martin das Stroboskop dann ab.\\
+
+%freie Arbeit
+Dann...\\
+
+%\emph{Weiterführende Aufgabenstellung:}\\ % -- Kontrollstrukturen
+%Martin überlegt auch, wie er drei Scheinwerfer ansteuern kann und wie Scheinwerfer, sofern sie eingeschaltet sind, auf Tastendruck ausgehen können. Er hat die Vorahnung, dass die Klasse \texttt{rpTaster} dafür eine Rolle spielen könnte...
+\end{mdframed}
+
+\newpage
+\textbf{Aufgaben}:
+\begin{enumerate}
+\item Entwerfen Sie zu der gegebenen Problembeschreibung mit Hilfe des Verfahrens von Abbott ein objektorientiertes Modell, indem Sie die relevanten Objekte mit ihren Attributen und Methoden identifizieren. Notieren Sie die Objekte als Objektkarten.
+
+%\item Informieren Sie sich über die Möglichkeiten eines Tasters und wofür er für obige Anforderungen im Programm benötigt wird.
+
+\item Informieren Sie sich über die Möglichkeiten eines AD-Wandlers und wofür er für obige Anforderungen im Programm benötigt wird.
+
+\item Erstellen Sie ein Sequenzdiagramm auf Folie, welches die Interaktion zwischen den identifizierten Objekten gemäß der Problembeschreibung beschreibt und bereiten Sie Lösung so vor, dass Sie diese vorstellen können:
+\begin{enumerate}
+	\item für den Scheinwerfer
+	\item für den FC-Scheinwerfer
+	\item für das Stroboskop
+	%\item für die weiterführende Aufgabe (siehe oben)
+\end{enumerate}
+\end{enumerate}
+
+\vfill
+\emph{Bauteile}:
+\begin{itemize}
+\item Diode
+\item RGB-LED
+\item AD-Wandler
+%\item (Taster) %-- evtl, siehe unten:
+\end{itemize}
+
+%\vspace{0.5cm}
+%\emph{Erweiterbar um}:
+%\begin{itemize}
+%\item Taster (Bei Taster-Druck blinken alle Lampen oder alle Lampen gehen aus)
+%\item Phototransistor (wenn es zu hell draußen wird (Umfeld Party), soll das Licht im Raum automatisch aus gehen)
+%\end{itemize}
+
+
+\end{document}
