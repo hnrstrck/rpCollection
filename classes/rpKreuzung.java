@@ -17,7 +17,7 @@ public final class rpKreuzung {
     private rpTaster meinTaster;
 
     /**
-    * Erstelle eine neues Objekt der Klasse Kreuzung mit zwei Ampeln.
+    * Erstelle eine neues Objekt der Klasse rpKreuzung mit zwei Ampeln.
     */
     rpKreuzung() {
 		fussgaengerAmpel = new rpAmpel(15, 16, 17);
