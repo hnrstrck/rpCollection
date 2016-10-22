@@ -1,6 +1,7 @@
 /**
  * Klasse zur Simulation einer Ampel.
- * In Zukunft: Vererbung: Fussgaengerampel erbt von Ampel, um die Ampel um einen Taster zu erweitern.
+ * <b>In Zukunft</b>:<br>
+ * Vererbung: Fussgaengerampel erbt von Ampel, um die Ampel um einen Taster zu erweitern. Hier ist der Taster noch in der Klasse rpKreuzung (dieser Klasse), das macht die Modellierung etwas unschoen.
  * 
  * @see rpAmpel
  * 
@@ -25,6 +26,9 @@ public final class rpKreuzung {
 		starteUeberwachung();
 	}
 
+	/**
+	* Initialisiere die Kreuzung (Autos Gruen, Fussgaenger Rot)
+	*/
 	public void initialisiere(){
 		autoAmpel.aufGruenSchalten();
 		fussgaengerAmpel.aufRotSchalten();
