@@ -1,5 +1,5 @@
 /**
- * Klasse zur Umsetzung des Theaters. 
+ * Klasse zur Umsetzung des Theaters mit mehreren Scheinwerfern. 
  *
  * @see rpDiode
  * 
