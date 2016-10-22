@@ -1,5 +1,5 @@
 /**
- * Klasse fuer eine Ampel.
+ * Klasse fuer eine Ampel (mit drei Lampen: rot, gelb, gruen).
  * 
  * @see rpDiode
  * 
