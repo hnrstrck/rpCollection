@@ -8,7 +8,7 @@
  */
 public final class rpRegler {
 
-    private int angeschlossenerChannel = 0;
+    private int angeschlossenerChannel;
 
     /**
     * 
