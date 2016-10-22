@@ -22,7 +22,7 @@ public final class rpTheater {
 	}
 
 	/**
-	* Initialisiere die (Autos Gruen, Fussgaenger Rot)
+	* Spiele die erste Szene
 	*/
 	public void spieleErsteSzene(){
 		hintergrundbeleuchtung.an();
