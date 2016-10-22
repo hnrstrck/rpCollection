@@ -588,13 +588,14 @@ public final class rpRGB {
     }
 
     /**
-    * Laesst die RGB-LED blinken (auf unbestimmte Zeit). Die Frequenz kann mit einem AD-Wandler angepasst werden.
+    * Laesst die RGB-LED blinken (auf unbestimmte Zeit). Die Frequenz kann ueber die Stellung eines Reglers an einem AD-Wandler angepasst werden.
     * @param meinWandler Objekt der Klasse rpADWandler.
-    * @param pChannel Channel des AD-Wandlers, an dem das Potentiometer angeschlossen ist (Channel 0, 1, 2, ..., 7).
+    * @param meinRegler Regler, der ausgelesen werden soll
     * @see rpADWandler
+    * @see rpRegler
     * @see rpHelper
     */
-    private void startBlinkenVariabel(rpADWandler meinWandler, int pChannel) {
+    private void startBlinkenVariabel(rpADWandler meinWandler, rpRegler meinRegler) {
         if (boolInitialisierungErfolgt == true){
 
             threadEndlosBlinken = new Thread(){
@@ -607,9 +608,9 @@ public final class rpRGB {
                         while(true){
                             //Signal endlos blinken
                             aus();
-                            Thread.sleep((int)Math.round(    ((100f - (float)(rpADWandler.gibProzentwertVonChannel(pChannel,0)))/100f)*300f)      );     
+                            Thread.sleep((int)Math.round(    ((100f - (float)(rpADWandler.gibProzentwertVonRegler(meinRegler,0)))/100f)*300f)      );     
                             setzeFarbe(temp_farbe[0], temp_farbe[1], temp_farbe[2]);
-                            Thread.sleep((int)Math.round(    ((100f - (float)(rpADWandler.gibProzentwertVonChannel(pChannel,0)))/100f)*300f)      );     
+                            Thread.sleep((int)Math.round(    ((100f - (float)(rpADWandler.gibProzentwertVonRegler(meinRegler,0)))/100f)*300f)      );     
                             temp_farbe = gibFarbe();
                         }
 
@@ -679,17 +680,19 @@ public final class rpRGB {
 
     /**
     * Laesst die RGB-LED blinken (auf unbestimmte Zeit). Die Frequenz kann mit einem AD-Wandler angepasst werden.
-    * @see rpADWandler
     * @param pWandler Objekt der Klasse rpADWandler.
-    * @param pChannel Channel des AD-Wandlers, an dem das Potentiometer angeschlossen ist (Channel 0, 1, 2, ..., 7).
+    * @param pRegler Regler, der ausgelesen werden soll.
+    * @see rpADWandler
+    * @see rpRegler
+    * @see rpHelper
     */  
-    public void blinkeEndlosStart(rpADWandler pWandler, int pChannel){
+    public void blinkeEndlosStart(rpADWandler pWandler, rpRegler pRegler){
         if (boolInitialisierungErfolgt == true){
 
             if(!blinktGerade){
 
                 if(pin_r.getState() == PinState.HIGH || pin_g.getState() == PinState.HIGH || pin_b.getState() == PinState.HIGH){
-                    startBlinkenVariabel(pWandler, pChannel);
+                    startBlinkenVariabel(pWandler, pRegler);
                     blinktGerade = true;
                     System.out.println("Blinken gestartet");
                 } else {

@@ -223,11 +223,12 @@ public final class rpDiode {
     /**
     * Laesst die Diode blinken (auf unbestimmte Zeit). Die Frequenz kann mit einem AD-Wandler angepasst werden.
     * @param meinWandler Objekt der Klasse rpADWandler.
-    * @param pChannel Channel des AD-Wandlers, an dem das Potentiometer angeschlossen ist (Channel 0, 1, 2, ..., 7).
+    * @param meinRegler Regler, der ausgelesen werden soll.
     * @see rpADWandler
+    * @see rpRegler
     * @see rpHelper
     */  
-    private void startBlinkenVariabel(rpADWandler meinWandler, int pChannel) {
+    private void startBlinkenVariabel(rpADWandler meinWandler, rpRegler meinRegler) {
         if (boolInitialisierungErfolgt == true){
 
             threadEndlosBlinken = new Thread(){
@@ -239,9 +240,9 @@ public final class rpDiode {
 
                             //Signal endlos blinken
                             an();
-                            Thread.sleep((int)Math.round(((100f - (float)(rpADWandler.gibProzentwertVonChannel(pChannel,0)))/100f)*300f));     
+                            Thread.sleep((int)Math.round(((100f - (float)(rpADWandler.gibProzentwertVonRegler(meinRegler,0)))/100f)*300f));     
                             aus();
-                            Thread.sleep((int)Math.round(((100f - (float)(rpADWandler.gibProzentwertVonChannel(pChannel,0)))/100f)*300f));     
+                            Thread.sleep((int)Math.round(((100f - (float)(rpADWandler.gibProzentwertVonRegler(meinRegler,0)))/100f)*300f));     
 
                         }
                     } catch (InterruptedException e) {
@@ -296,16 +297,19 @@ public final class rpDiode {
     }
 
     /**
-    * Laesst die Diode blinken (auf unbestimmte Zeit). Die Frequenz kann mit einem AD-Wandler angepasst werden.
+    * Laesst die Diode blinken (auf unbestimmte Zeit). Die Frequenz kann ueber die Stellung eines Reglers an einem AD-Wandler angepasst werden.
     * @see rpADWandler
     * @param pWandler Objekt der Klasse rpADWandler.
-    * @param pChannel Channel des AD-Wandlers, an dem das Potentiometer angeschlossen ist (Channel 0, 1, 2, ..., 7).
+    * @param pRegler Regler, der ausgelesen werden soll.
+    * @see rpADWandler
+    * @see rpRegler
+    * @see rpHelper
     */  
-    public void blinkeEndlosStart(rpADWandler pWandler, int pChannel){
+    public void blinkeEndlosStart(rpADWandler pWandler, rpRegler pRegler){
         if (boolInitialisierungErfolgt == true){
 
             if(!blinktGerade){
-                startBlinkenVariabel(pWandler, pChannel);
+                startBlinkenVariabel(pWandler, pRegler);
                 blinktGerade = true;
             } else {
                 System.out.println("Diode blinkt schon");

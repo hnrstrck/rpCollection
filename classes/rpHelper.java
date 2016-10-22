@@ -172,10 +172,21 @@ public class rpHelper
     public static boolean istJ8Layout = false;
 
     /**
+     * Aufloesung des AD-Wandlers
      * Standard-AD-Wandler: MCP 3208 mit 12 Bit Aufloesung = 4096 Aufloesungswerte, also aufloesungADWandler = 4096.
      */
     public static int aufloesungADWandler = 4096;
     
+     /**
+	 * boolean (true oder false - je nachdem, ob der MCP3208 eingestellt ist).
+     */
+    public static boolean istMCP3208 = true;
+    
+     /**
+	 * boolean (true oder false - je nachdem, ob der MCP3008 eingestellt ist).
+     */
+    public static boolean istMCP3008 = false;
+
     /**
      * Aendere das Pin-Layout auf BCM oder J8.
      * @param PinLayout String des Pin-Layouts (muss "BCM" oder "J8" lauten).
@@ -195,15 +206,6 @@ public class rpHelper
         }
     }
 
-	/**
-	* Setzt die Maximalaufloesung des AD-Wandlers.
-	* @param pAufloesung Maximalaufloesung des AD-Wandlers.
-	*/
-    public void setzeADWandlerAufloesung(int pAufloesung){
-        aufloesungADWandler = pAufloesung;
-        System.out.println("AD-Wandler-Aufloesung geaendert auf: " + pAufloesung);
-    }
-    
     /**
      * Aendere den verwendeten AD-Wandler auf MCP3008 oder MCP3208.
      * @param ADWandlerName String des Namen des AD-Wandlers (muss "MCP3008" oder "MCP3208" lauten).
@@ -211,9 +213,13 @@ public class rpHelper
     public static void setzeADWandler(String ADWandlerName){
         if (ADWandlerName.equals("MCP3008")){
             aufloesungADWandler = 1024;
+            istMCP3208 = false;
+            istMCP3008 = true;
             System.out.println("AD-Wandler auf MCP3008 geaendert (Aufloesung 1024)");
         } else if (ADWandlerName.equals("MCP3208")){
             aufloesungADWandler = 4096;
+            istMCP3208 = true;
+            istMCP3008 = false;
             System.out.println("AD-Wandler auf MCP3208 geaendert (Aufloesung 4096)");
         } else {
             System.out.println("Eingabe nicht erkannt. AD-Wandler unveraendert.");
