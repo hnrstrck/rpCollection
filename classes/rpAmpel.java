@@ -16,7 +16,7 @@ public final class rpAmpel {
 	private boolean istGeradeGruen;
 
     /**
-    * Erstelle eine neue Ampel und uebergin die Pinne der angeschlossenen Dioden
+    * Erstelle eine neue Ampel und setze die Pinne der angeschlossenen Dioden (Rot, Gelb, Gruen).
     */
     rpAmpel(int pinRotesLicht, int pinGelbesLicht, int pinGruenesLicht) {
     	rotesLicht = new rpDiode(pinRotesLicht);
@@ -65,10 +65,19 @@ public final class rpAmpel {
 		istGeradeRot = true;
 	}
 	
+	
+	/**
+	* Erfragt, ob die Ampel gerade gruen ist.
+	* @return Ob die Ampel gerade gruen ist.
+	*/
 	public boolean istGeradeGruen(){
 		return istGeradeGruen;
 	}
 	
+	/**
+	* Erfragt, ob die Ampel gerade rot ist.
+	* @return Ob die Ampel gerade rot ist.
+	*/
 	public boolean istGeradeRot(){
 		return istGeradeRot;
 	}
