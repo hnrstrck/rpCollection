@@ -9,7 +9,7 @@ import com.pi4j.wiringpi.*;
  */
 public final class rpMotor {
 
-    private GpioPinDigitalOutput pin_EN1, pin_IN11, pin_IN12;
+    private GpioPinDigitalOutput pin_Enable, pin_Richtung1, pin_Richtung2;
     private GpioController gpio;
 
     private boolean boolInitialisierungErfolgt;
@@ -33,30 +33,30 @@ public final class rpMotor {
 
     /**
     * Erstellt ein Objekt der Klasse rpMotor.
-    * @param pin_EN1 Der Pin fuer EN1.
-    * @param pin_IN11 Der Pin fuer IN11.
-    * @param pin_IN12 Der Pin fuer IN12.
+    * @param pin_Enable Der Pin fuer EN1.
+    * @param pin_Richtung1 Der Pin fuer IN11.
+    * @param pin_Richtung2 Der Pin fuer IN12.
     */
-    rpMotor(int pin_EN1, int pin_IN11, int pin_IN12) {
+    rpMotor(int pin_Enable, int pin_Richtung1, int pin_Richtung2) {
         gpio = GpioFactory.getInstance();
         intPins = new int[3];
         boolInitialisierungErfolgt = false;
 
-        this.setPins(pin_EN1, pin_IN11, pin_IN12);
+        this.setPins(pin_Enable, pin_Richtung1, pin_Richtung2);
     }
 
     /**
     * Setzt die Pinne fuer den Motor.
-    * @param pin_EN1 Der Pin fuer EN1.
-    * @param pin_IN11 Der Pin fuer IN11.
-    * @param pin_IN12 Der Pin fuer IN12.
+    * @param pin_Enable Der Pin fuer EN1.
+    * @param pin_Richtung1 Der Pin fuer IN11.
+    * @param pin_Richtung2 Der Pin fuer IN12.
     */
-    public void setPins(int pin_EN1, int pin_IN11, int pin_IN12){
+    public void setPins(int pin_Enable, int pin_Richtung1, int pin_Richtung2){
         System.out.println("Setze Pins:");
         
-        setPinEN1(pin_EN1);     
-        setPinIN11(pin_IN11);  
-        setPinIN12(pin_IN12);    
+        setPinEN1(pin_Enable);     
+        setPinIN11(pin_Richtung1);  
+        setPinIN12(pin_Richtung2);    
     }
     
     /**
@@ -64,7 +64,7 @@ public final class rpMotor {
     * @param pPin Der Pin fuer EN1.
     */
     public void setPinEN1(int pPin) {
-        pin_EN1 = null;
+        pin_Enable = null;
 
         System.out.println("Output-Pin gesetzt fuer Enable 1 (EN 1):");
 
@@ -72,8 +72,8 @@ public final class rpMotor {
 			
 			if (rpHelper.istBCMLayout == true){
 
-				pin_EN1 = gpio.provisionDigitalOutputPin(rpHelper.pinArrayJ8[rpHelper.pinZuordnungBCMzuJ8[pPin]]);
-				pin_EN1.setShutdownOptions(true, PinState.LOW);
+				pin_Enable = gpio.provisionDigitalOutputPin(rpHelper.pinArrayJ8[rpHelper.pinZuordnungBCMzuJ8[pPin]]);
+				pin_Enable.setShutdownOptions(true, PinState.LOW);
 
 				SoftPwm.softPwmCreate(rpHelper.pinZuordnungBCMzuJ8[pPin],0,100);
             
@@ -81,8 +81,8 @@ public final class rpMotor {
 			
 			if (rpHelper.istJ8Layout == true){
 			
-				pin_EN1 = gpio.provisionDigitalOutputPin(rpHelper.pinArrayJ8[pPin]);
-				pin_EN1.setShutdownOptions(true, PinState.LOW);
+				pin_Enable = gpio.provisionDigitalOutputPin(rpHelper.pinArrayJ8[pPin]);
+				pin_Enable.setShutdownOptions(true, PinState.LOW);
 
 				SoftPwm.softPwmCreate(pPin,0,100);	 
 				 
@@ -104,7 +104,7 @@ public final class rpMotor {
     * @param pPin Der Pin fuer IN11.
     */
     public void setPinIN11(int pPin) {
-        pin_IN11 = null;
+        pin_Richtung1 = null;
 
         System.out.println("Output-Pin gesetzt fuer Input 1.1 (IN 1.1):");
 
@@ -112,8 +112,8 @@ public final class rpMotor {
 
             if (rpHelper.istBCMLayout == true){
 
-				pin_IN11 = gpio.provisionDigitalOutputPin(rpHelper.pinArrayJ8[rpHelper.pinZuordnungBCMzuJ8[pPin]]);
-				pin_IN11.setShutdownOptions(true, PinState.LOW);
+				pin_Richtung1 = gpio.provisionDigitalOutputPin(rpHelper.pinArrayJ8[rpHelper.pinZuordnungBCMzuJ8[pPin]]);
+				pin_Richtung1.setShutdownOptions(true, PinState.LOW);
 
 				SoftPwm.softPwmCreate(rpHelper.pinZuordnungBCMzuJ8[pPin],0,100);
             
@@ -121,8 +121,8 @@ public final class rpMotor {
 			
 			if (rpHelper.istJ8Layout == true){
 			
-				pin_IN11 = gpio.provisionDigitalOutputPin(rpHelper.pinArrayJ8[pPin]);
-				pin_IN11.setShutdownOptions(true, PinState.LOW);
+				pin_Richtung1 = gpio.provisionDigitalOutputPin(rpHelper.pinArrayJ8[pPin]);
+				pin_Richtung1.setShutdownOptions(true, PinState.LOW);
 
 				SoftPwm.softPwmCreate(pPin,0,100);	 
 				 
@@ -144,7 +144,7 @@ public final class rpMotor {
     * @param pPin Der Pin fuer IN12.
     */
     public void setPinIN12(int pPin) {
-        pin_IN12 = null;
+        pin_Richtung2 = null;
 
         System.out.println("Output-Pin gesetzt fuer Input 1.2 (IN 1.2):");
 
@@ -152,8 +152,8 @@ public final class rpMotor {
 
             if (rpHelper.istBCMLayout == true){
 
-				pin_IN12 = gpio.provisionDigitalOutputPin(rpHelper.pinArrayJ8[rpHelper.pinZuordnungBCMzuJ8[pPin]]);
-				pin_IN12.setShutdownOptions(true, PinState.LOW);
+				pin_Richtung2 = gpio.provisionDigitalOutputPin(rpHelper.pinArrayJ8[rpHelper.pinZuordnungBCMzuJ8[pPin]]);
+				pin_Richtung2.setShutdownOptions(true, PinState.LOW);
 
 				SoftPwm.softPwmCreate(rpHelper.pinZuordnungBCMzuJ8[pPin],0,100);
             
@@ -161,8 +161,8 @@ public final class rpMotor {
 			
 			if (rpHelper.istJ8Layout == true){
 			
-				pin_IN12 = gpio.provisionDigitalOutputPin(rpHelper.pinArrayJ8[pPin]);
-				pin_IN12.setShutdownOptions(true, PinState.LOW);
+				pin_Richtung2 = gpio.provisionDigitalOutputPin(rpHelper.pinArrayJ8[pPin]);
+				pin_Richtung2.setShutdownOptions(true, PinState.LOW);
 
 				SoftPwm.softPwmCreate(pPin,0,100);	 
 				 
@@ -287,7 +287,7 @@ public final class rpMotor {
 
             if(!laeuftGerade){
 
-                if (pin_IN11.getState() == PinState.HIGH || pin_IN12.getState() == PinState.HIGH){
+                if (pin_Richtung1.getState() == PinState.HIGH || pin_Richtung2.getState() == PinState.HIGH){
                     starteMotorGeschwindigkeit(100);
                     laeuftGerade = true;
                     System.out.println("Motor gestartet");
@@ -310,7 +310,7 @@ public final class rpMotor {
         if (boolInitialisierungErfolgt == true){
 
             if(!laeuftGerade){
-                if (pin_IN11.getState() == PinState.HIGH || pin_IN12.getState() == PinState.HIGH){
+                if (pin_Richtung1.getState() == PinState.HIGH || pin_Richtung2.getState() == PinState.HIGH){
                     starteMotorGeschwindigkeit(pGeschwindigkeit);
                     laeuftGerade = true;
                     System.out.println("Motor gestartet");
@@ -333,7 +333,7 @@ public final class rpMotor {
         if (boolInitialisierungErfolgt == true){
 
             if(!laeuftGerade){
-                if (pin_IN11.getState() == PinState.HIGH || pin_IN12.getState() == PinState.HIGH){
+                if (pin_Richtung1.getState() == PinState.HIGH || pin_Richtung2.getState() == PinState.HIGH){
                     starteMotorZeitintervallGeschwindigkeit(pSekunden, 100);
                     laeuftGerade = true;
                     System.out.println("Motor gestartet");
@@ -357,7 +357,7 @@ public final class rpMotor {
         if (boolInitialisierungErfolgt == true){
 
             if(!laeuftGerade){
-                if (pin_IN11.getState() == PinState.HIGH || pin_IN12.getState() == PinState.HIGH){
+                if (pin_Richtung1.getState() == PinState.HIGH || pin_Richtung2.getState() == PinState.HIGH){
                     starteMotorZeitintervallGeschwindigkeit(pSekunden, pGeschwindigkeit);
                     laeuftGerade = true;
                     System.out.println("Motor gestartet");
@@ -460,8 +460,8 @@ public final class rpMotor {
     */
     public void wechselLaufrichtung() {
         if (boolInitialisierungErfolgt == true){
-            if (pin_IN11.getState() == PinState.HIGH || pin_IN12.getState() == PinState.HIGH){
-                if (pin_IN11.getState() == PinState.HIGH){
+            if (pin_Richtung1.getState() == PinState.HIGH || pin_Richtung2.getState() == PinState.HIGH){
+                if (pin_Richtung1.getState() == PinState.HIGH){
                     try{
 						
 						if (rpHelper.istBCMLayout == true){
@@ -511,7 +511,7 @@ public final class rpMotor {
     public boolean istAn() {
         if (boolInitialisierungErfolgt == true){
             try{
-                if (pin_EN1.getState() == PinState.HIGH) {
+                if (pin_Enable.getState() == PinState.HIGH) {
                     System.out.println("Ja, Motor ist angeschaltet");
                     return true;
                 } else {
@@ -535,7 +535,7 @@ public final class rpMotor {
     public boolean istAus() {
         if (boolInitialisierungErfolgt == true){
             try{
-                if (pin_EN1.getState() == PinState.HIGH) {
+                if (pin_Enable.getState() == PinState.HIGH) {
                     System.out.println("Nein, Motor ist angeschaltet");
                     return false;
                 } else {
@@ -559,7 +559,7 @@ public final class rpMotor {
     public boolean hatLaufrichtungLinks() {
         if (boolInitialisierungErfolgt == true){
             try{
-                if (pin_IN11.getState() == PinState.HIGH) {
+                if (pin_Richtung1.getState() == PinState.HIGH) {
                     System.out.println("Ja, Motor ist auf Links eingestellts");
                     return true;
                 } else {
@@ -583,7 +583,7 @@ public final class rpMotor {
     public boolean hatLaufrichtungRechts() {
         if (boolInitialisierungErfolgt == true){
             try{
-                if (pin_IN12.getState() == PinState.LOW) {
+                if (pin_Richtung2.getState() == PinState.LOW) {
                     System.out.println("Nein, Motor ist auf Links eingestellt (oder hat noch keine Richtung)");
                     return false;
                 } else {
@@ -606,8 +606,8 @@ public final class rpMotor {
     public void destroy() {
         gpio.shutdown();
         gpio = null;
-        pin_EN1 = null;
-        pin_IN11 = null;
-        pin_IN12 = null;
+        pin_Enable = null;
+        pin_Richtung1 = null;
+        pin_Richtung2 = null;
     }
 }
