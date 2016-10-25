@@ -33,9 +33,9 @@ public final class rpMotor {
 
     /**
     * Erstellt ein Objekt der Klasse rpMotor.
-    * @param pin_Enable Der Pin fuer EN1.
-    * @param pin_Richtung1 Der Pin fuer IN11.
-    * @param pin_Richtung2 Der Pin fuer IN12.
+    * @param pin_Enable Der Pin fuer Enable.
+    * @param pin_Richtung1 Der Pin fuer Richtung 1.
+    * @param pin_Richtung2 Der Pin fuer Richtung2.
     */
     rpMotor(int pin_Enable, int pin_Richtung1, int pin_Richtung2) {
         gpio = GpioFactory.getInstance();
@@ -47,23 +47,23 @@ public final class rpMotor {
 
     /**
     * Setzt die Pinne fuer den Motor.
-    * @param pin_Enable Der Pin fuer EN1.
-    * @param pin_Richtung1 Der Pin fuer IN11.
-    * @param pin_Richtung2 Der Pin fuer IN12.
+    * @param pin_Enable Der Pin fuer Enable.
+    * @param pin_Richtung1 Der Pin fuer Richtung 1.
+    * @param pin_Richtung2 Der Pin fuer Richtung2.
     */
     public void setPins(int pin_Enable, int pin_Richtung1, int pin_Richtung2){
         System.out.println("Setze Pins:");
         
-        setPinEN1(pin_Enable);     
-        setPinIN11(pin_Richtung1);  
-        setPinIN12(pin_Richtung2);    
+        setPinEnable(pin_Enable);     
+        setPinRichtung1(pin_Richtung1);  
+        setPinRichtung2(pin_Richtung2);    
     }
     
     /**
-    * Setzt den Pin fuer EN1.
-    * @param pPin Der Pin fuer EN1.
+    * Setzt den Pin fuer Enable.
+    * @param pPin Der Pin fuer Enable.
     */
-    public void setPinEN1(int pPin) {
+    public void setPinEnable(int pPin) {
         pin_Enable = null;
 
         System.out.println("Output-Pin gesetzt fuer Enable 1 (EN 1):");
@@ -100,13 +100,13 @@ public final class rpMotor {
     }
 
     /**
-    * Setzt den Pin fuer IN11.
-    * @param pPin Der Pin fuer IN11.
+    * Setzt den Pin fuer Richtung 1.
+    * @param pPin Der Pin fuer Richtung 1.
     */
-    public void setPinIN11(int pPin) {
+    public void setPinRichtung1(int pPin) {
         pin_Richtung1 = null;
 
-        System.out.println("Output-Pin gesetzt fuer Input 1.1 (IN 1.1):");
+        System.out.println("Output-Pin gesetzt fuer Input 1.1 (Richtung 1):");
 
         try {
 
@@ -140,13 +140,13 @@ public final class rpMotor {
     }
 
     /**
-    * Setzt den Pin fuer IN12.
-    * @param pPin Der Pin fuer IN12.
+    * Setzt den Pin fuer Richtung2.
+    * @param pPin Der Pin fuer Richtung2.
     */
-    public void setPinIN12(int pPin) {
+    public void setPinRichtung2(int pPin) {
         pin_Richtung2 = null;
 
-        System.out.println("Output-Pin gesetzt fuer Input 1.2 (IN 1.2):");
+        System.out.println("Output-Pin gesetzt fuer Input 1.2 (Richtung 2):");
 
         try {
 
@@ -180,26 +180,26 @@ public final class rpMotor {
     }
 
     /**
-    * Gibt den Pin des Motors fuer EN1 zurueck.
-    * @return Pin des Motors fuer EN1.
+    * Gibt den Pin des Motors fuer Enable zurueck.
+    * @return Pin des Motors fuer Enable.
     */
-    public int gibPinEN1(){
+    public int gibPinEnable(){
         return intPins[0];
     }
 
     /**
-    * Gibt den Pin des Motors fuer IN11 zurueck.
-    * @return Pin des Motors fuer IN11.
+    * Gibt den Pin des Motors fuer Richtung 1 zurueck.
+    * @return Pin des Motors fuer Richtung 1.
     */
-    public int gibPinIN11(){
+    public int gibPinRichtung1(){
         return intPins[1];
     }
 
     /**
-    * Gibt den Pin des Motors fuer IN12 zurueck.
-    * @return Pin des Motors fuer IN12. 
+    * Gibt den Pin des Motors fuer Richtung2 zurueck.
+    * @return Pin des Motors fuer Richtung2. 
     */
-    public int gibPinIN12(){
+    public int gibPinRichtung2(){
         return intPins[2];
     } 
 
@@ -235,7 +235,7 @@ public final class rpMotor {
             threadEndlosMotorlaufen.start();
 
         } else {
-            System.out.println("Zuerst Pins fuer den Motor angeben (EN 1, IN 1.1, IN 1.2)");
+            System.out.println("Zuerst Pins fuer den Motor angeben (Enable, Richtung 1, Richtung 2)");
         }
     }
 
@@ -275,7 +275,7 @@ public final class rpMotor {
             threadEndlosMotorlaufen.start();
 
         } else {
-            System.out.println("Zuerst Pins fuer den Motor angeben (EN 1, IN 1.1, IN 1.2)");
+            System.out.println("Zuerst Pins fuer den Motor angeben (Enable, Richtung 1, Richtung 2)");
         }
     }
 
@@ -298,7 +298,7 @@ public final class rpMotor {
                 System.out.println("Motor laeuft schon");
             }
         } else {
-            System.out.println("Zuerst Pins fuer den Motor angeben (EN 1, IN 1.1, IN 1.2)");
+            System.out.println("Zuerst Pins fuer den Motor angeben (Enable, Richtung 1, Richtung 2)");
         }
     }
 
@@ -321,7 +321,7 @@ public final class rpMotor {
                 System.out.println("Motor laeuft schon");
             }
         } else {
-            System.out.println("Zuerst Pins fuer den Motor angeben (EN 1, IN 1.1, IN 1.2)");
+            System.out.println("Zuerst Pins fuer den Motor angeben (Enable, Richtung 1, Richtung 2)");
         }
     }
 
@@ -344,7 +344,7 @@ public final class rpMotor {
                 System.out.println("Motor laeuft schon");
             }
         } else {
-            System.out.println("Zuerst Pins fuer den Motor angeben (EN 1, IN 1.1, IN 1.2)");
+            System.out.println("Zuerst Pins fuer den Motor angeben (Enable, Richtung 1, Richtung 2)");
         }
     }
 
@@ -368,7 +368,7 @@ public final class rpMotor {
                 System.out.println("Motor laeuft schon");
             }
         } else {
-            System.out.println("Zuerst Pins fuer den Motor angeben (EN 1, IN 1.1, IN 1.2)");
+            System.out.println("Zuerst Pins fuer den Motor angeben (Enable, Richtung 1, Richtung 2)");
         }
     }
 
@@ -402,7 +402,7 @@ public final class rpMotor {
                 System.out.println("Error: Pins nicht definiert? (NullPointerException)");
             }
         } else {
-            System.out.println("Zuerst Pins fuer den Motor angeben (EN 1, IN 1.1, IN 1.2)");
+            System.out.println("Zuerst Pins fuer den Motor angeben (Enable, Richtung 1, Richtung 2)");
         }
     }
 
@@ -451,7 +451,7 @@ public final class rpMotor {
                 System.out.println("Angabe fuer die Richtung muss 0 oder 1 sein.");
             }
         } else {
-            System.out.println("Zuerst Pins fuer den Motor angeben (EN 1, IN 1.1, IN 1.2)");
+            System.out.println("Zuerst Pins fuer den Motor angeben (Enable, Richtung 1, Richtung 2)");
         }
     }
 
@@ -500,7 +500,7 @@ public final class rpMotor {
                 System.out.println("Es wurde noch keine Richtung festgelegt.");
             }
         } else {
-            System.out.println("Zuerst Pins fuer den Motor angeben (EN 1, IN 1.1, IN 1.2)");
+            System.out.println("Zuerst Pins fuer den Motor angeben (Enable, Richtung 1, Richtung 2)");
         }
     }
 
@@ -523,7 +523,7 @@ public final class rpMotor {
                 return false;
             }
         } else {
-            System.out.println("Zuerst Pins fuer den Motor angeben (EN 1, IN 1.1, IN 1.2)");
+            System.out.println("Zuerst Pins fuer den Motor angeben (Enable, Richtung 1, Richtung 2)");
             return false;
         }    
     }
@@ -547,7 +547,7 @@ public final class rpMotor {
                 return false;
             }
         } else {
-            System.out.println("Zuerst Pins fuer den Motor angeben (EN 1, IN 1.1, IN 1.2)");
+            System.out.println("Zuerst Pins fuer den Motor angeben (Enable, Richtung 1, Richtung 2)");
             return false;
         }    
     } 
@@ -571,7 +571,7 @@ public final class rpMotor {
                 return false;
             }
         } else {
-            System.out.println("Zuerst Pins fuer den Motor angeben (EN 1, IN 1.1, IN 1.2)");
+            System.out.println("Zuerst Pins fuer den Motor angeben (Enable, Richtung 1, Richtung 2)");
             return false;
         }    
     }
@@ -595,13 +595,13 @@ public final class rpMotor {
                 return false;
             }
         } else {
-            System.out.println("Zuerst Pins fuer den Motor angeben (EN 1, IN 1.1, IN 1.2)");
+            System.out.println("Zuerst Pins fuer den Motor angeben (EN 1, Richtung 1, Richtung 2)");
             return false;
         }    
     } 
 
     /**
-    * Schalte GPIO ab und dereferenziere den GPIO und die Pins (EN1, IN11, IN12).
+    * Schalte GPIO ab und dereferenziere den GPIO und die Pins (Enable, Richtung 1, Richtung2).
     */  
     public void destroy() {
         gpio.shutdown();
