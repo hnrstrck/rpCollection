@@ -6,4 +6,4 @@
 *.synctex.gz
 *.class
 mac_start.sh
-
+javaDocGen.sh
