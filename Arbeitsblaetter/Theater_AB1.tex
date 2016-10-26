@@ -1,6 +1,7 @@
 \documentclass[11pt, a4paper]{article}
 \include{style}
 \begin{document}
+\pagestyle{empty}
 \textbf{{\Large Die Lichtanlage für eine Theateraufführung}}\\
 
 Für das Schultheater-Aufführung des Stückes \enquote{Mac Bath} von Shakebeer soll mit Hilfe des Raspberry Pis die Lichtanlage gesteuert werden. Alle Scheinwerfer sind über der Bühne an einem Gerüst angebracht und können ihre Position nicht verändern. Martin ist für das Licht verantwortlich. \\
@@ -14,38 +15,41 @@ Dann arbeitet Martin mit dem RGB-Scheinwerfer\footnote{Der RGB-Scheinwerfer kann
 Um einen Farbwechsel zu erzielen, lässt Martin dann die Bühne mehrere Male für jeweils fünf Sekunden in weißes, rotes und blaues Licht hüllen. Die Gesamtdauer des Farbwechsels dauert ca. 45 Sekunden.\\
 \end{mdframed}
 
-\newpage
+\vfill
 \textbf{Aufgaben}:
 \begin{enumerate}
-\item Entwerfen Sie zu der gegebenen Problembeschreibung mit Hilfe des Verfahrens von Abbott ein objektorientiertes Modell, indem Sie die relevanten Objekte mit ihren Attributen und Methoden identifizieren. Notieren Sie die Objekte als Objektkarten.
+\item Entwerfen Sie zu der gegebenen Problembeschreibung mit Hilfe des Verfahrens von \textsc{Abbott} ein objektorientiertes Modell. 
+
+\item Notieren Sie die Objekte als Objektkarten.
 
 %\item Informieren Sie sich über die Möglichkeiten eines ******* und wofür er für obige Anforderungen im Programm benötigt wird.
 
-\item Informieren Sie sich über die Möglichkeiten eines AD-Wandlers und wofür er für obige Anforderungen im Programm benötigt wird.
+%\item Informieren Sie sich über die Möglichkeiten eines AD-Wandlers und wofür er für obige Anforderungen im Programm benötigt wird.
 
-\item Erstellen Sie ein Sequenzdiagramm auf Folie, welches die Interaktion zwischen den identifizierten Objekten gemäß der Problembeschreibung beschreibt und bereiten Sie Lösung so vor, dass Sie diese vorstellen können:
-\begin{enumerate}
-	\item für den Scheinwerfer
-	\item für den Helligkeitssenor
-	\item für den RGB-Scheinwerfer
-	\item für das Stroboskop
-\end{enumerate}
+%\item Erstellen Sie ein Sequenzdiagramm auf Folie, welches die Interaktion zwischen den identifizierten Objekten gemäß der Problembeschreibung beschreibt und bereiten Sie Lösung so vor, dass Sie diese vorstellen können:
+%\begin{enumerate}
+%	\item für den Scheinwerfer
+%	\item für den Helligkeitssenor
+%	\item für den RGB-Scheinwerfer
+%	\item für das Stroboskop
+%\end{enumerate}
 \end{enumerate}
 
-\vfill
-\emph{Bauteile}:
-\begin{itemize}
-\item Diode
-\item Phototransistor
-\item RGB-LED
-\item AD-Wandler
-\end{itemize}
+%\vfill
+%\emph{Bauteile}:
+%\begin{itemize}
+%\item Diode
+%\item Phototransistor
+%\item RGB-LED
+%\item AD-Wandler
+%\end{itemize}
 
 %\vspace{0.5cm}
 %\emph{Erweiterbar um}:
 %\begin{itemize}
 %\item Taster (Bei Taster-Druck blinken alle Lampen oder alle Lampen gehen aus)
 %\item Phototransistor (wenn es zu hell draußen wird (Umfeld Party), soll das Licht im Raum automatisch aus gehen)
+%\item Summer (auch kurze akustische Rückmeldungen sollen gegeben werden)
 %\end{itemize}
 
 \end{document}
