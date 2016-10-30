@@ -7,3 +7,6 @@
 *.class
 mac_start.sh
 javaDocGen.sh
+pi4j-1.1/
+pi4j-1.1/*
+
