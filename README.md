@@ -38,7 +38,7 @@ Es stehen folgende Bauteile bereit:
 #### Evtl. weitere Software
 * LaTeX für den Etikettendruck (falls Bauteile nachgebaut werden sollen)
 
-## Anwendung
+## Anwendung und Beispiel:
 Mit dem Aufruf 
 
     bash start.sh
