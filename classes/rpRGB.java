@@ -433,7 +433,7 @@ public final class rpRGB {
                 System.out.println("Zuerst Pins fuer die RGB-LED angeben");
             }
         } else {
-            System.out.println("Falsche Zahlenbereiche angegeben. r, g, b muessen zwischen 0 und 255 (jew. einschliesslich) liegen");
+            System.out.println("Falsche Zahlenbereiche angegeben (r, g, b muessen zwischen 0 und 255) oder Fehler bei der Umrechnung vom Prozentsatz zum RGB-Wert.");
         }
     }
 

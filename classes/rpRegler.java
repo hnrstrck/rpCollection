@@ -1,5 +1,5 @@
 /**
- * Klasse fuer die angeschlossenen Regler an einem AD-Wandler. Sollen Werte von Reglern ausgelesen werden, die an einen AD-Wandler angeschlossen sind, so müssen zunächst Objekte dieser Klasse erstellt werden.
+ * Klasse fuer die angeschlossenen Regler an einem AD-Wandler. Sollen Werte von Reglern ausgelesen werden, die an einen AD-Wandler angeschlossen sind, so muessen zunaechst Objekte dieser Klasse erstellt werden.
  * 
  * @see rpADWandler
  * 

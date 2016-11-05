@@ -59,7 +59,7 @@ public final class rpADWandler {
     }
 
     /**
-    * Liest den uebergebenen Channel aus (für AD-Wandler MCP3008).
+    * Liest den uebergebenen Channel aus (fuer AD-Wandler MCP3008).
     *
     * @param channel Der Channel des AD-Wandlers (0, 1, 2, ..., 7).
     * @return Der gelesene Wert des Channels.
@@ -79,7 +79,7 @@ public final class rpADWandler {
     
     
     /**
-    * Liest den uebergebenen Channel aus (für AD-Wandler MCP3208).
+    * Liest den uebergebenen Channel aus (fuer AD-Wandler MCP3208).
     *
     * @param channel Der Channel des AD-Wandlers (0, 1, 2, ..., 7).
     * @return Der gelesene Wert des Channels.
