@@ -30,8 +30,6 @@ Es stehen folgende Bauteile bereit:
 * Kabel zum Anschluss des GPIO an den Raspberry Pi (Flachbandkabel)
 * Bauteile (Bauanleitungen und Bilder folgen)
 
-
-
 ### Software
 * Pi4J (mit dem Raspberry Pi standardmäßig ausgeliefert) [Website](http://pi4j.com)
 * WiringPi (wird auch standardmäßig mitgeliefert) [Website](http://wiringpi.com/)
@@ -40,4 +38,15 @@ Es stehen folgende Bauteile bereit:
 #### Evtl. weitere Software
 * LaTeX für den Etikettendruck (falls Bauteile nachgebaut werden sollen)
 
+## Anwendung
+Mit dem Aufruf 
+    bash start.sh
+werden die Java-Dateien kompiliert und die Groovy-Shell gestartet, sodass mit den Bauteilen gearbeitet werden kann. Die Pfade für Pi4J sind beim Aufruf bereits eingebunden.
 
+### Beispiel
+Durch die Eingaben
+    meinLicht = new rpDiode();
+    meinLicht.setPin(17);
+    meinLicht.an()
+wird eine an Pin 17 (BCM-Nummerierung) angeschlossene LED angeschaltet.
+    
