@@ -40,13 +40,17 @@ Es stehen folgende Bauteile bereit:
 
 ## Anwendung
 Mit dem Aufruf 
+
     bash start.sh
+    
 werden die Java-Dateien kompiliert und die Groovy-Shell gestartet, sodass mit den Bauteilen gearbeitet werden kann. Die Pfade für Pi4J sind beim Aufruf bereits eingebunden.
 
 ### Beispiel
 Durch die Eingaben
+
     meinLicht = new rpDiode();
     meinLicht.setPin(17);
     meinLicht.an()
+    
 wird eine an Pin 17 (BCM-Nummerierung) angeschlossene LED angeschaltet.
     
