@@ -28,6 +28,15 @@ public class Scheinwerfer{
 	}
 	
 	/**
+	* Laesst den Scheinwerfer kurz blinken. Am Ende ist der Scheinwerfer aus.
+	*/
+	public void blinken(){
+		pDiode.blinke();
+		pDiode.aus();
+		setzeStatus(true);
+	}
+	
+	/**
 	* Schalte den Scheinwerfer aus.
 	*/	
 	public void ausschalten(){
