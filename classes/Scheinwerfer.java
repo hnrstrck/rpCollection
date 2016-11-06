@@ -33,7 +33,7 @@ public class Scheinwerfer{
 	public void blinken(){
 		pDiode.blinke();
 		pDiode.aus();
-		setzeStatus(true);
+		setzeStatus(false);
 	}
 	
 	/**
