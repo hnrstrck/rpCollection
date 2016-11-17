@@ -25,7 +25,7 @@ Es stehen folgende Bauteile bereit:
 Im folgenden Bild ist eine angeschlossene RGB-LED zu erkennen. Die Kabel für Rot, Grün und Blau sind farblich abgestimmt, schwarz ist für Ground.  
 
 <div align="center">
-<img src="ReadMe/rgb_led_raspberry_pi_gpio.png" alt="Angeschlossene RGB-LED am Raspberry Pi" width="450px">
+<img src="ReadMe/rgb_led_raspberry_pi_gpio.jpg" alt="Angeschlossene RGB-LED am Raspberry Pi" width="450px">
 </div>
 
 Weitere Bilder sind im Ornder
