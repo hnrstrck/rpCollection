@@ -11,20 +11,20 @@ In Tabelle \ref{table:pinb_legung_bcm} ist noch einmal der GPIO abgedruckt. Die 
 
 % Alternativ zu den Bildern (folgen): 
 % Abstrakte Tabelle zum Anschluss eines Lichtsensors (Phototransistor)
-\begin{table}[htbp]
-  \centering
-  \begin{tabular}{@{} ccc @{}}
-    \toprule
-    Lichtsensor &  & GPIO \\ 
-    \midrule
-    PIN & $\qquad\longleftrightarrow\qquad$ & IO11 \\ 
-    \textcolor{red}{+3,3V} & $\longleftrightarrow$ & 3V3 \\ 
-    \textcolor{blue}{GND} & $\longleftrightarrow$ & GND \\ 
-    \bottomrule
-  \end{tabular}
-  \caption{Anschluss eines Lichtsensors.}
-  \label{table:anschluss_lichtsensor}
-\end{table}
+%\begin{table}[htbp]
+%  \centering
+%  \begin{tabular}{@{} ccc @{}}
+%    \toprule
+%    Lichtsensor &  & GPIO \\ 
+%    \midrule
+%    PIN & $\qquad\longleftrightarrow\qquad$ & IO11 \\ 
+%    \textcolor{red}{+3,3V} & $\longleftrightarrow$ & 3V3 \\ 
+%    \textcolor{blue}{GND} & $\longleftrightarrow$ & GND \\ 
+%    \bottomrule
+%  \end{tabular}
+%  \caption{Anschluss eines Lichtsensors.}
+%  \label{table:anschluss_lichtsensor}
+%\end{table}
 
 \subsection*{Anschließen und Anschalten eines Bauteils}
 Zum Anschließen und Anschalten eines Bauteils geht man so vor:
@@ -78,6 +78,17 @@ gelbeLampe.anschalten()
 // Zeichenketten sind in Anfuehrungszeichen zu setzen.
 gelbeLampe.setzeStandort("Martins Buehne");
 \end{lstlisting}
+
+\begin{figure*}[htb]
+    \centering
+    %\fbox{
+     \subfloat[Anschluss des RGB-Scheinwerfers (Anschluss an ">IO02"<, ">IO03"<, ">IO04"< und ">GND"<).]{\includegraphics[width=7.5cm]{img/anschluss_rgb_led.PNG}}
+     ~
+       \subfloat[Anschluss eines Helligkeitssensors (Anschluss an ">IO03"<, ">3V3"< und ">GND"<).]{\includegraphics[width=7.5cm]{img/anschluss_phototransistor.PNG}}
+    \caption{Angeschlossene Bauteile am Steckbrett.}
+    \label{fig:objekterzeugung_bluej}
+\end{figure*}
+
 
 
 
