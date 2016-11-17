@@ -41,7 +41,7 @@ public final class rpSummer {
     public void setPin(int pPin) {
         pin = null;
 
-        System.out.println("Input-Pin gesetzt:");
+        System.out.println("Output-Pin gesetzt:");
 
         try {
 
@@ -80,6 +80,18 @@ public final class rpSummer {
         }
     }
 
+	/**
+	* Schalte den den Summer in Abhaengigkeit eines Wertes an oder aus. 
+	* @param status Erforderlich ist ein Wahrheitswert (true / false). Ist der Parameterwert true, bleibt der Summer aus. Ist der Parameterwert false, so beep der Summer kurz zweimal. 
+	*/
+	public void schalten(boolean status){
+		if (status == true){
+			aus();
+		} else {
+			beepbeep();
+		}
+	}
+	
     /**
     * Laesst den Summer kurz beepen.
     */

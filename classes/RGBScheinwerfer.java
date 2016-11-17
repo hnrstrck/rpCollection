@@ -54,6 +54,18 @@ public class RGBScheinwerfer{
 	}
 	
 	/**
+	* Schalte den RGBScheinwerfer mit der Rueckgabe eines anderen Objekts. 
+	* @param status Erforderlich ist ein Wahrheitswert (true / false). Ist der Parameterwert true, bleibt der RGBScheinwerfer aus. Ist der Parameterwert false, so geht der RGBScheinwerfer an. 
+	*/
+	public void schalten(boolean status){
+		if (status == true){
+			ausschalten();
+		} else {
+			einschalten(100,100,100);
+		}
+	}
+	
+	/**
 	* Schalte den RGB-Scheinwerfer aus.
 	*/
 	public void ausschalten(){

@@ -373,6 +373,18 @@ public final class rpRGB {
             System.out.println("Zuerst Pins fuer die RGB-LED angeben");
         }
     }
+    
+    /**
+	* Schalte den die RGB-LED in Abhaengigkeit eines Wertes an oder aus. 
+	* @param status Erforderlich ist ein Wahrheitswert (true / false). Ist der Parameterwert true, bleibt die RGB-LED aus. Ist der Parameterwert false, so geht die RGB-LED an. 
+	*/
+	public void schalten(boolean status){
+		if (status == true){
+			aus();
+		} else {
+			an();
+		}
+	}
 
     /**
     * Schaltet die RGB-LED aus (alle Farben aus).

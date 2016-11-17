@@ -86,6 +86,18 @@ public final class rpDiode {
         }
     }
 
+	/**
+	* Schalte den die Diode in Abhaengigkeit eines Wertes an oder aus. 
+	* @param status Erforderlich ist ein Wahrheitswert (true / false). Ist der Parameterwert true, bleibt die Diode aus. Ist der Parameterwert false, so geht die Diode an. 
+	*/
+	public void schalten(boolean status){
+		if (status == true){
+			aus();
+		} else {
+			an();
+		}
+	}
+	
     /**
     * Schaltet die Diode aus.
     */    

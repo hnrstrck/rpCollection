@@ -1,6 +1,6 @@
 /**
 *	Hinweis:
-*	Fuer die Abfrage der einzelnen Attributwerte haette auch auf das Objekt "pDiode" zurueckgegriffen werden koennen.
+*	Fuer die Abfrage der einzelnen Attributwerte haette auch auf das Objekt "rpDiode" zurueckgegriffen werden koennen.
 *	Dann haetten die SuS aber mit zwei Klassen zu tun, was hier vermieden werden sollte, falls dieser Quelltext mal interessieren sollte.
 */
 

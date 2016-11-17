@@ -1,6 +1,6 @@
 /**
 *	Hinweis:
-*	Fuer die Abfrage der einzelnen Attributwerte haette auch auf das Objekt "pDiode" zurueckgegriffen werden koennen.
+*	Fuer die Abfrage der einzelnen Attributwerte haette auch auf das Objekt "rpDiode" zurueckgegriffen werden koennen.
 *	Dann haetten die SuS aber mit zwei Klassen zu tun, was hier vermieden werden sollte, falls dieser Quelltext mal interessieren sollte.
 */
 
@@ -48,7 +48,6 @@ public class Scheinwerfer{
 	* Schalte den Scheinwerfer mit der Rueckgabe eines anderen Objekts. 
 	* @param status Erforderlich ist ein Wahrheitswert (true / false). Ist der Parameterwert true, bleibt der Scheinwerfer aus. Ist der Parameterwert false, so geht der Scheinwerfer an. 
 	*/
-	/*
 	public void schalten(boolean status){
 		if (status == true){
 			ausschalten();
@@ -56,7 +55,6 @@ public class Scheinwerfer{
 			anschalten();
 		}
 	}
-	*/
 	
 	/**
 	* Frage nach dem Standort des Scheinwerfers.
