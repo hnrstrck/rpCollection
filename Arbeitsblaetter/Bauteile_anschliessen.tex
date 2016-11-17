@@ -7,7 +7,7 @@
 
 Am Raspberry Pi können verschiedene Bauteile angeschlossen werden, welche die Objekte repräsentieren sollen. Dazu verfügt jedes Bauteil über Anschlüsse, die auf dem Steckbrett mit dem GPIO des Raspberry Pi verbunden werden müssen. Dabei ist es wichtig, die Kabel so zu stecken, wie es die Anschlüsse auf dem Bauteil vorschreiben.\\
 
-In Tabelle \ref{table:pinb_legung_bcm} ist noch einmal der GPIO abgedruckt. Die Pinne, die mit ">IO"< beginnen, werden genutzt, um die Bauteile zu steuern oder den Zustand der Bauteile auszulesen. In Tabelle \ref{table:anschluss_lichtsensor} wird ein Beispiel gegeben, wie ein Lichtsensor an Pin 11 (">IO11"<) anzuschließen ist. Benötigt ein Bauteil einen Anschluss für ">+3,3V"< oder ">GND"<, kann ein beliebiger ">3V3"<- oder ">GND"<-Pin ausgewählt werden.
+In Tabelle \ref{table:pinb_legung_bcm} ist noch einmal der GPIO abgedruckt. Die Pinne, die mit ">IO"< beginnen, werden genutzt, um die Bauteile zu steuern oder den Zustand der Bauteile auszulesen. In Abbildung \ref{fig:bauteile_steckbrett} werden zwei Beispiele gegeben, wie die Bauteile anzuschließen sind. Benötigt ein Bauteil einen Anschluss für ">+3,3V"< oder ">GND"<, kann ein beliebiger ">3V3"<- oder ">GND"<-Pin ausgewählt werden.
 
 % Alternativ zu den Bildern (folgen): 
 % Abstrakte Tabelle zum Anschluss eines Lichtsensors (Phototransistor)
@@ -86,7 +86,7 @@ gelbeLampe.setzeStandort("Martins Buehne");
      ~
        \subfloat[Anschluss eines Helligkeitssensors (Anschluss an ">IO03"<, ">3V3"< und ">GND"<).]{\includegraphics[width=7.5cm]{img/anschluss_phototransistor.PNG}}
     \caption{Angeschlossene Bauteile am Steckbrett.}
-    \label{fig:objekterzeugung_bluej}
+    \label{fig:bauteile_steckbrett}
 \end{figure*}
 
 
