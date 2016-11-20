@@ -1,5 +1,5 @@
 # rpCollection
-_**Java-Objekte zum Anfassen**_
+Java-Objekte zum Anfassen am Raspberry Pi
 
 ## Beschreibung:
 Bei der Objektorientierten Modellierung (OOM) spielen Objekte eine fundamentale Rolle. Der klassische Ansatz im Unterricht arbeitet mit rein virtuellen Objekten -- sämtliche Interaktion und auch die Objektkommunikation spielt sich im Rechner ab. Nicht selten kommt es dabei vor, dass man Objekte im wahrsten Sinne des Wortes gar nicht "sieht".
@@ -25,7 +25,7 @@ Es stehen folgende Bauteile bereit:
 Im folgenden Bild ist eine angeschlossene RGB-LED zu erkennen. Die Kabel für Rot, Grün und Blau sind farblich abgestimmt, schwarz ist für Ground.  
 
 <div align="center">
-<img src="ReadMe/rgb_led_raspberry_pi_gpio.jpg" alt="Angeschlossene RGB-LED am Raspberry Pi" width="300px">
+<img src="ReadMe/rgb_led_raspberry_pi_gpio.jpg" alt="Angeschlossene RGB-LED am Raspberry Pi" width="700px">
 </div>
 
 Weitere Bilder sind im Ornder
