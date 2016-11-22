@@ -25,9 +25,8 @@
 \usepackage{float}
 \usepackage{subfig}
 %\usepackage{hhline}
-
-
 \usepackage{listings}
+
 \renewcommand{\lstlistingname}{Quelltext} 
 
 \definecolor{deepblue}{rgb}{0,0,0.5}
@@ -45,7 +44,7 @@
 language=Java,
 basicstyle=\ttfamily\scriptsize\mdseries,
 otherkeywords={self},          
-keywordstyle=\ttfamily\scriptsize\mdseries\bf\color{deepblue},
+keywordstyle=\ttfamily\scriptsize\mdseries\color{deepblue},
 emph={MyClass,__init__},          
 emphstyle=\ttfamily\scriptsize\mdseries\color{deepred},   
 stringstyle=\ttfamily\scriptsize\mdseries\color{deepgreen},
@@ -63,16 +62,35 @@ numberstyle=\tiny,
 numbersep=9pt,
 stepnumber=1,
 captionpos=b,
-backgroundcolor=\color[gray]{0.95}
+backgroundcolor=\color[gray]{0.95},
 }}
 
-% Java environment
-\lstnewenvironment{java}[1][]
-{
-\javastyle
-\lstset{#1}
-}
-{}
+\newcommand\javastyleoneline{\lstset{
+language=Java,
+basicstyle=\ttfamily\scriptsize\mdseries,
+otherkeywords={self},          
+keywordstyle=\ttfamily\scriptsize\mdseries\color{deepblue},
+emph={MyClass,__init__},          
+emphstyle=\ttfamily\scriptsize\mdseries\color{deepred},   
+stringstyle=\ttfamily\scriptsize\mdseries\color{deepgreen},
+commentstyle=\ttfamily\scriptsize\mdseries\color{orange},
+frame=,                         
+showstringspaces=false,
+showtabs=true, 
+tabsize=3, 
+tab=,
+showstringspaces=false,
+numbers=left,
+extendedchars=true,
+breaklines=true,
+numberstyle=\tiny,
+numbersep=9pt,
+stepnumber=1,
+captionpos=b,
+backgroundcolor=\color[gray]{0.95},
+belowcaptionskip=0em,
+belowskip=0em,
+}}
 
 % Java for external files
 \newcommand\javaexternal[2][]{{
@@ -85,15 +103,15 @@ backgroundcolor=\color[gray]{0.95}
 
 
 % ================================
-%        Quelltexte BASH
+%        Quelltexte Bash
 % ================================
 
-% BASH style for highlighting
-\newcommand\bashstyle{\lstset{
+% Bash style for highlighting (ken Abstand unter der eingefügten Bash-Zeile)
+\newcommand\bashstyleoneline{\lstset{
 language=BASH,
 basicstyle=\ttfamily\scriptsize\mdseries,
-otherkeywords={self},          
-keywordstyle=\ttfamily\scriptsize\mdseries\bf\color{deepblue},
+otherkeywords={self,bash,git},          
+keywordstyle=\ttfamily\scriptsize\mdseries\color{deepblue},
 emph={MyClass,__init__},          
 emphstyle=\ttfamily\scriptsize\mdseries\color{deepred},   
 stringstyle=\ttfamily\scriptsize\mdseries\color{deepgreen},
@@ -111,15 +129,43 @@ numberstyle=\tiny,
 numbersep=9pt,
 stepnumber=1,
 captionpos=b,
-backgroundcolor=\color[gray]{0.95}
+backgroundcolor=\color[gray]{0.95},
+belowcaptionskip=0em,
+belowskip=0em,
 }}
 
-% BASH style for highlighting
+% normaler Bash Style
+\newcommand\bashstyle{\lstset{
+language=BASH,
+basicstyle=\ttfamily\scriptsize\mdseries,
+otherkeywords={self,bash,git},          
+keywordstyle=\ttfamily\scriptsize\mdseries\color{deepblue},
+emph={MyClass,__init__},          
+emphstyle=\ttfamily\scriptsize\mdseries\color{deepred},   
+stringstyle=\ttfamily\scriptsize\mdseries\color{deepgreen},
+commentstyle=\ttfamily\scriptsize\mdseries\color{orange},
+frame=,                         
+showstringspaces=false,
+showtabs=true, 
+tabsize=3, 
+tab=,
+showstringspaces=false,
+numbers=left,
+extendedchars=true,
+breaklines=true,
+numberstyle=\tiny,
+numbersep=9pt,
+stepnumber=1,
+captionpos=b,
+backgroundcolor=\color[gray]{0.95},
+}}
+
+% Bash Style in schwarz
 \newcommand\bashstyleblack{\lstset{
 language=BASH,
 basicstyle=\ttfamily\scriptsize\mdseries,
-otherkeywords={self},          
-keywordstyle=\ttfamily\scriptsize\mdseries\bf\color{black},
+otherkeywords={self,bash,git},          
+keywordstyle=\ttfamily\scriptsize\mdseries\color{black},
 emph={MyClass,__init__},          
 emphstyle=\ttfamily\scriptsize\mdseries\color{black},   
 stringstyle=\ttfamily\scriptsize\mdseries\color{black},
@@ -139,14 +185,6 @@ stepnumber=1,
 captionpos=b,
 backgroundcolor=\color[gray]{0.95}
 }}
-
-% BASH environment
-\lstnewenvironment{bash}[1][]
-{
-\bashstyle
-\lstset{#1}
-}
-{}
 
 % BASH for external files
 \newcommand\bashexternal[2][]{{
