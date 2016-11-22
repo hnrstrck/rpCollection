@@ -10,5 +10,6 @@ echo "Starte Groovy-Shell."
 echo "Dies kann einen Moment dauern..."
 echo " "
 
+# evtl ohne sudo ausfuehren
 cd classes && sudo groovysh -classpath '.classes:/opt/pi4j/lib/*'
 
