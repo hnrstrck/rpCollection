@@ -54,6 +54,8 @@ public final class rpSummer {
 
         } catch (NullPointerException f){
             System.out.println("Error: Pin nicht definiert? (NullPointerException)");
+        } catch (com.pi4j.io.gpio.exception.GpioPinExistsException e){
+            System.out.println("Error: Pin doppelt definiert? (GpioPinExistsException)");
         }
     }
 
