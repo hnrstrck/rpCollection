@@ -120,9 +120,8 @@ public final class rpPhototransistor {
     /**
     * Schalte GPIO ab und dereferenziere den GPIO und den Pin.
     */ 
-    public void destroy() {
+    public void herunterfahren() {
         gpio.shutdown();
-        gpio = null;
-        pin = null;
+        gpio.unprovisionPin(pin);
     }
 }

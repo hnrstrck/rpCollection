@@ -351,10 +351,10 @@ public final class rpDiode {
     /**
     * Schalte GPIO ab und dereferenziere den GPIO und den Pin.
     */  
-    public void destroy() {
+    public void herunterfahren() {
+		aus();
         gpio.shutdown();
-        gpio = null;
-        pin = null;
+        gpio.unprovisionPin(pin);
     }
 
 }

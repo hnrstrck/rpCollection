@@ -736,11 +736,11 @@ public final class rpRGB {
     /**
     * Schalte GPIO ab und dereferenziere den GPIO und die Pinne (roter Pin, gruener Pin, blauer Pin).
     */  
-    public void destroy() {
+    public void herunterfahren() {
+		aus();
         gpio.shutdown();
-        gpio = null;
-        pin_r = null;
-        pin_g = null;
-        pin_b = null;
+        gpio.unprovisionPin(pin_r);
+        gpio.unprovisionPin(pin_g);
+        gpio.unprovisionPin(pin_b);
     }
 }

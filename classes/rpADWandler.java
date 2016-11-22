@@ -20,7 +20,7 @@ import java.io.IOException;
  */
 public final class rpADWandler {
 
-    private GpioController gpio;
+    //private GpioController gpio;
     private static boolean boolInitialisierungErfolgt;
 
     private static SpiDevice spi = null;
@@ -201,7 +201,7 @@ public final class rpADWandler {
     /**
     * Schalte GPIO ab und dereferenziere den GPIO und den Pin.
     */ 
-    public void destroy(){
+    public void herunterfahren(){
         spi = null;
     }
 

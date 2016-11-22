@@ -202,10 +202,10 @@ public final class rpSummer {
     /**
     * Schalte GPIO ab und dereferenziere den GPIO und den Pin.
     */  
-    public void destroy() {
-        gpio.shutdown();
-        gpio = null;
-        pin = null;
+    public void herunterfahren() {
+		aus();
+		gpio.shutdown();
+        gpio.unprovisionPin(pin);
     }
 
 }

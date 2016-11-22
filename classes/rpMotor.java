@@ -603,11 +603,11 @@ public final class rpMotor {
     /**
     * Schalte GPIO ab und dereferenziere den GPIO und die Pins (Enable, Richtung 1, Richtung2).
     */  
-    public void destroy() {
+    public void herunterfahren() {
+		stop();
         gpio.shutdown();
-        gpio = null;
-        pinEnable = null;
-        pinRichtung1 = null;
-        pinRichtung2 = null;
+        gpio.unprovisionPin(pinEnable);
+        gpio.unprovisionPin(pinRichtung1);
+        gpio.unprovisionPin(pinRichtung2);
     }
 }

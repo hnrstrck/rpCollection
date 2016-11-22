@@ -81,4 +81,11 @@ public class Hintergrundbeleuchtung{
 		System.out.println("Status der Hintergrundbeleuchtung auf >" + pStatus + "< geaendert");
 		status =  pStatus;
 	}
+	
+	/**
+	* Setze die Hintergrundbeleuchtung ab (der Pin wird freigegeben).
+	*/
+	public void herunterfahren(){
+		pDiode.herunterfahren();
+	}
 }

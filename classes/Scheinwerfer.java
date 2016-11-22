@@ -108,4 +108,11 @@ public class Scheinwerfer{
 		System.out.println("Status des Scheinwerfers auf >" + pStatus + "< geaendert");
 		status =  pStatus;
 	}
+	
+	/**
+	* Setze den Scheinwerfer ab (der Pin wird freigegeben).
+	*/
+	public void herunterfahren(){
+		pDiode.herunterfahren();
+	}
 }

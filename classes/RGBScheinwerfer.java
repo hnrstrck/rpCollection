@@ -1,6 +1,6 @@
 /**
 *	Hinweis:
-*	Fuer die Abfrage der einzelnen Attributwerte haette auch auf das Objekt "pRGB" zurueckgegriffen werden koennen.
+*	Fuer die Abfrage der einzelnen Attributwerte haette auch auf das Objekt "rpRGB" zurueckgegriffen werden koennen.
 *	Dann haetten die SuS aber mit zwei Klassen zu tun, was hier vermieden werden sollte, falls dieser Quelltext mal interessieren sollte.
 */
 
@@ -130,5 +130,12 @@ public class RGBScheinwerfer{
 	*/
 	public int gibFarbeBlau(){
 		return farbeblau;
+	}
+	
+	/**
+	* Setze den RGBScheinwerfer ab (die Pin wird freigegeben).
+	*/
+	public void herunterfahren(){
+		pRGB.herunterfahren();
 	}
 }

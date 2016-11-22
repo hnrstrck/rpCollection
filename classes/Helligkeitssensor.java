@@ -75,4 +75,11 @@ public class Helligkeitssensor{
 		System.out.println("Status des Helligkeitssensors auf >" + status + "< geaendert");
 		status =  pStatus;
 	}
+	
+	/**
+	* Setze den Helligkeitssensor ab (der Pin wird freigegeben).
+	*/
+	public void herunterfahren(){
+		pPhoto.herunterfahren();
+	}
 }
