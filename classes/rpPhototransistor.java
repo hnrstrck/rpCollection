@@ -124,6 +124,10 @@ public final class rpPhototransistor {
     */ 
     public void herunterfahren() {
         gpio.shutdown();
-        gpio.unprovisionPin(pin);
-    }
+		try{
+			gpio.unprovisionPin(pin);
+		} catch (java.lang.NullPointerException e){
+			System.out.println("Pin konnte nicht dereferenziert werden");
+		}
+	}
 }

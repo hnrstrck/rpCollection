@@ -606,8 +606,14 @@ public final class rpMotor {
     public void herunterfahren() {
 		stop();
         gpio.shutdown();
-        gpio.unprovisionPin(pinEnable);
-        gpio.unprovisionPin(pinRichtung1);
-        gpio.unprovisionPin(pinRichtung2);
+        try{
+			gpio.unprovisionPin(pinEnable);
+			gpio.unprovisionPin(pinRichtung1);
+			gpio.unprovisionPin(pinRichtung2);
+  		} catch (java.lang.NullPointerException e){
+			System.out.println("Pin konnte nicht dereferenziert werden");
+		}
+	
+
     }
 }

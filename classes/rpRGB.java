@@ -739,8 +739,12 @@ public final class rpRGB {
     public void herunterfahren() {
 		aus();
         gpio.shutdown();
-        gpio.unprovisionPin(pin_r);
-        gpio.unprovisionPin(pin_g);
-        gpio.unprovisionPin(pin_b);
+        try{
+			gpio.unprovisionPin(pin_r);
+			gpio.unprovisionPin(pin_g);
+			gpio.unprovisionPin(pin_b);
+		} catch (java.lang.NullPointerException e){
+			System.out.println("Pin konnte nicht dereferenziert werden");
+		}
     }
 }

@@ -202,7 +202,11 @@ public final class rpADWandler {
     * Schalte GPIO ab und dereferenziere den GPIO und den Pin.
     */ 
     public void herunterfahren(){
-        spi = null;
+        try{
+			spi = null;
+		} catch (java.lang.NullPointerException e){
+			System.out.println("Pin konnte nicht dereferenziert werden");
+		}
     }
 
 }

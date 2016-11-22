@@ -356,7 +356,11 @@ public final class rpDiode {
     public void herunterfahren() {
 		aus();
         gpio.shutdown();
-        gpio.unprovisionPin(pin);
+		try{
+			gpio.unprovisionPin(pin);
+		} catch (java.lang.NullPointerException e){
+			System.out.println("Pin konnte nicht dereferenziert werden");
+		}
     }
 
 }
