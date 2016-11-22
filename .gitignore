@@ -5,6 +5,7 @@
 *.fls
 *.synctex.gz
 *.class
+*.fdb_latexmk
 mac_start.sh
 javaDocGen.sh
 pi4j-1.1/
