@@ -1,6 +1,6 @@
 #!/bin/bash
-# Kompiliere die .java-Dateien passend fuer die Groovy-Shell und 
-# starte die Groovy-Shell (groovysh) und bindet die Pfade fuer Pi4J ein
+# Kompiliere die .java-Dateien passend fuer die GroovyConsole und 
+# starte die GroovyConsole (groovyConsole) und bindet die Pfade fuer Pi4J ein
 
 echo "******************"
 echo "*  rpCollection  *"
@@ -15,9 +15,9 @@ javac -classpath '.:classes:/opt/pi4j/lib/*' classes/*.java
 # javac -classpath '.:classes:/opt/pi4j/lib/*' -target 1.7 classes/*.java
 
 
-echo "Starte Groovy-Shell."
+echo "Starte GroovyConsole."
 echo "Dies kann einen Moment dauern..."
 echo " "
 
-cd classes && sudo groovysh -classpath '.classes:/opt/pi4j/lib/*'
+cd classes && groovyConsole -classpath '.classes:/opt/pi4j/lib/*'
 
