@@ -1,8 +1,6 @@
 #!/bin/bash
 
-echo "Repariere Java";
+echo "Repariere Java"
 
-export JAVA_HOME=/usr/
-
-export PATH=$JAVA_HOME/bin:$PATH
-
+cd /etc/profile.d/
+sudo echo "export JAVA_HOME=/usr/" > java.sh
