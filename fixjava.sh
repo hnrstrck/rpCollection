@@ -2,8 +2,7 @@
 
 echo "Repariere Java"
 
-cd /etc/profile.d/
-sudo echo "export JAVA_HOME=/usr/" > java.sh
+echo "export JAVA_HOME=/usr/" | sudo tee -a /etc/profile.d/java.sh
 
 echo "Fix beendet"
 
