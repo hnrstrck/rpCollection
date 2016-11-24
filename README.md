@@ -92,6 +92,7 @@ bzw.
      
 * Starte die Groovy-Shell (mit eingebundenen Pfaden für Pi4J)
 * **kompilieren** der Java-Klassen
+* *dieses Skript entspricht dem Skript `start.sh`
 
 #### Groovy-Console
 
