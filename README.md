@@ -86,8 +86,10 @@ So ist es möglich, auf die im Unterricht getroffene Namensvergabe für die mode
 * Starte die Groovy-Shell (mit eingebundenen Pfaden für Pi4J)
 * **kein** kompilieren der Java-Klassen (der Aufruf geht damit schneller)
 
-      bash GSstartC.sh
-    
+bzw.
+
+    bash GSstartC.sh
+     
 * Starte die Groovy-Shell (mit eingebundenen Pfaden für Pi4J)
 * **kompilieren** der Java-Klassen
 
@@ -97,6 +99,8 @@ So ist es möglich, auf die im Unterricht getroffene Namensvergabe für die mode
      
 * Starte die Groovy-Console (mit eingebundenen Pfaden für Pi4J)
 * **kein** kompilieren der Java-Klassen (der Aufruf geht damit schneller)
+
+bzw.
 
      bash GCstartC.sh
      
