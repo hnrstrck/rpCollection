@@ -1,6 +1,6 @@
 #!/bin/bash
 # Kompiliere die .java-Dateien passend fuer die Groovy-Shell und 
-# starte die Groovy-Shell (groovysh) und bindet die Pfade fuer Pi4J ein
+# starte die Groovy-Shell (groovysh) und binde die Pfade fuer Pi4J ein
 
 echo "******************"
 echo "*  rpCollection  *"

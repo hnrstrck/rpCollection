@@ -1,12 +1,12 @@
 #!/bin/bash
-# Starte die GroovyConsole (groovyConsole) und bindet die Pfade fuer Pi4J ein
+# Starte die Groovy-Console (groovyConsole) und binde die Pfade fuer Pi4J ein
 
 echo "******************"
 echo "*  rpCollection  *"
 echo "******************"
 echo " "
 
-echo "Starte GroovyConsole."
+echo "Starte Groovy-Console."
 echo "Dies kann einen Moment dauern..."
 echo " "
 
