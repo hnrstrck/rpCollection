@@ -11,5 +11,4 @@ echo "Dies kann einen Moment dauern..."
 echo " "
 
 # evtl ohne sudo ausfuehren
-cd classes && sudo groovysh -classpath '.classes:/opt/pi4j/lib/*'
-
+cd classes && sudo JAVA_HOME=$JAVA_HOME groovysh -classpath '.classes:/opt/pi4j/lib/*'
