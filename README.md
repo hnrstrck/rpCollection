@@ -109,4 +109,5 @@ bzw.
 * **kompilieren** der Java-Klassen (der Aufruf geht damit schneller)
 
 
- 
+## Lizenz / License
+Alle Dateien in diesem Repository steht unter einer *Namensnennung – Nicht-kommerziell – Weitergabe unter gleichen Bedingungen 4.0 International*-Lizenz (sofern nicht anders in der jeweiligen Datei angegeben). Die Bedingungen der Lizenz können unter folgendem Link eingesehen werden: [http://creativecommons.org/licenses/by-nc-sa/4.0/deed.de](http://creativecommons.org/licenses/by-nc-sa/4.0/deed.de)
