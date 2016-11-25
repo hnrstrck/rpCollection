@@ -60,7 +60,7 @@ zu sehen (Anschluss eines Helligkeitssensors, Diode und einer RGB-LED). Weitere 
     <div align="center">Summer</div>
     </td>
     <td><img src="ReadMe/adwandler.jpg" alt="Angeschlossener AD-Wandler am Raspberry Pi (mit vier Reglern)">
-    <div align="center">AD-Wandler (vier Reglern)</div>
+    <div align="center">AD-Wandler (mit vier Reglern)</div>
     </td>
   </tr>
 </table>
