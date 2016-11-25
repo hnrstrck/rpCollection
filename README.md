@@ -24,18 +24,46 @@ Es stehen folgende Bauteile (bzw. Objekte) bereit:
 * Summer
 * Motor (für den Anschluss eines Fischertechnik-Motors)
 
-### Foto
-Im folgenden Bild ist eine angeschlossene RGB-LED zu erkennen. Die Kabel für Rot, Grün und Blau sind farblich abgestimmt, Schwarz ist für Ground (GND).  
+### Bilder
+Im folgenden Bild ist eine angeschlossene RGB-LED zu erkennen. Die Kabel für Rot, Grün und Blau sind farblich abgestimmt, Schwarz ist für Ground (GND).
 
 <div align="center" style="margin-top:20px;margin-bottom:20px">
 <img src="ReadMe/rgb_led_raspberry_pi_gpio.jpg" alt="Angeschlossene RGB-LED am Raspberry Pi" width="600px">
 </div>
 
-Weitere Bilder sind im Ornder
+Bilder sind auch im Ornder
 
     /Arbeitsblaetter/img/
     
-zu sehen (Anschluss eines Helligkeitssensors, Anschluss einer Diode). Weitere Bilder folgen bei Gelegenheit.
+zu sehen (Anschluss eines Helligkeitssensors, Diode und einer RGB-LED). Weitere Bilder folgen bei Gelegenheit.
+
+<table style="width:100%">
+  <tr>
+    <td>
+    <img src="ReadMe/diode.jpg" alt="Angeschlossene LED (Diode) am Raspberry Pi">
+    <div align="center">LED</div>
+    </td>
+    <td>
+    <img src="ReadMe/rgbled.jpg" alt="Angeschlossene RGB-LED am Raspberry Pi">
+    <div align="center">RGB-LED</div>
+    </td>
+    <td>
+    <img src="ReadMe/taster.jpg" alt="Angeschlossener Taster am Raspberry Pi">
+    <div align="center">Taster</div>
+    </td>
+  </tr>
+  <tr>
+    <td><img src="ReadMe/phototransistor.jpg" alt="Angeschlossener Phototransistor am Raspberry Pi">
+    <div align="center">Phototransistor</div>
+    </td>
+    <td><img src="ReadMe/summer.jpg" alt="Angeschlossener Summer am Raspberry Pi">
+    <div align="center">Summer</div>
+    </td>
+    <td><img src="ReadMe/adwandler.jpg" alt="Angeschlossener AD-Wandler am Raspberry Pi">
+    <div align="center">AD-Wandler</div>
+    </td>
+  </tr>
+</table>
 
 ## Voraussetzungen
 ### Hardware
