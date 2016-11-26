@@ -70,18 +70,18 @@ public final class rpMotor {
 
         try {
 			
-			if (rpHelper.istBCMLayout == true){
+			if (Helfer.istBCMLayout == true){
 
-				pinEnable = gpio.provisionDigitalOutputPin(rpHelper.pinArrayJ8[rpHelper.pinZuordnungBCMzuJ8[pPin]]);
+				pinEnable = gpio.provisionDigitalOutputPin(Helfer.pinArrayJ8[Helfer.pinZuordnungBCMzuJ8[pPin]]);
 				pinEnable.setShutdownOptions(true, PinState.LOW);
 
-				SoftPwm.softPwmCreate(rpHelper.pinZuordnungBCMzuJ8[pPin],0,100);
+				SoftPwm.softPwmCreate(Helfer.pinZuordnungBCMzuJ8[pPin],0,100);
             
 			}
 			
-			if (rpHelper.istJ8Layout == true){
+			if (Helfer.istJ8Layout == true){
 			
-				pinEnable = gpio.provisionDigitalOutputPin(rpHelper.pinArrayJ8[pPin]);
+				pinEnable = gpio.provisionDigitalOutputPin(Helfer.pinArrayJ8[pPin]);
 				pinEnable.setShutdownOptions(true, PinState.LOW);
 
 				SoftPwm.softPwmCreate(pPin,0,100);	 
@@ -110,18 +110,18 @@ public final class rpMotor {
 
         try {
 
-            if (rpHelper.istBCMLayout == true){
+            if (Helfer.istBCMLayout == true){
 
-				pinRichtung1 = gpio.provisionDigitalOutputPin(rpHelper.pinArrayJ8[rpHelper.pinZuordnungBCMzuJ8[pPin]]);
+				pinRichtung1 = gpio.provisionDigitalOutputPin(Helfer.pinArrayJ8[Helfer.pinZuordnungBCMzuJ8[pPin]]);
 				pinRichtung1.setShutdownOptions(true, PinState.LOW);
 
-				SoftPwm.softPwmCreate(rpHelper.pinZuordnungBCMzuJ8[pPin],0,100);
+				SoftPwm.softPwmCreate(Helfer.pinZuordnungBCMzuJ8[pPin],0,100);
             
 			}
 			
-			if (rpHelper.istJ8Layout == true){
+			if (Helfer.istJ8Layout == true){
 			
-				pinRichtung1 = gpio.provisionDigitalOutputPin(rpHelper.pinArrayJ8[pPin]);
+				pinRichtung1 = gpio.provisionDigitalOutputPin(Helfer.pinArrayJ8[pPin]);
 				pinRichtung1.setShutdownOptions(true, PinState.LOW);
 
 				SoftPwm.softPwmCreate(pPin,0,100);	 
@@ -150,18 +150,18 @@ public final class rpMotor {
 
         try {
 
-            if (rpHelper.istBCMLayout == true){
+            if (Helfer.istBCMLayout == true){
 
-				pinRichtung2 = gpio.provisionDigitalOutputPin(rpHelper.pinArrayJ8[rpHelper.pinZuordnungBCMzuJ8[pPin]]);
+				pinRichtung2 = gpio.provisionDigitalOutputPin(Helfer.pinArrayJ8[Helfer.pinZuordnungBCMzuJ8[pPin]]);
 				pinRichtung2.setShutdownOptions(true, PinState.LOW);
 
-				SoftPwm.softPwmCreate(rpHelper.pinZuordnungBCMzuJ8[pPin],0,100);
+				SoftPwm.softPwmCreate(Helfer.pinZuordnungBCMzuJ8[pPin],0,100);
             
 			}
 			
-			if (rpHelper.istJ8Layout == true){
+			if (Helfer.istJ8Layout == true){
 			
-				pinRichtung2 = gpio.provisionDigitalOutputPin(rpHelper.pinArrayJ8[pPin]);
+				pinRichtung2 = gpio.provisionDigitalOutputPin(Helfer.pinArrayJ8[pPin]);
 				pinRichtung2.setShutdownOptions(true, PinState.LOW);
 
 				SoftPwm.softPwmCreate(pPin,0,100);	 
@@ -215,11 +215,11 @@ public final class rpMotor {
                 public void run() {
                     try {
                         
-						if (rpHelper.istBCMLayout == true){
-							SoftPwm.softPwmWrite(rpHelper.pinZuordnungBCMzuJ8[intPins[0]],pGeschwindigkeit);
+						if (Helfer.istBCMLayout == true){
+							SoftPwm.softPwmWrite(Helfer.pinZuordnungBCMzuJ8[intPins[0]],pGeschwindigkeit);
             			}
 			
-						if (rpHelper.istJ8Layout == true){
+						if (Helfer.istJ8Layout == true){
 							SoftPwm.softPwmWrite(intPins[0],pGeschwindigkeit);	
 						}
                                                 
@@ -252,11 +252,11 @@ public final class rpMotor {
                 public void run() {
                     try {
                         
-                        if (rpHelper.istBCMLayout == true){
-							SoftPwm.softPwmWrite(rpHelper.pinZuordnungBCMzuJ8[intPins[0]],pGeschwindigkeit);
+                        if (Helfer.istBCMLayout == true){
+							SoftPwm.softPwmWrite(Helfer.pinZuordnungBCMzuJ8[intPins[0]],pGeschwindigkeit);
             			}
 			
-						if (rpHelper.istJ8Layout == true){
+						if (Helfer.istJ8Layout == true){
 							SoftPwm.softPwmWrite(intPins[0],pGeschwindigkeit);	
 						}
                                
@@ -388,11 +388,11 @@ public final class rpMotor {
             try{
                 threadEndlosMotorlaufen.interrupt();
                 
-                if (rpHelper.istBCMLayout == true){
-					SoftPwm.softPwmWrite(rpHelper.pinZuordnungBCMzuJ8[intPins[0]],0);
+                if (Helfer.istBCMLayout == true){
+					SoftPwm.softPwmWrite(Helfer.pinZuordnungBCMzuJ8[intPins[0]],0);
             	}
 			
-				if (rpHelper.istJ8Layout == true){
+				if (Helfer.istJ8Layout == true){
 					SoftPwm.softPwmWrite(intPins[0],0);	
 				}
           
@@ -416,12 +416,12 @@ public final class rpMotor {
                 if (pRichtung == 0){
                     try{
 								
-						if (rpHelper.istBCMLayout == true){
-							SoftPwm.softPwmWrite(rpHelper.pinZuordnungBCMzuJ8[intPins[1]],100);
-							SoftPwm.softPwmWrite(rpHelper.pinZuordnungBCMzuJ8[intPins[2]],0);
+						if (Helfer.istBCMLayout == true){
+							SoftPwm.softPwmWrite(Helfer.pinZuordnungBCMzuJ8[intPins[1]],100);
+							SoftPwm.softPwmWrite(Helfer.pinZuordnungBCMzuJ8[intPins[2]],0);
 						}
 			
-						if (rpHelper.istJ8Layout == true){
+						if (Helfer.istJ8Layout == true){
 							SoftPwm.softPwmWrite(intPins[1],100);
 							SoftPwm.softPwmWrite(intPins[2],0);	
 						}		
@@ -432,12 +432,12 @@ public final class rpMotor {
                 } else {
                     try{
                         
-                        if (rpHelper.istBCMLayout == true){
-							SoftPwm.softPwmWrite(rpHelper.pinZuordnungBCMzuJ8[intPins[1]],0);
-							SoftPwm.softPwmWrite(rpHelper.pinZuordnungBCMzuJ8[intPins[2]],100);
+                        if (Helfer.istBCMLayout == true){
+							SoftPwm.softPwmWrite(Helfer.pinZuordnungBCMzuJ8[intPins[1]],0);
+							SoftPwm.softPwmWrite(Helfer.pinZuordnungBCMzuJ8[intPins[2]],100);
 						}
 			
-						if (rpHelper.istJ8Layout == true){
+						if (Helfer.istJ8Layout == true){
 							SoftPwm.softPwmWrite(intPins[1],0);
 							SoftPwm.softPwmWrite(intPins[2],100);	
 						}		
@@ -464,12 +464,12 @@ public final class rpMotor {
                 if (pinRichtung1.getState() == PinState.HIGH){
                     try{
 						
-						if (rpHelper.istBCMLayout == true){
-							SoftPwm.softPwmWrite(rpHelper.pinZuordnungBCMzuJ8[intPins[1]],0);
-							SoftPwm.softPwmWrite(rpHelper.pinZuordnungBCMzuJ8[intPins[2]],100);
+						if (Helfer.istBCMLayout == true){
+							SoftPwm.softPwmWrite(Helfer.pinZuordnungBCMzuJ8[intPins[1]],0);
+							SoftPwm.softPwmWrite(Helfer.pinZuordnungBCMzuJ8[intPins[2]],100);
 						}
 			
-						if (rpHelper.istJ8Layout == true){
+						if (Helfer.istJ8Layout == true){
 							SoftPwm.softPwmWrite(intPins[1],0);
 							SoftPwm.softPwmWrite(intPins[2],100);	
 						}	
@@ -481,12 +481,12 @@ public final class rpMotor {
                 } else {
                     try{
 						
-                        if (rpHelper.istBCMLayout == true){
-							SoftPwm.softPwmWrite(rpHelper.pinZuordnungBCMzuJ8[intPins[1]],100);
-							SoftPwm.softPwmWrite(rpHelper.pinZuordnungBCMzuJ8[intPins[2]],0);
+                        if (Helfer.istBCMLayout == true){
+							SoftPwm.softPwmWrite(Helfer.pinZuordnungBCMzuJ8[intPins[1]],100);
+							SoftPwm.softPwmWrite(Helfer.pinZuordnungBCMzuJ8[intPins[2]],0);
 						}
 			
-						if (rpHelper.istJ8Layout == true){
+						if (Helfer.istJ8Layout == true){
 							SoftPwm.softPwmWrite(intPins[1],100);
 							SoftPwm.softPwmWrite(intPins[2],0);	
 						}		

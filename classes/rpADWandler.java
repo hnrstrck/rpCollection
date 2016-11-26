@@ -115,12 +115,12 @@ public final class rpADWandler {
     * Liest den uebergebenen Channel aus (abhaengig vom aktuellen AD-Wandler-Chip)
     *
     * @param channel Der Channel des AD-Wandlers, der ausgelsen werden soll (0, 1, 2, ..., 7).
-    * @see rpHelper
+    * @see Helfer
     */
 	private static int readChannel(int channel) throws IOException {
-		if (rpHelper.istMCP3208 == true){
+		if (Helfer.istMCP3208 == true){
 			return readChannelMCP3208(channel);
-		} else if (rpHelper.istMCP3008 == true){
+		} else if (Helfer.istMCP3008 == true){
 			return readChannelMCP3008(channel);
 		} else {
 			System.out.println("Fehler beim Auslesen des Reglers. AD-Wandler nicht erkannt.");
@@ -134,7 +134,7 @@ public final class rpADWandler {
     * @param pRegler Der Regler, der ausgelesen werden soll.
     * @param ausgabe Die Ausgabe in der Shell kann durch Setzen dieses Wertes verhindert / veranlasst werden (1 = Ausgabe, andere Werte = keine Ausgabe).
     * @return Der gelesene Wert des Channels (Achtung: richtigen AD-Wandler auswaehlen).
-    * @see rpHelper
+    * @see Helfer
     */
     public static int gibWertVonRegler(rpRegler pRegler, int ausgabe){
 	   if (boolInitialisierungErfolgt == true){
@@ -159,7 +159,7 @@ public final class rpADWandler {
     *
     * @param pRegler Der Regler, der ausgelesen werden soll.
     * @return Der gelesene Wert des Channels (Achtung: richtigen AD-Wandler auswaehlen).
-    * @see rpHelper
+    * @see Helfer
     */
     public static int gibWertVonRegler(rpRegler pRegler){
         return gibWertVonRegler(pRegler, 1);
@@ -171,14 +171,14 @@ public final class rpADWandler {
     * @param pRegler Der Regler, der ausgelesen werden soll.
     * @param ausgabe Die Ausgabe in der Shell kann durch Setzen dieses Wertes verhindert / veranlasst werden (1 = Ausgabe, andere Werte = keine Ausgabe).
     * @return Der gelesene Wert des Channels in Prozent (Achtung: richtigen AD-Wandler auswaehlen).
-    * @see rpHelper
+    * @see Helfer
     */
     public static int gibProzentwertVonRegler(rpRegler pRegler, int ausgabe){
 			if (boolInitialisierungErfolgt == true){
                 try{
 
                     //Berechne Prozent:
-                    prozentWert = (int)((float)readChannel(pRegler.gibChannel())/(float)(rpHelper.aufloesungADWandler-1) * 100f); 
+                    prozentWert = (int)((float)readChannel(pRegler.gibChannel())/(float)(Helfer.aufloesungADWandler-1) * 100f); 
 
                     if(ausgabe == 1){
                         System.out.println("Einstellung in Prozent: " + prozentWert + "%");
@@ -199,7 +199,7 @@ public final class rpADWandler {
     *
     * @param pRegler Der Regler, der ausgelesen werden soll.
     * @return Der gelesene Wert des Channels in Prozent (Achtung: richtigen AD-Wandler auswaehlen).
-    * @see rpHelper
+    * @see Helfer
     */
     public static int gibProzentwertVonRegler(rpRegler pRegler){
         return gibProzentwertVonRegler(pRegler, 1);

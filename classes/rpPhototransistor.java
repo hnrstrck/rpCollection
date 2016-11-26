@@ -44,7 +44,7 @@ public final class rpPhototransistor {
 
         try {
 
-            pin = gpio.provisionDigitalInputPin(rpHelper.pinArray[pPin]);
+            pin = gpio.provisionDigitalInputPin(Helfer.pinArray[pPin]);
             pin.setShutdownOptions(true, PinState.LOW);
             System.out.println("Pin " + pPin + " gesetzt");
 

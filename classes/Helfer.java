@@ -1,19 +1,24 @@
 import com.pi4j.io.gpio.*;
+import java.util.*;
 
 /**
- * Helferklasse. Stellt die Pin-Belegung bereit und ermoeglicht es, den AD-Wandler zu wechseln. Achtung: Dazu muss in der Groovy-Shell zuvor ein Objekt der Klasse rpHelper erstellt werden.
- * 
+ * Helferklasse. Stellt die Pin-Belegung bereit und ermoeglicht es, den AD-Wandler zu wechseln.
+ * Es koennen auch alle Pinne wieder frei gegeben werden.
+ *
  * @author Heiner Stroick
  * @version 0.9
  */
-public class rpHelper
+public class Helfer
 {
     /**
-     * Erstelle ein neues Objekt der Klasse rpHelper, um die Methoden aufrufen zu koennen.
+     * Erstelle ein neues Objekt der Klasse Helfer, um die Methoden aufrufen zu koennen.
      */
-	public rpHelper(){
+    public Helfer(){
 		System.out.println("Helferobjekt erstellt.");   
     }
+ 
+	//GPIO zum runterfahren
+ 	private static GpioController gpio;
  
     /**
      * J8-Pin Nummerierung wie auf der Pi4J Website: <a href="http://pi4j.com/pin-numbering-scheme.html">http://pi4j.com/pin-numbering-scheme.html</a>
@@ -224,5 +229,60 @@ public class rpHelper
         } else {
             System.out.println("Eingabe nicht erkannt. AD-Wandler unveraendert.");
         }
+    }
+    
+    /**
+     * Faehrt den GPIO herunter (und gibt alle Pinne frei).
+     */    
+    public static void herunterfahren() throws InterruptedException{
+
+        System.out.println("Fahre alles herunter");
+	
+		gpio = GpioFactory.getInstance();
+		
+		List<GpioPin> allePinne = new ArrayList<GpioPin>(gpio.getProvisionedPins());
+		
+		for(int i = 0; i < allePinne.size(); i++){
+			try{
+				gpio.unprovisionPin(allePinne.get(i));
+				Thread.sleep(500);
+			} catch (java.lang.NullPointerException e){
+				System.out.println("Pin konnte nicht dereferenziert werden");
+			}
+		}
+		
+        Thread.sleep(3000);
+
+        System.out.println("Fahre GPIO herunter");
+
+        gpio.shutdown();
+        
+        Thread.sleep(500);
+
+        System.out.println("Alles heruntergefahren");
+    }
+
+	/**
+	 * Zeigt alle bisher vergebenen Pinne an.
+	 */
+	public static void pinneAnzeigen() throws InterruptedException{
+        System.out.println("Zeige bisherige vergebene Pinne an");
+	
+		gpio = GpioFactory.getInstance();
+
+		Collection<GpioPin>	allePinne = gpio.getProvisionedPins();
+		
+		Iterator itor = allePinne.iterator();
+
+		while(itor.hasNext())
+		{
+			try{
+				System.out.println("" + (GpioPin)itor.next());
+			} catch (java.lang.NullPointerException e){
+				System.out.println("Pin konnte nicht dereferenziert werden");
+			}
+		}
+
+        System.out.println("Ende Anzeigen");
     }
 }

@@ -77,17 +77,17 @@ public final class rpRGB {
 
         try {
 
-            if (rpHelper.istBCMLayout == true){
+            if (Helfer.istBCMLayout == true){
 			
-				pin_r = gpio.provisionDigitalOutputPin(rpHelper.pinArrayJ8[rpHelper.pinZuordnungBCMzuJ8[pPin]]);
+				pin_r = gpio.provisionDigitalOutputPin(Helfer.pinArrayJ8[Helfer.pinZuordnungBCMzuJ8[pPin]]);
 				pin_r.setShutdownOptions(true, PinState.LOW);
 			
-				SoftPwm.softPwmCreate(rpHelper.pinZuordnungBCMzuJ8[pPin],0,100);
+				SoftPwm.softPwmCreate(Helfer.pinZuordnungBCMzuJ8[pPin],0,100);
 			}
 			
-			if (rpHelper.istJ8Layout == true){
+			if (Helfer.istJ8Layout == true){
 				
-				pin_r = gpio.provisionDigitalOutputPin(rpHelper.pinArrayJ8[pPin]);
+				pin_r = gpio.provisionDigitalOutputPin(Helfer.pinArrayJ8[pPin]);
 				pin_r.setShutdownOptions(true, PinState.LOW);
 				
 				SoftPwm.softPwmCreate(pPin,0,100);
@@ -116,18 +116,18 @@ public final class rpRGB {
 
         try {
 
-     		if (rpHelper.istBCMLayout == true){
+     		if (Helfer.istBCMLayout == true){
 				
-				pin_g = gpio.provisionDigitalOutputPin(rpHelper.pinArrayJ8[rpHelper.pinZuordnungBCMzuJ8[pPin]]);
+				pin_g = gpio.provisionDigitalOutputPin(Helfer.pinArrayJ8[Helfer.pinZuordnungBCMzuJ8[pPin]]);
 				pin_g.setShutdownOptions(true, PinState.LOW);
 	
 				
-				SoftPwm.softPwmCreate(rpHelper.pinZuordnungBCMzuJ8[pPin],0,100);
+				SoftPwm.softPwmCreate(Helfer.pinZuordnungBCMzuJ8[pPin],0,100);
 			}
 			
-			if (rpHelper.istJ8Layout == true){	
+			if (Helfer.istJ8Layout == true){	
 					
-				pin_g = gpio.provisionDigitalOutputPin(rpHelper.pinArrayJ8[pPin]);
+				pin_g = gpio.provisionDigitalOutputPin(Helfer.pinArrayJ8[pPin]);
 				pin_g.setShutdownOptions(true, PinState.LOW);
 	
 				SoftPwm.softPwmCreate(pPin,0,100);
@@ -156,17 +156,17 @@ public final class rpRGB {
 
         try {
 
-			if (rpHelper.istBCMLayout == true){
+			if (Helfer.istBCMLayout == true){
 				
-				pin_b = gpio.provisionDigitalOutputPin(rpHelper.pinArrayJ8[rpHelper.pinZuordnungBCMzuJ8[pPin]]);
+				pin_b = gpio.provisionDigitalOutputPin(Helfer.pinArrayJ8[Helfer.pinZuordnungBCMzuJ8[pPin]]);
 				pin_b.setShutdownOptions(true, PinState.LOW);
 	
-				SoftPwm.softPwmCreate(rpHelper.pinZuordnungBCMzuJ8[pPin],0,100);
+				SoftPwm.softPwmCreate(Helfer.pinZuordnungBCMzuJ8[pPin],0,100);
 			}
 			
-			if (rpHelper.istJ8Layout == true){
+			if (Helfer.istJ8Layout == true){
 				
-				pin_b = gpio.provisionDigitalOutputPin(rpHelper.pinArrayJ8[pPin]);
+				pin_b = gpio.provisionDigitalOutputPin(Helfer.pinArrayJ8[pPin]);
 				pin_b.setShutdownOptions(true, PinState.LOW);
 	
 				SoftPwm.softPwmCreate(pPin,0,100);
@@ -215,11 +215,11 @@ public final class rpRGB {
         if (boolInitialisierungErfolgt == true){
             try{
                 
-                if (rpHelper.istBCMLayout == true){
-					SoftPwm.softPwmWrite(rpHelper.pinZuordnungBCMzuJ8[intPins[0]],100);
+                if (Helfer.istBCMLayout == true){
+					SoftPwm.softPwmWrite(Helfer.pinZuordnungBCMzuJ8[intPins[0]],100);
 				}
 			
-				if (rpHelper.istJ8Layout == true){
+				if (Helfer.istJ8Layout == true){
 					SoftPwm.softPwmWrite(intPins[0],100);
 				}
                 
@@ -240,11 +240,11 @@ public final class rpRGB {
         if (boolInitialisierungErfolgt == true){
             try{
                 
-                if (rpHelper.istBCMLayout == true){
-					SoftPwm.softPwmWrite(rpHelper.pinZuordnungBCMzuJ8[intPins[1]],100);
+                if (Helfer.istBCMLayout == true){
+					SoftPwm.softPwmWrite(Helfer.pinZuordnungBCMzuJ8[intPins[1]],100);
 				}
 			
-				if (rpHelper.istJ8Layout == true){
+				if (Helfer.istJ8Layout == true){
 					SoftPwm.softPwmWrite(intPins[1],100);
 				}
                 
@@ -264,11 +264,11 @@ public final class rpRGB {
         if (boolInitialisierungErfolgt == true){
             try{
                
-                if (rpHelper.istBCMLayout == true){
-					SoftPwm.softPwmWrite(rpHelper.pinZuordnungBCMzuJ8[intPins[2]],100);
+                if (Helfer.istBCMLayout == true){
+					SoftPwm.softPwmWrite(Helfer.pinZuordnungBCMzuJ8[intPins[2]],100);
 				}
 			
-				if (rpHelper.istJ8Layout == true){
+				if (Helfer.istJ8Layout == true){
 					SoftPwm.softPwmWrite(intPins[2],100);
 				}
                
@@ -288,11 +288,11 @@ public final class rpRGB {
         if (boolInitialisierungErfolgt == true){
             try{
                 
-                if (rpHelper.istBCMLayout == true){
-					SoftPwm.softPwmWrite(rpHelper.pinZuordnungBCMzuJ8[intPins[0]],0);
+                if (Helfer.istBCMLayout == true){
+					SoftPwm.softPwmWrite(Helfer.pinZuordnungBCMzuJ8[intPins[0]],0);
 				}
 			
-				if (rpHelper.istJ8Layout == true){
+				if (Helfer.istJ8Layout == true){
 					SoftPwm.softPwmWrite(intPins[0],0);
 				}
                 
@@ -312,11 +312,11 @@ public final class rpRGB {
         if (boolInitialisierungErfolgt == true){
             try{
                 
-                if (rpHelper.istBCMLayout == true){
-					SoftPwm.softPwmWrite(rpHelper.pinZuordnungBCMzuJ8[intPins[1]],0);
+                if (Helfer.istBCMLayout == true){
+					SoftPwm.softPwmWrite(Helfer.pinZuordnungBCMzuJ8[intPins[1]],0);
 				}
 			
-				if (rpHelper.istJ8Layout == true){
+				if (Helfer.istJ8Layout == true){
 					SoftPwm.softPwmWrite(intPins[1],0);
 				}
                 
@@ -336,11 +336,11 @@ public final class rpRGB {
         if (boolInitialisierungErfolgt == true){
             try{
                 
-                if (rpHelper.istBCMLayout == true){
-					SoftPwm.softPwmWrite(rpHelper.pinZuordnungBCMzuJ8[intPins[2]],0);
+                if (Helfer.istBCMLayout == true){
+					SoftPwm.softPwmWrite(Helfer.pinZuordnungBCMzuJ8[intPins[2]],0);
 				}
 			
-				if (rpHelper.istJ8Layout == true){
+				if (Helfer.istJ8Layout == true){
 					SoftPwm.softPwmWrite(intPins[2],0);
 				}
                 
@@ -426,13 +426,13 @@ public final class rpRGB {
                     int val_b = (int)Math.round(((float)b/255f)*100f);
                     
                     
-                    if (rpHelper.istBCMLayout == true){
-						SoftPwm.softPwmWrite(rpHelper.pinZuordnungBCMzuJ8[intPins[0]],val_r);
-						SoftPwm.softPwmWrite(rpHelper.pinZuordnungBCMzuJ8[intPins[1]],val_g);
-						SoftPwm.softPwmWrite(rpHelper.pinZuordnungBCMzuJ8[intPins[2]],val_b);
+                    if (Helfer.istBCMLayout == true){
+						SoftPwm.softPwmWrite(Helfer.pinZuordnungBCMzuJ8[intPins[0]],val_r);
+						SoftPwm.softPwmWrite(Helfer.pinZuordnungBCMzuJ8[intPins[1]],val_g);
+						SoftPwm.softPwmWrite(Helfer.pinZuordnungBCMzuJ8[intPins[2]],val_b);
 					}
 			
-					if (rpHelper.istJ8Layout == true){
+					if (Helfer.istJ8Layout == true){
 						SoftPwm.softPwmWrite(intPins[0],val_r);
 						SoftPwm.softPwmWrite(intPins[1],val_g);
 						SoftPwm.softPwmWrite(intPins[2],val_b);
@@ -605,7 +605,7 @@ public final class rpRGB {
     * @param meinRegler Regler, der ausgelesen werden soll
     * @see rpADWandler
     * @see rpRegler
-    * @see rpHelper
+    * @see Helfer
     */
     private void startBlinkenVariabel(rpADWandler meinWandler, rpRegler meinRegler) {
         if (boolInitialisierungErfolgt == true){
@@ -696,7 +696,7 @@ public final class rpRGB {
     * @param pRegler Regler, der ausgelesen werden soll.
     * @see rpADWandler
     * @see rpRegler
-    * @see rpHelper
+    * @see Helfer
     */  
     public void blinkeEndlosStart(rpADWandler pWandler, rpRegler pRegler){
         if (boolInitialisierungErfolgt == true){

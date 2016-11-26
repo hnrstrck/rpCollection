@@ -50,7 +50,7 @@ public final class rpDiode {
         System.out.println("Output-Pin gesetzt:");
 
         try {
-            pin = gpio.provisionDigitalOutputPin(rpHelper.pinArray[pPin]);
+            pin = gpio.provisionDigitalOutputPin(Helfer.pinArray[pPin]);
             pin.setShutdownOptions(true, PinState.LOW);
             System.out.println("Pin " + pPin + " gesetzt");
 
@@ -240,7 +240,7 @@ public final class rpDiode {
     * @param meinRegler Regler, der ausgelesen werden soll.
     * @see rpADWandler
     * @see rpRegler
-    * @see rpHelper
+    * @see Helfer
     */  
     private void startBlinkenVariabel(rpADWandler meinWandler, rpRegler meinRegler) {
         if (boolInitialisierungErfolgt == true){
@@ -317,7 +317,7 @@ public final class rpDiode {
     * @param pRegler Regler, der ausgelesen werden soll.
     * @see rpADWandler
     * @see rpRegler
-    * @see rpHelper
+    * @see Helfer
     */  
     public void blinkeEndlosStart(rpADWandler pWandler, rpRegler pRegler){
         if (boolInitialisierungErfolgt == true){

@@ -45,7 +45,7 @@ public final class rpSummer {
 
         try {
 
-            pin = gpio.provisionDigitalOutputPin(rpHelper.pinArray[pPin]);
+            pin = gpio.provisionDigitalOutputPin(Helfer.pinArray[pPin]);
             pin.setShutdownOptions(true, PinState.LOW);
             System.out.println("Pin " + pPin + " gesetzt");
 
