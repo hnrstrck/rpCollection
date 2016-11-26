@@ -233,6 +233,7 @@ public class Helfer
     
     /**
      * Faehrt den GPIO herunter (und gibt alle Pinne frei).
+     * @throws InterruptedException Exception wird geworfen, falls die Methode gewaltsam beendet wird.
      */    
     public static void herunterfahren() throws InterruptedException{
         System.out.println("Fahre alles herunter");
@@ -263,6 +264,7 @@ public class Helfer
 
 	/**
 	 * Zeigt alle bisher vergebenen Pinne an.
+	 * @throws InterruptedException Exception wird geworfen, falls die Methode gewaltsam beendet wird.
 	 */
     public static void pinneAnzeigen() throws InterruptedException{
         System.out.println("Zeige bisherige vergebene Pinne an");

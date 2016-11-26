@@ -94,6 +94,7 @@ public class Scheinwerfer{
 
 	/**
 	* Gib den Status des Scheinwerfers.
+	* @return Der Status des Scheinwerfers (an = true / aus = false)
 	*/
 	public boolean gibStatus(){
 		System.out.println("Status des Scheinwerfers ist: " + status);

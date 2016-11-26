@@ -60,7 +60,8 @@ public class Helligkeitssensor{
 	}
 	
 	/**
-	* Gib den Status des Helligkeitssensors.
+	* Gib den Status des Helligkeitssensors (gespeicherter Wert nach der letzten Messung). <b>Kann evtl. abweichen vom tatsaechlichen Status!</b>
+	* @return Der Status der Hintergrundbeleuchtung (Lichteinfall = true / kein Lichteinfall = false).
 	*/
 	public boolean gibStatus(){
 		System.out.println("Status des Helligkeitssensors ist: " + status);

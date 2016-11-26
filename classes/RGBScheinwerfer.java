@@ -93,6 +93,7 @@ public class RGBScheinwerfer{
 	
 	/**
 	* Gib den Licht-Aktiv-Status des RGB-Scheinwerfers.
+	* @return Der Status des RGB-Scheinwerfers (an = true / aus = false).
 	*/
 	public boolean gibStatus(){
 		System.out.println("Licht-Aktiv-Status des RGB-Scheinwerfers ist: " + lichtAktiv);

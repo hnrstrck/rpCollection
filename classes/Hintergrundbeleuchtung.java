@@ -67,6 +67,7 @@ public class Hintergrundbeleuchtung{
 	
 	/**
 	* Gib den Status der Hintergrundbeleuchtung.
+	* @return Der Status der Hintergrundbeleuchtung (an = true / aus = false).
 	*/
 	public boolean gibStatus(){
 		System.out.println("Status der Hintergrundbeleuchtung ist: " + status);
