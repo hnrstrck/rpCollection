@@ -235,7 +235,6 @@ public class Helfer
      * Faehrt den GPIO herunter (und gibt alle Pinne frei).
      */    
     public static void herunterfahren() throws InterruptedException{
-
         System.out.println("Fahre alles herunter");
 	
 		gpio = GpioFactory.getInstance();
@@ -265,7 +264,7 @@ public class Helfer
 	/**
 	 * Zeigt alle bisher vergebenen Pinne an.
 	 */
-	public static void pinneAnzeigen() throws InterruptedException{
+    public static void pinneAnzeigen() throws InterruptedException{
         System.out.println("Zeige bisherige vergebene Pinne an");
 	
 		gpio = GpioFactory.getInstance();
