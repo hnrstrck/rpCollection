@@ -11,7 +11,7 @@ import java.util.*;
 public class Helfer
 {
     /**
-     * Erstelle ein neues Objekt der Klasse Helfer, um die Methoden aufrufen zu koennen.
+     * Erstelle ein neues Objekt der Klasse Helfer. Statische Methoden koennnen auch ohne ein erstelltes Objekt aufgerufen werden (bpsw. zum Freigeben der Pinne, Setzen des Pin-Layouts oder zur Auswahl des AD-Wandlers).
      */
     public Helfer(){
 		System.out.println("Helferobjekt erstellt.");   
@@ -232,7 +232,7 @@ public class Helfer
     }
     
     /**
-     * Faehrt den GPIO herunter (und gibt alle Pinne frei).
+     * Gib alle Pinne frei und fahre den GPIO herunter. 
      * @throws InterruptedException Exception wird geworfen, falls die Methode gewaltsam beendet wird.
      */    
     public static void herunterfahren() throws InterruptedException{
@@ -263,7 +263,7 @@ public class Helfer
     }
 
 	/**
-	 * Zeigt alle bisher vergebenen Pinne an.
+	 * Zeige alle bisher vergebenen Pinne an (<b>Vorsicht:</b> Pinne in J8-Layout).
 	 * @throws InterruptedException Exception wird geworfen, falls die Methode gewaltsam beendet wird.
 	 */
     public static void pinneAnzeigen() throws InterruptedException{
