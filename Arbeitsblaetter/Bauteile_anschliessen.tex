@@ -35,11 +35,9 @@ Bei den anderen Aufdrucken, in den meisten Fällen \enquote{PIN}, kann am GPIO e
 In Abbildung \ref{fig:objekte_steckbrett} werden zwei Beispiele gegeben, wie die Objekte anzuschließen sind.
 
 \begin{figure*}[htb]
-    \centering
-    %\fbox{
-     \subfloat[Anschluss des RGB-Scheinwerfers (Anschluss an ">IO02"<, ">IO03"<, ">IO04"< und ">GND"<).]{\includegraphics[width=7.5cm]{img/anschluss_rgb_led}}
-     ~
-       \subfloat[Anschluss eines Helligkeitssensors (Anschluss an ">IO03"<, ">3V3"< und ">GND"<).]{\includegraphics[width=7.5cm]{img/anschluss_phototransistor}}
+     \subfloat[Anschluss des RGB-Scheinwerfers (Anschluss an ">IO02"<, ">IO03"<, ">IO04"< und ">GND"<).]{\includegraphics[width=0.49\textwidth]{img/anschluss_rgb_led}}
+     \hfill
+       \subfloat[Anschluss eines Helligkeitssensors (Anschluss an ">IO03"<, ">3V3"< und ">GND"<).]{\includegraphics[width=0.49\textwidth]{img/anschluss_phototransistor}}
     \caption{Angeschlossene Objekte am Steckbrett.}
     \label{fig:objekte_steckbrett}
 \end{figure*}
@@ -67,6 +65,8 @@ In Abbildung \ref{fig:objekte_steckbrett} werden zwei Beispiele gegeben, wie die
 			gelbeLampe.anschalten();
 			gelbeLampe.setzeStandort("Martins Buehne");
 			sleep(400); //Warten von 400 Millisekunden = 0,4 Sekunden
+			
+			Helfer.herunterfahren(); //Pinne wieder frei geben (damit das Skript neu gestartet werden kann)
 		\end{lstlisting}
 
 	\item Die weiteren Methoden der Objekte stimmen mit denen aus dem Unterricht überein.
