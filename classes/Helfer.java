@@ -261,6 +261,16 @@ public class Helfer
 
         System.out.println("Alles heruntergefahren");
     }
+    
+     /**
+     * Gib alle Pinne frei und fahre den GPIO herunter. 
+     * @throws InterruptedException Exception wird geworfen, falls die Methode gewaltsam beendet wird.
+     * @see herunterfahren
+     */  
+    public static void freigeben() throws InterruptedException{
+		herunterfahren();
+	}
+
 
 	/**
 	 * Zeige alle bisher vergebenen Pinne an (<b>Vorsicht:</b> Pinne in J8-Layout).
@@ -286,4 +296,16 @@ public class Helfer
 
         System.out.println("Ende Anzeigen");
     }
+    
+    /**
+     * Warte eine bestimmte Zeit in Sekunden;
+     * @param pZeit Zeit in Sekunden, die gewartet werden soll.
+     */
+    public static void warte(int pZeit){
+		try{
+			Thread.sleep(pZeit * 1000);
+		} catch(InterruptedException e){
+			System.out.println("Warten abgebrochen!");
+		}
+	}
 }
