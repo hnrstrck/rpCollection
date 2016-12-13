@@ -7,6 +7,7 @@
 public class Hintergrundbeleuchtung{
 
 	private rpDiode pDiode;
+	private Helligkeitssensor bekannterHelligkeitssensor;
 	private String standort;
 	private boolean status;
 
@@ -33,6 +34,21 @@ public class Hintergrundbeleuchtung{
 	public void ausschalten(){
 		pDiode.aus();
 		setzeStatus(false);
+	}
+	
+	/**
+	* Uebergib der Hintergrundbeleuchtung den Helligkeitssensor.
+	* @param pHelligkeitssensor Der Helligkeitssensor, den die Hintergrundbeleuchtung kennen soll.
+	*/
+	public void setzeHelligkeitssensor(Helligkeitssensor pHelligkeitssensor){
+		bekannterHelligkeitssensor = pHelligkeitssensor;
+	}
+	
+	/**
+	* Schaltet die Hintergrundbeleuchtung an oder aus, je nach dem, was der intern bekannte Helligkeitssensor sagt. Dieser muss zuvor der Hintergrundbeleuchtung bekannt gemacht werden.
+	*/
+	public void bedingtesAnschalten(){
+		schalten(bekannterHelligkeitssensor.befragenIstHell());
 	}
 	
 	/**

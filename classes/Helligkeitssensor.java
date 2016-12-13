@@ -70,7 +70,7 @@ public class Helligkeitssensor{
 	
 	/**
 	* Setze den Status des Helligkeitssensors.
-	* @param pStatus Der Status des Helligkeitssensors als String.
+	* @param pStatus Der Status des Helligkeitssensors als Wahrheitswert.
 	*/
 	public void setzeStatus(boolean pStatus){
 		System.out.println("Status des Helligkeitssensors auf >" + status + "< geaendert");
@@ -78,7 +78,7 @@ public class Helligkeitssensor{
 	}
 	
 	/**
-	* Setze den Helligkeitssensor ab (der Pin wird freigegeben).
+	* Fahre den Helligkeitssensor herunter (der Pin wird freigegeben).
 	*/
 	public void herunterfahren(){
 		pPhoto.herunterfahren();
