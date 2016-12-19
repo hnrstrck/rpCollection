@@ -1,0 +1,167 @@
+\documentclass[11pt, a4paper]{scrartcl}
+\usepackage[
+	typ=ib,
+	fach=Informatik,
+]{schule}
+
+\usepackage{float,subfig}
+\usepackage{inconsolata}
+
+\title{Beziehungen in der Theater-Geschichte}
+
+% \include{style}
+
+\lstset{% 
+	breaklines=true, % Zeilenumbrüche
+	language=Java, % Sprache
+	basicstyle=\ttfamily\small,
+	commentstyle=\ttfamily\small\color{black!50},
+	breakatwhitespace=false,
+	tabsize=2,
+	numbers=left, numberstyle=\footnotesize,  numbersep=5pt,
+}
+
+\begin{document}
+%\pagestyle{empty}
+
+\section*{Schalten der Hintergrundbeleuchtung}
+
+Wir haben im Unterricht gesehen, dass es zwei verschiedene Varianten gibt, folgende Stelle aus der Geschichte zu modellieren:
+\begin{quote}
+\enquote{Für die nächste Szene wird die spezielle Hintergrundbeleuchtung aktiviert. Dazu wird ein Helligkeitssensor befragt und mit der Antwort die Hintergrundbeleuchtung geschaltet.}
+\end{quote}
+
+\subsection*{Variante A: Martin kennt Hintergrundbeleuchtung und Helligkeitssensor}
+
+In dieser Variante kennt Martin die Hintergrundbeleuchtung und den Helligkeitssensor. Das heißt, Martin hat zwei Attribute, die auf das Objekt der Hintergrundbeleuchtung und das Objekt des Helligkeitssensors verweisen (dies hatten wir mit zwei Fäden im Objektspiel von Martin zur Hintergrundbeleuchtung und zum Helligkeitssensor dargestellt). 
+
+Das Objektdiagramm ist in Abbildung~\ref{fig:martin_kennt_hg_hs} dargestellt. Es hat direkte Auswirkungen auf das Sequenzdiagramm (Abbildung~\ref{seq:klassische_situation_martin_kennt_hg_hs}).
+
+
+\hfill
+\begin{figure}[H]
+\centering
+\scalebox{0.8}{
+\begin{tikzpicture}[remember picture]
+\begin{object}[text width=7cm]{martin}{0,0}
+    \attribute{bekannteHintergrundbeleuchtung = \anchormark{verlinkungMartinHG}[0.025]}
+    \attribute{bekannterHelligkeitssensor = \anchormark{verlinkungHGSensor}[0.025]}
+    \operation{warte(zeit)}
+\end{object}
+
+\begin{object}[text width=6cm]{hintergrundbeleuchtung}{7,-3}
+    \operation{schalten(statusEsIstGeradeHell)}
+\end{object}
+
+\begin{object}[text width=5cm]{helligkeitssensor}{0,-3}
+    \attribute{~}
+    \operation{befragenIstHell()} 
+\end{object}
+
+\draw (verlinkungMartinHG) -- (hintergrundbeleuchtung.north);
+
+\draw (verlinkungHGSensor) -- (helligkeitssensor.north);
+\end{tikzpicture}
+}
+\caption{Martin kennt den Helligkeitssensor und die Hintergrundbeleuchtung.}
+\label{fig:martin_kennt_hg_hs}
+\end{figure}
+
+
+\hfill
+\begin{figure}[H]
+\centering
+\scalebox{0.8}{
+\begin{sequencediagram}
+\newthread{martin}{martin}
+\newinst[2]{hellig}{helligkeitssensor}
+\newinst[2]{hintergrund}{hintergrundbeleuchtung}
+
+\begin{call}{martin}{befragenIstHell()}{hellig}{\diastring{ja}}\end{call}
+\nextlevel
+\begin{call}{martin}{schlaten(\diastring{ja})}{hintergrund}{}\end{call}
+
+\end{sequencediagram} 
+}
+\caption{Martin fragt selbstständig beim Helligkeitssensor nach (im Unterschied zu Variante~B).}
+\label{seq:klassische_situation_martin_kennt_hg_hs}
+\end{figure}
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+\subsection*{Variante B: Nur die Hintergrundbeleuchtung kennt den Helligkeitssensor}
+In dieser Variante kennt Martin nur die Hintergrundbeleuchtung, da er diese zu einem bestimmten Zeitpunkt im Theaterstück (bedingt) einschalten muss. Den Helligkeitssensor kennt er nicht. Nur die Hintergrundbeleuchtung kennt den Helligkeitssensor (Objektdiagramm in Abbildung~\ref{fig:bez_hintergrundbel_helligkeitssensor}).
+
+Das bedeutet: Martin kann bei der Hintergrundbeleuchtung die Methode zum bedingten Anschalten aufrufen und diese fragt dann selbstständig bei dem Helligkeitssensor nach, ob es gerade hell ist oder nicht und schaltet sich dann selbstständig ein oder aus (Sequenzdiagramm in Abbildung~\ref{seq:hintergrund_kennt_helligkeitssenesor} -- man beachte die andere Sortierung der Objekte im Sequenzdiagramm als oben).
+
+
+\hfill
+\begin{figure}[H]
+\centering
+\scalebox{0.8}{
+\begin{tikzpicture}[remember picture]
+\begin{object}[text width=7cm]{martin}{0,0}
+    \attribute{bekannteHintergrundbeleuchtung = \anchormark{verlinkungMartinHG}[0.025]}
+    \operation{warte(zeit)}
+\end{object}
+
+\begin{object}[text width=6cm]{hintergrundbeleuchtung}{4,-2.5}
+    \attribute{bekannterHelligkeitssensor = \anchormark{verlinkungHGSensor}[0.025]}
+    \operation{bedingtesAnschalten()}
+    \operation{anschalten()}
+    \operation{ausschalten()}
+\end{object}
+
+\begin{object}[text width=5cm]{helligkeitssensor}{8,-6}
+    \attribute{~}
+    \operation{befragenIstHell()} 
+\end{object}
+
+\draw (verlinkungMartinHG) -- (hintergrundbeleuchtung.north);
+
+\draw (verlinkungHGSensor) -- (helligkeitssensor.north);
+\end{tikzpicture}
+}
+\caption{Martin kennt nur die Hintergrundbeleuchtung und diese den Helligkeitssensor.}
+\label{fig:bez_hintergrundbel_helligkeitssensor}
+\end{figure}
+
+
+\hfill
+\begin{figure}[H]
+\centering
+\scalebox{0.8}{
+\begin{sequencediagram}
+\newthread{martin}{martin}
+\newinst[2]{hintergrund}{hintergrundbeleuchtung}
+\newinst[2]{hellig}{helligkeitssensor}
+
+\begin{call}{martin}{bedingtesAnschalten()}{hintergrund}{}
+\begin{call}{hintergrund}{befragenIstHell()}{hellig}{\diastring{ja}}\end{call}
+\nextlevel
+\begin{call}{hintergrund}{ausschalten()}{hintergrund}{}\end{call}
+\end{call}
+\end{sequencediagram} 
+}
+\caption{Martin ruft das bedingte Anschalten auf und die Hintergrundbeleuchtung befragt den Helligkeitssensor.}
+\label{seq:hintergrund_kennt_helligkeitssenesor}
+\end{figure}
+
+
+
+%\begin{lstlisting}[gobble=6,language=Bash]
+%			cd rpCollection
+%			git pull
+%			./start.sh
+%		\end{lstlisting}
+\end{document}
