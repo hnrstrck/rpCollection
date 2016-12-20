@@ -53,14 +53,14 @@ Das Sequenzdiagramm ist in Abbildung~\ref{seq:klassische_situation_martin_kennt_
     \operation{schalten(statusEsIstGeradeHell)}
 \end{object}
 
-\begin{object}[text width=5cm]{helligkeitssensor}{0,-3}
+\begin{object}[text width=6cm]{helligkeitssensor}{0,-3}
     \attribute{~}
     \operation{befragenIstHell()} 
 \end{object}
+   
+\draw[->]  (verlinkungMartinHG.east) -- ($(verlinkungMartinHG.east) + (4,0)$) -| (hintergrundbeleuchtung.north);
 
-\draw (verlinkungMartinHG) -- (hintergrundbeleuchtung.north);
-
-\draw (verlinkungHGSensor) -- (helligkeitssensor.north);
+\draw[->]  (verlinkungHGSensor.east) -- ($(verlinkungHGSensor.east) + (0.5,0)$) -| ($(helligkeitssensor.north)+ (2.4,0)$);
 \end{tikzpicture}
 }
 \caption{Martin kennt den Helligkeitssensor und die Hintergrundbeleuchtung.}
@@ -127,9 +127,9 @@ Das bedeutet: Martin kann bei der Hintergrundbeleuchtung die Methode zum bedingt
     \operation{befragenIstHell()} 
 \end{object}
 
-\draw (verlinkungMartinHG) -- (hintergrundbeleuchtung.north);
+\draw[->]  (verlinkungMartinHG.east) -- ($(verlinkungMartinHG.east) + (2,0)$) -| ($(hintergrundbeleuchtung.north)+(1,0)$);
 
-\draw (verlinkungHGSensor) -- (helligkeitssensor.north);
+\draw[->]  (verlinkungHGSensor.east) -- ($(verlinkungHGSensor.east) + (2,0)$) -| ($(helligkeitssensor.north)+(1,0)$);
 \end{tikzpicture}
 }
 \caption{Martin kennt nur die Hintergrundbeleuchtung und diese den Helligkeitssensor.}
