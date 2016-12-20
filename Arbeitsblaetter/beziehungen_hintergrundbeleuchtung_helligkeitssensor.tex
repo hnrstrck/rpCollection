@@ -33,9 +33,9 @@ Wir haben im Unterricht gesehen, dass es zwei verschiedene Varianten gibt, folge
 
 \subsection*{Variante A: Martin kennt Hintergrundbeleuchtung und Helligkeitssensor}
 
-In dieser Variante kennt Martin die Hintergrundbeleuchtung und den Helligkeitssensor. Das heißt, Martin hat zwei Attribute, die auf das Objekt der Hintergrundbeleuchtung und das Objekt des Helligkeitssensors verweisen (dies hatten wir mit zwei Fäden im Objektspiel von Martin zur Hintergrundbeleuchtung und zum Helligkeitssensor dargestellt). 
+In dieser Variante kennt Martin die Hintergrundbeleuchtung und den Helligkeitssensor. Das heißt, Martin hat zwei Attribute, die auf das Objekt der Hintergrundbeleuchtung und das Objekt des Helligkeitssensors verweisen (dies hatten wir mit zwei Fäden im Objektspiel von Martin zur Hintergrundbeleuchtung und zum Helligkeitssensor dargestellt, s. Objektdiagramm in Abbildung~\ref{fig:martin_kennt_hg_hs}). 
 
-Das Objektdiagramm ist in Abbildung~\ref{fig:martin_kennt_hg_hs} dargestellt. Es hat direkte Auswirkungen auf das Sequenzdiagramm (Abbildung~\ref{seq:klassische_situation_martin_kennt_hg_hs}).
+Das Sequenzdiagramm ist in Abbildung~\ref{seq:klassische_situation_martin_kennt_hg_hs} dargestellt. Man erkennt sehr schön, wie Martin selbstständig beim Helligkeitssensor nachfragt, ob es gerade hell ist oder nicht und dann mit der Antwort die Hintergrundbeleuchtung schaltet.
 
 
 \hfill
@@ -102,7 +102,7 @@ Das Objektdiagramm ist in Abbildung~\ref{fig:martin_kennt_hg_hs} dargestellt. Es
 \subsection*{Variante B: Nur die Hintergrundbeleuchtung kennt den Helligkeitssensor}
 In dieser Variante kennt Martin nur die Hintergrundbeleuchtung, da er diese zu einem bestimmten Zeitpunkt im Theaterstück (bedingt) einschalten muss. Den Helligkeitssensor kennt er nicht. Nur die Hintergrundbeleuchtung kennt den Helligkeitssensor (Objektdiagramm in Abbildung~\ref{fig:bez_hintergrundbel_helligkeitssensor}).
 
-Das bedeutet: Martin kann bei der Hintergrundbeleuchtung die Methode zum bedingten Anschalten aufrufen und diese fragt dann selbstständig bei dem Helligkeitssensor nach, ob es gerade hell ist oder nicht und schaltet sich dann selbstständig ein oder aus (Sequenzdiagramm in Abbildung~\ref{seq:hintergrund_kennt_helligkeitssenesor} -- man beachte die andere Sortierung der Objekte im Sequenzdiagramm als oben).
+Das bedeutet: Martin kann bei der Hintergrundbeleuchtung die Methode zum bedingten Anschalten aufrufen und diese fragt dann \emph{selbstständig} bei dem Helligkeitssensor nach, ob es gerade hell ist oder nicht und schaltet sich dann \emph{selbstständig} ein oder aus (Sequenzdiagramm in Abbildung~\ref{seq:hintergrund_kennt_helligkeitssenesor}).
 
 
 \hfill
@@ -153,7 +153,7 @@ Das bedeutet: Martin kann bei der Hintergrundbeleuchtung die Methode zum bedingt
 \end{call}
 \end{sequencediagram} 
 }
-\caption{Martin ruft das bedingte Anschalten auf und die Hintergrundbeleuchtung befragt den Helligkeitssensor.}
+\caption{Martin ruft das bedingte Anschalten, die Hintergrundbeleuchtung befragt den Helligkeitssensor und schaltet sich dann selbst an oder aus.}
 \label{seq:hintergrund_kennt_helligkeitssenesor}
 \end{figure}
 
