@@ -42,6 +42,7 @@ public class Hintergrundbeleuchtung{
 	*/
 	public void setzeHelligkeitssensor(Helligkeitssensor pHelligkeitssensor){
 		bekannterHelligkeitssensor = pHelligkeitssensor;
+		System.out.println("Helligkeitssensor gesetzt. Die Hintergrundbeleuchtung kennt nun einen Helligkeitssensor.");
 	}
 	
 	/**
