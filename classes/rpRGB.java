@@ -2,13 +2,13 @@ import com.pi4j.io.gpio.*;
 import com.pi4j.wiringpi.*;
 
 /**
- * Klasse zum Anschluss einer RGB-LED an den Raspberry Pi. Insgesamt stehen ganz aehnliche Funktionen wie bei der noramlen LED zur Verfuegung (rpDiode) mit dem Zusatz, dass hier die Farbe frei gewaehlt werden kann.
+ * Klasse zum Anschluss einer RGB-LED an den Raspberry Pi. Insgesamt stehen ganz aehnliche Funktionen wie bei der noramlen LED zur Verfuegung (RPDiode) mit dem Zusatz, dass hier die Farbe frei gewaehlt werden kann.
  * 
  * @author Heiner Stroick
  * @version 0.9
- * @see rpDiode
+ * @see RPDiode
  */
-public final class rpRGB {
+public final class RPRGB {
 
     private GpioPinDigitalOutput pin_r, pin_g, pin_b;
     private GpioController gpio;
@@ -25,9 +25,9 @@ public final class rpRGB {
     private boolean blinktGerade = false;
 
     /**
-    * Erstellt ein Objekt der Klasse rpRGB, ohne die Pinne anzugeben.
+    * Erstellt ein Objekt der Klasse RPRGB, ohne die Pinne anzugeben.
     */
-    rpRGB() {
+    RPRGB() {
         gpio = GpioFactory.getInstance();
         intPins = new int[3];
         boolInitialisierungErfolgt = false;
@@ -37,12 +37,12 @@ public final class rpRGB {
     }
 
     /**
-    * Erstellt ein Objekt der Klasse rpRGB und setzt die Pinne fuer die drei Farben.
+    * Erstellt ein Objekt der Klasse RPRGB und setzt die Pinne fuer die drei Farben.
     * @param roterPin Der Pin fuer die rote LED.
     * @param gruenerPin Der Pin fuer die gruene LED.
     * @param blauerPin Der Pin fuer die blaue LED.
     */
-    rpRGB(int roterPin, int gruenerPin, int blauerPin) {
+    RPRGB(int roterPin, int gruenerPin, int blauerPin) {
         gpio = GpioFactory.getInstance();
         intPins = new int[3];
         boolInitialisierungErfolgt = false;
@@ -601,13 +601,13 @@ public final class rpRGB {
 
     /**
     * Laesst die RGB-LED blinken (auf unbestimmte Zeit). Die Frequenz kann ueber die Stellung eines Reglers an einem AD-Wandler angepasst werden.
-    * @param meinWandler Objekt der Klasse rpADWandler.
+    * @param meinWandler Objekt der Klasse RPADWandler.
     * @param meinRegler Regler, der ausgelesen werden soll
-    * @see rpADWandler
-    * @see rpRegler
+    * @see RPADWandler
+    * @see RPRegler
     * @see Helfer
     */
-    private void startBlinkenVariabel(rpADWandler meinWandler, rpRegler meinRegler) {
+    private void startBlinkenVariabel(RPADWandler meinWandler, RPRegler meinRegler) {
         if (boolInitialisierungErfolgt == true){
 
             threadEndlosBlinken = new Thread(){
@@ -620,9 +620,9 @@ public final class rpRGB {
                         while(true){
                             //Signal endlos blinken
                             aus();
-                            Thread.sleep((int)Math.round(    ((100f - (float)(rpADWandler.gibProzentwertVonRegler(meinRegler,0)))/100f)*300f)      );     
+                            Thread.sleep((int)Math.round(    ((100f - (float)(RPADWandler.gibProzentwertVonRegler(meinRegler,0)))/100f)*300f)      );     
                             setzeFarbe(temp_farbe[0], temp_farbe[1], temp_farbe[2]);
-                            Thread.sleep((int)Math.round(    ((100f - (float)(rpADWandler.gibProzentwertVonRegler(meinRegler,0)))/100f)*300f)      );     
+                            Thread.sleep((int)Math.round(    ((100f - (float)(RPADWandler.gibProzentwertVonRegler(meinRegler,0)))/100f)*300f)      );     
                             temp_farbe = gibFarbe();
                         }
 
@@ -692,13 +692,13 @@ public final class rpRGB {
 
     /**
     * Laesst die RGB-LED blinken (auf unbestimmte Zeit). Die Frequenz kann mit einem AD-Wandler angepasst werden.
-    * @param pWandler Objekt der Klasse rpADWandler.
+    * @param pWandler Objekt der Klasse RPADWandler.
     * @param pRegler Regler, der ausgelesen werden soll.
-    * @see rpADWandler
-    * @see rpRegler
+    * @see RPADWandler
+    * @see RPRegler
     * @see Helfer
     */  
-    public void blinkeEndlosStart(rpADWandler pWandler, rpRegler pRegler){
+    public void blinkeEndlosStart(RPADWandler pWandler, RPRegler pRegler){
         if (boolInitialisierungErfolgt == true){
 
             if(!blinktGerade){

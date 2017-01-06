@@ -1,12 +1,12 @@
 /**
 *	Hinweis:
-*	Fuer die Abfrage der einzelnen Attributwerte haette auch auf das Objekt "rpTaster" zurueckgegriffen werden koennen.
+*	Fuer die Abfrage der einzelnen Attributwerte haette auch auf das Objekt "RPTaster" zurueckgegriffen werden koennen.
 *	Dann haetten die SuS aber mit zwei Klassen zu tun, was hier vermieden werden sollte, falls dieser Quelltext mal interessieren sollte.
 */
 
 public class Taster{
 
-	private rpTaster pTaster;
+	private RPTaster pTaster;
 	private String standort;
 	private boolean status;
 	
@@ -15,7 +15,7 @@ public class Taster{
 	* @param pPin Pin des angeschlossenen Tasters.
 	*/
 	Taster(int pPin){
-		pTaster = new rpTaster(pPin);
+		pTaster = new RPTaster(pPin);
 	}
 		
 	/**

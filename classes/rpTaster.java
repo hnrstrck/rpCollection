@@ -6,7 +6,7 @@ import com.pi4j.io.gpio.*;
  * @author Heiner Stroick
  * @version 0.9
  */
-public final class rpTaster {
+public final class RPTaster {
 
     private GpioPinDigitalInput pin;
     private GpioController gpio;
@@ -15,18 +15,18 @@ public final class rpTaster {
     private int intPin;
 
     /**
-    * Erstellt ein neues Objekt der Klasse rpTaster, ohne einen Pin anzugeben.
+    * Erstellt ein neues Objekt der Klasse RPTaster, ohne einen Pin anzugeben.
     */
-    rpTaster() {
+    RPTaster() {
         gpio = GpioFactory.getInstance();
         boolInitialisierungErfolgt = false;
     }
 
     /**
-    * Erstellt ein neues Objekt der Klasse rpTaster.
+    * Erstellt ein neues Objekt der Klasse RPTaster.
     * @param pPin Der Pin, an dem der Taster angeschlossen ist.
     */
-    rpTaster(int pPin) {
+    RPTaster(int pPin) {
         gpio = GpioFactory.getInstance();
         boolInitialisierungErfolgt = false;
 

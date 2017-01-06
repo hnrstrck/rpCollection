@@ -1,12 +1,12 @@
 /**
 *	Hinweis:
-*	Fuer die Abfrage der einzelnen Attributwerte haette auch auf das Objekt "rpRGB" zurueckgegriffen werden koennen.
+*	Fuer die Abfrage der einzelnen Attributwerte haette auch auf das Objekt "RPRGB" zurueckgegriffen werden koennen.
 *	Dann haetten die SuS aber mit zwei Klassen zu tun, was hier vermieden werden sollte, falls dieser Quelltext mal interessieren sollte.
 */
 
 public class RGBScheinwerfer{
 
-	private rpRGB pRGB;
+	private RPRGB pRGB;
 	private String standort;
 	private boolean lichtAktiv;
 	private int farberot;
@@ -20,7 +20,7 @@ public class RGBScheinwerfer{
 	* @param pPinBlau Der Pin fuer die blaue Farbe.
 	*/
 	RGBScheinwerfer(int pPinRot, int pPinGruen, int pPinBlau){
-		pRGB = new rpRGB(pPinRot, pPinGruen, pPinBlau);
+		pRGB = new RPRGB(pPinRot, pPinGruen, pPinBlau);
 	}
 	
 	/**

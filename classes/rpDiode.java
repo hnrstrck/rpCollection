@@ -6,7 +6,7 @@ import com.pi4j.io.gpio.*;
  * @author Heiner Stroick
  * @version 0.9
  */
-public final class rpDiode {
+public final class RPDiode {
 
     private GpioPinDigitalOutput pin;
     private GpioController gpio;
@@ -22,18 +22,18 @@ public final class rpDiode {
     private boolean blinktGerade = false;
 
     /**
-    * Erstellt ein Objekt der Klasse rpDiode, ohne einen Pin anzugeben.
+    * Erstellt ein Objekt der Klasse RPDiode, ohne einen Pin anzugeben.
     */
-    rpDiode() {
+    RPDiode() {
         gpio = GpioFactory.getInstance();
         boolInitialisierungErfolgt = false;
     }
 
     /**
-    * Erstellt ein Objekt der Klasse rpDiode.
+    * Erstellt ein Objekt der Klasse RPDiode.
     * @param pPin Der Pin, an dem die Diode angeschlossen ist.
     */
-    rpDiode(int pPin) {
+    RPDiode(int pPin) {
         gpio = GpioFactory.getInstance();
         boolInitialisierungErfolgt = false;
 
@@ -236,13 +236,13 @@ public final class rpDiode {
 
     /**
     * Laesst die Diode blinken (auf unbestimmte Zeit). Die Frequenz kann mit einem AD-Wandler angepasst werden.
-    * @param meinWandler Objekt der Klasse rpADWandler.
+    * @param meinWandler Objekt der Klasse RPADWandler.
     * @param meinRegler Regler, der ausgelesen werden soll.
-    * @see rpADWandler
-    * @see rpRegler
+    * @see RPADWandler
+    * @see RPRegler
     * @see Helfer
     */  
-    private void startBlinkenVariabel(rpADWandler meinWandler, rpRegler meinRegler) {
+    private void startBlinkenVariabel(RPADWandler meinWandler, RPRegler meinRegler) {
         if (boolInitialisierungErfolgt == true){
 
             threadEndlosBlinken = new Thread(){
@@ -254,9 +254,9 @@ public final class rpDiode {
 
                             //Signal endlos blinken
                             an();
-                            Thread.sleep((int)Math.round(((100f - (float)(rpADWandler.gibProzentwertVonRegler(meinRegler,0)))/100f)*300f));     
+                            Thread.sleep((int)Math.round(((100f - (float)(RPADWandler.gibProzentwertVonRegler(meinRegler,0)))/100f)*300f));     
                             aus();
-                            Thread.sleep((int)Math.round(((100f - (float)(rpADWandler.gibProzentwertVonRegler(meinRegler,0)))/100f)*300f));     
+                            Thread.sleep((int)Math.round(((100f - (float)(RPADWandler.gibProzentwertVonRegler(meinRegler,0)))/100f)*300f));     
 
                         }
                     } catch (InterruptedException e) {
@@ -312,14 +312,14 @@ public final class rpDiode {
 
     /**
     * Laesst die Diode blinken (auf unbestimmte Zeit). Die Frequenz kann ueber die Stellung eines Reglers an einem AD-Wandler angepasst werden.
-    * @see rpADWandler
-    * @param pWandler Objekt der Klasse rpADWandler.
+    * @see RPADWandler
+    * @param pWandler Objekt der Klasse RPADWandler.
     * @param pRegler Regler, der ausgelesen werden soll.
-    * @see rpADWandler
-    * @see rpRegler
+    * @see RPADWandler
+    * @see RPRegler
     * @see Helfer
     */  
-    public void blinkeEndlosStart(rpADWandler pWandler, rpRegler pRegler){
+    public void blinkeEndlosStart(RPADWandler pWandler, RPRegler pRegler){
         if (boolInitialisierungErfolgt == true){
 
             if(!blinktGerade){

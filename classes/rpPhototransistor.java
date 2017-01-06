@@ -6,7 +6,7 @@ import com.pi4j.io.gpio.*;
  * @author Heiner Stroick
  * @version 0.9
  */
-public final class rpPhototransistor {
+public final class RPPhototransistor {
 
     private GpioPinDigitalInput pin;
     private GpioController gpio;
@@ -15,18 +15,18 @@ public final class rpPhototransistor {
     private int intPin;
     
     /**
-    * Erstellt ein neues Objekt der Klasse rpPhototransistor, ohne einen Pin anzugeben.
+    * Erstellt ein neues Objekt der Klasse RPPhototransistor, ohne einen Pin anzugeben.
     */
-    rpPhototransistor() {
+    RPPhototransistor() {
         gpio = GpioFactory.getInstance();
         boolInitialisierungErfolgt = false;
     }
 
     /**
-    * Erstellt ein neues Objekt der Klasse rpPhototransistor.
+    * Erstellt ein neues Objekt der Klasse RPPhototransistor.
     * @param pPin Der Pin, an dem der Phototransistor angeschlossen ist.
     */
-    rpPhototransistor(int pPin) {
+    RPPhototransistor(int pPin) {
         gpio = GpioFactory.getInstance();
         boolInitialisierungErfolgt = false;
 

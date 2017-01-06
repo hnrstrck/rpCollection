@@ -1,12 +1,12 @@
 /**
 *	Hinweis:
-*	Fuer die Abfrage der einzelnen Attributwerte haette auch auf das Objekt "rpDiode" zurueckgegriffen werden koennen.
+*	Fuer die Abfrage der einzelnen Attributwerte haette auch auf das Objekt "RPDiode" zurueckgegriffen werden koennen.
 *	Dann haetten die SuS aber mit zwei Klassen zu tun, was hier vermieden werden sollte, falls dieser Quelltext mal interessieren sollte.
 */
 
 public class Hintergrundbeleuchtung{
 
-	private rpDiode pDiode;
+	private RPDiode pDiode;
 	private Helligkeitssensor bekannterHelligkeitssensor;
 	private String standort;
 	private boolean status;
@@ -17,7 +17,7 @@ public class Hintergrundbeleuchtung{
 	* @see Scheinwerfer
 	*/
 	Hintergrundbeleuchtung(int pPin){
-		pDiode = new rpDiode(pPin);
+		pDiode = new RPDiode(pPin);
 	}
 		
 	/**

@@ -7,7 +7,7 @@ import com.pi4j.wiringpi.*;
  * @author Heiner Stroick
  * @version 0.9
  */
-public final class rpMotor {
+public final class RPMotor {
 
     private GpioPinDigitalOutput pinEnable, pinRichtung1, pinRichtung2;
     private GpioController gpio;
@@ -23,21 +23,21 @@ public final class rpMotor {
     private boolean laeuftGerade = false;
     
     /**
-    * Erstellt ein Objekt der Klasse rpMotor, ohne die Pinne anzugeben.
+    * Erstellt ein Objekt der Klasse RPMotor, ohne die Pinne anzugeben.
     */
-    rpMotor() {
+    RPMotor() {
         gpio = GpioFactory.getInstance();
         intPins = new int[3];
         boolInitialisierungErfolgt = false;
     }
 
     /**
-    * Erstellt ein Objekt der Klasse rpMotor.
+    * Erstellt ein Objekt der Klasse RPMotor.
     * @param pinEnable Der Pin fuer Enable.
     * @param pinRichtung1 Der Pin fuer Richtung 1.
     * @param pinRichtung2 Der Pin fuer Richtung2.
     */
-    rpMotor(int pinEnable, int pinRichtung1, int pinRichtung2) {
+    RPMotor(int pinEnable, int pinRichtung1, int pinRichtung2) {
         gpio = GpioFactory.getInstance();
         intPins = new int[3];
         boolInitialisierungErfolgt = false;

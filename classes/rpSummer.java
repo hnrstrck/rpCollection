@@ -6,7 +6,7 @@ import com.pi4j.io.gpio.*;
  * @author Heiner Stroick
  * @version 0.9
  */
-public final class rpSummer {
+public final class RPSummer {
 
     private GpioPinDigitalOutput pin;
     private GpioController gpio;
@@ -15,18 +15,18 @@ public final class rpSummer {
     private int intPin;
 
     /**
-    * Erstellt ein neues Objekt der Klasse rpSummer, ohne einen Pin anzugeben.
+    * Erstellt ein neues Objekt der Klasse RPSummer, ohne einen Pin anzugeben.
     */
-    rpSummer() {
+    RPSummer() {
         gpio = GpioFactory.getInstance();
         boolInitialisierungErfolgt = false;
     }
 
    /**
-    * Erstellt ein neues Objekt der Klasse rpSummer.
+    * Erstellt ein neues Objekt der Klasse RPSummer.
     * @param pPin Der Pin, an dem der Summer angeschlossen ist.
     */
-    rpSummer(int pPin) {
+    RPSummer(int pPin) {
         gpio = GpioFactory.getInstance();
         boolInitialisierungErfolgt = false;
 

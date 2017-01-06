@@ -1,12 +1,12 @@
 /**
 *	Hinweis:
-*	Fuer die Abfrage der einzelnen Attributwerte haette auch auf das Objekt "rpPhototransistor" zurueckgegriffen werden koennen.
+*	Fuer die Abfrage der einzelnen Attributwerte haette auch auf das Objekt "RPPhototransistor" zurueckgegriffen werden koennen.
 *	Dann haetten die SuS aber mit zwei Klassen zu tun, was hier vermieden werden sollte, falls dieser Quelltext mal interessieren sollte.
 */
 
 public class Helligkeitssensor{
 
-	private rpPhototransistor pPhoto;
+	private RPPhototransistor pPhoto;
 	private String standort;
 	private boolean status;
 	
@@ -15,7 +15,7 @@ public class Helligkeitssensor{
 	* @param pPin Pin des angeschlossenen Helligkeitssensors.
 	*/
 	Helligkeitssensor(int pPin){
-		pPhoto = new rpPhototransistor(pPin);
+		pPhoto = new RPPhototransistor(pPin);
 	}
 		
 	/**

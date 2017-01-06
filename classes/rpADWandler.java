@@ -25,7 +25,7 @@ import java.io.IOException;
  ** @author Heiner Stroick
  * @version 0.9
  */
-public final class rpADWandler {
+public final class RPADWandler {
 
     //private GpioController gpio;
     private static boolean boolInitialisierungErfolgt;
@@ -36,9 +36,9 @@ public final class rpADWandler {
     private static int prozentWert = 0;
 
     /**
-    * Erstellt ein neues Objekt der Klasse rpADWandler (die Initialisierung erfolgt automaitsch, es muessen keine Pins angegeben werden).
+    * Erstellt ein neues Objekt der Klasse RPADWandler (die Initialisierung erfolgt automaitsch, es muessen keine Pins angegeben werden).
     */
-    rpADWandler() {
+    RPADWandler() {
         try{
             System.out.println("Initialisierung den AD-Wandler...");
             this.initialisiere();
@@ -136,7 +136,7 @@ public final class rpADWandler {
     * @return Der gelesene Wert des Channels (Achtung: richtigen AD-Wandler auswaehlen).
     * @see Helfer
     */
-    public static int gibWertVonRegler(rpRegler pRegler, int ausgabe){
+    public static int gibWertVonRegler(RPRegler pRegler, int ausgabe){
 	   if (boolInitialisierungErfolgt == true){
 			try{
 				gelesenerWert = readChannel(pRegler.gibChannel()); 
@@ -161,7 +161,7 @@ public final class rpADWandler {
     * @return Der gelesene Wert des Channels (Achtung: richtigen AD-Wandler auswaehlen).
     * @see Helfer
     */
-    public static int gibWertVonRegler(rpRegler pRegler){
+    public static int gibWertVonRegler(RPRegler pRegler){
         return gibWertVonRegler(pRegler, 1);
     }
 
@@ -173,7 +173,7 @@ public final class rpADWandler {
     * @return Der gelesene Wert des Channels in Prozent (Achtung: richtigen AD-Wandler auswaehlen).
     * @see Helfer
     */
-    public static int gibProzentwertVonRegler(rpRegler pRegler, int ausgabe){
+    public static int gibProzentwertVonRegler(RPRegler pRegler, int ausgabe){
 			if (boolInitialisierungErfolgt == true){
                 try{
 
@@ -201,7 +201,7 @@ public final class rpADWandler {
     * @return Der gelesene Wert des Channels in Prozent (Achtung: richtigen AD-Wandler auswaehlen).
     * @see Helfer
     */
-    public static int gibProzentwertVonRegler(rpRegler pRegler){
+    public static int gibProzentwertVonRegler(RPRegler pRegler){
         return gibProzentwertVonRegler(pRegler, 1);
     }
 
