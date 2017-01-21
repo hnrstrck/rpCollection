@@ -1,0 +1,39 @@
+\documentclass[11pt, a4paper]{scrartcl}
+\usepackage[
+	typ=ab,
+	fach=Informatik,
+]{schule}
+\usepackage{mdframed}
+
+\title{Die Lichtanlage einer Theater-Aufführung}
+
+\begin{document}
+\section*{Die Lichtanlage einer Theater-Aufführung}
+Für die Schultheater-Aufführung des Stückes \enquote{Mac Bath} von Shakebeer soll mit Hilfe des Raspberry Pis die Lichtanlage gesteuert werden. Die meisten Scheinwerfer sind links und rechts der Bühne an großen, senkrechten Gerüsten angebracht. Martin ist für das Licht verantwortlich. 
+
+\vspace{0.5cm}
+
+Hier ist ein Ausschnitt seiner Arbeit:
+
+\begin{mdframed}
+Martin schaltet zunächst den grünen und roten Scheinwerfer an. Nachdem er etwa 20 Sekunden gewartet hat, schaltet er auch den blauen Scheinwerfer an und schaltet den grünen aus. Nach weiteren 10 Sekunden lässt er die gelbe Lampe kurz blinken und schaltet dann das gesamte Licht aus.\\
+
+Für die nächste Szene wird die spezielle Hintergrundbeleuchtung aktiviert. Dazu wird ein Helligkeitssenor befragt und mit der Antwort die Hintergrundbeleuchtung geschaltet.\\
+
+Für die nächste Szene sind über der Bühne zwei weiße Scheinwerfer an einer Deckenkonstruktion angebracht worden, die Tageslicht auf der Bühne erzeugen sollen. Martin kann die Scheinwerfer nicht einzeln an- und ausschalten, erzeugt aber für die Schauspieler Tageslicht auf der Bühne.\\
+
+Dann arbeitet Martin mit dem RGB-Scheinwerfer\footnote{Der RGB-Scheinwerfer kann -- anders als die anderen -- eine beliebige Farbe annehmen. Dazu stellt man den Anteil an Rot, Grün und Blau ein}: Er stellt eine Farbe von 50\% für grün, 20\% für rot und 25\% für blau ein. Nach 10 Sekunden stellt er eine neue Farbe ein: 10\% für grün, 70\% für rot und 65\% für blau. Dann wartet er nochmal 10 Sekunden und schaltet das Licht ab.\\
+% Hinweis: Es kann auch der AD-Wandler vorgezogen werden, um mehr Objektkommunikation in die Geschichte einzubauen.
+\end{mdframed}
+
+\vfill
+
+\begin{aufgabe}
+Entwerfen Sie zu der gegebenen Problembeschreibung mit Hilfe des Verfahrens von \textsc{Abbott} ein objektorientiertes Modell. 
+\end{aufgabe}
+
+\begin{aufgabe}
+Notieren Sie die Objekte als Objektkarten.
+\end{aufgabe}
+
+\end{document}

@@ -1,8 +1,15 @@
-\documentclass[11pt, a4paper]{article}
-\include{style}
-\begin{document}
-\textbf{{\Large Die Steuerung eines Hafenkrans}}\\
+\documentclass[11pt, a4paper]{scrartcl}
+\usepackage[
+	typ=ab,
+	fach=Informatik,
+]{schule}
+\usepackage{mdframed}
+\usepackage{textcomp}
 
+\title{Kranwagen-Projekt}
+
+\begin{document}
+\section*{Kranwagen-Projekt}
 
 Es soll ein Hafenkran modelliert werden. Der Kran soll sich frei bewegen können (360\textdegree~drehen) und den Arm heben können. Auch die Seilwinde soll sich automatisch drehen.\\
 
@@ -18,21 +25,18 @@ Aus Sicherheitsgründen soll, bevor irgendetwas anders passiert, die Kranbeleuch
 Der Kran soll einen Container anheben, steht aber noch in der falschen Position. Zunächst muss er sich für 5 Sekunden nach links drehen. Dazu muss der entsprechende Motor angeschaltet werden und dann für 5 Sekunden laufen. Danach muss der Kran den Arm etwas senken, um den Container erreichen zu können. Der entsprechende Motor muss zunächst wieder angeschaltet werden und dann für 2 Sekunden laufen. Dann kann der Motor für die Seilwinde angeschaltet werden und ...
 \end{mdframed}
 
-
-\vspace{0.5cm}
-\textbf{Aufgaben}:
-\begin{enumerate}
-\item Entwerfen Sie zu der gegebenen Problembeschreibung mit Hilfe des Verfahrens von Abbott ein objektorientiertes Modell, indem Sie die relevanten Objekte mit ihren Attributen und Methoden identifizieren. Notieren Sie die Objekte als Objektkarten.
-
-\item Überlegen Sie sich eine Komfortable Steuerung für die Anforderungen. 
-
-\item \emph{Für Fortgeschrittene}: Ließe sich auch ein Not-Aus-Schalter realisieren? Wenn ja, wie?
-\end{enumerate}
-
 \vfill
-\emph{Bauteile}:
-\begin{itemize}
-\item \emph{alle}, insbesondere Motoren
-\end{itemize}
+
+\begin{aufgabe}
+Entwerfen Sie zu der gegebenen Problembeschreibung mit Hilfe des Verfahrens von Abbott ein objektorientiertes Modell, indem Sie die relevanten Objekte mit ihren Attributen und Methoden identifizieren. Notieren Sie die Objekte als Objektkarten.
+\end{aufgabe}
+
+\begin{aufgabe}
+Überlegen Sie sich eine Komfortable Steuerung für die Anforderungen. 
+\end{aufgabe}
+
+\begin{aufgabe}
+\emph{Für Fortgeschrittene}: Ließe sich auch ein Not-Aus-Schalter realisieren? Wenn ja, wie?
+\end{aufgabe}
 
 \end{document}
