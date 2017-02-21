@@ -1,0 +1,31 @@
+\documentclass[11pt,a4paper,parskip=half]{scrartcl}
+\usepackage[
+	typ=ab,
+	fach=Informatik,
+]{schule}
+\usepackage{mdframed}
+
+\title{Theateraufführung -- Erstellen von Klassen}
+
+\begin{document}
+\section*{Die Lichtanlage einer Theateraufführung -- Erstellen von Klassen}
+
+Die Arbeit von Martin mit der Lichtanlage für die Theateraufführung ist noch nicht beendet. Hier sehen Sie, wie es für ihn weitergeht:
+
+\begin{mdframed}
+Um die Farben des RGB-Scheinwerfers auch während der Vorstellung fein nachjustieren zu können, nutzt Martin ein Mischpult mit verschiedenen Reglern. Von jedem Regler kann man den aktuellen Wert ablesen. Martin verknüpft das Mischpult so mit dem Scheinwerfer, dass jedes mal, wenn er auf einen Aktualisierungsknopf drückt, die eingestellte Farbe gewählt wird. Er nennt diese Kombination seinen regelbaren RGB-Scheinwerfer.
+
+Außerdem erweitert er die Hintergrundbeleuchtung so, dass sie aus insgesamt drei Scheinwerfern besteht. Bei dieser erweiterten Hintergrundbeleuchtung soll auch beim Einschalten der Helligkeitssensor befragt und mit der Antwort alle Scheinwerfer geschaltet werden.
+
+Diesen Aufbau testet Martin, indem er zuerst den regelbaren RGB-Scheinwerfer anschaltet und danach die Werte an den Reglern ändert. Nach 20 Sekunden aktualisiert er den Scheinwerfer um dann nur einen Regler zu ändern, nach 15 Sekunden ihn erneut zu aktualisieren und ihn dann nach weiteren 15 Sekunden auszuschalten. Anschließend schaltet er die Hintergrundbeleuchtung ein, während er den Helligkeitssensor mit einer Taschenlampe beleuchtet. Er wartet 10 Sekunden um die Hintergrundbeleuchtung ab und sofort wieder an zuschalten. Dieses Mal verdunkelt er aber den Helligkeitssensor. Die so angeschaltete Beleuchtung schaltet Martin nach 25 Sekunden aus und beendet damit seinen Test.
+\end{mdframed}
+
+\begin{aufgabe}
+	Modellieren Sie mit der Methode von \textsc{Abbott} die obige Situation in ein Klassendiagramm. Greifen Sie dazu ggf. auf schon bekannte Klassen zurück. Sollten Sie Probleme mit einer direkten Umsetzung haben, kann es von Vorteil sein, zuerst ein Objektdiagramm zu erstellen.
+\end{aufgabe}
+\begin{aufgabe}
+	Implementieren Sie die alle nötigen zusätzlichen Klassen, sowie ein Programm, dass die obige Beschreibung umsetzt.
+\end{aufgabe}
+
+
+\end{document}
