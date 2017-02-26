@@ -1,0 +1,125 @@
+\documentclass[11pt,a4paper,parskip=half]{scrartcl}
+\usepackage[
+	typ=ib,
+	fach=Informatik,
+]{schule}
+\usepackage{mdframed}
+
+\title{Klassen in Groovy}
+
+\renewcommand{\ttdefault}{pcr}
+
+\lstset{%
+	breaklines=true, % Zeilenumbrüche
+	language=Java, % Sprache
+	basicstyle=\ttfamily\small,
+	morekeywords={def},
+	tabsize=2,
+	numbers=left, numberstyle=\footnotesize,  numbersep=5pt,
+}
+
+\begin{document}
+\section*{Klassen in Groovy}
+
+Der Aufbau einer Klasse in Groovy wird hier am einfachen Beispiel der Klasse Mensch gezeigt. Eine Klasse wird in Groovy durch das Schlüsselwort \lstinline|class| eingeleitet. Alles was zu der Klasse gehört, befindet sich dann zwischen zwei geschweiften Klammern.
+
+\begin{lstlisting}[gobble=2]
+	class Mensch {
+	}
+
+	martin = new Mensch()
+\end{lstlisting}
+
+Dieses ist die einfachste Form der Klasse und es lässt sich von ihr auch direkt ein Objekt erzeugen. Innerhalb dieser Klasse werden als erstes die Attribute angeben. Groovy bietet hier den Vorteil an, dass zu jedem Attribut automatisch eine \lstinline|set| und \lstinline|get| Methode erzeugt wird, mit der man dem Attribut einen Wert zuweisen bzw. den Wert abfragen kann. Ein Attribut wird durch das Schlüsselwort \lstinline|def| eingeleitet, worauf der Bezeichner des Attributs folgt.
+
+\begin{lstlisting}[gobble=2]
+	class Mensch {
+		def name
+		def alter
+	}
+
+	martin = new Mensch()
+	martin.setName("Martin")
+	println(marting.getName())
+\end{lstlisting}
+
+Die Methoden werden unterhalb der Attribute in den Rumpf der Klasse geschrieben. Auch diese beginnen mit dem Schlüsselwort \lstinline|def|, gefolgt vom Bezeichner der Methode. Was innerhalb der Methode gemacht werden soll, folgt in geschweiften Klammern. Will man in einer Methode auf Attribute oder andere Methoden der Klasse zugreifen, so wird ein \lstinline|this.| davor gesetzt, um zu zeigen, dass es eigene Methoden bzw. Attribute sind.
+
+\begin{lstlisting}[gobble=2]
+	class Mensch {
+		//Platzhalter für Attribute
+
+		def erhoeheAlter() {
+			this.alter = this.alter + 1
+		}
+	}
+\end{lstlisting}
+
+Wie auch im Objekt- und Klassendiagramm, sind in Groovy die Methoden anhand ihre runden Klammern nach dem Bezeichner zu erkennen. Sollen Werte als Parameter an die Methode übergeben werden, so müssen diese zwischen den runden Klammern angegeben sein. Mehrere Parameter werden dabei durch Kommata getrennt.
+
+\begin{lstlisting}[gobble=2]
+	def sageEtwas(s) {
+		println("Ich sage " + s)
+	}
+\end{lstlisting}
+
+Wenn eine Methode eine Rückgabe liefern soll, so wird diese an der passenden Stelle mit dem Schlüsselwort \lstinline|return| angegeben. Alles was im Programmcode in Zeilen nach dem \lstinline|return| steht, wird nicht mehr ausgeführt, da die Rückgabe automatisch die Methode beendet.
+
+\begin{lstlisting}[gobble=2]
+	def frageName() {
+		return "Mein Name ist " + this.name
+	}
+\end{lstlisting}
+
+Eine besondere Methode einer Klasse ist der Konstruktor. Er ist daran zu erkennen, dass er den gleichen Bezeichner hat, wie die Klasse selber. Aufgerufen wird der Konstruktor immer dann, wenn von der Klasse eine Objekt erzeugt wird. Mit ihm werden z.\,B. die Startwerte des Objekts gesetzt. Hat der Konstruktor Parameter, so müssen diese entsprechend auch bei der Erzeugung des Objekts mit angegeben werden. Beim Aufschreiben der Klasse wird der Konstruktor nach den Attribute und vor allen anderen Methoden geschrieben.
+
+\begin{lstlisting}[gobble=2]
+	class Mensch {
+		//Attribute
+
+		def Mensch(name, alter) {
+			this.name = name
+			this.alter = alter
+		}
+
+		//Methoden
+	}
+
+	martin = new Mensch("Martin", 15)
+\end{lstlisting}
+
+Das vollständige Beispiel, mit Attributen, dem Konstruktor und verschiedenen Methoden könnte dann wie folgt aussehen:
+
+\begin{multicols}{2}
+	\begin{lstlisting}[gobble=4]
+		class Mensch {
+			def name
+			def alter
+
+			def Mensch(name, alter) {
+				this.name = name
+				this.alter = alter
+			}
+
+			def erhoeheAlter() {
+				this.alter = this.alter + 1
+			}
+
+			def sageEtwas(s) {
+				println("Ich sage " + s)
+			}
+
+			def frageName() {
+				return "Mein Name ist " + this.name
+			}
+		}
+
+		martin = new Mensch("Martin", 15)
+		martin.sageEtwas("Hallo")
+		println(martin.frageName())
+		martin.erhoeheAlter()
+		println("Martin ist " + martin.getAlter() + " Jahre alt")
+	\end{lstlisting}
+\end{multicols}
+
+\end{document}
