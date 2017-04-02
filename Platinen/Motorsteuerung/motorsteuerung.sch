@@ -1,0 +1,353 @@
+EESchema Schematic File Version 2
+LIBS:power
+LIBS:device
+LIBS:transistors
+LIBS:conn
+LIBS:linear
+LIBS:regul
+LIBS:74xx
+LIBS:cmos4000
+LIBS:adc-dac
+LIBS:memory
+LIBS:xilinx
+LIBS:microcontrollers
+LIBS:dsp
+LIBS:microchip
+LIBS:analog_switches
+LIBS:motorola
+LIBS:texas
+LIBS:intel
+LIBS:audio
+LIBS:interface
+LIBS:digital-audio
+LIBS:philips
+LIBS:display
+LIBS:cypress
+LIBS:siliconi
+LIBS:opto
+LIBS:atmel
+LIBS:contrib
+LIBS:valves
+LIBS:L293D
+LIBS:motorsteuerung-cache
+EELAYER 25 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L L293D U1
+U 1 1 58B5B771
+P 5500 2950
+F 0 "U1" H 5500 3050 60  0000 C CNN
+F 1 "L293D" H 5500 1750 60  0000 C CNN
+F 2 "Housings_DIP:DIP-16_W7.62mm_LongPads" H 5600 2950 60  0001 C CNN
+F 3 "" H 5600 2950 60  0001 C CNN
+	1    5500 2950
+	1    0    0    -1  
+$EndComp
+$Comp
+L CONN_01X04 P2
+U 1 1 58B5C8CA
+P 5150 4850
+F 0 "P2" H 5150 5100 50  0000 C CNN
+F 1 "CONN_01X04" V 5250 4850 50  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x04_Pitch2.54mm" H 5150 4850 50  0000 C CNN
+F 3 "" H 5150 4850 50  0000 C CNN
+	1    5150 4850
+	1    0    0    -1  
+$EndComp
+$Comp
+L CONN_01X08 J2
+U 1 1 58D05696
+P 2850 4100
+F 0 "J2" H 2850 4550 50  0000 C CNN
+F 1 "CONN_01X08" V 2950 4100 50  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x08_Pitch2.54mm" H 2850 4100 50  0001 C CNN
+F 3 "" H 2850 4100 50  0001 C CNN
+	1    2850 4100
+	-1   0    0    1   
+$EndComp
+$Comp
+L CONN_01X08 J1
+U 1 1 58D05E36
+P 6900 2150
+F 0 "J1" H 6900 2600 50  0000 C CNN
+F 1 "CONN_01X08" V 7000 2150 50  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x08_Pitch2.54mm" H 6900 2150 50  0001 C CNN
+F 3 "" H 6900 2150 50  0001 C CNN
+	1    6900 2150
+	1    0    0    -1  
+$EndComp
+$Comp
+L CONN_01X02 J3
+U 1 1 58D23149
+P 5000 5350
+F 0 "J3" H 5000 5500 50  0000 C CNN
+F 1 "CONN_01X02" V 5100 5350 50  0000 C CNN
+F 2 "wago:WAGO-233-2" H 5000 5350 50  0001 C CNN
+F 3 "" H 5000 5350 50  0001 C CNN
+	1    5000 5350
+	1    0    0    -1  
+$EndComp
+$Comp
+L CONN_01X04 J4
+U 1 1 58D231D8
+P 2900 4850
+F 0 "J4" H 2900 5100 50  0000 C CNN
+F 1 "CONN_01X04" V 3000 4850 50  0000 C CNN
+F 2 "wago:WAGO-233-4" H 2900 4850 50  0001 C CNN
+F 3 "" H 2900 4850 50  0001 C CNN
+	1    2900 4850
+	-1   0    0    1   
+$EndComp
+$Comp
+L CONN_01X02 J5
+U 1 1 58D2393C
+P 5000 5850
+F 0 "J5" H 5000 6000 50  0000 C CNN
+F 1 "CONN_01X02" V 5100 5850 50  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x02_Pitch2.54mm" H 5000 5850 50  0001 C CNN
+F 3 "" H 5000 5850 50  0001 C CNN
+	1    5000 5850
+	1    0    0    -1  
+$EndComp
+$Comp
+L CONN_01X02 J6
+U 1 1 58D2589C
+P 5000 6400
+F 0 "J6" H 5000 6550 50  0000 C CNN
+F 1 "CONN_01X02" V 5100 6400 50  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x02_Pitch2.54mm" H 5000 6400 50  0001 C CNN
+F 3 "" H 5000 6400 50  0001 C CNN
+	1    5000 6400
+	1    0    0    -1  
+$EndComp
+$Comp
+L R R1
+U 1 1 58D28440
+P 3750 4150
+F 0 "R1" V 3830 4150 50  0000 C CNN
+F 1 "0" V 3750 4150 50  0000 C CNN
+F 2 "Resistors_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal" V 3680 4150 50  0001 C CNN
+F 3 "" H 3750 4150 50  0001 C CNN
+	1    3750 4150
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	4750 1800 4750 2950
+Wire Wire Line
+	4700 1900 4700 3100
+Wire Wire Line
+	4700 3100 4750 3100
+Wire Wire Line
+	4600 2000 4600 3850
+Wire Wire Line
+	4600 3850 4750 3850
+Wire Wire Line
+	6300 2100 6300 4000
+Wire Wire Line
+	6300 4000 6250 4000
+Wire Wire Line
+	6350 2200 6350 3850
+Wire Wire Line
+	6650 2950 6250 2950
+Wire Wire Line
+	4750 3400 4200 3400
+Wire Wire Line
+	4200 4250 6900 4250
+Connection ~ 6500 3400
+Wire Wire Line
+	4750 3550 4200 3550
+Connection ~ 4200 3550
+Wire Wire Line
+	6250 3550 6500 3550
+Wire Wire Line
+	4200 3750 3050 3750
+Connection ~ 4200 3750
+Wire Wire Line
+	3500 4050 3050 4050
+Connection ~ 3500 4050
+Wire Wire Line
+	3500 4450 3050 4450
+Wire Wire Line
+	4750 3250 3150 3250
+Wire Wire Line
+	3150 3250 3150 4700
+Wire Wire Line
+	3150 3850 3050 3850
+Wire Wire Line
+	4750 3700 3250 3700
+Wire Wire Line
+	3250 3700 3250 4800
+Wire Wire Line
+	3250 3950 3050 3950
+Wire Wire Line
+	3300 2850 6450 2850
+Wire Wire Line
+	3300 2850 3300 4900
+Wire Wire Line
+	3300 4250 3050 4250
+Wire Wire Line
+	3050 4350 3350 4350
+Wire Wire Line
+	3350 2800 3350 5000
+Wire Wire Line
+	3500 4000 3500 5000
+Wire Wire Line
+	4200 3400 4200 4700
+Wire Wire Line
+	3500 5000 4950 5000
+Connection ~ 3500 4450
+Wire Wire Line
+	4200 4700 4950 4700
+Connection ~ 4200 4250
+Wire Wire Line
+	6700 1800 4750 1800
+Wire Wire Line
+	4700 1900 6700 1900
+Wire Wire Line
+	6700 2000 4600 2000
+Wire Wire Line
+	6300 2100 6700 2100
+Wire Wire Line
+	6250 3400 6900 3400
+Wire Wire Line
+	6650 2950 6650 2400
+Wire Wire Line
+	6650 2400 6700 2400
+Wire Wire Line
+	6350 2200 6700 2200
+Wire Wire Line
+	6700 2300 6400 2300
+Wire Wire Line
+	4800 5400 4150 5400
+Wire Wire Line
+	4150 5000 4150 6450
+Connection ~ 4150 5000
+Wire Wire Line
+	4650 4700 4650 6350
+Wire Wire Line
+	4650 5300 4800 5300
+Connection ~ 4650 4700
+Wire Wire Line
+	3150 4700 3100 4700
+Connection ~ 3150 3850
+Wire Wire Line
+	3250 4800 3100 4800
+Connection ~ 3250 3950
+Wire Wire Line
+	3300 4900 3100 4900
+Connection ~ 3300 4250
+Wire Wire Line
+	3350 5000 3100 5000
+Connection ~ 3350 4350
+Wire Wire Line
+	4650 5800 4800 5800
+Connection ~ 4650 5300
+Wire Wire Line
+	4150 5900 4800 5900
+Connection ~ 4150 5400
+Wire Wire Line
+	4650 6350 4800 6350
+Connection ~ 4650 5800
+Wire Wire Line
+	4150 6450 4800 6450
+Connection ~ 4150 5900
+Wire Wire Line
+	3050 4150 3600 4150
+Wire Wire Line
+	3900 4150 3900 3750
+Connection ~ 3900 3750
+Wire Wire Line
+	6550 2800 6550 3250
+Wire Wire Line
+	6550 3250 6250 3250
+Wire Wire Line
+	6450 2850 6450 3700
+Wire Wire Line
+	6450 3700 6250 3700
+Wire Wire Line
+	6350 3850 6250 3850
+Wire Wire Line
+	6400 2300 6400 3100
+Wire Wire Line
+	6400 3100 6250 3100
+$Comp
+L R R3
+U 1 1 58D3ACA3
+P 6700 3200
+F 0 "R3" V 6780 3200 50  0000 C CNN
+F 1 "0" V 6700 3200 50  0000 C CNN
+F 2 "Resistors_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal" V 6630 3200 50  0001 C CNN
+F 3 "" H 6700 3200 50  0001 C CNN
+	1    6700 3200
+	1    0    0    -1  
+$EndComp
+$Comp
+L R R2
+U 1 1 58D3AD14
+P 4450 4000
+F 0 "R2" V 4530 4000 50  0000 C CNN
+F 1 "0" V 4450 4000 50  0000 C CNN
+F 2 "Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P15.24mm_Horizontal" V 4380 4000 50  0001 C CNN
+F 3 "" H 4450 4000 50  0001 C CNN
+	1    4450 4000
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	6700 2500 6700 3050
+Wire Wire Line
+	6700 3400 6700 3350
+Wire Wire Line
+	4750 4000 4600 4000
+Wire Wire Line
+	4300 4000 3500 4000
+$Comp
+L R R4
+U 1 1 58D3B19F
+P 3900 2800
+F 0 "R4" V 3980 2800 50  0000 C CNN
+F 1 "0" V 3900 2800 50  0000 C CNN
+F 2 "Resistors_THT:R_Axial_DIN0204_L3.6mm_D1.6mm_P7.62mm_Horizontal" V 3830 2800 50  0001 C CNN
+F 3 "" H 3900 2800 50  0001 C CNN
+	1    3900 2800
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	3750 2800 3350 2800
+Wire Wire Line
+	4050 2800 6550 2800
+Wire Wire Line
+	6700 3000 6900 3000
+Wire Wire Line
+	6900 3000 6900 4250
+Connection ~ 6700 3000
+Wire Wire Line
+	6500 3550 6500 3400
+Connection ~ 6900 3400
+Connection ~ 6700 3400
+$Comp
+L CONN_01X01 J7
+U 1 1 58D3BFF7
+P 7150 3600
+F 0 "J7" H 7150 3700 50  0000 C CNN
+F 1 "CONN_01X01" V 7250 3600 50  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x01_Pitch2.54mm" H 7150 3600 50  0001 C CNN
+F 3 "" H 7150 3600 50  0001 C CNN
+	1    7150 3600
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6950 3600 6900 3600
+Connection ~ 6900 3600
+$EndSCHEMATC

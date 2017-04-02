@@ -14,3 +14,4 @@ pi4j-1.1/*
 classes/theater.groovy
 classes/progs/*
 privstart.sh
+*.bak
