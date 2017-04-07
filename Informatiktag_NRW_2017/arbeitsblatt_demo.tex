@@ -1,0 +1,54 @@
+\documentclass[11pt, a4paper]{scrartcl}
+\usepackage[
+	typ=ab,
+	fach=Informatik,
+]{schule}
+\usepackage{mdframed}
+
+\title{Objekte zum Anfassen (WS26)}
+
+
+\begin{document}
+\section*{Die Lichtanlage einer Theateraufführung}
+\subsubsection*{Informatik-Tag NRW 2017 -- Workshop 26 \enquote{Objekte zum Anfassen}}
+Für die Schultheateraufführung des Stückes \enquote{Mac Bath} von Shakebeer soll mit Hilfe des Raspberry Pis die Lichtanlage gesteuert werden. Die meisten Scheinwerfer sind links und rechts der Bühne an großen, senkrechten Gerüsten angebracht. Martin ist für das Licht verantwortlich.
+
+\vspace{1em}
+
+Hier ist ein Ausschnitt seiner Arbeit:
+
+\vspace{0.3em}
+
+\begin{mdframed}
+	Martin schaltet zunächst den grünen Scheinwerfer an. Nachdem er etwa 20 Sekunden gewartet hat, schaltet er auch den blauen Scheinwerfer an und schaltet den grünen aus. Nach weiteren 10 Sekunden schaltet er das gesamte Licht aus.
+	\vspace{1em}
+
+	Für die nächste Szene wird die spezielle Hintergrundbeleuchtung aktiviert. Dazu wird ein Helligkeitssenor befragt und mit der Antwort die Hintergrundbeleuchtung geschaltet.
+	\vspace{1em}
+
+	Dann arbeitet Martin mit dem RGB-Scheinwerfer\footnote{Der RGB-Scheinwerfer kann -- anders als die anderen -- eine beliebige Farbe annehmen. Dazu stellt man den Anteil an Rot, Grün und Blau ein.}: Er stellt eine Farbe von 50\% für grün, 20\% für rot und 25\% für blau ein. [\ldots]
+\end{mdframed}
+
+\vfill
+
+\begin{aufgabe}
+	Entwerfen Sie zu der gegebenen Problembeschreibung mit Hilfe des Verfahrens von Abbott ein objektorientiertes Modell.
+	\begin{itemize}
+		\item Heraussuchen von Nomen (Objekte), Verben (Methoden) und Adjektiven (Attribute)
+	\end{itemize}
+\end{aufgabe}
+
+\begin{aufgabe}
+	Notieren Sie die Objekte als Objektkarten.
+\end{aufgabe}
+
+\begin{aufgabe}
+	Setzten Sie die Geschichte in Groovy mit den Hardware-Bausteinen um!
+	\begin{itemize}
+		\item Nutzen Sie die vorbereiteten Klassen / die Modellierung aus der Schule.
+		\item Für diese Demo konnten natürlich keine neuen Wrapper-Klassen geschrieben werden.
+	\end{itemize}
+\end{aufgabe}
+
+
+\end{document}

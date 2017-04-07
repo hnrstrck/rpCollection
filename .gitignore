@@ -1,4 +1,8 @@
 Arbeitsblaetter/nudel.sh
+*.19.vrb
+*.nav
+*.snm
+*.toc
 *.out
 *.aux
 *.pdf
