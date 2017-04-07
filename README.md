@@ -95,8 +95,8 @@ werden die Java-Dateien kompiliert und die Groovy-Console gestartet, sodass mit 
 ### Beispiel
 Durch die Eingaben
 
-    meinLicht = new rpDiode();
-    meinLicht.setPin(17);
+    meinLicht = new rpDiode()
+    meinLicht.setPin(17)
     meinLicht.an()
     
 wird eine an Pin 17 (BCM-Nummerierung) angeschlossene LED angeschaltet.
