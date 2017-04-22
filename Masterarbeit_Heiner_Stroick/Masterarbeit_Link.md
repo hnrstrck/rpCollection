@@ -9,6 +9,6 @@ Im ausführlichen Anhang werden Informationen zur verwendeten Software und zum N
 
 Die für die Masterarbeit ist im Repository 
 
-	/hnrstrck/Masterarbeit_OOM
+	https://github.com/hnrstrck/Masterarbeit_OOM
 	
-zu finden ([Link](https://github.com/hnrstrck/Masterarbeit_OOM)); bitte beachten Sie die Lizenzangaben. Diese sind im Repository genauer erklärt. Die Masterarbeit wurde an separater Stelle veröffentlicht, damit das Clonen dieses Repos nicht so lange dauert und es unabhängig von den Materialien einen Ort gibt, wo es die Masterarbeit auch in Zukunft geben wird. 
+zu finden ([Link](https://github.com/hnrstrck/Masterarbeit_OOM)); bitte beachten Sie die Lizenzangaben. Diese sind im Repository genauer erklärt. Die Masterarbeit wurde an separater Stelle veröffentlicht, damit das Klonen dieses Repos nicht so lange dauert (sprich der Befehl `git clone https://github.com/hnrstrck/rpCollection`) und es unabhängig von den Materialien einen Ort gibt, wo es die Masterarbeit auch in Zukunft geben wird. 
