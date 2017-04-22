@@ -65,6 +65,7 @@ zu sehen (Anschluss eines Helligkeitssensors, Diode und einer RGB-LED). Weitere 
   </tr>
 </table>
 
+
 ## Voraussetzungen
 ### Hardware
 * Raspberry Pi
@@ -74,15 +75,27 @@ zu sehen (Anschluss eines Helligkeitssensors, Diode und einer RGB-LED). Weitere 
 * Bauteile (Bauanleitungen und Bilder folgen)
 
 ### Software
-* Pi4J (mit dem Raspberry Pi standardmäßig ausgeliefert) [Website](http://pi4j.com)
-* WiringPi (wird auch standardmäßig mitgeliefert) [Website](http://wiringpi.com/)
-* Groovy (ist i.d.R. noch zu installieren) [Website](http://groovy-lang.org/)
+* Pi4J (mit dem Raspberry Pi standardmäßig ausgeliefert) ([Website](http://pi4j.com))
+* WiringPi (wird auch standardmäßig mitgeliefert) ([Website](http://wiringpi.com/))
+* Groovy (ist i.d.R. noch zu installieren) ([Website](http://groovy-lang.org/))
 * Java
 
 #### Evtl. weitere Software
 * LaTeX für den Etikettendruck (falls Bauteile nachgebaut werden sollen oder die Arbeitsblätter kompiliert werden sollen)
+* KiCad zum Ausdrucken und Bearbeiten der Schaltpläne ([Website](http://kicad-pcb.org/))
+
 
 ## Anwendung und Beispiel
+
+### Einrichten von Java auf dem Rasperry Pi
+
+Das wohl wichtigeste ist die korrekte Installation von Java auf dem Raspberry Pi. Es muss sichergestellt sein, dass sich die installierte Java-Version und die Groovy-Version vertragen, da es sonst nach dem Kompilieren und Aufrufen in Groovy zu Fehlermeldungen kommen kann. 
+
+Hinweise sind der Read-Me-Datei in dem Ordner
+
+	/Java_Installation
+	
+zu entnehmen ([Direktlink](/Java_Installation/Read_Me_Java_Installation.md)).
 
 ### Starten
 
@@ -135,6 +148,15 @@ bzw.
      
 * Starte die Groovy-Console (mit eingebundenen Pfaden für Pi4J)
 * **kompilieren** der Java-Klassen (der Aufruf geht damit schneller)
+
+
+## Begleitung durch eine Masterarbeit
+
+Die hier vorgestellten Materialien entstanden überwiegend im Rahmen einer Masterarbeit an der TU Dortmund. Weitere Informationen sind im Ordner 
+
+	/Masterarbeit_Heiner_Stroick
+	
+zu finden ([Direktlink](/Masterarbeit_Heiner_Stroick/Masterarbeit_Link.md)).
 
 
 ## Lizenz / License
