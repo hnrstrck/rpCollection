@@ -1,4 +1,5 @@
 EESchema Schematic File Version 2
+LIBS:adwandler-rescue
 LIBS:power
 LIBS:device
 LIBS:transistors
@@ -88,14 +89,14 @@ F 3 "" H 4650 4650 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L CONN_01X06 J1
+L Conn_01x06 J1
 U 1 1 58B30941
-P 8100 3950
-F 0 "J1" H 8100 4300 50  0000 C CNN
-F 1 "CONN_01X06" V 8200 3950 50  0000 C CNN
-F 2 "adwandler:Socket_Strip_Straight_1x06_Pitch2.54mm_breit" H 8100 3950 50  0001 C CNN
-F 3 "" H 8100 3950 50  0001 C CNN
-	1    8100 3950
+P 8100 3900
+F 0 "J1" H 8100 4250 50  0000 C CNN
+F 1 "CONN_01X06" V 8200 3900 50  0000 C CNN
+F 2 "adwandler:Socket_Strip_Straight_1x06_Pitch2.54mm_breit" H 8100 3900 50  0001 C CNN
+F 3 "" H 8100 3900 50  0001 C CNN
+	1    8100 3900
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
