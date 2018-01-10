@@ -1,4 +1,5 @@
 EESchema Schematic File Version 2
+LIBS:rgb-rescue
 LIBS:power
 LIBS:device
 LIBS:transistors
@@ -28,7 +29,6 @@ LIBS:opto
 LIBS:atmel
 LIBS:contrib
 LIBS:valves
-LIBS:rgb-cache
 EELAYER 25 0
 EELAYER END
 $Descr A4 11693 8268
@@ -44,14 +44,14 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 $Comp
-L CONN_01X04_FEMALE J1
+L Conn_01x04_Female J1
 U 1 1 58B815B1
-P 5100 2250
-F 0 "J1" H 5100 2650 50  0000 C CNN
-F 1 "CONN_01X04_FEMALE" H 5200 1850 50  0000 C CNN
-F 2 "Pin_Headers:Pin_Header_Straight_1x04_Pitch2.54mm" H 5100 2550 50  0001 C CNN
-F 3 "" H 5100 2550 50  0001 C CNN
-	1    5100 2250
+P 5300 2150
+F 0 "J1" H 5300 2550 50  0000 C CNN
+F 1 "CONN_01X04_FEMALE" H 5400 1750 50  0000 C CNN
+F 2 "Pin_Headers:Pin_Header_Straight_1x04_Pitch2.54mm" H 5300 2450 50  0001 C CNN
+F 3 "" H 5300 2450 50  0001 C CNN
+	1    5300 2150
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -101,7 +101,7 @@ $EndComp
 Wire Wire Line
 	5000 1950 4500 1950
 Wire Wire Line
-	4500 2150 5000 2150
+	4500 2150 5100 2150
 Wire Wire Line
 	5000 2350 4500 2350
 Wire Wire Line
@@ -113,5 +113,15 @@ Wire Wire Line
 Wire Wire Line
 	3450 2150 3450 2550
 Wire Wire Line
-	3450 2550 5000 2550
+	3450 2550 5100 2550
+Wire Wire Line
+	5000 1950 5000 2050
+Wire Wire Line
+	5000 2050 5100 2050
+Wire Wire Line
+	5100 2250 5000 2250
+Wire Wire Line
+	5000 2250 5000 2350
+Wire Wire Line
+	5100 2550 5100 2350
 $EndSCHEMATC
