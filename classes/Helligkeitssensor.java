@@ -38,9 +38,18 @@ public class Helligkeitssensor{
 	*/
 	public boolean befragenIstHell(){
 		status = pPhoto.istLichteinfall();
-		return gibStatus();		
+		return gibStatus();
 	}
-	
+
+  /**
+  * Den Helligkeitssensor befragen.
+  * @return Lichteinfall (true = Lichteinfall, false = kein Lichteinfall).
+  */
+  public boolean befragen(){
+    status = pPhoto.istLichteinfall();
+    return gibStatus();
+  }
+
 	/**
 	* Frage nach dem Standort des Helligkeitssensors.
 	* @return Gibt den Standort des Helligkeitssensors als String zurueck.

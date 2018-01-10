@@ -32,6 +32,13 @@ public class RGBScheinwerfer{
 	public void einschalten(int rot, int gruen, int blau){
 		mischen(rot, gruen, blau);
 	}
+
+  /**
+  * Schalte den RGB-Scheinwerfer ein
+  */
+  public void einschalten(){
+    setzeStatus(true);
+  }
 	
 	/**
 	* Stelle eine neue Farbe ein.
@@ -52,6 +59,16 @@ public class RGBScheinwerfer{
 		
 		setzeStatus(true);
 	}
+
+  /**
+  * Stelle eine neue Farbe ein.
+  * @param rot Farbanteil fuer die Farbe rot.
+  * @param gruen Farbanteil fuer die Farbe gruen.
+  * @param blau Farbanteil fuer die Farbe blau.
+  */
+  public void farbeEinstellen(int rot, int gruen, int blau){
+    this.mischen(rot, gruen, blau);
+  }
 	
 	/**
 	* Schalte den RGBScheinwerfer mit der Rueckgabe eines anderen Objekts. 

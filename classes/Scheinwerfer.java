@@ -26,6 +26,13 @@ public class Scheinwerfer{
 		pDiode.an();
 		setzeStatus(true);
 	}
+
+  /**
+  * Schalte den Scheinwerfer an.
+  */
+  public void einschalten(){
+    this.anschalten();
+  }
 	
 	/**
 	* Laesst den Scheinwerfer kurz blinken. Am Ende ist der Scheinwerfer aus.
