@@ -1,0 +1,74 @@
+\documentclass[11pt,a4paper,parskip=half]{scrartcl}
+\usepackage[
+    typ=ib,
+    fach=Informatik,
+]{schule}
+
+\renewcommand{\ttdefault}{pcr}
+
+\lstset{%
+    breaklines=true, % Zeilenumbrüche
+    language=Java, % Sprache
+    basicstyle=\ttfamily\small,
+    morekeywords={def},
+    tabsize=2,
+    numbers=left, numberstyle=\footnotesize,  numbersep=5pt,
+}
+
+\title{Theateraufführung -- Klassendiagramm}
+
+\begin{document}
+\section*{Klassendiagramm für die Theateraufführung}
+
+Dieses ist eine mögliche Lösung für das Klassendiagramm der Theateraufführung:
+
+\begin{figure}[ht]
+    \centering
+    \begin{tikzpicture}
+        \begin{class}[text width = 6.3cm]{Mischpult}{0,0}
+            \operation{Mischpult()}
+            \operation{reglerAuslesen(reglerNr: Zahl): Zahl}
+        \end{class}
+
+        \begin{class}[text width = 3.5cm]{Regler}{8,2}
+            \attribute{wert: Zahl}
+            \operation{Regler()}
+            \operation{gibWert(): Zahl}
+            \operation{aendereWert()}
+        \end{class}
+
+        \begin{class}[text width = 6.3cm]{regelbarerRgbScheinwerfer}{0,-4}
+            \operation{regelbarerRgbScheinwerfer()}
+            \operation{einschalten()}
+            \operation{ausschalten()}
+            \operation{aktuallisieren()}
+        \end{class}
+
+        \begin{class}[text width = 3.5cm]{rgbScheinwerfer}{8,-6.5}
+        \end{class}
+
+        \draw [umlcd style inherit line,->] (Mischpult.north) |- (Regler.west) node[very near end, above]{regler} node[very near end, below]{3};
+        \draw [umlcd style inherit line,->] (regelbarerRgbScheinwerfer.north) -- (Mischpult.south) node[near end, left]{mischpult} node[near end, right]{1};
+        \draw [umlcd style inherit line,->] ([yshift=1cm]regelbarerRgbScheinwerfer.east) -| (rgbScheinwerfer.north) node[very near end, left]{scheinwerfer} node[very near end, right]{1};
+
+
+        \begin{class}[text width = 3.5cm]{Scheinwerfer}{0,7.5}
+        \end{class}
+
+        \begin{class}[text width = 3.5cm]{Helligkeitssensor}{6,7.5}
+        \end{class}
+
+        \begin{class}[text width = 11.6cm]{erweiterteHintergrundbeleuchtung}{3,5}
+            \operation{erweiterteHintergrundbeleuchtung(pin1: Zahl, pin2: Zahl, pin3: Zahl)}
+            \operation{einschalten()}
+            \operation{ausschalten()}
+        \end{class}
+
+        \draw [umlcd style inherit line,->] ([xshift=-3cm]erweiterteHintergrundbeleuchtung.north) -- (Scheinwerfer.south) node[near end, left]{scheinwerfer} node[near end, right]{3};
+        \draw [umlcd style inherit line,->] ([xshift=3cm]erweiterteHintergrundbeleuchtung.north) -- (Helligkeitssensor.south) node[near end, left]{sensor} node[near end, right]{1};
+
+    \end{tikzpicture}
+\end{figure}
+
+
+\end{document}

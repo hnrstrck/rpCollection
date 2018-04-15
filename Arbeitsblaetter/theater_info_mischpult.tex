@@ -1,0 +1,53 @@
+\documentclass[11pt,a4paper,parskip=half]{scrartcl}
+\usepackage[
+    typ=ib,
+    fach=Informatik,
+]{schule}
+
+\renewcommand{\ttdefault}{pcr}
+
+\lstset{%
+    breaklines=true, % Zeilenumbrüche
+    language=Java, % Sprache
+    basicstyle=\ttfamily\small,
+    morekeywords={def},
+    tabsize=2,
+    numbers=left, numberstyle=\footnotesize,  numbersep=5pt,
+}
+
+\title{Theateraufführung -- Die Klasse Mischpult}
+
+\begin{document}
+\section*{Die Klasse Mischpult}
+
+Nach der Beschreibung des zweiten Teils der Theateraufführung wäre folgendes Klassendiagramm eine Möglichkeit einer Modellierung für die Klasse Mischpult:
+
+\begin{figure}[ht]
+    \centering
+    \begin{tikzpicture}
+        \begin{class}[text width = 6.3cm]{Mischpult}{0,0}
+            \operation{Mischpult()}
+            \operation{reglerAuslesen(reglerNr: Zahl): Zahl}
+        \end{class}
+
+        \begin{class}[text width = 3.5cm]{Regler}{8,2}
+            \attribute{wert: Zahl}
+            \operation{Regler()}
+            \operation{gibWert(): Zahl}
+        \end{class}
+
+        \draw [umlcd style inherit line,->] (Mischpult.north) |- (Regler.west) node[very near end, above]{regler} node[very near end, below]{3};
+    \end{tikzpicture}
+\end{figure}
+
+Das Mischpult ist als Bauelement fest vorgegeben und die Regler sind darauf fest verbaut. Aus diesem Grund gibt wird auch die Klasse Mischpult in Groovy direkt vorgegeben und die Klasse Regler wird nur intern genutzt. Beim Anschluss des Mischpults ist auf die genaue Pinbelegung zu achten, die vorgeben ist. Bedingt durch diese Vorgabe muss auch kein Pin bei der Benutzung des Mischpuls angeben werden.
+
+Die drei nutzbaren Regler des Mischpults sind von 0 bis 2 durch nummeriert. Eine mögliche Benutzung in Groovy kann dann so aussehen:
+
+\begin{lstlisting}[gobble=2]
+    mischpult = new Mischpult()
+    wert0 = mischpult.reglerAuslesen(0)
+    println(wert0)
+\end{lstlisting}
+
+\end{document}
