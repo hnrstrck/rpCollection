@@ -1,36 +1,6 @@
-EESchema Schematic File Version 2
-LIBS:adwandler-rescue
-LIBS:power
-LIBS:device
-LIBS:transistors
-LIBS:conn
-LIBS:linear
-LIBS:regul
-LIBS:74xx
-LIBS:cmos4000
-LIBS:adc-dac
-LIBS:memory
-LIBS:xilinx
-LIBS:microcontrollers
-LIBS:dsp
-LIBS:microchip
-LIBS:analog_switches
-LIBS:motorola
-LIBS:texas
-LIBS:intel
-LIBS:audio
-LIBS:interface
-LIBS:digital-audio
-LIBS:philips
-LIBS:display
-LIBS:cypress
-LIBS:siliconi
-LIBS:opto
-LIBS:atmel
-LIBS:contrib
-LIBS:valves
+EESchema Schematic File Version 4
 LIBS:adwandler-cache
-EELAYER 25 0
+EELAYER 26 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
@@ -45,7 +15,7 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 $Comp
-L POT RV1
+L adwandler-rescue:POT RV1
 U 1 1 58B30835
 P 4700 3300
 F 0 "RV1" V 4525 3300 50  0000 C CNN
@@ -56,7 +26,7 @@ F 3 "" H 4700 3300 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L POT RV2
+L adwandler-rescue:POT RV2
 U 1 1 58B30844
 P 4700 3700
 F 0 "RV2" V 4525 3700 50  0000 C CNN
@@ -67,7 +37,7 @@ F 3 "" H 4700 3700 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L POT RV3
+L adwandler-rescue:POT RV3
 U 1 1 58B30853
 P 4700 4100
 F 0 "RV3" V 4525 4100 50  0000 C CNN
@@ -78,7 +48,7 @@ F 3 "" H 4700 4100 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L POT RV4
+L adwandler-rescue:POT RV4
 U 1 1 58B30862
 P 4650 4650
 F 0 "RV4" V 4475 4650 50  0000 C CNN
@@ -89,7 +59,7 @@ F 3 "" H 4650 4650 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Conn_01x06 J1
+L adwandler-rescue:Conn_01x06 J1
 U 1 1 58B30941
 P 8100 3900
 F 0 "J1" H 8100 4250 50  0000 C CNN
@@ -100,23 +70,20 @@ F 3 "" H 8100 3900 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	6250 4200 7900 4200
+	6250 4200 7400 4200
 Wire Wire Line
-	5950 4100 5950 5050
-Connection ~ 7400 4100
+	5950 4100 5950 4400
 Wire Wire Line
-	6250 3000 7250 3000
+	6250 3000 6500 3000
 Wire Wire Line
 	7250 3000 7250 4100
 Wire Wire Line
 	5950 3000 5950 2800
 Wire Wire Line
-	4700 2800 6500 2800
+	4700 2800 5950 2800
 Wire Wire Line
 	6500 2800 6500 3000
 Connection ~ 6500 3000
-Wire Wire Line
-	7250 4100 7900 4100
 Wire Wire Line
 	6650 3700 7900 3700
 Wire Wire Line
@@ -145,7 +112,7 @@ Connection ~ 5950 2800
 Wire Wire Line
 	4700 3150 4250 3150
 Wire Wire Line
-	4250 3150 4250 4500
+	4250 3150 4250 3550
 Wire Wire Line
 	4250 4500 4650 4500
 Wire Wire Line
@@ -162,7 +129,7 @@ Connection ~ 5950 4400
 Wire Wire Line
 	4650 4800 5200 4800
 Wire Wire Line
-	5200 4800 5200 3450
+	5200 4800 5200 4250
 Wire Wire Line
 	5200 3450 4700 3450
 Wire Wire Line
@@ -194,7 +161,7 @@ Wire Wire Line
 Wire Wire Line
 	4850 3200 4850 3300
 $Comp
-L MCP3208 U1
+L adwandler-rescue:MCP3208 U1
 U 1 1 58B34079
 P 6050 3500
 F 0 "U1" H 5850 4025 50  0000 R CNN
@@ -209,4 +176,22 @@ Wire Wire Line
 Wire Wire Line
 	7400 4400 5950 4400
 Connection ~ 7400 4200
+Wire Wire Line
+	6500 3000 7250 3000
+Wire Wire Line
+	5950 2800 6500 2800
+Wire Wire Line
+	4250 3950 4250 4500
+Wire Wire Line
+	4250 3550 4250 3950
+Wire Wire Line
+	5950 4400 5950 5050
+Wire Wire Line
+	5200 3850 5200 3450
+Wire Wire Line
+	5200 4250 5200 3850
+Wire Wire Line
+	7400 4200 7900 4200
+Wire Wire Line
+	7250 4100 7900 4100
 $EndSCHEMATC
