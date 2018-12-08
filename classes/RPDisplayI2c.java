@@ -27,6 +27,7 @@ public class RPDisplayI2c {
             this.init();
         } catch (Exception e) {
             System.out.println("Display konnte nicht initialisiert werden.");
+            System.out.println(e.getMessage());
         }
     }
 
@@ -63,14 +64,20 @@ public class RPDisplayI2c {
             this.lcd_byte(0x02, LCD_CMD); //LCD Home Command
         } catch (Exception e) {
             System.out.println("Fehler beim Leeren des Displays");
+            System.out.println(e.getMessage());
         }
     }
 
     public void write(int zeile, int spalte, String text) {
+        try {
             this.lcd_byte(LCD_LINE_ADDRESS[zeile] + spalte, LCD_CMD);
             for (int i = 0; i < text.length(); i++) {
-                lcd_byte(text.charAt(i), LCD_CHR);
+                this.lcd_byte(text.charAt(i), LCD_CHR);
             }
+        } catch (Exception e) {
+            System.out.println("Fehler beim Schreiben auf das Display");
+            System.out.println(e.getMessage());
+        }
     }
 
     public void ausschalten(){
@@ -79,6 +86,7 @@ public class RPDisplayI2c {
             this.dev.write((byte)LCD_NOBACKLIGHT);
         } catch (Exception e) {
             System.out.println("Konnte das Display nicht einschalten");
+            System.out.println(e.getMessage());
         }
     }
 
@@ -88,6 +96,7 @@ public class RPDisplayI2c {
             this.dev.write((byte)LCD_BACKLIGHT);
         } catch (Exception e) {
             System.out.println("Konnte das Display nicht einschalten");
+            System.out.println(e.getMessage());
         }
     }
 
@@ -99,6 +108,7 @@ public class RPDisplayI2c {
             this.dev = null;
         } catch (java.lang.NullPointerException e){
             System.out.println("Pin konnte nicht dereferenziert werden");
+            System.out.println(e.getMessage());
         }
     }
 
