@@ -33,7 +33,7 @@ public class Scheinwerfer{
   public void einschalten(){
     this.anschalten();
   }
-	
+
 	/**
 	* Laesst den Scheinwerfer kurz blinken. Am Ende ist der Scheinwerfer aus.
 	*/
@@ -42,27 +42,27 @@ public class Scheinwerfer{
 		pDiode.aus();
 		setzeStatus(false);
 	}
-	
+
 	/**
 	* Schalte den Scheinwerfer aus.
-	*/	
+	*/
 	public void ausschalten(){
 		pDiode.aus();
 		setzeStatus(false);
 	}
 
 	/**
-	* Schalte den Scheinwerfer mit der Rueckgabe eines anderen Objekts. 
-	* @param status Erforderlich ist ein Wahrheitswert (true / false). Ist der Parameterwert true, bleibt der Scheinwerfer aus. Ist der Parameterwert false, so geht der Scheinwerfer an. 
+	* Schalte den Scheinwerfer mit der Rueckgabe eines anderen Objekts.
+	* @param status Erforderlich ist ein Wahrheitswert (true / false). Ist der Parameterwert true, bleibt der Scheinwerfer aus. Ist der Parameterwert false, so geht der Scheinwerfer an.
 	*/
 	public void schalten(boolean status){
 		if (status == true){
-			ausschalten();
-		} else {
 			anschalten();
+		} else {
+			ausschalten();
 		}
 	}
-	
+
 	/**
 	* Frage nach dem Standort des Scheinwerfers.
 	* @return Gibt den Standort des Scheinwerfers als String zurueck.
@@ -71,7 +71,7 @@ public class Scheinwerfer{
 		System.out.println("Standort des Scheinwerfers ist: " + standort);
 		return standort;
 	}
-	
+
 	/**
 	* Setze den Standort des Scheinwerfers.
 	* @param pStandort Der Standort des Scheinwerfers als String.
@@ -80,7 +80,7 @@ public class Scheinwerfer{
 		System.out.println("Standort des Scheinwerfers als >" + pStandort + "< gesetzt");
 		standort =  pStandort;
 	}
-	
+
 	/**
 	* Frage nach der Farbe des Scheinwerfers.
 	* @return Gibt die Farbe des Scheinwerfers als String zurueck.
@@ -89,7 +89,7 @@ public class Scheinwerfer{
 		System.out.println("Farbe des Scheinwerfers ist: " + farbe);
 		return farbe;
 	}
-	
+
 	/**
 	* Setze die Farbe des Scheinwerfers.
 	* @param pFarbe Die Farbe des Scheinwerfers als String.
@@ -107,7 +107,7 @@ public class Scheinwerfer{
 		System.out.println("Status des Scheinwerfers ist: " + status);
 		return status;
 	}
-	
+
 	/**
 	* Setze den Status des Scheinwerfers.
 	* @param pStatus Der Status des Scheinwerfers als String.
@@ -116,7 +116,7 @@ public class Scheinwerfer{
 		System.out.println("Status des Scheinwerfers auf >" + pStatus + "< geaendert");
 		status =  pStatus;
 	}
-	
+
 	/**
 	* Setze den Scheinwerfer ab (der Pin wird freigegeben).
 	*/
