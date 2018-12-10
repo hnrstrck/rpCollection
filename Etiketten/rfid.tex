@@ -1,0 +1,96 @@
+\documentclass[a4paper,10pt]{scrartcl}
+\usepackage[utf8]{inputenc}
+\usepackage{tikz}
+\usepackage{multicol}
+
+\pagestyle{empty}
+
+\newcommand{\versionEins}{
+    \begin{tikzpicture}
+        \foreach \y in {1,2,...,8}{
+            \draw (0, -\y * 2.54mm) circle (1.6pt);
+            \draw (4 * 2.54mm, -\y * 2.54mm) circle (1.6pt);
+        }
+
+        \begin{scope}[every node/.style={right}]
+            \draw (0mm,-2.54mm) node {\tiny{VCC}}
+                ++(0,-2.54mm) node {\tiny{RST}}
+                ++(0,-2.54mm) node {\tiny{GND}}
+                ++(0,-2.54mm) node {\tiny{MISO}}
+                ++(0,-2.54mm) node {\tiny{MOSI}}
+                ++(0,-2.54mm) node {\tiny{SCK}}
+                ++(0,-2.54mm) node {\tiny{NSS}}
+                ++(0,-2.54mm) node {\tiny{IRQ}};
+
+            \draw (4 * 2.54mm,-2.54mm) node {\tiny{3V3}}
+                ++(0,-2.54mm) node {\tiny{IO25}}
+                ++(0,-2.54mm) node {\tiny{GND}}
+                ++(0,-2.54mm) node {\tiny{IO9}}
+                ++(0,-2.54mm) node {\tiny{IO10}}
+                ++(0,-2.54mm) node {\tiny{IO11}}
+                ++(0,-2.54mm) node {\tiny{IO8}}
+                ++(0,-2.54mm) node {\tiny{-}};
+        \end{scope}
+    \end{tikzpicture}
+}
+
+\newcommand{\versionZwei}{
+    \begin{tikzpicture}
+        \foreach \y in {1,2,...,8}{
+            \draw (0, -\y * 2.54mm) circle (1.6pt);
+            \draw (4 * 2.54mm, -\y * 2.54mm) circle (1.6pt);
+        }
+
+        \begin{scope}[every node/.style={right}]
+            \draw (0mm,-2.54mm) node {\tiny{3V3}}
+                ++(0,-2.54mm) node {\tiny{RST}}
+                ++(0,-2.54mm) node {\tiny{GND}}
+                ++(0,-2.54mm) node {\tiny{IRQ}}
+                ++(0,-2.54mm) node {\tiny{MISO}}
+                ++(0,-2.54mm) node {\tiny{MOSI}}
+                ++(0,-2.54mm) node {\tiny{SCK}}
+                ++(0,-2.54mm) node {\tiny{SDA}};
+
+            \draw (4 * 2.54mm,-2.54mm) node {\tiny{3V3}}
+                ++(0,-2.54mm) node {\tiny{IO25}}
+                ++(0,-2.54mm) node {\tiny{GND}}
+                ++(0,-2.54mm) node {\tiny{-}}
+                ++(0,-2.54mm) node {\tiny{IO9}}
+                ++(0,-2.54mm) node {\tiny{IO10}}
+                ++(0,-2.54mm) node {\tiny{IO11}}
+                ++(0,-2.54mm) node {\tiny{IO8}};
+        \end{scope}
+    \end{tikzpicture}
+}
+
+\begin{document}
+    \begin{multicols}{2}
+
+        \versionEins
+
+        \vspace{1cm}
+
+        \versionZwei
+
+        \vspace{1cm}
+
+        \versionZwei
+
+        \vspace{1cm}
+
+        \versionZwei
+
+        \vspace{1cm}
+
+        \versionZwei
+
+        \vspace{1cm}
+
+        \versionZwei
+
+        \vspace{1cm}
+
+        \versionZwei
+
+    \end{multicols}
+\end{document}
