@@ -22,7 +22,7 @@ public class RGBScheinwerfer{
 	RGBScheinwerfer(int pPinRot, int pPinGruen, int pPinBlau){
 		pRGB = new RPRGB(pPinRot, pPinGruen, pPinBlau);
 	}
-	
+
 	/**
 	* Schalte den RGB-Scheinwerfer ein, indem die angegbeene Farbe gesetzt wird.
 	* @param rot Farbanteil fuer die Farbe rot.
@@ -39,7 +39,7 @@ public class RGBScheinwerfer{
   public void einschalten(){
     setzeStatus(true);
   }
-	
+
 	/**
 	* Stelle eine neue Farbe ein.
 	* @param rot Farbanteil fuer die Farbe rot.
@@ -47,16 +47,16 @@ public class RGBScheinwerfer{
 	* @param blau Farbanteil fuer die Farbe blau.
 	*/
 	public void mischen(int rot, int gruen, int blau){
-		int r = (int)((float)rot/100f * 255f); 
-		int g = (int)((float)gruen/100f * 255f); 
-		int b = (int)((float)blau/100f * 255f); 
+		int r = (int)((float)rot/100f * 255f);
+		int g = (int)((float)gruen/100f * 255f);
+		int b = (int)((float)blau/100f * 255f);
 
 		pRGB.setzeFarbe(r,g,b);
-		
+
 		farberot = rot;
 		farbegruen = gruen;
 		farbeblau = blau;
-		
+
 		setzeStatus(true);
 	}
 
@@ -69,10 +69,10 @@ public class RGBScheinwerfer{
   public void farbeEinstellen(int rot, int gruen, int blau){
     this.mischen(rot, gruen, blau);
   }
-	
+
 	/**
-	* Schalte den RGBScheinwerfer mit der Rueckgabe eines anderen Objekts. 
-	* @param status Erforderlich ist ein Wahrheitswert (true / false). Ist der Parameterwert true, bleibt der RGBScheinwerfer aus. Ist der Parameterwert false, so geht der RGBScheinwerfer an. 
+	* Schalte den RGBScheinwerfer mit der Rueckgabe eines anderen Objekts.
+	* @param status Erforderlich ist ein Wahrheitswert (true / false). Ist der Parameterwert true, bleibt der RGBScheinwerfer aus. Ist der Parameterwert false, so geht der RGBScheinwerfer an.
 	*/
 	public void schalten(boolean status){
 		if (status == true){
@@ -81,7 +81,7 @@ public class RGBScheinwerfer{
 			einschalten(100,100,100);
 		}
 	}
-	
+
 	/**
 	* Schalte den RGB-Scheinwerfer aus.
 	*/
@@ -89,7 +89,7 @@ public class RGBScheinwerfer{
 		pRGB.aus();
 		setzeStatus(false);
 	}
-	
+
 	/**
 	* Frage nach dem Standort des RGB-Scheinwerfers.
 	* @return Gibt den Standort des RGB-Scheinwerfers als String zurueck.
@@ -98,7 +98,7 @@ public class RGBScheinwerfer{
 		System.out.println("Standort des RGB-Scheinwerfers ist: " + standort);
 		return standort;
 	}
-	
+
 	/**
 	* Setze den Standort des RGB-Scheinwerfers.
 	* @param pStandort Der Standort des RGB-Scheinwerfers als String.
@@ -107,7 +107,7 @@ public class RGBScheinwerfer{
 		System.out.println("Standort des RGB-Scheinwerfers als >" + pStandort + "< gesetzt");
 		standort =  pStandort;
 	}
-	
+
 	/**
 	* Gib den Licht-Aktiv-Status des RGB-Scheinwerfers.
 	* @return Der Status des RGB-Scheinwerfers (an = true / aus = false).
@@ -116,7 +116,7 @@ public class RGBScheinwerfer{
 		System.out.println("Licht-Aktiv-Status des RGB-Scheinwerfers ist: " + lichtAktiv);
 		return lichtAktiv;
 	}
-	
+
 	/**
 	* Setze den  Licht-Aktiv-Status des Scheinwerfers.
 	* @param pStatus Der  Licht-Aktiv-Status des RGB-Scheinwerfers als String.
@@ -125,7 +125,7 @@ public class RGBScheinwerfer{
 		System.out.println("Licht-Aktiv-Status des RGB-Scheinwerfers auf >" + pStatus + "< geaendert");
 		lichtAktiv =  pStatus;
 	}
-	
+
 	/**
 	* Gibt den Anteil der Farbe rot zurueck.
 	* @return Anteil der Farbe rot.
@@ -133,7 +133,7 @@ public class RGBScheinwerfer{
 	public int gibFarbeRot(){
 		return farberot;
 	}
-	
+
 	/**
 	* Gibt den Anteil der Farbe gruen zurueck.
 	* @return Anteil der Farbe gruen.
@@ -141,7 +141,7 @@ public class RGBScheinwerfer{
 	public int gibFarbeGruen(){
 		return farbegruen;
 	}
-	
+
 	/**
 	* Gibt den Anteil der Farbe blau zurueck.
 	* @return Anteil der Farbe blau.
@@ -149,11 +149,23 @@ public class RGBScheinwerfer{
 	public int gibFarbeBlau(){
 		return farbeblau;
 	}
-	
+
 	/**
 	* Setze den RGBScheinwerfer ab (die Pin wird freigegeben).
 	*/
 	public void herunterfahren(){
 		pRGB.herunterfahren();
 	}
+
+    public void setzeR(int farbe){
+        this.mischen(farbe, this.farbegruen, this.farbeblau);
+    }
+
+    public void setzeG(int farbe){
+        this.mischen(this.farberot, farbe, this.farbeblau);
+    }
+    public void setzeB(int farbe){
+        this.mischen(this.farberot, this.farbegruen, farbe);
+    }
+
 }

@@ -9,7 +9,7 @@ public class Helligkeitssensor{
 	private RPPhototransistor pPhoto;
 	private String standort;
 	private boolean status;
-	
+
 	/**
 	* Erstelle einen neuen Helligkeitssensor.
 	* @param pPin Pin des angeschlossenen Helligkeitssensors.
@@ -17,21 +17,21 @@ public class Helligkeitssensor{
 	Helligkeitssensor(int pPin){
 		pPhoto = new RPPhototransistor(pPin);
 	}
-		
+
 	/**
 	* Schalte den Helligkeitssensor ein.
 	*/
 	public void einschalten(){
 		System.out.println("Helligkeitssensor eingeschaltet.");
 	}
-	
+
 	/**
 	* Schalte den Helligkeitssensor aus.
-	*/	
+	*/
 	public void ausschalten(){
 		System.out.println("Helligkeitssensor ausgeschaltet.");
 	}
-	
+
 	/**
 	* Den Helligkeitssensor befragen.
 	* @return Lichteinfall (true = Lichteinfall, false = kein Lichteinfall).
@@ -58,7 +58,7 @@ public class Helligkeitssensor{
 		System.out.println("Standort des Helligkeitssensors ist: " + standort);
 		return standort;
 	}
-	
+
 	/**
 	* Setze den Standort des Helligkeitssensors.
 	* @param pStandort Der Standort des Helligkeitssensors als String.
@@ -67,7 +67,7 @@ public class Helligkeitssensor{
 		System.out.println("Standort des Helligkeitssensors als >" + standort + "< gesetzt");
 		standort =  pStandort;
 	}
-	
+
 	/**
 	* Gib den Status des Helligkeitssensors (gespeicherter Wert nach der letzten Messung). <b>Kann evtl. abweichen vom tatsaechlichen Status!</b>
 	* @return Der Status der Hintergrundbeleuchtung (Lichteinfall = true / kein Lichteinfall = false).
@@ -76,7 +76,11 @@ public class Helligkeitssensor{
 		System.out.println("Status des Helligkeitssensors ist: " + status);
 		return status;
 	}
-	
+
+    public boolean istHell() {
+        return this.gibStatus();
+    }
+
 	/**
 	* Setze den Status des Helligkeitssensors.
 	* @param pStatus Der Status des Helligkeitssensors als Wahrheitswert.
@@ -85,7 +89,7 @@ public class Helligkeitssensor{
 		System.out.println("Status des Helligkeitssensors auf >" + status + "< geaendert");
 		status =  pStatus;
 	}
-	
+
 	/**
 	* Fahre den Helligkeitssensor herunter (der Pin wird freigegeben).
 	*/
