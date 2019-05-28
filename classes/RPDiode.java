@@ -2,7 +2,7 @@ import com.pi4j.io.gpio.*;
 
 /**
  * Klasse zum Anschluss einer Diode an den Raspberry Pi. Die Diode kann an- und ausgeschaltet werden, blinken und auch in ihrer Blinkfrequenz geaendert weden (auch mit einem AD-Wandler).
- * 
+ *
  * @author Heiner Stroick
  * @version 0.9
  */
@@ -89,8 +89,8 @@ public final class RPDiode {
     }
 
 	/**
-	* Schalte den die Diode in Abhaengigkeit eines Wertes an oder aus. 
-	* @param status Erforderlich ist ein Wahrheitswert (true / false). Ist der Parameterwert true, bleibt die Diode aus. Ist der Parameterwert false, so geht die Diode an. 
+	* Schalte den die Diode in Abhaengigkeit eines Wertes an oder aus.
+	* @param status Erforderlich ist ein Wahrheitswert (true / false). Ist der Parameterwert true, bleibt die Diode aus. Ist der Parameterwert false, so geht die Diode an.
 	*/
 	public void schalten(boolean status){
 		if (status == true){
@@ -99,10 +99,10 @@ public final class RPDiode {
 			an();
 		}
 	}
-	
+
     /**
     * Schaltet die Diode aus.
-    */    
+    */
     public void aus() {
         if (boolInitialisierungErfolgt == true){
             try{
@@ -138,11 +138,11 @@ public final class RPDiode {
         if (boolInitialisierungErfolgt == true){
             try{
                 if (pin.getState() == PinState.HIGH) {
-                    System.out.println("Ja, Diode ist an");
+                    Helfer.println("Ja, Diode ist an");
                     return true;
                 } else {
-                    System.out.println("Nein, Diode ist aus");
-                    return false; 
+                    Helfer.println("Nein, Diode ist aus");
+                    return false;
                 }
             } catch (NullPointerException f){
                 System.out.println("Error: Pin nicht definiert? (NullPointerException)");
@@ -151,7 +151,7 @@ public final class RPDiode {
         } else {
             System.out.println("Zuerst Pin fuer die Diode angeben");
             return false;
-        }    
+        }
     }
 
     /**
@@ -162,11 +162,11 @@ public final class RPDiode {
         if (boolInitialisierungErfolgt == true){
             try{
                 if (pin.getState() == PinState.LOW) {
-                    System.out.println("Ja, Diode ist aus");
+                    Helfer.println("Ja, Diode ist aus");
                     return true;
                 } else {
-                    System.out.println("Nein, Diode ist an");
-                    return false; 
+                    Helfer.println("Nein, Diode ist an");
+                    return false;
                 }
             } catch (NullPointerException f){
                 System.out.println("Error: Pin nicht definiert? (NullPointerException)");
@@ -175,10 +175,10 @@ public final class RPDiode {
         } else {
             System.out.println("Zuerst Pin fuer die Diode angeben");
             return false;
-        }    
+        }
     }
 
-    
+
     /**
     * Laesst die Diode fuer kurze Zeit blinken.
     */
@@ -202,7 +202,7 @@ public final class RPDiode {
     /**
     * Laesst die Diode blinken (auf unbestimmte Zeit). Die Frequenz kann in Millisekunden angepasst werden.
     * @param pIntervall Regelt die Blinkfrequenz ueber Pulsweitenmodulation (Angabe in Millisekunden).
-    */    
+    */
     private void startBlinken(int pIntervall) {
         if (boolInitialisierungErfolgt == true){
             threadEndlosBlinken = new Thread(){
@@ -214,9 +214,9 @@ public final class RPDiode {
 
                             //Signal endlos blinken
                             an();
-                            Thread.sleep(pIntervall);     
+                            Thread.sleep(pIntervall);
                             aus();
-                            Thread.sleep(pIntervall); 
+                            Thread.sleep(pIntervall);
 
                         }
 
@@ -241,7 +241,7 @@ public final class RPDiode {
     * @see RPADWandler
     * @see RPRegler
     * @see Helfer
-    */  
+    */
     private void startBlinkenVariabel(RPADWandler meinWandler, RPRegler meinRegler) {
         if (boolInitialisierungErfolgt == true){
 
@@ -254,9 +254,9 @@ public final class RPDiode {
 
                             //Signal endlos blinken
                             an();
-                            Thread.sleep((int)Math.round(((100f - (float)(RPADWandler.gibProzentwertVonRegler(meinRegler,0)))/100f)*300f));     
+                            Thread.sleep((int)Math.round(((100f - (float)(RPADWandler.gibProzentwertVonRegler(meinRegler,0)))/100f)*300f));
                             aus();
-                            Thread.sleep((int)Math.round(((100f - (float)(RPADWandler.gibProzentwertVonRegler(meinRegler,0)))/100f)*300f));     
+                            Thread.sleep((int)Math.round(((100f - (float)(RPADWandler.gibProzentwertVonRegler(meinRegler,0)))/100f)*300f));
 
                         }
                     } catch (InterruptedException e) {
@@ -275,7 +275,7 @@ public final class RPDiode {
 
     /**
     * Laesst die Diode blinken (auf unbestimmte Zeit). Die Frequenz ist voreingestellt (200 Millisekunden).
-    */  
+    */
     public void blinkeEndlosStart(){
         if (boolInitialisierungErfolgt == true){
 
@@ -294,7 +294,7 @@ public final class RPDiode {
     /**
     * Laesst die Diode blinken (auf unbestimmte Zeit). Die Frequenz kann in Millisekunden angepasst werden.
     * @param pIntervall Regelt die Blinkfrequenz ueber Pulsweitenmodulation (Angabe in Millisekunden).
-    */   
+    */
     public void blinkeEndlosStart(int pIntervall){
         if (boolInitialisierungErfolgt == true){
 
@@ -318,7 +318,7 @@ public final class RPDiode {
     * @see RPADWandler
     * @see RPRegler
     * @see Helfer
-    */  
+    */
     public void blinkeEndlosStart(RPADWandler pWandler, RPRegler pRegler){
         if (boolInitialisierungErfolgt == true){
 
@@ -337,7 +337,7 @@ public final class RPDiode {
 
     /**
     * Beendet das endlose blinken der Diode.
-    */  
+    */
     public void blinkeEndlosStop(){
         if (boolInitialisierungErfolgt == true){
 
@@ -349,10 +349,10 @@ public final class RPDiode {
             System.out.println("Zuerst Pin fuer die Diode angeben");
         }
     }
-    
+
     /**
     * Schalte GPIO ab und dereferenziere den GPIO und den Pin.
-    */  
+    */
     public void herunterfahren() {
 		aus();
         gpio.shutdown();

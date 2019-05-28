@@ -2,7 +2,7 @@ import com.pi4j.io.gpio.*;
 
 /**
  * Klasse fuer den Anschluss eines einfachen Tasters an den Raspberry Pi. Der Taster kann gefragt werden, ob er gerade gedrueckt ist. Ausserdem kann er fuer 10 Mal hintereinander gefragt werden, ob er gerade gedrueckt ist, oder nicht.
- * 
+ *
  * @author Heiner Stroick
  * @version 0.9
  */
@@ -72,11 +72,11 @@ public final class RPTaster {
         if (boolInitialisierungErfolgt == true){
             try{
                 if (pin.getState() == PinState.HIGH) {
-                    System.out.println("Ja, Taster gedrueckt");
+                    Helfer.println("Ja, Taster gedrueckt");
                     return true;
                 } else {
-                    System.out.println("Nein, Taster nicht gedrueckt");
-                    return false; 
+                    Helfer.println("Nein, Taster nicht gedrueckt");
+                    return false;
                 }
             } catch (NullPointerException f){
                 System.out.println("Error: Pin nicht definiert? (NullPointerException)");
@@ -85,12 +85,12 @@ public final class RPTaster {
         } else {
             System.out.println("Zuerst Pin fuer den Phototransistor angeben");
             return false;
-        }    
+        }
     }
-    
+
     /**
-    * Ueberprueft 10 Mal, ob der Taster gedrueckt ist (keie Rueckgabe). Die Ergebnisse werden in der Shell ausgegeben. 
-    */ 
+    * Ueberprueft 10 Mal, ob der Taster gedrueckt ist (keie Rueckgabe). Die Ergebnisse werden in der Shell ausgegeben.
+    */
     public void ueberwache10Mal() {
         System.out.println("Ueberwache 10 mal den Taster");
 
@@ -115,10 +115,10 @@ public final class RPTaster {
             System.out.println("Error: Thread-Sleep unterbrochen (InterruptedException)");
         }
     }
-    
+
     /**
     * Schalte GPIO ab und dereferenziere den GPIO und den Pin.
-    */ 
+    */
     public void herunterfahren() {
         gpio.shutdown();
         try{

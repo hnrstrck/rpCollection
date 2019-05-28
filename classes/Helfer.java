@@ -14,12 +14,12 @@ public class Helfer
      * Erstelle ein neues Objekt der Klasse Helfer. Statische Methoden koennnen auch ohne ein erstelltes Objekt aufgerufen werden (bpsw. zum Freigeben der Pinne, Setzen des Pin-Layouts oder zur Auswahl des AD-Wandlers).
      */
     public Helfer(){
-		System.out.println("Helferobjekt erstellt.");   
+		System.out.println("Helferobjekt erstellt.");
     }
- 
+
 	//GPIO zum runterfahren
  	private static GpioController gpio;
- 
+
     /**
      * J8-Pin Nummerierung wie auf der Pi4J Website: <a href="http://pi4j.com/pin-numbering-scheme.html">http://pi4j.com/pin-numbering-scheme.html</a>
      */
@@ -170,7 +170,7 @@ public class Helfer
      * boolean (true oder false - je nachdem, ob das BCM-Layout verwendet wird).
      */
     public static boolean istBCMLayout = true;
-    
+
     /**
 	 * boolean (true oder false - je nachdem, ob das J8-Layout verwendet wird).
      */
@@ -181,16 +181,21 @@ public class Helfer
      * Standard-AD-Wandler: MCP 3208 mit 12 Bit Aufloesung = 4096 Aufloesungswerte, also aufloesungADWandler = 4096.
      */
     public static int aufloesungADWandler = 4096;
-    
+
      /**
 	 * boolean (true oder false - je nachdem, ob der MCP3208 eingestellt ist).
      */
     public static boolean istMCP3208 = true;
-    
+
      /**
 	 * boolean (true oder false - je nachdem, ob der MCP3008 eingestellt ist).
      */
     public static boolean istMCP3008 = false;
+
+    /**
+    * boolean (ob es eine Ausgabe der Elemente geben soll)
+    */
+    public static boolean ausgabe = true;
 
     /**
      * Aendere das Pin-Layout auf BCM oder J8.
@@ -230,18 +235,18 @@ public class Helfer
             System.out.println("Eingabe nicht erkannt. AD-Wandler unveraendert.");
         }
     }
-    
+
     /**
-     * Gib alle Pinne frei und fahre den GPIO herunter. 
+     * Gib alle Pinne frei und fahre den GPIO herunter.
      * @throws InterruptedException Exception wird geworfen, falls die Methode gewaltsam beendet wird.
-     */    
+     */
     public static void herunterfahren() throws InterruptedException{
         System.out.println("Fahre alles herunter");
-	
+
 		gpio = GpioFactory.getInstance();
-		
+
 		List<GpioPin> allePinne = new ArrayList<GpioPin>(gpio.getProvisionedPins());
-		
+
 		for(int i = 0; i < allePinne.size(); i++){
 			try{
 				gpio.unprovisionPin(allePinne.get(i));
@@ -250,23 +255,23 @@ public class Helfer
 				System.out.println("Pin konnte nicht dereferenziert werden");
 			}
 		}
-		
+
         Thread.sleep(3000);
 
         System.out.println("Fahre GPIO herunter");
 
         gpio.shutdown();
-        
+
         Thread.sleep(500);
 
         System.out.println("Alles heruntergefahren");
     }
-    
+
      /**
-     * Gib alle Pinne frei und fahre den GPIO herunter. 
+     * Gib alle Pinne frei und fahre den GPIO herunter.
      * @throws InterruptedException Exception wird geworfen, falls die Methode gewaltsam beendet wird.
      * @see herunterfahren
-     */  
+     */
     public static void freigeben() throws InterruptedException{
 		herunterfahren();
 	}
@@ -278,11 +283,11 @@ public class Helfer
 	 */
     public static void pinneAnzeigen() throws InterruptedException{
         System.out.println("Zeige bisherige vergebene Pinne an");
-	
+
 		gpio = GpioFactory.getInstance();
 
 		Collection<GpioPin>	allePinne = gpio.getProvisionedPins();
-		
+
 		Iterator itor = allePinne.iterator();
 
 		while(itor.hasNext())
@@ -296,7 +301,7 @@ public class Helfer
 
         System.out.println("Ende Anzeigen");
     }
-    
+
     /**
      * Warte eine bestimmte Zeit in Sekunden;
      * @param pZeit Zeit in Sekunden, die gewartet werden soll.
@@ -308,4 +313,30 @@ public class Helfer
 			System.out.println("Warten abgebrochen!");
 		}
 	}
+
+    /**
+    * Macht die Ausgabe für die RP-Elemente, abhängig davon, ob sie
+    * getätigt werden soll oder nicht.
+    * @param ausgabe Ausgabe als String
+    */
+    public static void println(String ausgabe) {
+        if (Helfer.ausgabe) {
+            System.out.println(ausgabe);
+        }
+    }
+
+    /**
+    * Schaltet die Ausgabe an
+    */
+    public static void ausgabeAn() {
+        Helfer.ausgabe = true;
+    }
+
+    /**
+    * Schaltet die Ausgabe aus
+    */
+    public static void ausgabeAus() {
+        Helfer.ausgabe = false;
+    }
+
 }
