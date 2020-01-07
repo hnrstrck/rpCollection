@@ -1,5 +1,4 @@
 import com.pi4j.wiringpi.*;
-import javax.xml.bind.*;
 
 /**
  * Klasse zum Anschluss eines RFID-Empfängers an den Raspberry Pi.
