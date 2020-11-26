@@ -11,7 +11,7 @@
 
 % \include{style}
 
-\lstset{% 
+\lstset{%
 	breaklines=true, % Zeilenumbrüche
 	language=Java, % Sprache
 	basicstyle=\ttfamily\small,
@@ -33,7 +33,7 @@ Wir haben im Unterricht gesehen, dass es zwei verschiedene Varianten gibt, folge
 
 \subsection*{Variante A: Martin kennt Hintergrundbeleuchtung und Helligkeitssensor}
 
-In dieser Variante kennt Martin die Hintergrundbeleuchtung und den Helligkeitssensor. Das heißt, Martin hat zwei Attribute, die auf das Objekt der Hintergrundbeleuchtung und das Objekt des Helligkeitssensors verweisen (dies hatten wir mit zwei Fäden im Objektspiel von Martin zur Hintergrundbeleuchtung und zum Helligkeitssensor dargestellt, s. Objektdiagramm in Abbildung~\ref{fig:martin_kennt_hg_hs}). 
+In dieser Variante kennt Martin die Hintergrundbeleuchtung und den Helligkeitssensor. Das heißt, Martin hat zwei Attribute, die auf das Objekt der Hintergrundbeleuchtung und das Objekt des Helligkeitssensors verweisen (dies hatten wir mit zwei Fäden im Objektspiel von Martin zur Hintergrundbeleuchtung und zum Helligkeitssensor dargestellt, s. Objektdiagramm in Abbildung~\ref{fig:martin_kennt_hg_hs}).
 
 Das Sequenzdiagramm ist in Abbildung~\ref{seq:klassische_situation_martin_kennt_hg_hs} dargestellt. Man erkennt sehr schön, wie Martin selbstständig beim Helligkeitssensor nachfragt, ob es gerade hell ist oder nicht und dann mit der Antwort die Hintergrundbeleuchtung schaltet.
 
@@ -55,9 +55,9 @@ Das Sequenzdiagramm ist in Abbildung~\ref{seq:klassische_situation_martin_kennt_
 
 \begin{object}[text width=6cm]{helligkeitssensor}{0,-3}
     \attribute{~}
-    \operation{befragenIstHell()} 
+    \operation{befragenIstHell()}
 \end{object}
-   
+
 \draw[->]  (verlinkungMartinHG.east) -- ($(verlinkungMartinHG.east) + (4,0)$) -| (hintergrundbeleuchtung.north);
 
 \draw[->]  (verlinkungHGSensor.east) -- ($(verlinkungHGSensor.east) + (0.5,0)$) -| ($(helligkeitssensor.north)+ (2.4,0)$);
@@ -81,7 +81,7 @@ Das Sequenzdiagramm ist in Abbildung~\ref{seq:klassische_situation_martin_kennt_
 \nextlevel
 \begin{call}{martin}{schalten(\diastring{ja})}{hintergrund}{}\end{call}
 
-\end{sequencediagram} 
+\end{sequencediagram}
 }
 \caption{Martin fragt selbstständig beim Helligkeitssensor nach (im Unterschied zu Variante~B).}
 \label{seq:klassische_situation_martin_kennt_hg_hs}
@@ -124,7 +124,7 @@ Das bedeutet: Martin kann bei der Hintergrundbeleuchtung die Methode zum bedingt
 
 \begin{object}[text width=5cm]{helligkeitssensor}{8,-6}
     \attribute{~}
-    \operation{befragenIstHell()} 
+    \operation{befragenIstHell()}
 \end{object}
 
 \draw[->]  (verlinkungMartinHG.east) -- ($(verlinkungMartinHG.east) + (2,0)$) -| ($(hintergrundbeleuchtung.north)+(1,0)$);
@@ -147,11 +147,11 @@ Das bedeutet: Martin kann bei der Hintergrundbeleuchtung die Methode zum bedingt
 \newinst[2]{hellig}{helligkeitssensor}
 
 \begin{call}{martin}{bedingtesAnschalten()}{hintergrund}{}
-\begin{call}{hintergrund}{befragenIstHell()}{hellig}{\diastring{ja}}\end{call}
+\begin{call}{hintergrund}{befragenIstHell()}{hellig}{\diastring{nein}}\end{call}
 \nextlevel
-\begin{call}{hintergrund}{ausschalten()}{hintergrund}{}\end{call}
+\begin{call}{hintergrund}{anschalten()}{hintergrund}{}\end{call}
 \end{call}
-\end{sequencediagram} 
+\end{sequencediagram}
 }
 \caption{Martin ruft das bedingte Anschalten, die Hintergrundbeleuchtung befragt den Helligkeitssensor und schaltet sich dann selbst an oder aus.}
 \label{seq:hintergrund_kennt_helligkeitssenesor}
