@@ -19,3 +19,4 @@ classes/theater.groovy
 classes/progs/*
 privstart.sh
 *.bak
+*.xsim
