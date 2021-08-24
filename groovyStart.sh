@@ -13,4 +13,4 @@ echo "Starte Groovy"
 echo "Dies kann einen Moment dauern..."
 echo " "
 
-JAVA_HOME=$JAVA_HOME groovy -classpath './classes:/opt/pi4j/lib/*' $1
+groovy -classpath '.:./classes:/opt/pi4j/lib/*' $1
