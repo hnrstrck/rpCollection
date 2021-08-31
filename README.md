@@ -97,16 +97,6 @@ Nach einem Neustart des Raspberry Pi muss noch folgendes nachinstalliert werden:
 
 ## Anwendung und Beispiel
 
-### Einrichten von Java auf dem Rasperry Pi
-
-Das wohl wichtigeste ist die korrekte Installation von Java auf dem Raspberry Pi. Es muss sichergestellt sein, dass sich die installierte Java-Version und die Groovy-Version vertragen, da es sonst nach dem Kompilieren und Aufrufen in Groovy zu Fehlermeldungen kommen kann.
-
-Hinweise sind der Read-Me-Datei in dem Ordner
-
-	/Java_Installation
-
-zu entnehmen ([Direktlink](/Java_Installation/Read_Me_Java_Installation.md)).
-
 ### Starten
 
 Mit dem Aufruf
