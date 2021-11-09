@@ -92,7 +92,7 @@ Nach einem Neustart des Raspberry Pi muss noch folgendes nachinstalliert werden:
 
 #### Evtl. weitere Software
 * LaTeX für den Etikettendruck (falls Bauteile nachgebaut werden sollen oder die Arbeitsblätter kompiliert werden sollen)
-* KiCad zum Ausdrucken und Bearbeiten der Schaltpläne ([Website](http://kicad-pcb.org/))
+* KiCad zum Ausdrucken und Bearbeiten der Schaltpläne ([Website](http://kicad.org/))
 
 
 ## Anwendung und Beispiel
