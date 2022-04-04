@@ -2,7 +2,7 @@ import com.pi4j.io.gpio.*;
 import java.util.ArrayList;
 
 /**
- * Klasse fuer den Anschluss eines einfachen Tasters an den Raspberry Pi. Der Taster kann gefragt werden, ob er gerade gedrueckt ist. Ausserdem kann er fuer 10 Mal hintereinander gefragt werden, ob er gerade gedrueckt ist, oder nicht.
+ * Klasse fuer den Anschluss eines 4x4 Tastenfeldes an den Raspberry Pi. Das Tastenfeld kann gefragt werden, welche Taste gerade gedrueckt ist.
  * 
  * @author Luca Michael Mathaea
  * @version 0.99 
