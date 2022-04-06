@@ -68,7 +68,7 @@ public final class RPTastenfeld {
                 System.out.println("Input-Pin " + pPins.get(i) + " gesetzt");
             }
         } catch (NullPointerException f) {
-            System.out.println("Error: Pin nicht definiert? (NullPointerException): " + f);
+            System.out.println("Error: Pin nicht definiert? Klasse: Tastenfeld (NullPointerException)");
         } 
 
     }
@@ -87,7 +87,7 @@ public final class RPTastenfeld {
                 System.out.println("Output-Pin " + pPins.get(i) + " gesetzt");
             }   
         } catch (NullPointerException f) {
-            System.out.println("Error: Pin nicht definiert? (NullPointerException): " + f);
+            System.out.println("Error: Pin nicht definiert? Klasse: Tastenfeld (NullPointerException)");
         }
     }
 
@@ -120,7 +120,7 @@ public final class RPTastenfeld {
                 System.out.println("Error: Pin nicht definiert? Klasse: Tastenfeld (NullPointerException)");
             }
         } else {
-            System.out.println("Zuerst Pins fuer das Membranfeld angeben angeben");
+            System.out.println("Zuerst Pins fuer das Membranfeld angeben, bevor diese Methode (gibGedrueckteTaste) wieder aufgerufen wird.");
         }
         
         return ' ';
@@ -141,7 +141,7 @@ public final class RPTastenfeld {
             }
         
         } catch (java.lang.NullPointerException e) {
-            System.out.println("Pin konnte nicht dereferenziert werden");
+            System.out.println("Error: Pin konnte nicht dereferenziert werden! Klasse: Tastenfeld (NullPointerException)");
         }
     }
 }
