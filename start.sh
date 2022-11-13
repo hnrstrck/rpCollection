@@ -19,4 +19,4 @@ echo "Starte Groovy-Console."
 echo "Dies kann einen Moment dauern..."
 echo " "
 
-groovyConsole -classpath '.:./classes:/opt/pi4j/lib/*'
+sudo /snap/bin/groovyConsole -classpath '.:./classes:/opt/pi4j/lib/*'

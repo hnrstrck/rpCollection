@@ -1,25 +1,23 @@
-import com.pi4j.io.gpio.*;
+import com.pi4j.context.Context;
+import com.pi4j.io.gpio.digital.DigitalInput;
+import com.pi4j.io.gpio.digital.DigitalInputConfigBuilder;
+import com.pi4j.io.gpio.digital.DigitalState;
 
 /**
  * Klasse fuer den Anschluss eines Phototransistors an den Raspberry Pi. Der Phototransistor kann gefragt werden, ob er gerade Lichteinfall hat. Ausserdem kann er fuer 10 Mal hintereinander gefragt werden, ob er gerade Lichteinfall hat oder nicht.
- * 
- * @author Heiner Stroick
- * @version 0.9
+ *
+ * @author Heiner Stroick, Johannes Pieper
+ * @version 2.0
  */
 public final class RPPhototransistor {
 
-    private GpioPinDigitalInput pin;
-    private GpioController gpio;
-
-    private boolean boolInitialisierungErfolgt;
-    private int intPin;
-    
+    private DigitalInput digitalInput = null;
+    private boolean boolInitialisierungErfolgt = false;
+    private int intPin = 0;
     /**
     * Erstellt ein neues Objekt der Klasse RPPhototransistor, ohne einen Pin anzugeben.
     */
     RPPhototransistor() {
-        gpio = GpioFactory.getInstance();
-        boolInitialisierungErfolgt = false;
     }
 
     /**
@@ -27,9 +25,6 @@ public final class RPPhototransistor {
     * @param pPin Der Pin, an dem der Phototransistor angeschlossen ist.
     */
     RPPhototransistor(int pPin) {
-        gpio = GpioFactory.getInstance();
-        boolInitialisierungErfolgt = false;
-
         this.setPin(pPin);
     }
 
@@ -37,24 +32,19 @@ public final class RPPhototransistor {
     * Setzt den Pin fuer den Phototransistor.
     * @param pPin Der Pin, an dem der Phototransistor angeschlossen ist.
     */
-    public void setPin(int pPin) {
-        pin = null;
-
-        System.out.println("Input-Pin gesetzt:");
-
-        try {
-
-            pin = gpio.provisionDigitalInputPin(Helfer.pinArray[pPin]);
-            pin.setShutdownOptions(true, PinState.LOW);
-            System.out.println("Pin " + pPin + " gesetzt");
-
+    public void setPin(int pin) {
+        if (this.digitalInput == null) {
+            Context pi4j = RPEnvironment.getContext();
+            DigitalInputConfigBuilder inputConfig = RPEnvironment.getInputConfig();
+            this.digitalInput = pi4j.create(inputConfig
+                .address(pin)
+                .id("pin" + pin)
+            );
+            System.out.println("Intput-Pin gesetzt:");
             boolInitialisierungErfolgt = true;
-            intPin = pPin;
-
-        } catch (NullPointerException f){
-            System.out.println("Error: Pin nicht definiert? (NullPointerException)");
-        } catch (com.pi4j.io.gpio.exception.GpioPinExistsException e){
-            System.out.println("Error: Pin doppelt definiert? (GpioPinExistsException)");
+            intPin = pin;
+        } else {
+            System.out.println("Input-Pin bereits gesetzt:");
         }
     }
 
@@ -73,12 +63,12 @@ public final class RPPhototransistor {
     public boolean istLichteinfall() {
         if (boolInitialisierungErfolgt == true){
             try{
-                if (pin.getState() == PinState.HIGH) {
+                if (this.digitalInput.state() == DigitalState.HIGH) {
                     System.out.println("Ja, Licht gemessen");
                     return true;
                 } else {
                     System.out.println("Nein, kein Licht gemessen");
-                    return false; 
+                    return false;
                 }
             } catch (NullPointerException f){
                 System.out.println("Error: Pin nicht definiert? (NullPointerException)");
@@ -87,47 +77,20 @@ public final class RPPhototransistor {
         } else {
             System.out.println("Zuerst Pin fuer den Phototransistor angeben");
             return false;
-        }    
+        }
     }
 
     /**
-    * Ueberprueft 10 Mal, ob der Phototransistor Lichteinfall hat (keie Rueckgabe). Die Ergebnisse werden in der Shell ausgegeben. 
-    */ 
+    * Ueberprueft 10 Mal, ob der Phototransistor Lichteinfall hat (keie Rueckgabe). Die Ergebnisse werden in der Shell ausgegeben.
+    */
     public void ueberwache10Mal() {
         System.out.println("Ueberwache 10 mal den Phototransistor");
 
         for (int count = 1; count <= 10; count++){
             System.out.println("Ueberwache " + count + "/10: " + istLichteinfall());
-            sleepMilliseconds(800);
+            Helfer.warte(800);
         }
 
         System.out.println("Ueberwachung beendet");
     }
-
-
-    /**
-    * Wartet die angegebene Zeit.
-    * @param milliseconds Haelt den Thread fuer milliseconds Millisekunden an.
-    */
-    private void sleepMilliseconds(int milliseconds){
-        try{
-            Thread.sleep(milliseconds);
-        }
-        catch( InterruptedException e)
-        {
-            System.out.println("Error: Thread-Sleep unterbrochen (InterruptedException)");
-        }
-    }
-
-    /**
-    * Schalte GPIO ab und dereferenziere den GPIO und den Pin.
-    */ 
-    public void herunterfahren() {
-        gpio.shutdown();
-		try{
-			gpio.unprovisionPin(pin);
-		} catch (java.lang.NullPointerException e){
-			System.out.println("Pin konnte nicht dereferenziert werden");
-		}
-	}
 }

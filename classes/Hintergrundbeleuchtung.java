@@ -19,7 +19,7 @@ public class Hintergrundbeleuchtung{
 	Hintergrundbeleuchtung(int pPin){
 		pDiode = new RPDiode(pPin);
 	}
-		
+
 	/**
 	* Schalte die Hintergrundbeleuchtung an.
 	*/
@@ -27,15 +27,15 @@ public class Hintergrundbeleuchtung{
 		pDiode.an();
 		setzeStatus(true);
 	}
-	
+
 	/**
 	* Schalte die Hintergrundbeleuchtung aus.
-	*/	
+	*/
 	public void ausschalten(){
 		pDiode.aus();
 		setzeStatus(false);
 	}
-	
+
 	/**
 	* Uebergib der Hintergrundbeleuchtung den Helligkeitssensor.
 	* @param pHelligkeitssensor Der Helligkeitssensor, den die Hintergrundbeleuchtung kennen soll.
@@ -44,17 +44,17 @@ public class Hintergrundbeleuchtung{
 		bekannterHelligkeitssensor = pHelligkeitssensor;
 		System.out.println("Helligkeitssensor gesetzt. Die Hintergrundbeleuchtung kennt nun einen Helligkeitssensor.");
 	}
-	
+
 	/**
 	* Schaltet die Hintergrundbeleuchtung an oder aus, je nach dem, was der intern bekannte Helligkeitssensor sagt. Dieser muss zuvor der Hintergrundbeleuchtung bekannt gemacht werden.
 	*/
 	public void bedingtesAnschalten(){
 		schalten(bekannterHelligkeitssensor.befragenIstHell());
 	}
-	
+
 	/**
-	* Schalte die Hintergrundbeleuchtung mit der Rueckgabe eines anderen Objekts. 
-	* @param status Erforderlich ist ein Wahrheitswert (true / false). Ist der Parameterwert true, bleibt die Hintergrundbeleuchtung aus. Ist der Parameterwert false, so geht die Hintergrundbeleuchtung an. 
+	* Schalte die Hintergrundbeleuchtung mit der Rueckgabe eines anderen Objekts.
+	* @param status Erforderlich ist ein Wahrheitswert (true / false). Ist der Parameterwert true, bleibt die Hintergrundbeleuchtung aus. Ist der Parameterwert false, so geht die Hintergrundbeleuchtung an.
 	*/
 	public void schalten(boolean status){
 		if (status == true){
@@ -63,7 +63,7 @@ public class Hintergrundbeleuchtung{
 			anschalten();
 		}
 	}
-	
+
 	/**
 	* Frage nach dem Standort der Hintergrundbeleuchtung.
 	* @return Gibt den Standort der Hintergrundbeleuchtung als String zurueck.
@@ -72,7 +72,7 @@ public class Hintergrundbeleuchtung{
 		System.out.println("Standort der Hintergrundbeleuchtung ist: " + standort);
 		return standort;
 	}
-	
+
 	/**
 	* Setze den Standort der Hintergrundbeleuchtung.
 	* @param pStandort Der Standort der Hintergrundbeleuchtung als String.
@@ -81,7 +81,7 @@ public class Hintergrundbeleuchtung{
 		System.out.println("Standort der Hintergrundbeleuchtung als >" + pStandort + "< gesetzt");
 		standort =  pStandort;
 	}
-	
+
 	/**
 	* Gib den Status der Hintergrundbeleuchtung.
 	* @return Der Status der Hintergrundbeleuchtung (an = true / aus = false).
@@ -90,7 +90,7 @@ public class Hintergrundbeleuchtung{
 		System.out.println("Status der Hintergrundbeleuchtung ist: " + status);
 		return status;
 	}
-	
+
 	/**
 	* Setze den Status der Hintergrundbeleuchtung.
 	* @param pStatus Der Status der Hintergrundbeleuchtung als String.
@@ -98,12 +98,5 @@ public class Hintergrundbeleuchtung{
 	public void setzeStatus(boolean pStatus){
 		System.out.println("Status der Hintergrundbeleuchtung auf >" + pStatus + "< geaendert");
 		status =  pStatus;
-	}
-	
-	/**
-	* Setze die Hintergrundbeleuchtung ab (der Pin wird freigegeben).
-	*/
-	public void herunterfahren(){
-		pDiode.herunterfahren();
 	}
 }
