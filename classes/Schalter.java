@@ -26,11 +26,4 @@ public class Schalter{
         status = pTaster.istGedrueckt();
         return status;
     }
-
-    /**
-    * Fahre den Schalter herunter (der Pin wird freigegeben).
-    */
-    public void herunterfahren(){
-        pTaster.herunterfahren();
-    }
 }

@@ -6,6 +6,9 @@ import com.pi4j.io.gpio.digital.DigitalOutput;
 import com.pi4j.io.gpio.digital.DigitalOutputConfigBuilder;
 import com.pi4j.io.gpio.digital.DigitalState;
 import com.pi4j.io.gpio.digital.PullResistance;
+import com.pi4j.io.pwm.Pwm;
+import com.pi4j.io.pwm.PwmConfigBuilder;
+import com.pi4j.io.pwm.PwmType;
 
 /**
  * Klasse die intern benoetigt wird um die Konfiguration fuer die Pins bereit
@@ -18,6 +21,7 @@ class RPEnvironment {
     private static Context pi4j = null;
     private static DigitalOutputConfigBuilder outputConfig = null;
     private static DigitalInputConfigBuilder inputConfig = null;
+    private static PwmConfigBuilder pwmConfig = null;
 
     public static Context getContext()
     {
@@ -56,5 +60,15 @@ class RPEnvironment {
                 .pull(PullResistance.OFF);
         }
         return RPEnvironment.inputConfig;
+    }
+
+    public static PwmConfigBuilder getPwmConfig()
+    {
+        if (RPEnvironment.pwmConfig == null) {
+            RPEnvironment.pwmConfig = Pwm.newConfigBuilder(RPEnvironment.getContext())
+                .provider("pigpio-pwm")
+                .pwmType(PwmType.SOFTWARE);
+        }
+        return RPEnvironment.pwmConfig;
     }
 }

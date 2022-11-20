@@ -1,20 +1,21 @@
 import com.pi4j.context.Context;
-import com.pi4j.io.gpio.digital.DigitalOutput;
-import com.pi4j.io.gpio.digital.DigitalOutputConfig;
-import com.pi4j.io.gpio.digital.DigitalOutputConfigBuilder;
-import com.pi4j.io.gpio.digital.DigitalState;
+import com.pi4j.io.pwm.Pwm;
+import com.pi4j.io.pwm.PwmConfig;
+import com.pi4j.io.pwm.PwmConfigBuilder;
+import com.pi4j.io.pwm.PwmType;
 
 /**
- * Klasse zum Anschluss einer Diode an den Raspberry Pi. Die Diode kann an- und ausgeschaltet werden, blinken und auch in ihrer Blinkfrequenz geaendert werden (auch mit einem AD-Wandler).
+ * Klasse zum Anschluss einer Diode an den Raspberry Pi, deren Helligkeit angegeben werden kann. Die Diode kann an- und ausgeschaltet werden, ihre Helligkeit ändern, blinken und auch in ihrer Blinkfrequenz geändert werden (auch mit einem AD-Wandler).
  *
- * @author Heiner Stroick, Johannes Pieper
+ * @author Johannes Pieper
  * @version 2.0
  */
-public final class RPDiode {
+public final class RPPwmDiode {
 
-    private DigitalOutput digitalOutput = null;
+    private Pwm pwm = null;
     private boolean boolInitialisierungErfolgt = false;
     private int intPin = 0;
+    private int helligkeit = 100;
 
     /*
      * Damit es nur einen (!) Blinken-Thead gibt.
@@ -26,14 +27,14 @@ public final class RPDiode {
     /**
     * Erstellt ein Objekt der Klasse RPDiode, ohne einen Pin anzugeben.
     */
-    public RPDiode() {
+    public RPPwmDiode() {
     }
 
     /**
     * Erstellt ein Objekt der Klasse RPDiode.
     * @param pPin Der Pin, an dem die Diode angeschlossen ist.
     */
-    RPDiode(int pPin) {
+    RPPwmDiode(int pPin) {
         this.setPin(pPin);
     }
 
@@ -42,10 +43,10 @@ public final class RPDiode {
     * @param pin Der Pin, an dem die Diode angeschlossen ist.
     */
     public void setPin(int pin) {
-        if (this.digitalOutput == null) {
+        if (this.pwm == null) {
             Context pi4j = RPEnvironment.getContext();
-            DigitalOutputConfigBuilder outputConfig = RPEnvironment.getOutputConfig();
-            this.digitalOutput = pi4j.create(outputConfig
+            PwmConfigBuilder pwmConfigBuilder = RPEnvironment.getPwmConfig();
+            this.pwm = pi4j.create(pwmConfigBuilder
                 .address(pin)
                 .id("pin" + pin)
             );
@@ -58,6 +59,18 @@ public final class RPDiode {
     }
 
     /**
+    * Setzt die Helligkeit der Diode
+    * @param helligkeit Helligkeitswert zwischen 0 und 100
+    */
+    public void setzeHelligkeit(int helligkeit) {
+        this.helligkeit = helligkeit;
+        if (this.istAn()) {
+            this.an();
+        }
+    }
+
+
+    /**
     * Gibt den Pin der Diode zurueck.
     * @return Pin der Diode
     */
@@ -66,12 +79,20 @@ public final class RPDiode {
     }
 
     /**
+    * Gibt die Helligkeit der Diode zurueck.
+    * @return Helligkeit der Diode
+    */
+    public int gibHelligkeit() {
+        return helligkeit;
+    }
+
+    /**
     * Schaltet die Diode an.
     */
     public void an() {
         if (boolInitialisierungErfolgt == true){
             try{
-                this.digitalOutput.on();
+                this.pwm.on(this.helligkeit);
             } catch (NullPointerException f){
                 System.out.println("Error: Pin nicht definiert? (NullPointerException)");
             }
@@ -79,6 +100,15 @@ public final class RPDiode {
             System.out.println("Zuerst Pin fuer die Diode angeben");
         }
     }
+
+    /**
+    * Schaltet die Diode mit einer angegebenen Helligkeit an.
+    */
+    public void an(int helligkeit) {
+        this.helligkeit = helligkeit;
+        this.an();
+    }
+
 
 	/**
 	* Schalte den die Diode in Abhaengigkeit eines Wertes an oder aus.
@@ -98,7 +128,7 @@ public final class RPDiode {
     public void aus() {
         if (boolInitialisierungErfolgt == true){
             try{
-                this.digitalOutput.off();
+                this.pwm.off();
             } catch (NullPointerException f){
                 System.out.println("Error: Pin nicht definiert? (NullPointerException)");
             }
@@ -113,7 +143,7 @@ public final class RPDiode {
     public void wechsel() {
         if (boolInitialisierungErfolgt == true){
             try{
-                this.digitalOutput.toggle();
+                this.pwm.toggle();
             } catch (NullPointerException f){
                 System.out.println("Error: Pin nicht definiert? (NullPointerException)");
             }
@@ -128,7 +158,7 @@ public final class RPDiode {
     */
     public boolean istAn() {
         if (boolInitialisierungErfolgt == true){
-            return this.digitalOutput.isOn();
+            return this.pwm.isOn();
         } else {
             System.out.println("Zuerst Pin fuer die Diode angeben");
             return false;
@@ -141,7 +171,7 @@ public final class RPDiode {
     */
     public boolean istAus() {
         if (boolInitialisierungErfolgt == true){
-            return !this.digitalOutput.isOn();
+            return !this.pwm.isOn();
         } else {
             System.out.println("Zuerst Pin fuer die Diode angeben");
             return false;
@@ -156,7 +186,7 @@ public final class RPDiode {
         if (boolInitialisierungErfolgt == true){
             try{
                 for (int i = 0; i <= 5; i++) {
-                    this.digitalOutput.toggle();
+                    this.pwm.toggle();
                     Thread.sleep(200);
                 }
             } catch (InterruptedException e) {
@@ -321,13 +351,16 @@ public final class RPDiode {
     }
 
     public static void main(String[] args) {
-        RPDiode diode = new RPDiode(22);
+        RPPwmDiode diode = new RPPwmDiode(22);
         diode.an();
-        Helfer.warte(3);
+        Helfer.warte(1);
+        diode.setzeHelligkeit(25);
+        Helfer.warte(1);
         diode.aus();
-        Helfer.warte(3);
+        Helfer.warte(1);
+        diode.setzeHelligkeit(50);
         diode.an();
-        Helfer.warte(3);
+        Helfer.warte(1);
         diode.aus();
     }
 }

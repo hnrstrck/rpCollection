@@ -1,25 +1,26 @@
-import com.pi4j.io.gpio.*;
+import com.pi4j.context.Context;
+import com.pi4j.io.gpio.digital.DigitalOutput;
+import com.pi4j.io.gpio.digital.DigitalOutputConfig;
+import com.pi4j.io.gpio.digital.DigitalOutputConfigBuilder;
+import com.pi4j.io.gpio.digital.DigitalState;
 
 /**
- * Klasse fuer den Anschluss eines 3 Volt Summers an den Raspberry Pi. Der Summer kann angeschaltet und abgeschaltet werden. Mehtoden zum einfahcen beepen (zum Beispiel als Bestaetigung) stehen bereit. Der Summer kann auch gefragt werden, ob er gerade an ist oder aus ist.
- * 
- * @author Heiner Stroick
- * @version 0.9
+ * Klasse fuer den Anschluss eines 3 Volt Summers an den Raspberry Pi. Der Summer kann angeschaltet und abgeschaltet werden. Mehtoden zum einfachen beepen (zum Beispiel als Bestaetigung) stehen bereit. Der Summer kann auch gefragt werden, ob er gerade an ist oder aus ist.
+ *
+ * @author Heiner Stroick, Johannes Pieper
+ * @version 2.0
  */
 public final class RPSummer {
 
-    private GpioPinDigitalOutput pin;
-    private GpioController gpio;
 
-    private boolean boolInitialisierungErfolgt;
-    private int intPin;
+    private DigitalOutput digitalOutput = null;
+    private boolean boolInitialisierungErfolgt = false;
+    private int intPin = 0;
 
     /**
     * Erstellt ein neues Objekt der Klasse RPSummer, ohne einen Pin anzugeben.
     */
     RPSummer() {
-        gpio = GpioFactory.getInstance();
-        boolInitialisierungErfolgt = false;
     }
 
    /**
@@ -27,9 +28,6 @@ public final class RPSummer {
     * @param pPin Der Pin, an dem der Summer angeschlossen ist.
     */
     RPSummer(int pPin) {
-        gpio = GpioFactory.getInstance();
-        boolInitialisierungErfolgt = false;
-
         this.setPin(pPin);
     }
 
@@ -38,24 +36,19 @@ public final class RPSummer {
     * Setzt den Pin fuer den Summer.
     * @param pPin Der Pin, an dem der Summer angeschlossen ist.
     */
-    public void setPin(int pPin) {
-        pin = null;
-
-        System.out.println("Output-Pin gesetzt:");
-
-        try {
-
-            pin = gpio.provisionDigitalOutputPin(Helfer.pinArray[pPin]);
-            pin.setShutdownOptions(true, PinState.LOW);
-            System.out.println("Pin " + pPin + " gesetzt");
-
+    public void setPin(int pin) {
+        if (this.digitalOutput == null) {
+            Context pi4j = RPEnvironment.getContext();
+            DigitalOutputConfigBuilder outputConfig = RPEnvironment.getOutputConfig();
+            this.digitalOutput = pi4j.create(outputConfig
+                .address(pin)
+                .id("pin" + pin)
+            );
+            System.out.println("Output-Pin gesetzt:");
             boolInitialisierungErfolgt = true;
-            intPin = pPin;
-
-        } catch (NullPointerException f){
-            System.out.println("Error: Pin nicht definiert? (NullPointerException)");
-        } catch (com.pi4j.io.gpio.exception.GpioPinExistsException e){
-            System.out.println("Error: Pin doppelt definiert? (GpioPinExistsException)");
+            intPin = pin;
+        } else {
+            System.out.println("Output-Pin bereits gesetzt:");
         }
     }
 
@@ -73,7 +66,7 @@ public final class RPSummer {
     public void an() {
         if (boolInitialisierungErfolgt == true){
             try{
-                pin.setState(PinState.HIGH);
+                this.digitalOutput.on();
             } catch (NullPointerException f){
                 System.out.println("Error: Pin nicht definiert? (NullPointerException)");
             }
@@ -83,8 +76,8 @@ public final class RPSummer {
     }
 
 	/**
-	* Schalte den den Summer in Abhaengigkeit eines Wertes an oder aus. 
-	* @param status Erforderlich ist ein Wahrheitswert (true / false). Ist der Parameterwert true, bleibt der Summer aus. Ist der Parameterwert false, so beep der Summer kurz zweimal. 
+	* Schalte den den Summer in Abhaengigkeit eines Wertes an oder aus.
+	* @param status Erforderlich ist ein Wahrheitswert (true / false). Ist der Parameterwert true, bleibt der Summer aus. Ist der Parameterwert false, so beep der Summer kurz zweimal.
 	*/
 	public void schalten(boolean status){
 		if (status == true){
@@ -93,7 +86,7 @@ public final class RPSummer {
 			beepbeep();
 		}
 	}
-	
+
     /**
     * Laesst den Summer kurz beepen.
     */
@@ -144,7 +137,7 @@ public final class RPSummer {
     public void aus() {
         if (boolInitialisierungErfolgt == true){
             try{
-                pin.setState(PinState.LOW);
+                this.digitalOutput.off();
             } catch (NullPointerException f){
                 System.out.println("Error: Pin nicht definiert? (NullPointerException)");
             }
@@ -159,59 +152,40 @@ public final class RPSummer {
     */
     public boolean istAn() {
         if (boolInitialisierungErfolgt == true){
-            try{
-                if (pin.getState() == PinState.HIGH) {
-                    System.out.println("Ja, Summer ist an");
-                    return true;
-                } else {
-                    System.out.println("Nein, Summer ist aus");
-                    return false; 
-                }
-            } catch (NullPointerException f){
-                System.out.println("Error: Pin nicht definiert? (NullPointerException)");
+            if (this.digitalOutput.isOn()) {
+                System.out.println("Ja, Summer ist an");
+                return true;
+            } else {
+                System.out.println("Nein, Summer ist aus");
                 return false;
             }
         } else {
             System.out.println("Zuerst Pin fuer den Summer angeben");
             return false;
-        }    
+        }
     }
 
     /**
     * Ueberprueft, ob der Summer aus ist.
     * @return true oder false, je nach dem, ob der Summer aus ist (true = Summer aus, false = Summer an).
-    */    
+    */
     public boolean istAus() {
         if (boolInitialisierungErfolgt == true){
-            try{
-                if (pin.getState() == PinState.LOW) {
-                    System.out.println("Ja, Summer ist aus");
-                    return true;
-                } else {
-                    System.out.println("Nein, Summer ist an");
-                    return false; 
-                }
-            } catch (NullPointerException f){
-                System.out.println("Error: Pin nicht definiert? (NullPointerException)");
+            if (!this.digitalOutput.isOn()) {
+                System.out.println("Ja, Summer ist aus");
+                return true;
+            } else {
+                System.out.println("Nein, Summer ist an");
                 return false;
             }
         } else {
             System.out.println("Zuerst Pin fuer den Summer angeben");
             return false;
-        }    
-    }
-    
-    /**
-    * Schalte GPIO ab und dereferenziere den GPIO und den Pin.
-    */  
-    public void herunterfahren() {
-		aus();
-		gpio.shutdown();
-        try{
-			gpio.unprovisionPin(pin);
-		} catch (java.lang.NullPointerException e){
-			System.out.println("Pin konnte nicht dereferenziert werden");
-		}
+        }
     }
 
+    public static void main(String[] args) {
+        RPSummer summer = new RPSummer(22);
+        summer.beepbeep();
+    }
 }

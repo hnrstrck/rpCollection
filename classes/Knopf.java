@@ -26,11 +26,4 @@ public class Knopf{
         status = pTaster.istGedrueckt();
         return status;
     }
-
-    /**
-    * Fahre den Knopf herunter (der Pin wird freigegeben).
-    */
-    public void herunterfahren(){
-        pTaster.herunterfahren();
-    }
 }
