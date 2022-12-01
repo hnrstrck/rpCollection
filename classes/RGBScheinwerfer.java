@@ -33,12 +33,12 @@ public class RGBScheinwerfer{
         mischen(rot, gruen, blau);
     }
 
-/**
-* Schalte den RGB-Scheinwerfer ein
-*/
-public void einschalten(){
-    setzeStatus(true);
-}
+    /**
+    * Schalte den RGB-Scheinwerfer ein
+    */
+    public void einschalten(){
+        setzeStatus(true);
+    }
 
     /**
     * Stelle eine neue Farbe ein.
@@ -60,15 +60,15 @@ public void einschalten(){
         setzeStatus(true);
     }
 
-/**
-* Stelle eine neue Farbe ein.
-* @param rot Farbanteil fuer die Farbe rot.
-* @param gruen Farbanteil fuer die Farbe gruen.
-* @param blau Farbanteil fuer die Farbe blau.
-*/
-public void farbeEinstellen(int rot, int gruen, int blau){
-    this.mischen(rot, gruen, blau);
-}
+    /**
+    * Stelle eine neue Farbe ein.
+    * @param rot Farbanteil fuer die Farbe rot.
+    * @param gruen Farbanteil fuer die Farbe gruen.
+    * @param blau Farbanteil fuer die Farbe blau.
+    */
+    public void farbeEinstellen(int rot, int gruen, int blau){
+        this.mischen(rot, gruen, blau);
+    }
 
     /**
     * Schalte den RGBScheinwerfer mit der Rueckgabe eines anderen Objekts.
@@ -86,7 +86,6 @@ public void farbeEinstellen(int rot, int gruen, int blau){
     * Schalte den RGB-Scheinwerfer aus.
     */
     public void ausschalten(){
-        pRGB.aus();
         setzeStatus(false);
     }
 
@@ -124,6 +123,11 @@ public void farbeEinstellen(int rot, int gruen, int blau){
     public void setzeStatus(boolean pStatus){
         System.out.println("Licht-Aktiv-Status des RGB-Scheinwerfers auf >" + pStatus + "< geaendert");
         lichtAktiv =  pStatus;
+        if (pStatus) {
+            pRGB.an();
+        } else {
+            pRGB.aus();
+        }
     }
 
     /**
