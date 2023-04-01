@@ -2,7 +2,6 @@ import com.pi4j.context.Context;
 import com.pi4j.io.gpio.digital.DigitalOutput;
 import com.pi4j.io.gpio.digital.DigitalOutputConfig;
 import com.pi4j.io.gpio.digital.DigitalOutputConfigBuilder;
-import com.pi4j.io.gpio.digital.DigitalState;
 
 /**
  * Klasse zum Anschluss einer Diode an den Raspberry Pi. Die Diode kann an- und ausgeschaltet werden, blinken und auch in ihrer Blinkfrequenz geaendert werden (auch mit einem AD-Wandler).
@@ -211,7 +210,7 @@ public final class RPDiode {
     * @see RPADWandler
     * @see RPRegler
     * @see Helfer
-    * /
+    */
     private void startBlinkenVariabel(RPADWandler meinWandler, RPRegler meinRegler) {
         if (boolInitialisierungErfolgt == true){
 
@@ -289,7 +288,7 @@ public final class RPDiode {
     * @see RPRegler
     * @see Helfer
     */
-/*    public void blinkeEndlosStart(RPADWandler pWandler, RPRegler pRegler){
+    public void blinkeEndlosStart(RPADWandler pWandler, RPRegler pRegler){
         if (boolInitialisierungErfolgt == true){
 
             if(!blinktGerade){

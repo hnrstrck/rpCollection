@@ -437,7 +437,7 @@ public final class RPRGB {
     * @see RPADWandler
     * @see RPRegler
     * @see Helfer
-    * /
+    */
     private void startBlinkenVariabel(RPADWandler meinWandler, RPRegler meinRegler) {
         if (boolInitialisierungErfolgt == true){
 
@@ -528,7 +528,7 @@ public final class RPRGB {
     * @see RPADWandler
     * @see RPRegler
     * @see Helfer
-    * /
+    */
     public void blinkeEndlosStart(RPADWandler pWandler, RPRegler pRegler){
         if (boolInitialisierungErfolgt == true){
 

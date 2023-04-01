@@ -6,9 +6,13 @@ import com.pi4j.io.gpio.digital.DigitalOutput;
 import com.pi4j.io.gpio.digital.DigitalOutputConfigBuilder;
 import com.pi4j.io.gpio.digital.DigitalState;
 import com.pi4j.io.gpio.digital.PullResistance;
+import com.pi4j.io.i2c.I2C;
+import com.pi4j.io.i2c.I2CConfigBuilder;
 import com.pi4j.io.pwm.Pwm;
 import com.pi4j.io.pwm.PwmConfigBuilder;
 import com.pi4j.io.pwm.PwmType;
+import com.pi4j.io.spi.Spi;
+import com.pi4j.io.spi.SpiConfigBuilder;
 
 /**
  * Klasse die intern benoetigt wird um die Konfiguration fuer die Pins bereit
@@ -22,6 +26,8 @@ class RPEnvironment {
     private static DigitalOutputConfigBuilder outputConfig = null;
     private static DigitalInputConfigBuilder inputConfig = null;
     private static PwmConfigBuilder pwmConfig = null;
+    private static I2CConfigBuilder i2CConfig = null;
+    private static SpiConfigBuilder spiConfig = null;
 
     public static Context getContext()
     {
@@ -38,6 +44,7 @@ class RPEnvironment {
             RPEnvironment.pi4j = null;
             RPEnvironment.outputConfig = null;
             RPEnvironment.inputConfig = null;
+            RPEnvironment.i2CConfig = null;
         }
     }
 
@@ -70,5 +77,21 @@ class RPEnvironment {
                 .pwmType(PwmType.SOFTWARE);
         }
         return RPEnvironment.pwmConfig;
+    }
+
+    public static I2CConfigBuilder getI2CConfig() {
+        if (RPEnvironment.i2CConfig == null) {
+            RPEnvironment.i2CConfig = I2C.newConfigBuilder(RPEnvironment.getContext())
+                .provider("pigpio-i2c");
+        }
+        return RPEnvironment.i2CConfig;
+    }
+
+    public static SpiConfigBuilder getSpiConfig() {
+        if (RPEnvironment.spiConfig == null) {
+            RPEnvironment.spiConfig = Spi.newConfigBuilder(RPEnvironment.getContext())
+                .provider("pigpio-spi");
+        }
+        return RPEnvironment.spiConfig;
     }
 }

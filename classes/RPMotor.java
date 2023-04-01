@@ -1,16 +1,24 @@
-import com.pi4j.io.gpio.*;
-import com.pi4j.wiringpi.*;
+import com.pi4j.context.Context;
+import com.pi4j.io.gpio.digital.DigitalOutput;
+import com.pi4j.io.gpio.digital.DigitalOutputConfig;
+import com.pi4j.io.gpio.digital.DigitalOutputConfigBuilder;
+import com.pi4j.io.pwm.Pwm;
+import com.pi4j.io.pwm.PwmConfig;
+import com.pi4j.io.pwm.PwmConfigBuilder;
+import com.pi4j.io.pwm.PwmType;
+
 
 /**
- * Klasse zum Anschluss eines Fischertechnik-Motors am Raspberry Pi. Der Motor kann auf unbestimmte Zeit laufen oder nur fuer ein paar Sekunden. Zudem kann die Laufrichtung geaendert werden (waehrend der Motor laeuft).
- * 
- * @author Heiner Stroick
- * @version 0.9
+ * Klasse zum Anschluss eines Motors am Raspberry Pi. Der Motor kann auf unbestimmte Zeit laufen oder nur fuer ein paar Sekunden. Zudem kann die Laufrichtung geaendert werden (waehrend der Motor laeuft).
+ *
+ * @author Heiner Stroick, Johannes Pieper
+ * @version 2.0
  */
 public final class RPMotor {
 
-    private GpioPinDigitalOutput pinEnable, pinRichtung1, pinRichtung2;
-    private GpioController gpio;
+    private Pwm pinEnable = null;
+    private DigitalOutput pinRichtung1 = null;
+    private DigitalOutput pinRichtung2 = null;
 
     private boolean boolInitialisierungErfolgt;
     private int[] intPins;
@@ -21,12 +29,11 @@ public final class RPMotor {
     private Thread threadEndlosMotorlaufen;
 
     private boolean laeuftGerade = false;
-    
+
     /**
     * Erstellt ein Objekt der Klasse RPMotor, ohne die Pinne anzugeben.
     */
     RPMotor() {
-        gpio = GpioFactory.getInstance();
         intPins = new int[3];
         boolInitialisierungErfolgt = false;
     }
@@ -38,7 +45,6 @@ public final class RPMotor {
     * @param pinRichtung2 Der Pin fuer Richtung2.
     */
     RPMotor(int pinEnable, int pinRichtung1, int pinRichtung2) {
-        gpio = GpioFactory.getInstance();
         intPins = new int[3];
         boolInitialisierungErfolgt = false;
 
@@ -53,49 +59,30 @@ public final class RPMotor {
     */
     public void setPins(int pinEnable, int pinRichtung1, int pinRichtung2){
         System.out.println("Setze Pins:");
-        
-        setPinEnable(pinEnable);     
-        setPinRichtung1(pinRichtung1);  
-        setPinRichtung2(pinRichtung2);    
+
+        setPinEnable(pinEnable);
+        setPinRichtung1(pinRichtung1);
+        setPinRichtung2(pinRichtung2);
     }
-    
+
     /**
     * Setzt den Pin fuer Enable.
     * @param pPin Der Pin fuer Enable.
     */
     public void setPinEnable(int pPin) {
-        pinEnable = null;
-
-        System.out.println("Output-Pin gesetzt fuer Enable 1 (EN 1):");
-
-        try {
-			
-			if (Helfer.istBCMLayout == true){
-
-				pinEnable = gpio.provisionDigitalOutputPin(Helfer.pinArrayJ8[Helfer.pinZuordnungBCMzuJ8[pPin]]);
-				pinEnable.setShutdownOptions(true, PinState.LOW);
-
-				SoftPwm.softPwmCreate(Helfer.pinZuordnungBCMzuJ8[pPin],0,100);
-            
-			}
-			
-			if (Helfer.istJ8Layout == true){
-			
-				pinEnable = gpio.provisionDigitalOutputPin(Helfer.pinArrayJ8[pPin]);
-				pinEnable.setShutdownOptions(true, PinState.LOW);
-
-				SoftPwm.softPwmCreate(pPin,0,100);	 
-				 
-			}
-
+        if (this.pinEnable == null) {
+            System.out.println("Output-Pin gesetzt fuer Enable (EN):");
+            Context pi4j = RPEnvironment.getContext();
+            PwmConfigBuilder pwmConfigBuilder = RPEnvironment.getPwmConfig();
+            this.pinEnable = pi4j.create(pwmConfigBuilder
+                .address(pPin)
+                .id("pin" + pPin)
+            );
             System.out.println("Pin " + pPin + " gesetzt");
-            boolInitialisierungErfolgt = true;
-
             intPins[0] = pPin;
-        } catch (NullPointerException f){
-            System.out.println("Error: Pin nicht definiert? (NullPointerException)");
-        } catch (com.pi4j.io.gpio.exception.GpioPinExistsException e){
-            System.out.println("Error: Pin doppelt definiert? (GpioPinExistsException)");
+            boolInitialisierungErfolgt = true;
+        } else {
+            System.out.println("Output-Pin Enable bereits gesetzt:");
         }
     }
 
@@ -104,38 +91,19 @@ public final class RPMotor {
     * @param pPin Der Pin fuer Richtung 1.
     */
     public void setPinRichtung1(int pPin) {
-        pinRichtung1 = null;
-
-        System.out.println("Output-Pin gesetzt fuer Input 1.1 (Richtung 1):");
-
-        try {
-
-            if (Helfer.istBCMLayout == true){
-
-				pinRichtung1 = gpio.provisionDigitalOutputPin(Helfer.pinArrayJ8[Helfer.pinZuordnungBCMzuJ8[pPin]]);
-				pinRichtung1.setShutdownOptions(true, PinState.LOW);
-
-				SoftPwm.softPwmCreate(Helfer.pinZuordnungBCMzuJ8[pPin],0,100);
-            
-			}
-			
-			if (Helfer.istJ8Layout == true){
-			
-				pinRichtung1 = gpio.provisionDigitalOutputPin(Helfer.pinArrayJ8[pPin]);
-				pinRichtung1.setShutdownOptions(true, PinState.LOW);
-
-				SoftPwm.softPwmCreate(pPin,0,100);	 
-				 
-			}
-
+        if (this.pinRichtung1 == null) {
+            System.out.println("Output-Pin gesetzt fuer Input 1 (Richtung 1):");
+            Context pi4j = RPEnvironment.getContext();
+            DigitalOutputConfigBuilder outputConfig = RPEnvironment.getOutputConfig();
+            this.pinRichtung1 = pi4j.create(outputConfig
+                .address(pPin)
+                .id("pin" + pPin)
+            );
             System.out.println("Pin " + pPin + " gesetzt");
-            boolInitialisierungErfolgt = true;
-
             intPins[1] = pPin;
-        } catch (NullPointerException f){
-            System.out.println("Error: Pin nicht definiert? (NullPointerException)");
-        } catch (com.pi4j.io.gpio.exception.GpioPinExistsException e){
-            System.out.println("Error: Pin doppelt definiert? (GpioPinExistsException)");
+            boolInitialisierungErfolgt = true;
+        } else {
+            System.out.println("Output-Pin bereits gesetzt:");
         }
     }
 
@@ -144,38 +112,19 @@ public final class RPMotor {
     * @param pPin Der Pin fuer Richtung2.
     */
     public void setPinRichtung2(int pPin) {
-        pinRichtung2 = null;
-
-        System.out.println("Output-Pin gesetzt fuer Input 1.2 (Richtung 2):");
-
-        try {
-
-            if (Helfer.istBCMLayout == true){
-
-				pinRichtung2 = gpio.provisionDigitalOutputPin(Helfer.pinArrayJ8[Helfer.pinZuordnungBCMzuJ8[pPin]]);
-				pinRichtung2.setShutdownOptions(true, PinState.LOW);
-
-				SoftPwm.softPwmCreate(Helfer.pinZuordnungBCMzuJ8[pPin],0,100);
-            
-			}
-			
-			if (Helfer.istJ8Layout == true){
-			
-				pinRichtung2 = gpio.provisionDigitalOutputPin(Helfer.pinArrayJ8[pPin]);
-				pinRichtung2.setShutdownOptions(true, PinState.LOW);
-
-				SoftPwm.softPwmCreate(pPin,0,100);	 
-				 
-			}
-
+        if (this.pinRichtung2 == null) {
+            System.out.println("Output-Pin gesetzt fuer Input 2 (Richtung 2):");
+            Context pi4j = RPEnvironment.getContext();
+            DigitalOutputConfigBuilder outputConfig = RPEnvironment.getOutputConfig();
+            this.pinRichtung2 = pi4j.create(outputConfig
+                .address(pPin)
+                .id("pin" + pPin)
+            );
             System.out.println("Pin " + pPin + " gesetzt");
-            boolInitialisierungErfolgt = true;
-
             intPins[2] = pPin;
-        } catch (NullPointerException f){
-            System.out.println("Error: Pin nicht definiert? (NullPointerException)");
-        } catch (com.pi4j.io.gpio.exception.GpioPinExistsException e){
-            System.out.println("Error: Pin doppelt definiert? (GpioPinExistsException)");
+            boolInitialisierungErfolgt = true;
+        } else {
+            System.out.println("Output-Pin bereits gesetzt:");
         }
     }
 
@@ -197,41 +146,34 @@ public final class RPMotor {
 
     /**
     * Gibt den Pin des Motors fuer Richtung2 zurueck.
-    * @return Pin des Motors fuer Richtung2. 
+    * @return Pin des Motors fuer Richtung2.
     */
     public int gibPinRichtung2(){
         return intPins[2];
-    } 
+    }
 
     /**
     * Startet den Motor (auf unbestimmte Zeit).
-    * @param pGeschwindigkeit Geschwindigkeit des Motors in Prozent fuer die Pulsweitenmodulation 
+    * @param pGeschwindigkeit Geschwindigkeit des Motors in Prozent fuer die Pulsweitenmodulation
     */
     private void starteMotorGeschwindigkeit(int pGeschwindigkeit) {
         if (boolInitialisierungErfolgt == true){
 
             threadEndlosMotorlaufen = new Thread(){
-				
+
                 public void run() {
                     try {
-                        
-						if (Helfer.istBCMLayout == true){
-							SoftPwm.softPwmWrite(Helfer.pinZuordnungBCMzuJ8[intPins[0]],pGeschwindigkeit);
-            			}
-			
-						if (Helfer.istJ8Layout == true){
-							SoftPwm.softPwmWrite(intPins[0],pGeschwindigkeit);	
-						}
-                                                
+                        pinEnable.on(pGeschwindigkeit);
                         Thread.sleep(15*200);
                     } catch (InterruptedException e) {
                         System.out.println("Motor beendet");
                         Thread.currentThread().interrupt();
+                        motorstop();
                         return;
                     }
                 }
             };
-            
+
             threadEndlosMotorlaufen.start();
 
         } else {
@@ -251,18 +193,10 @@ public final class RPMotor {
 
                 public void run() {
                     try {
-                        
-                        if (Helfer.istBCMLayout == true){
-							SoftPwm.softPwmWrite(Helfer.pinZuordnungBCMzuJ8[intPins[0]],pGeschwindigkeit);
-            			}
-			
-						if (Helfer.istJ8Layout == true){
-							SoftPwm.softPwmWrite(intPins[0],pGeschwindigkeit);	
-						}
-                               
+                        pinEnable.on(pGeschwindigkeit);
                         Thread.sleep(pIntervall * 1000);
                         Thread.sleep(20);
-                        throw new InterruptedException(); 
+                        throw new InterruptedException();
                     } catch (InterruptedException e) {
                         System.out.println("Motor beendet");
                         Thread.currentThread().interrupt();
@@ -287,7 +221,7 @@ public final class RPMotor {
 
             if(!laeuftGerade){
 
-                if (pinRichtung1.getState() == PinState.HIGH || pinRichtung2.getState() == PinState.HIGH){
+                if (pinRichtung1.isOn() || pinRichtung2.isOn()){
                     starteMotorGeschwindigkeit(100);
                     laeuftGerade = true;
                     System.out.println("Motor gestartet");
@@ -310,7 +244,7 @@ public final class RPMotor {
         if (boolInitialisierungErfolgt == true){
 
             if(!laeuftGerade){
-                if (pinRichtung1.getState() == PinState.HIGH || pinRichtung2.getState() == PinState.HIGH){
+                if (pinRichtung1.isOn() || pinRichtung2.isOn()){
                     starteMotorGeschwindigkeit(pGeschwindigkeit);
                     laeuftGerade = true;
                     System.out.println("Motor gestartet");
@@ -333,7 +267,7 @@ public final class RPMotor {
         if (boolInitialisierungErfolgt == true){
 
             if(!laeuftGerade){
-                if (pinRichtung1.getState() == PinState.HIGH || pinRichtung2.getState() == PinState.HIGH){
+                if (pinRichtung1.isOn() || pinRichtung2.isOn()){
                     starteMotorZeitintervallGeschwindigkeit(pSekunden, 100);
                     laeuftGerade = true;
                     System.out.println("Motor gestartet");
@@ -357,7 +291,7 @@ public final class RPMotor {
         if (boolInitialisierungErfolgt == true){
 
             if(!laeuftGerade){
-                if (pinRichtung1.getState() == PinState.HIGH || pinRichtung2.getState() == PinState.HIGH){
+                if (pinRichtung1.isOn() || pinRichtung2.isOn()){
                     starteMotorZeitintervallGeschwindigkeit(pSekunden, pGeschwindigkeit);
                     laeuftGerade = true;
                     System.out.println("Motor gestartet");
@@ -380,23 +314,15 @@ public final class RPMotor {
     }
 
     /**
-    * Stoppt den Motor. 
+    * Stoppt den Motor.
     * Extra Methoden ist notwenig, da innerhalb des Threads nicht this.stop() aufgerufen werden kann (stop() ist schon eine eigene Methode im Thread).
     */
     private void motorstop() {
         if (boolInitialisierungErfolgt == true){
             try{
                 threadEndlosMotorlaufen.interrupt();
-                
-                if (Helfer.istBCMLayout == true){
-					SoftPwm.softPwmWrite(Helfer.pinZuordnungBCMzuJ8[intPins[0]],0);
-            	}
-			
-				if (Helfer.istJ8Layout == true){
-					SoftPwm.softPwmWrite(intPins[0],0);	
-				}
-          
-                
+                pinEnable.off();
+
                 laeuftGerade = false;
             } catch (NullPointerException f){
                 System.out.println("Error: Pins nicht definiert? (NullPointerException)");
@@ -415,37 +341,18 @@ public final class RPMotor {
             if (pRichtung == 0 || pRichtung == 1){
                 if (pRichtung == 0){
                     try{
-								
-						if (Helfer.istBCMLayout == true){
-							SoftPwm.softPwmWrite(Helfer.pinZuordnungBCMzuJ8[intPins[1]],100);
-							SoftPwm.softPwmWrite(Helfer.pinZuordnungBCMzuJ8[intPins[2]],0);
-						}
-			
-						if (Helfer.istJ8Layout == true){
-							SoftPwm.softPwmWrite(intPins[1],100);
-							SoftPwm.softPwmWrite(intPins[2],0);	
-						}		
-
+                        this.pinRichtung2.off();
+                        this.pinRichtung1.on();
                     } catch (NullPointerException f){
                         System.out.println("Error: Pins nicht definiert? (NullPointerException)");
                     }
                 } else {
                     try{
-                        
-                        if (Helfer.istBCMLayout == true){
-							SoftPwm.softPwmWrite(Helfer.pinZuordnungBCMzuJ8[intPins[1]],0);
-							SoftPwm.softPwmWrite(Helfer.pinZuordnungBCMzuJ8[intPins[2]],100);
-						}
-			
-						if (Helfer.istJ8Layout == true){
-							SoftPwm.softPwmWrite(intPins[1],0);
-							SoftPwm.softPwmWrite(intPins[2],100);	
-						}		
-
-
+                        this.pinRichtung1.off();
+                        this.pinRichtung2.on();
                     } catch (NullPointerException f){
                         System.out.println("Error: Pins nicht definiert? (NullPointerException)");
-                    }							
+                    }
                 }
             } else {
                 System.out.println("Angabe fuer die Richtung muss 0 oder 1 sein.");
@@ -460,41 +367,24 @@ public final class RPMotor {
     */
     public void wechselLaufrichtung() {
         if (boolInitialisierungErfolgt == true){
-            if (pinRichtung1.getState() == PinState.HIGH || pinRichtung2.getState() == PinState.HIGH){
-                if (pinRichtung1.getState() == PinState.HIGH){
+            if (pinRichtung1.isOn() || pinRichtung2.isOn()){
+                if (pinRichtung1.isOn()){
                     try{
-						
-						if (Helfer.istBCMLayout == true){
-							SoftPwm.softPwmWrite(Helfer.pinZuordnungBCMzuJ8[intPins[1]],0);
-							SoftPwm.softPwmWrite(Helfer.pinZuordnungBCMzuJ8[intPins[2]],100);
-						}
-			
-						if (Helfer.istJ8Layout == true){
-							SoftPwm.softPwmWrite(intPins[1],0);
-							SoftPwm.softPwmWrite(intPins[2],100);	
-						}	
-						
+                        this.pinRichtung1.off();
+                        this.pinRichtung2.on();
                         System.out.println("Laufrichtung geaendert");
                     } catch (NullPointerException f){
                         System.out.println("Error: Pins nicht definiert? (NullPointerException)");
                     }
                 } else {
                     try{
-						
-                        if (Helfer.istBCMLayout == true){
-							SoftPwm.softPwmWrite(Helfer.pinZuordnungBCMzuJ8[intPins[1]],100);
-							SoftPwm.softPwmWrite(Helfer.pinZuordnungBCMzuJ8[intPins[2]],0);
-						}
-			
-						if (Helfer.istJ8Layout == true){
-							SoftPwm.softPwmWrite(intPins[1],100);
-							SoftPwm.softPwmWrite(intPins[2],0);	
-						}		
-						
+                        this.pinRichtung2.off();
+                        this.pinRichtung1.on();
+
                         System.out.println("Laufrichtung geaendert");
                     } catch (NullPointerException f){
                         System.out.println("Error: Pins nicht definiert? (NullPointerException)");
-                    }							
+                    }
                 }
             } else {
                 System.out.println("Es wurde noch keine Richtung festgelegt.");
@@ -511,12 +401,12 @@ public final class RPMotor {
     public boolean istAn() {
         if (boolInitialisierungErfolgt == true){
             try{
-                if (pinEnable.getState() == PinState.HIGH) {
+                if (pinEnable.isOn()) {
                     System.out.println("Ja, Motor ist angeschaltet");
                     return true;
                 } else {
                     System.out.println("Nein, Motor ist ausgeschaltet");
-                    return false; 
+                    return false;
                 }
             } catch (NullPointerException f){
                 System.out.println("Error: Pins nicht definiert? (NullPointerException)");
@@ -525,7 +415,7 @@ public final class RPMotor {
         } else {
             System.out.println("Zuerst Pins fuer den Motor angeben (Enable, Richtung 1, Richtung 2)");
             return false;
-        }    
+        }
     }
 
     /**
@@ -535,12 +425,12 @@ public final class RPMotor {
     public boolean istAus() {
         if (boolInitialisierungErfolgt == true){
             try{
-                if (pinEnable.getState() == PinState.HIGH) {
+                if (pinEnable.isOn()) {
                     System.out.println("Nein, Motor ist angeschaltet");
                     return false;
                 } else {
                     System.out.println("Ja, Motor ist ausgeschaltet");
-                    return true; 
+                    return true;
                 }
             } catch (NullPointerException f){
                 System.out.println("Error: Pins nicht definiert? (NullPointerException)");
@@ -549,8 +439,8 @@ public final class RPMotor {
         } else {
             System.out.println("Zuerst Pins fuer den Motor angeben (Enable, Richtung 1, Richtung 2)");
             return false;
-        }    
-    } 
+        }
+    }
 
     /**
     * Ueberprueft, ob der Motor gerade nach links laeuft.
@@ -559,12 +449,12 @@ public final class RPMotor {
     public boolean hatLaufrichtungLinks() {
         if (boolInitialisierungErfolgt == true){
             try{
-                if (pinRichtung1.getState() == PinState.HIGH) {
+                if (pinRichtung1.isOn()) {
                     System.out.println("Ja, Motor ist auf Links eingestellts");
                     return true;
                 } else {
                     System.out.println("Nein, Motor ist auf Rechts eingestellt (oder hat noch keine Richtung)");
-                    return false; 
+                    return false;
                 }
             } catch (NullPointerException f){
                 System.out.println("Error: Pins nicht definiert? (NullPointerException)");
@@ -573,7 +463,7 @@ public final class RPMotor {
         } else {
             System.out.println("Zuerst Pins fuer den Motor angeben (Enable, Richtung 1, Richtung 2)");
             return false;
-        }    
+        }
     }
 
     /**
@@ -583,12 +473,12 @@ public final class RPMotor {
     public boolean hatLaufrichtungRechts() {
         if (boolInitialisierungErfolgt == true){
             try{
-                if (pinRichtung2.getState() == PinState.LOW) {
+                if (pinRichtung2.isOff()) {
                     System.out.println("Nein, Motor ist auf Links eingestellt (oder hat noch keine Richtung)");
                     return false;
                 } else {
                     System.out.println("Ja, Motor ist auf Rechts eingestellt");
-                    return true; 
+                    return true;
                 }
             } catch (NullPointerException f){
                 System.out.println("Error: Pins nicht definiert? (NullPointerException)");
@@ -597,23 +487,25 @@ public final class RPMotor {
         } else {
             System.out.println("Zuerst Pins fuer den Motor angeben (EN 1, Richtung 1, Richtung 2)");
             return false;
-        }    
-    } 
+        }
+    }
 
-    /**
-    * Schalte GPIO ab und dereferenziere den GPIO und die Pins (Enable, Richtung 1, Richtung2).
-    */  
-    public void herunterfahren() {
-		stop();
-        gpio.shutdown();
-        try{
-			gpio.unprovisionPin(pinEnable);
-			gpio.unprovisionPin(pinRichtung1);
-			gpio.unprovisionPin(pinRichtung2);
-  		} catch (java.lang.NullPointerException e){
-			System.out.println("Pin konnte nicht dereferenziert werden");
-		}
-	
-
+    public static void main(String[] args) {
+        RPMotor motor = new RPMotor(23, 24, 25);
+        motor.setzeLaufrichtung(1);
+        motor.start(100);
+        Helfer.warte(1);
+        motor.stop();
+        motor.start(50);
+        Helfer.warte(1);
+        motor.wechselLaufrichtung();
+        Helfer.warte(1);
+        motor.wechselLaufrichtung();
+        Helfer.warte(1);
+        motor.stop();
+        Helfer.warte(1);
+        motor.setzeLaufrichtung(1);
+        motor.start(70);
+        motor.stop();
     }
 }

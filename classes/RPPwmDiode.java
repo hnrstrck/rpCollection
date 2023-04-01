@@ -241,7 +241,7 @@ public final class RPPwmDiode {
     * @see RPADWandler
     * @see RPRegler
     * @see Helfer
-    * /
+    */
     private void startBlinkenVariabel(RPADWandler meinWandler, RPRegler meinRegler) {
         if (boolInitialisierungErfolgt == true){
 
@@ -319,7 +319,7 @@ public final class RPPwmDiode {
     * @see RPRegler
     * @see Helfer
     */
-/*    public void blinkeEndlosStart(RPADWandler pWandler, RPRegler pRegler){
+    public void blinkeEndlosStart(RPADWandler pWandler, RPRegler pRegler){
         if (boolInitialisierungErfolgt == true){
 
             if(!blinktGerade){

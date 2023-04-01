@@ -1,10 +1,12 @@
-import com.pi4j.io.i2c.*;
+import com.pi4j.context.Context;
+import com.pi4j.io.i2c.I2C;
+import com.pi4j.io.i2c.I2CConfigBuilder;
 
 /**
  * Klasse zum Anschluss eines Mehrzeilendisplay über I2C an den Raspberry Pi.
  *
  * @author Johannes Pieper
- * @version 0.9
+ * @version 2.0
  */
 public class RPDisplayI2c {
 
@@ -17,13 +19,18 @@ public class RPDisplayI2c {
     public final static int Rs = 0b00000001; //Register select bit
 
     private final int[] LCD_LINE_ADDRESS = { 0x80, 0xC0, 0x94, 0xD4};  //Addresse für Zeilen
-    private static I2CDevice dev = null;
+    private static I2C dev = null;
     private int backlightStatus = LCD_BACKLIGHT;
 
     public RPDisplayI2c(int adresse) {
         try {
-            I2CBus bus = I2CFactory.getInstance(I2CBus.BUS_1);
-            this.dev = bus.getDevice(adresse);
+            Context pi4j = RPEnvironment.getContext();
+            I2CConfigBuilder i2CConfig = RPEnvironment.getI2CConfig();
+            this.dev = pi4j.create(i2CConfig
+                .device(adresse)
+                .bus(1)
+                .id("I2C-" + adresse)
+            );
             this.init();
         } catch (Exception e) {
             System.out.println("Display konnte nicht initialisiert werden.");
@@ -112,10 +119,9 @@ public class RPDisplayI2c {
         }
     }
 
-
     public static void main(String[] args) {
         RPDisplayI2c display = new RPDisplayI2c(0x27);
         display.write(0,0,"Test");
-        display.write(3,0,"weiterer");
-     }
+        display.write(1,0,"weiterer");
+    }
 }

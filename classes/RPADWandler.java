@@ -1,8 +1,7 @@
-import com.pi4j.io.gpio.*;
-
-import com.pi4j.io.spi.SpiChannel;
-import com.pi4j.io.spi.SpiDevice;
-import com.pi4j.io.spi.SpiFactory;
+import com.pi4j.context.Context;
+import com.pi4j.io.spi.Spi;
+import com.pi4j.io.spi.SpiConfigBuilder;
+import com.pi4j.io.spi.SpiMode;
 
 import java.nio.ByteBuffer;
 import java.io.IOException;
@@ -21,16 +20,15 @@ import java.io.IOException;
  *   <li><a href="http://www.lediouris.net/RaspberryPI/ADC/readme.html">http://www.lediouris.net/RaspberryPI/ADC/readme.html</a> (MCP3008)</li>
  *   <li><a href="https://github.com/oksbwn/MCP3208_Raspberry-Pi/blob/master/MCP3208_raspberryPi.java">https://github.com/oksbwn/MCP3208_Raspberry-Pi/blob/master/MCP3208_raspberryPi.java</a> (MCP3208)</li>
  * </ul>
- * 
- ** @author Heiner Stroick
- * @version 0.9
+ *
+ ** @author Heiner Stroick, Johannes Pieper
+ * @version 2.0
  */
 public final class RPADWandler {
 
-    //private GpioController gpio;
     private static boolean boolInitialisierungErfolgt;
 
-    private static SpiDevice spi = null;
+    private static Spi spi = null;
     private static byte INIT_CMD = (byte) 0xD0; // 11010000
     private static int gelesenerWert = 0;
     private static int prozentWert = 0;
@@ -56,9 +54,13 @@ public final class RPADWandler {
     * @throws IOException Wirft IOException, falls Anschluesse falsch sind (Mode)
     */
     public void initialisiere() throws InterruptedException, IOException {
-        spi = SpiFactory.getInstance(SpiChannel.CS0,
-            SpiDevice.DEFAULT_SPI_SPEED, 
-            SpiDevice.DEFAULT_SPI_MODE);
+        Context pi4j = RPEnvironment.getContext();
+        SpiConfigBuilder spiConfig = RPEnvironment.getSpiConfig();
+        RPADWandler.spi = pi4j.create(spiConfig
+                .address(0)
+                .mode(SpiMode.MODE_0)
+                .id("SPI" + 0)
+            );
 
         boolInitialisierungErfolgt = true;
 
@@ -79,12 +81,13 @@ public final class RPADWandler {
         packet[1] = (byte) ((0x08 + channel) << 4);  // singleEnded + channel
         packet[2] = 0x00;
 
-        byte[] result = spi.write(packet);
-        
+
+        byte result[] = new byte[4];
+        int ok = spi.transfer(packet, result); //Request data from MCP3008 via SPI
         return (((result[1] & 0x03 ) << 8) | (result[2] & 0xff) );
     }
-    
-    
+
+
     /**
     * Liest den uebergebenen Channel aus (fuer AD-Wandler MCP3208).
     *
@@ -102,12 +105,13 @@ public final class RPADWandler {
         	data[0]= 0B00000111; //First Byte for Channel 3-7
     	 else
     		data[0]= 0B00000110; //First Byte for Channel 0-3
-    		      
-        byte[] result = spi.write(data); //Request data from MCP3208 via SPI
-   
+
+        byte result[] = new byte[4];
+        int ok = spi.transfer(data, result); //Request data from MCP3208 via SPI
+
         int value = (result[1]<< 8) & 0b0000111111111111; //merge data[1] & data[2] to get 10-bit result
         value |=  (result[2] & 0xff);
-        
+
         return value;
     }
 
@@ -125,7 +129,7 @@ public final class RPADWandler {
 		} else {
 			System.out.println("Fehler beim Auslesen des Reglers. AD-Wandler nicht erkannt.");
 			return 0;
-		}		
+		}
 	}
 
     /**
@@ -139,7 +143,7 @@ public final class RPADWandler {
     public static int gibWertVonRegler(RPRegler pRegler, int ausgabe){
 	   if (boolInitialisierungErfolgt == true){
 			try{
-				gelesenerWert = readChannel(pRegler.gibChannel()); 
+				gelesenerWert = readChannel(pRegler.gibChannel());
 				if (ausgabe == 1){
 					System.out.println("Gelesener Wert: " + gelesenerWert);
 				}
@@ -150,7 +154,7 @@ public final class RPADWandler {
 		} else {
 			System.out.println("Zuerst AD-Wandler initialisieren");
 		}
-	
+
 		return gelesenerWert;
     }
 
@@ -178,7 +182,7 @@ public final class RPADWandler {
                 try{
 
                     //Berechne Prozent:
-                    prozentWert = (int)((float)readChannel(pRegler.gibChannel())/(float)(Helfer.aufloesungADWandler-1) * 100f); 
+                    prozentWert = (int)((float)readChannel(pRegler.gibChannel())/(float)(Helfer.aufloesungADWandler-1) * 100f);
 
                     if(ausgabe == 1){
                         System.out.println("Einstellung in Prozent: " + prozentWert + "%");
@@ -190,12 +194,12 @@ public final class RPADWandler {
             } else {
                 System.out.println("Zuerst AD-Wandler initialisieren");
             }
-     
+
         return prozentWert;
     }
 
     /**
-    * Liest den uebergebenen Regler aus und gibt die Stellung in Prozent zurueck (als int, ohne "%", also zum Beispiel 37 fuer eine Stellung von 37%). Die Ausgabe erfolgt in der Shell. 
+    * Liest den uebergebenen Regler aus und gibt die Stellung in Prozent zurueck (als int, ohne "%", also zum Beispiel 37 fuer eine Stellung von 37%). Die Ausgabe erfolgt in der Shell.
     *
     * @param pRegler Der Regler, der ausgelesen werden soll.
     * @return Der gelesene Wert des Channels in Prozent (Achtung: richtigen AD-Wandler auswaehlen).
@@ -207,13 +211,24 @@ public final class RPADWandler {
 
     /**
     * Schalte GPIO ab und dereferenziere den GPIO und den Pin.
-    */ 
+    */
     public void herunterfahren(){
         try{
-			spi = null;
-		} catch (java.lang.NullPointerException e){
-			System.out.println("Pin konnte nicht dereferenziert werden");
-		}
+            spi = null;
+        } catch (java.lang.NullPointerException e){
+            System.out.println("Pin konnte nicht dereferenziert werden");
+        }
     }
 
+    public static void main(String[] args) {
+        RPADWandler ad = new RPADWandler();
+        try{
+            System.out.println(RPADWandler.readChannel(0));
+            System.out.println(RPADWandler.readChannel(1));
+            System.out.println(RPADWandler.readChannel(2));
+            System.out.println(RPADWandler.readChannel(3));
+        } catch (IOException f){
+            System.out.println("Error: Pin nicht definiert? (IOException)");
+        }
+    }
 }
