@@ -1,16 +1,23 @@
-import com.pi4j.wiringpi.*;
+import com.pi4j.context.Context;
+import com.pi4j.io.gpio.digital.DigitalOutput;
+import com.pi4j.io.gpio.digital.DigitalOutputConfig;
+import com.pi4j.io.gpio.digital.DigitalOutputConfigBuilder;
+import com.pi4j.io.spi.Spi;
+import com.pi4j.io.spi.SpiConfigBuilder;
+import com.pi4j.io.spi.SpiMode;
 
 /**
  * Klasse zum Anschluss eines RFID-Empfängers an den Raspberry Pi.
  * Original aus Python MFRC522
  *
  * @author Johannes Pieper
- * @version 0.9
+ * @version 2.0
  */
 public class RPRfid {
     private int NRSTPD = 22; //RST Pin
     private int speed = 1000000;
     private int spiChannel = 0;
+    private Spi spi = null;
 
     private final int MAX_LEN = 16; //
 
@@ -50,15 +57,23 @@ public class RPRfid {
     }
 
     private void init() {
-        Gpio.wiringPiSetup();
-        int fd=Spi.wiringPiSPISetup(spiChannel, speed);
-        if (fd <= -1) {
-            System.out.println(" Fehler beim Aufbau der SPI Kommunikation");
-            return;
-        }
 
-        Gpio.pinMode(NRSTPD, Gpio.OUTPUT);
-        Gpio.digitalWrite(NRSTPD, Gpio.HIGH);
+        Context pi4j = RPEnvironment.getContext();
+        SpiConfigBuilder spiConfig = RPEnvironment.getSpiConfig();
+        this.spi = pi4j.create(spiConfig
+                .address(spiChannel)
+                .mode(SpiMode.MODE_0)
+                .baud(speed)
+                .id("SPI" + 0)
+            );
+
+        DigitalOutputConfigBuilder outputConfig = RPEnvironment.getOutputConfig();
+        DigitalOutput digitalOutput = pi4j.create(outputConfig
+            .address(NRSTPD)
+            .id("pin" + NRSTPD)
+        );
+        digitalOutput.on();
+
         reset();
         writeToRC522(TModeReg, (byte)0x8D);
         writeToRC522(TPrescalerReg, (byte)0x3E);
@@ -78,7 +93,8 @@ public class RPRfid {
         byte data[] = new byte[2];
         data[0] = (byte) ((addr << 1) & 0x7E);
         data[1] = val;
-        int result = Spi.wiringPiSPIDataRW(spiChannel, data);
+        byte output[] = new byte[3];
+        int result = spi.transfer(data, output);
         if (result == -1) {
             System.out.println("Schreibfehler, Addresse="+addr+", Wert="+val);
         }
@@ -88,11 +104,12 @@ public class RPRfid {
         byte data[] = new byte[2];
         data[0] = (byte) (((addr << 1) & 0x7E) | 0x80);
         data[1] = 0;
-        int result = Spi.wiringPiSPIDataRW(spiChannel, data);
+        byte output[] = new byte[3];
+        int result = spi.transfer(data, output);
         if(result == -1) {
             System.out.println("Lesefehler, Addresse="+addr);
         }
-        return data[1];
+        return output[1];
     }
 
     private void setBitMask(byte addr, byte mask) {
@@ -269,13 +286,6 @@ public class RPRfid {
             returnId = returnId + " "  + Byte.toUnsignedInt(tagid[i]);
         }
         return returnId.trim();
-    }
-
-
-    /**
-    * Schalte GPIO ab und dereferenziere den GPIO und den Pin.
-    */
-    public void herunterfahren() {
     }
 
 

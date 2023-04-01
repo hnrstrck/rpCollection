@@ -18,7 +18,7 @@ public class RPDisplayI2c {
     public final static int En = 0b00000100; //Enable bit
     public final static int Rs = 0b00000001; //Register select bit
 
-    private final int[] LCD_LINE_ADDRESS = { 0x80, 0xC0, 0x94, 0xD4};  //Addresse für Zeilen
+    private final int[] LCD_LINE_ADDRESS = { 0x80, 0xC0, 0x94, 0xD4};  //Adressen für Zeilen
     private static I2C dev = null;
     private int backlightStatus = LCD_BACKLIGHT;
 
