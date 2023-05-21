@@ -23,15 +23,15 @@ public final class RPTaster {
 
     /**
     * Erstellt ein neues Objekt der Klasse RPTaster.
-    * @param pPin Der Pin, an dem der Taster angeschlossen ist.
+    * @param pin Der Pin, an dem der Taster angeschlossen ist.
     */
-    RPTaster(int pPin) {
-        this.setPin(pPin);
+    RPTaster(int pin) {
+        this.setPin(pin);
     }
 
     /**
     * Setzt den Pin fuer den Taster.
-    * @param pPin Der Pin, an dem der Taster angeschlossen ist.
+    * @param pin Der Pin, an dem der Taster angeschlossen ist.
     */
     public void setPin(int pin) {
         if (this.digitalInput == null) {
@@ -89,9 +89,18 @@ public final class RPTaster {
 
         for (int count = 1; count <= 10; count++){
             System.out.println("Ueberwache " + count + "/10: " + istGedrueckt());
-            Helfer.warte(800);
+            Helfer.warte(1);
         }
 
         System.out.println("Ueberwachung beendet");
+    }
+
+    /**
+    * Test-Methode
+    */
+    public static void main(String[] args)
+    {
+        RPTaster taster = new RPTaster(13);
+        taster.ueberwache10Mal();
     }
 }

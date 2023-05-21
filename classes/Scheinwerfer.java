@@ -1,4 +1,5 @@
 /**
+*   Die Klasse Scheinwerfer wird fuer die Modellierung und Umsetzung des Theaterstuecks benoetigt.
 *	Hinweis:
 *	Fuer die Abfrage der einzelnen Attributwerte haette auch auf das Objekt "RPDiode" zurueckgegriffen werden koennen.
 *	Dann haetten die SuS aber mit zwei Klassen zu tun, was hier vermieden werden sollte, falls dieser Quelltext mal interessieren sollte.
@@ -13,10 +14,10 @@ public class Scheinwerfer{
 
 	/**
 	* Erstelle einen neuen Scheinwerfer.
-	* @param pPin Der Pin des angeschlossenen Scheinwerfers.
+	* @param pin Der Pin des angeschlossenen Scheinwerfers.
 	*/
-	Scheinwerfer(int pPin){
-		pDiode = new RPDiode(pPin);
+	Scheinwerfer(int pin){
+		pDiode = new RPDiode(pin);
 	}
 
 	/**
@@ -27,12 +28,12 @@ public class Scheinwerfer{
 		setzeStatus(true);
 	}
 
-  /**
-  * Schalte den Scheinwerfer an.
-  */
-  public void einschalten(){
-    this.anschalten();
-  }
+    /**
+    * Schalte den Scheinwerfer an.
+    */
+    public void einschalten(){
+        this.anschalten();
+    }
 
 	/**
 	* Laesst den Scheinwerfer kurz blinken. Am Ende ist der Scheinwerfer aus.

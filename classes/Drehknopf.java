@@ -1,4 +1,6 @@
 /**
+*  Mit einem Drehknopf-Objekt kann der Wert von einem angeschlossenen Modul mit Drehknoepfen ausgelesen werden. Es werden Werte in Prozent angegeben.
+*
 *	Hinweis:
 *	Fuer die Abfrage der einzelnen Attributwerte haette auch auf das Objekt "RPRegler" zurueckgegriffen werden koennen.
 *	Dann haetten die SuS aber mit zwei Klassen zu tun, was hier vermieden werden sollte, falls dieser Quelltext mal interessieren sollte.
@@ -27,11 +29,5 @@ public class Drehknopf{
     */
     public int auslesen(){
         return this.adwandler.gibProzentwertVonRegler(this.regler);
-    }
-
-    /**
-    * Fahre den Drehknopf herunter (Ohne Funktion)
-    */
-    public void herunterfahren(){
     }
 }

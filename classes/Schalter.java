@@ -1,4 +1,5 @@
 /**
+*   Die Klasse Schalter wird fuer die Modellierung und Umsetzung des Theaterstuecks benoetigt.
 *	Hinweis:
 *	Fuer die Abfrage der einzelnen Attributwerte haette auch auf das Objekt "RPTaster" zurueckgegriffen werden koennen.
 *	Dann haetten die SuS aber mit zwei Klassen zu tun, was hier vermieden werden sollte, falls dieser Quelltext mal interessieren sollte.

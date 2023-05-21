@@ -7,7 +7,7 @@ import com.pi4j.io.spi.SpiConfigBuilder;
 import com.pi4j.io.spi.SpiMode;
 
 /**
- * Klasse zum Anschluss eines RFID-Empfängers an den Raspberry Pi.
+ * Klasse zum Anschluss eines RFID-Empfängers an den Raspberry Pi. Der Anschluss erfolgt ueber SPI.
  * Original aus Python MFRC522
  *
  * @author Johannes Pieper
@@ -52,6 +52,9 @@ public class RPRfid {
     public static final byte TReloadRegL       = 0x2D;
 
 
+    /**
+    * Liefert ein Objekt zum Benutzen eines RFID-Lesers.
+    */
     public RPRfid(){
         this.init();
     }
@@ -129,7 +132,7 @@ public class RPRfid {
         }
     }
 
-    public int request(byte reqMode, int[] backBits) {
+    private int request(byte reqMode, int[] backBits) {
         int status;
         byte tagType[] = new byte[1];
         byte dataBack[] = new byte[16];
@@ -227,7 +230,7 @@ public class RPRfid {
     }
 
     //Antikollision Detektion.
-    public int antiColl(byte[] backData) {
+    private int antiColl(byte[] backData) {
         int status;
         byte []serialNumber = new byte[2];
         int serialNumberCheck = 0;
@@ -255,6 +258,9 @@ public class RPRfid {
         return status;
     }
 
+    /**
+    * Liefert die ID der vorgelegten Karte als Byte-Array
+    */
     public byte[] getCardID(){
         int backBits[] = new int[1];
         byte tagid[] = new byte[5];
@@ -270,6 +276,9 @@ public class RPRfid {
         return returnId;
     }
 
+    /**
+    * Liefert die ID der vorgelegten Karte als Int-Array
+    */
     public int[] getCardIDAsIntArray(){
         byte tagid[] = this.getCardID();
         int returnId[] = new int[4];
@@ -279,6 +288,9 @@ public class RPRfid {
         return returnId;
     }
 
+    /**
+    * Liefert die ID der vorgelegten Karte als Zeichenkette
+    */
     public String getCardIDAsString(){
         byte tagid[] = this.getCardID();
         String returnId = "";
@@ -288,7 +300,9 @@ public class RPRfid {
         return returnId.trim();
     }
 
-
+    /**
+    * Test-Methode
+    */
     public static void main(String[] args) {
         RPRfid rfid = new RPRfid();
         System.out.println(rfid.getCardIDAsString());

@@ -1,4 +1,7 @@
 /**
+*   Die Klasse Helligkeitssensor wird fuer die Modellierung und Umsetzung des Theaterstuecks benoetigt.
+*   Die Hintergrundbeleuchtung hat die Moeglichkeit, diese direkt mit einem Helligkeitssensor zu verbinden
+*
 *	Hinweis:
 *	Fuer die Abfrage der einzelnen Attributwerte haette auch auf das Objekt "RPDiode" zurueckgegriffen werden koennen.
 *	Dann haetten die SuS aber mit zwei Klassen zu tun, was hier vermieden werden sollte, falls dieser Quelltext mal interessieren sollte.
@@ -13,11 +16,11 @@ public class Hintergrundbeleuchtung{
 
 	/**
 	* Erstelle eine neue Hintergrundbeleuchtung.
-	* @param pPin Der Pin der angeschlossenen Hintergrundbeleuchtung.
+	* @param pin Der Pin der angeschlossenen Hintergrundbeleuchtung.
 	* @see Scheinwerfer
 	*/
-	Hintergrundbeleuchtung(int pPin){
-		pDiode = new RPDiode(pPin);
+	Hintergrundbeleuchtung(int pin){
+		pDiode = new RPDiode(pin);
 	}
 
 	/**

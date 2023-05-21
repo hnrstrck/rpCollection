@@ -1,4 +1,7 @@
 /**
+*   Die Klasse Helligkeitssensor wird fuer die Modellierung und Umsetzung des Theaterstuecks benoetigt.
+*   Er misst die Helligkeit in Form: Genuegend List oder nicht genuegend Licht.
+*
 *	Hinweis:
 *	Fuer die Abfrage der einzelnen Attributwerte haette auch auf das Objekt "RPPhototransistor" zurueckgegriffen werden koennen.
 *	Dann haetten die SuS aber mit zwei Klassen zu tun, was hier vermieden werden sollte, falls dieser Quelltext mal interessieren sollte.
@@ -12,10 +15,10 @@ public class Helligkeitssensor{
 
 	/**
 	* Erstelle einen neuen Helligkeitssensor.
-	* @param pPin Pin des angeschlossenen Helligkeitssensors.
+	* @param pin Pin des angeschlossenen Helligkeitssensors.
 	*/
-	Helligkeitssensor(int pPin){
-		pPhoto = new RPPhototransistor(pPin);
+	Helligkeitssensor(int pin){
+		pPhoto = new RPPhototransistor(pin);
 	}
 
 	/**
@@ -41,14 +44,14 @@ public class Helligkeitssensor{
 		return gibStatus();
 	}
 
-  /**
-  * Den Helligkeitssensor befragen.
-  * @return Lichteinfall (true = Lichteinfall, false = kein Lichteinfall).
-  */
-  public boolean befragen(){
-    status = pPhoto.istLichteinfall();
-    return gibStatus();
-  }
+    /**
+    * Den Helligkeitssensor befragen.
+    * @return Lichteinfall (true = Lichteinfall, false = kein Lichteinfall).
+    */
+    public boolean befragen(){
+        status = pPhoto.istLichteinfall();
+        return gibStatus();
+    }
 
 	/**
 	* Frage nach dem Standort des Helligkeitssensors.
@@ -61,32 +64,28 @@ public class Helligkeitssensor{
 
 	/**
 	* Setze den Standort des Helligkeitssensors.
-	* @param pStandort Der Standort des Helligkeitssensors als String.
+	* @param standort Der Standort des Helligkeitssensors als String.
 	*/
-	public void setzeStandort(String pStandort){
+	public void setzeStandort(String standort){
 		System.out.println("Standort des Helligkeitssensors als >" + standort + "< gesetzt");
-		standort =  pStandort;
+		this.standort =  standort;
 	}
 
 	/**
-	* Gib den Status des Helligkeitssensors (gespeicherter Wert nach der letzten Messung). <b>Kann evtl. abweichen vom tatsaechlichen Status!</b>
+	* Gib den Status des Helligkeitssensors.
 	* @return Der Status der Hintergrundbeleuchtung (Lichteinfall = true / kein Lichteinfall = false).
 	*/
 	public boolean gibStatus(){
+        status = pPhoto.istLichteinfall();
 		System.out.println("Status des Helligkeitssensors ist: " + status);
 		return status;
 	}
 
+	/**
+	* Gibt zurueck ob es Hell ist.
+	* @return Der Status der Hintergrundbeleuchtung (Lichteinfall = true / kein Lichteinfall = false).
+	*/
     public boolean istHell() {
         return this.gibStatus();
     }
-
-	/**
-	* Setze den Status des Helligkeitssensors.
-	* @param pStatus Der Status des Helligkeitssensors als Wahrheitswert.
-	*/
-	public void setzeStatus(boolean pStatus){
-		System.out.println("Status des Helligkeitssensors auf >" + status + "< geaendert");
-		status =  pStatus;
-	}
 }

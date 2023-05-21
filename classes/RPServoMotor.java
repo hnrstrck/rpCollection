@@ -158,6 +158,9 @@ public final class RPServoMotor {
         return outputStart + ((outputEnd - outputStart) / (inputEnd - inputStart)) * (clampedInput - inputStart);
     }
 
+    /**
+    * Test-Methode
+    */
     public static void main(String[] args) {
         RPServoMotor servoMotor = new RPServoMotor(15);
         servoMotor.setPercent(10);

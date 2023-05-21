@@ -22,15 +22,15 @@ public final class RPPhototransistor {
 
     /**
     * Erstellt ein neues Objekt der Klasse RPPhototransistor.
-    * @param pPin Der Pin, an dem der Phototransistor angeschlossen ist.
+    * @param pin Der Pin, an dem der Phototransistor angeschlossen ist.
     */
-    RPPhototransistor(int pPin) {
-        this.setPin(pPin);
+    RPPhototransistor(int pin) {
+        this.setPin(pin);
     }
 
     /**
     * Setzt den Pin fuer den Phototransistor.
-    * @param pPin Der Pin, an dem der Phototransistor angeschlossen ist.
+    * @param pin Der Pin, an dem der Phototransistor angeschlossen ist.
     */
     public void setPin(int pin) {
         if (this.digitalInput == null) {

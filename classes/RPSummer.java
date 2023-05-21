@@ -25,16 +25,16 @@ public final class RPSummer {
 
    /**
     * Erstellt ein neues Objekt der Klasse RPSummer.
-    * @param pPin Der Pin, an dem der Summer angeschlossen ist.
+    * @param pin Der Pin, an dem der Summer angeschlossen ist.
     */
-    RPSummer(int pPin) {
-        this.setPin(pPin);
+    RPSummer(int pin) {
+        this.setPin(pin);
     }
 
 
     /**
     * Setzt den Pin fuer den Summer.
-    * @param pPin Der Pin, an dem der Summer angeschlossen ist.
+    * @param pin Der Pin, an dem der Summer angeschlossen ist.
     */
     public void setPin(int pin) {
         if (this.digitalOutput == null) {
@@ -184,6 +184,9 @@ public final class RPSummer {
         }
     }
 
+    /**
+    * Test-Methode
+    */
     public static void main(String[] args) {
         RPSummer summer = new RPSummer(22);
         summer.beepbeep();

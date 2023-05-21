@@ -34,7 +34,7 @@ public final class RPADWandler {
     private static int prozentWert = 0;
 
     /**
-    * Erstellt ein neues Objekt der Klasse RPADWandler (die Initialisierung erfolgt automaitsch, es muessen keine Pins angegeben werden).
+    * Erstellt ein neues Objekt der Klasse RPADWandler (die Initialisierung erfolgt automaitsch, es muessen keine Pins angegeben werden, da er mit SPI funktioniert).
     */
     RPADWandler() {
         try{
@@ -220,6 +220,9 @@ public final class RPADWandler {
         }
     }
 
+    /**
+    * Test-Methode
+    */
     public static void main(String[] args) {
         RPADWandler ad = new RPADWandler();
         try{

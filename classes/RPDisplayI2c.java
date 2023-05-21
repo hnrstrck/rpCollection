@@ -22,6 +22,17 @@ public class RPDisplayI2c {
     private static I2C dev = null;
     private int backlightStatus = LCD_BACKLIGHT;
 
+    /**
+    * Erzeugt ein Display-Objekt fuer ein Display, dass ueber I2C angeschlossen ist.
+    */
+    public RPDisplayI2c() {
+        this(0x27);
+    }
+
+    /**
+    * Erzeugt ein Display-Objekt fuer ein Display, dass ueber I2C angeschlossen ist. Dabei erfolgt auch die Angabe der Adresse auf dem I2C-Bus
+    * @param adresse Adresse am I2C-Bus
+    */
     public RPDisplayI2c(int adresse) {
         try {
             Context pi4j = RPEnvironment.getContext();
@@ -65,6 +76,9 @@ public class RPDisplayI2c {
         Thread.sleep(1);
     }
 
+    /**
+    * Leert das Display
+    */
     public void clearDisplay() {
         try {
             this.lcd_byte(0x01, LCD_CMD); //LCD Clear Command
@@ -75,6 +89,12 @@ public class RPDisplayI2c {
         }
     }
 
+    /**
+    * Schreibt Text in der gegebenen Zeile ab der gegebenen Spalte
+    * @param zeile Die Zeile, ab 0 gerechnet
+    * @param spalte Die Spalte für den Start, ab 0 gerechnet
+    * @param text Der Text der angezeigt werden soll
+    */
     public void write(int zeile, int spalte, String text) {
         try {
             this.lcd_byte(LCD_LINE_ADDRESS[zeile] + spalte, LCD_CMD);
@@ -87,6 +107,9 @@ public class RPDisplayI2c {
         }
     }
 
+    /**
+    * Schaltet das Licht des Displays aus.
+    */
     public void ausschalten(){
         this.backlightStatus = LCD_NOBACKLIGHT;
         try {
@@ -97,6 +120,9 @@ public class RPDisplayI2c {
         }
     }
 
+    /**
+    * Schaltet das Licht des Displays an.
+    */
     public void einschalten(){
         this.backlightStatus = LCD_BACKLIGHT;
         try {
@@ -119,6 +145,9 @@ public class RPDisplayI2c {
         }
     }
 
+    /**
+    * Test-Methode
+    */
     public static void main(String[] args) {
         RPDisplayI2c display = new RPDisplayI2c(0x27);
         display.write(0,0,"Test");

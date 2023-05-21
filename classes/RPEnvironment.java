@@ -29,6 +29,9 @@ class RPEnvironment {
     private static I2CConfigBuilder i2CConfig = null;
     private static SpiConfigBuilder spiConfig = null;
 
+    /**
+    * Liefert den allgemeinen Context, auf dem alle RP-Klassen zur Steuerung von den Elementen aufsetzen
+    */
     public static Context getContext()
     {
         if (RPEnvironment.pi4j == null) {
@@ -37,6 +40,9 @@ class RPEnvironment {
         return RPEnvironment.pi4j;
     }
 
+    /**
+    * Zum Freigeben aller Pins, damit es zu keinen Konflikten mit bereits belegten Pins kommt
+    */
     public static void herunterfahren()
     {
         if (RPEnvironment.pi4j != null) {
@@ -48,6 +54,9 @@ class RPEnvironment {
         }
     }
 
+    /**
+    * Liefert die Config fuer alles was eine digitale Ausgabe hat
+    */
     public static DigitalOutputConfigBuilder getOutputConfig()
     {
         if (RPEnvironment.outputConfig == null) {
@@ -59,6 +68,9 @@ class RPEnvironment {
         return RPEnvironment.outputConfig;
     }
 
+    /**
+    * Liefert die Config fuer alles was eine digitale Eingabe hat
+    */
     public static DigitalInputConfigBuilder getInputConfig()
     {
         if (RPEnvironment.inputConfig == null) {
@@ -69,6 +81,9 @@ class RPEnvironment {
         return RPEnvironment.inputConfig;
     }
 
+    /**
+    * Liefert die Config fuer alles was eine mit Pulsweitenmodulation arbeitet
+    */
     public static PwmConfigBuilder getPwmConfig()
     {
         if (RPEnvironment.pwmConfig == null) {
@@ -79,6 +94,9 @@ class RPEnvironment {
         return RPEnvironment.pwmConfig;
     }
 
+    /**
+    * Liefert die Config fuer alles was eine mit I2C arbeitet
+    */
     public static I2CConfigBuilder getI2CConfig() {
         if (RPEnvironment.i2CConfig == null) {
             RPEnvironment.i2CConfig = I2C.newConfigBuilder(RPEnvironment.getContext())
@@ -87,6 +105,9 @@ class RPEnvironment {
         return RPEnvironment.i2CConfig;
     }
 
+    /**
+    * Liefert die Config fuer alles was eine mit SPI arbeitet
+    */
     public static SpiConfigBuilder getSpiConfig() {
         if (RPEnvironment.spiConfig == null) {
             RPEnvironment.spiConfig = Spi.newConfigBuilder(RPEnvironment.getContext())

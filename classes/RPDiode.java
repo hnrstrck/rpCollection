@@ -30,10 +30,10 @@ public final class RPDiode {
 
     /**
     * Erstellt ein Objekt der Klasse RPDiode.
-    * @param pPin Der Pin, an dem die Diode angeschlossen ist.
+    * @param pin Der Pin, an dem die Diode angeschlossen ist.
     */
-    RPDiode(int pPin) {
-        this.setPin(pPin);
+    RPDiode(int pin) {
+        this.setPin(pin);
     }
 
     /**
@@ -305,7 +305,7 @@ public final class RPDiode {
     }
 
     /**
-    * Beendet das endlose blinken der Diode.
+    * Beendet das endlose Blinken der Diode.
     */
     public void blinkeEndlosStop(){
         if (boolInitialisierungErfolgt == true){
@@ -319,6 +319,9 @@ public final class RPDiode {
         }
     }
 
+    /**
+    * Test-Methode
+    */
     public static void main(String[] args) {
         RPDiode diode = new RPDiode(22);
         diode.an();

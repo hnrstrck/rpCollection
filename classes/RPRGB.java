@@ -60,7 +60,7 @@ public final class RPRGB {
 
     /**
     * Setzt die Pin fuer die rote Farbe (die rote LED).
-    * @param pPin Der Pin fuer die rote LED.
+    * @param pin Der Pin fuer die rote LED.
     */
     public void setPinRot(int pin) {
         if (this.pwmRed == null) {
@@ -80,7 +80,7 @@ public final class RPRGB {
 
     /**
     * Setzt die Pin fuer die gruene Farbe (die gruene LED).
-    * @param pPin Der Pin fuer die gruene LED.
+    * @param pin Der Pin fuer die gruene LED.
     */
     public void setPinGruen(int pin) {
         if (this.pwmGreen == null) {
@@ -100,7 +100,7 @@ public final class RPRGB {
 
     /**
     * Setzt die Pin fuer die blaue Farbe (die blaue LED).
-    * @param pPin Der Pin fuer die blaue LED.
+    * @param pin Der Pin fuer die blaue LED.
     */
     public void setPinBlau(int pin) {
         if (this.pwmBlue == null) {
@@ -564,6 +564,9 @@ public final class RPRGB {
         }
     }
 
+    /**
+    * Test-Methode
+    */
     public static void main(String[] args) {
         RPRGB diode = new RPRGB(22, 24, 25);
         diode.an();

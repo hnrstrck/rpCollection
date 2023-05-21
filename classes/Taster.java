@@ -1,4 +1,5 @@
 /**
+*   Die Klasse Taster wird fuer die Modellierung und Umsetzung des Theaterstuecks benoetigt.
 *	Hinweis:
 *	Fuer die Abfrage der einzelnen Attributwerte haette auch auf das Objekt "RPTaster" zurueckgegriffen werden koennen.
 *	Dann haetten die SuS aber mit zwei Klassen zu tun, was hier vermieden werden sollte, falls dieser Quelltext mal interessieren sollte.
@@ -60,20 +61,12 @@ public class Taster{
     }
 
     /**
-    * Gib den Status des Tasters (gespeicherter Wert nach der letzten Messung). <b>Kann evtl. abweichen vom tatsaechlichen Status!</b>
+    * Gib den Status des Tasters
     * @return Der Status der Hintergrundbeleuchtung (gedrueckt = true / nicht gedrueckt = false).
     */
     public boolean gibStatus(){
+        status = pTaster.istGedrueckt();
         System.out.println("Status des Tasters ist: " + status);
         return status;
-    }
-
-    /**
-    * Setze den Status des Tasters.
-    * @param pStatus Der Status des Tasters als Wahrheitswert.
-    */
-    public void setzeStatus(boolean pStatus){
-        System.out.println("Status des Tasters auf >" + status + "< geaendert");
-        status =  pStatus;
     }
 }

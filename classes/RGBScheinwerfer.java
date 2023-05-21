@@ -1,4 +1,7 @@
 /**
+*   Die Klasse RGBScheinwerfer wird fuer die Modellierung und Umsetzung des Theaterstuecks benoetigt.
+*   Ein RGB-Scheinwerfer besteht intern aus drei LEDs, die über drei verschiedene Pins angesprochen werden.
+*
 *	Hinweis:
 *	Fuer die Abfrage der einzelnen Attributwerte haette auch auf das Objekt "RPRGB" zurueckgegriffen werden koennen.
 *	Dann haetten die SuS aber mit zwei Klassen zu tun, was hier vermieden werden sollte, falls dieser Quelltext mal interessieren sollte.
@@ -14,7 +17,7 @@ public class RGBScheinwerfer{
     private int farbeblau;
 
     /**
-    * Erstelle einen neuen RGB-Scheinwerfer.
+    * Erstelle einen neuen RGB-Scheinwerfer unter angabe der drei Pin
     * @param pPinRot Der Pin fuer die rote Farbe.
     * @param pPinGruen Der Pin fuer die gruene Farbe.
     * @param pPinBlau Der Pin fuer die blaue Farbe.
@@ -154,15 +157,30 @@ public class RGBScheinwerfer{
         return farbeblau;
     }
 
+    /**
+    * Setzt den Anteil von Rot und schaltet dabei den RGBScheinwerfer ein.
+    *
+    * @param farbe Anteil der Farbe rot
+    */
     public void setzeR(int farbe){
         this.mischen(farbe, this.farbegruen, this.farbeblau);
     }
 
+    /**
+    * Setzt den Anteil von Gruen und schaltet dabei den RGBScheinwerfer ein.
+    *
+    * @param farbe Anteil der Farbe gruen
+    */
     public void setzeG(int farbe){
         this.mischen(this.farberot, farbe, this.farbeblau);
     }
+
+    /**
+    * Setzt den Anteil von Blau und schaltet dabei den RGBScheinwerfer ein.
+    *
+    * @param farbe Anteil der Farbe blau
+    */
     public void setzeB(int farbe){
         this.mischen(this.farberot, this.farbegruen, farbe);
     }
-
 }

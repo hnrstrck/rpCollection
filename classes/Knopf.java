@@ -1,4 +1,7 @@
 /**
+*   Die Klasse Knopf wird fuer die Modellierung und Umsetzung des Theaterstuecks benoetigt.
+*   Es repraesentiert ein Knopf, der an den Raspberry Pi angeschlossenen werden kann.
+*
 *	Hinweis:
 *	Fuer die Abfrage der einzelnen Attributwerte haette auch auf das Objekt "RPTaster" zurueckgegriffen werden koennen.
 *	Dann haetten die SuS aber mit zwei Klassen zu tun, was hier vermieden werden sollte, falls dieser Quelltext mal interessieren sollte.
@@ -12,10 +15,10 @@ public class Knopf{
 
     /**
     * Erstelle einen neuen Knopf.
-    * @param pPin Pin des angeschlossenen Tasters.
+    * @param pin Pin des angeschlossenen Tasters.
     */
-    Knopf(int pPin){
-        pTaster = new RPTaster(pPin);
+    Knopf(int pin){
+        pTaster = new RPTaster(pin);
     }
 
     /**

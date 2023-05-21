@@ -30,13 +30,39 @@ public class RPDisplay {
     private final static int LCD_CLEAR = 0x01;
     private final static int LCD_HOME = 0x02;
 
+
+    /**
+    * Erzeugt ein Display-Objekt ohne Angabe der Pins, sowie dessen Größe
+    */
     RPDisplay() {
     }
 
+    /**
+    * Erzeugt ein Display-Objekt unter Angabe der Pins, sowie dessen Größe
+    * @param rs RS-Pin
+    * @param e E-Pin
+    * @param d4 D4-Pin
+    * @param d5 D5-Pin
+    * @param d6 D6-Pin
+    * @param d7 D7-Pin
+    * @param rows Anzahl der Zeilen
+    * @param cols Anzahl der Spalten
+    */
     RPDisplay(int rs, int e, int d4, int d5, int d6, int d7, int rows, int cols) {
         this.init(rs, e, d4, d5, d6, d7, rows, cols);
     }
 
+    /**
+    * Setzt die Pins für das Display, sowie dessen Größe
+    * @param rs RS-Pin
+    * @param e E-Pin
+    * @param d4 D4-Pin
+    * @param d5 D5-Pin
+    * @param d6 D6-Pin
+    * @param d7 D7-Pin
+    * @param rows Anzahl der Zeilen
+    * @param cols Anzahl der Spalten
+    */
     public void setPins(int rs, int e, int d4, int d5, int d6, int d7, int rows, int cols) {
         this.init(rs, e, d4, d5, d6, d7, rows, cols);
     }
@@ -140,11 +166,20 @@ public class RPDisplay {
         }
     }
 
+    /**
+    * Leert das Display
+    */
     public void clearDisplay() {
        this.lcdSendByte(LCD_CLEAR, LCD_CMD);
        this.lcdSendByte(LCD_HOME, LCD_CMD);
     }
 
+    /**
+    * Schreibt Text in der gegebenen Zeile ab der gegebenen Spalte
+    * @param zeile Die Zeile, ab 0 gerechnet
+    * @param spalte Die Spalte für den Start, ab 0 gerechnet
+    * @param text Der Text der angezeigt werden soll
+    */
     public void write(int zeile, int spalte, String text) {
         this.lcdSendByte(LCD_LINE_ADDRESS[zeile] + spalte, LCD_CMD);
         for (int i = 0; i < text.length(); i++) {
@@ -152,9 +187,12 @@ public class RPDisplay {
         }
     }
 
-   public static void main(String[] args) {
+    /**
+    * Test-Methode
+    */
+    public static void main(String[] args) {
         RPDisplay display = new RPDisplay(21, 20, 16, 12, 26, 19, 2, 16);
         display.write(0,0,"Test");
         display.write(1,3,"Test");
-     }
+    }
 }

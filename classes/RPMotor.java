@@ -490,6 +490,9 @@ public final class RPMotor {
         }
     }
 
+    /**
+    * Test-Methode
+    */
     public static void main(String[] args) {
         RPMotor motor = new RPMotor(23, 24, 25);
         motor.setzeLaufrichtung(1);
