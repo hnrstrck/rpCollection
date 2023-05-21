@@ -34,7 +34,7 @@ public final class RPPwmDiode {
     * Erstellt ein Objekt der Klasse RPDiode.
     * @param pPin Der Pin, an dem die Diode angeschlossen ist.
     */
-    RPPwmDiode(int pPin) {
+    public RPPwmDiode(int pPin) {
         this.setPin(pPin);
     }
 

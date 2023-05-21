@@ -18,14 +18,14 @@ public final class RPTaster {
     /**
     * Erstellt ein neues Objekt der Klasse RPTaster, ohne einen Pin anzugeben.
     */
-    RPTaster() {
+    public RPTaster() {
     }
 
     /**
     * Erstellt ein neues Objekt der Klasse RPTaster.
     * @param pin Der Pin, an dem der Taster angeschlossen ist.
     */
-    RPTaster(int pin) {
+    public RPTaster(int pin) {
         this.setPin(pin);
     }
 

@@ -22,7 +22,7 @@ public class RGBScheinwerfer{
     * @param pPinGruen Der Pin fuer die gruene Farbe.
     * @param pPinBlau Der Pin fuer die blaue Farbe.
     */
-    RGBScheinwerfer(int pPinRot, int pPinGruen, int pPinBlau){
+    public RGBScheinwerfer(int pPinRot, int pPinGruen, int pPinBlau){
         pRGB = new RPRGB(pPinRot, pPinGruen, pPinBlau);
     }
 

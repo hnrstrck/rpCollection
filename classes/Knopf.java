@@ -17,7 +17,7 @@ public class Knopf{
     * Erstelle einen neuen Knopf.
     * @param pin Pin des angeschlossenen Tasters.
     */
-    Knopf(int pin){
+    public Knopf(int pin){
         pTaster = new RPTaster(pin);
     }
 

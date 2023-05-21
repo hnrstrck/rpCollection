@@ -15,7 +15,7 @@ public class Schalter{
     * Erstelle einen neuen Schalter.
     * @param pPin Pin des angeschlossenen Tasters.
     */
-    Schalter(int pPin){
+    public Schalter(int pPin){
         pTaster = new RPTaster(pPin);
     }
 

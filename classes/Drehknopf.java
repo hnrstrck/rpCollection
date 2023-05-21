@@ -17,7 +17,7 @@ public class Drehknopf{
     * @param adwandler Der zugehörige AD-Wandler.
     * @param channel Die Nummer des Reglers
     */
-    Drehknopf(RPADWandler adwandler, int channel){
+    public Drehknopf(RPADWandler adwandler, int channel){
         this.adwandler = adwandler;
         this.channel = channel;
         this.regler = new RPRegler(this.channel);

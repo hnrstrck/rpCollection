@@ -13,13 +13,13 @@ public class Helligkeitssensor{
 	private String standort;
 	private boolean status;
 
-	/**
-	* Erstelle einen neuen Helligkeitssensor.
-	* @param pin Pin des angeschlossenen Helligkeitssensors.
-	*/
-	Helligkeitssensor(int pin){
-		pPhoto = new RPPhototransistor(pin);
-	}
+    /**
+    * Erstelle einen neuen Helligkeitssensor.
+    * @param pin Pin des angeschlossenen Helligkeitssensors.
+    */
+    public Helligkeitssensor(int pin){
+        pPhoto = new RPPhototransistor(pin);
+    }
 
 	/**
 	* Schalte den Helligkeitssensor ein.

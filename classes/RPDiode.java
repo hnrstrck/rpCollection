@@ -32,7 +32,7 @@ public final class RPDiode {
     * Erstellt ein Objekt der Klasse RPDiode.
     * @param pin Der Pin, an dem die Diode angeschlossen ist.
     */
-    RPDiode(int pin) {
+    public RPDiode(int pin) {
         this.setPin(pin);
     }
 

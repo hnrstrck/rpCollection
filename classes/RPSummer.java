@@ -20,14 +20,14 @@ public final class RPSummer {
     /**
     * Erstellt ein neues Objekt der Klasse RPSummer, ohne einen Pin anzugeben.
     */
-    RPSummer() {
+    public RPSummer() {
     }
 
    /**
     * Erstellt ein neues Objekt der Klasse RPSummer.
     * @param pin Der Pin, an dem der Summer angeschlossen ist.
     */
-    RPSummer(int pin) {
+    public RPSummer(int pin) {
         this.setPin(pin);
     }
 

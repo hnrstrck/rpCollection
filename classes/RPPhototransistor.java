@@ -17,14 +17,14 @@ public final class RPPhototransistor {
     /**
     * Erstellt ein neues Objekt der Klasse RPPhototransistor, ohne einen Pin anzugeben.
     */
-    RPPhototransistor() {
+    public RPPhototransistor() {
     }
 
     /**
     * Erstellt ein neues Objekt der Klasse RPPhototransistor.
     * @param pin Der Pin, an dem der Phototransistor angeschlossen ist.
     */
-    RPPhototransistor(int pin) {
+    public RPPhototransistor(int pin) {
         this.setPin(pin);
     }
 

@@ -1,8 +1,8 @@
 /**
  * Klasse fuer die angeschlossenen Regler an einem AD-Wandler. Sollen Werte von Reglern ausgelesen werden, die an einen AD-Wandler angeschlossen sind, so muessen zunaechst Objekte dieser Klasse erstellt werden.
- * 
+ *
  * @see RPADWandler
- * 
+ *
  * @author Heiner Stroick
  * @version 0.9
  */
@@ -11,21 +11,24 @@ public final class RPRegler {
     private int angeschlossenerChannel;
 
     /**
-    * 
+    * Regler wird erstellt
     */
-    RPRegler() {
+    public RPRegler() {
 		System.out.println("Regler erstellt.");
 		System.out.println("Channel des AD-Wandlers einstellen, an dem dieser Regler angeschlossen ist.");
     }
 
-	RPRegler(int angeschlossenerChannel){
+    /**
+    * Regler wird fuer den angegebenen Channel erstellt
+    */
+	public RPRegler(int angeschlossenerChannel){
 		System.out.println("Regler erstellt.");
 		setChannel(angeschlossenerChannel);
 	}
 
     /**
     * Gibt den angeschlossenen Channel des Reglers zurueck.
-    * 
+    *
     * @return Der angeschlossene Channel des Reglers.
     */
     public int gibChannel(){

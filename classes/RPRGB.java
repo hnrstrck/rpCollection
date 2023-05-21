@@ -32,7 +32,7 @@ public final class RPRGB {
     /**
     * Erstellt ein Objekt der Klasse RPRGB, ohne die Pinne anzugeben.
     */
-    RPRGB() {
+    public RPRGB() {
     }
 
     /**
@@ -41,7 +41,7 @@ public final class RPRGB {
     * @param gruenerPin Der Pin fuer die gruene LED.
     * @param blauerPin Der Pin fuer die blaue LED.
     */
-    RPRGB(int roterPin, int gruenerPin, int blauerPin) {
+    public RPRGB(int roterPin, int gruenerPin, int blauerPin) {
         this.setPins(roterPin, gruenerPin, blauerPin);
     }
 

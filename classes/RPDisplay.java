@@ -34,7 +34,7 @@ public class RPDisplay {
     /**
     * Erzeugt ein Display-Objekt ohne Angabe der Pins, sowie dessen Größe
     */
-    RPDisplay() {
+    public RPDisplay() {
     }
 
     /**
@@ -48,7 +48,7 @@ public class RPDisplay {
     * @param rows Anzahl der Zeilen
     * @param cols Anzahl der Spalten
     */
-    RPDisplay(int rs, int e, int d4, int d5, int d6, int d7, int rows, int cols) {
+    public RPDisplay(int rs, int e, int d4, int d5, int d6, int d7, int rows, int cols) {
         this.init(rs, e, d4, d5, d6, d7, rows, cols);
     }
 

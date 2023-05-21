@@ -36,7 +36,7 @@ public final class RPADWandler {
     /**
     * Erstellt ein neues Objekt der Klasse RPADWandler (die Initialisierung erfolgt automaitsch, es muessen keine Pins angegeben werden, da er mit SPI funktioniert).
     */
-    RPADWandler() {
+    public RPADWandler() {
         try{
             System.out.println("Initialisierung den AD-Wandler...");
             this.initialisiere();

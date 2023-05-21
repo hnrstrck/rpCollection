@@ -33,7 +33,7 @@ public final class RPMotor {
     /**
     * Erstellt ein Objekt der Klasse RPMotor, ohne die Pinne anzugeben.
     */
-    RPMotor() {
+    public RPMotor() {
         intPins = new int[3];
         boolInitialisierungErfolgt = false;
     }
@@ -44,7 +44,7 @@ public final class RPMotor {
     * @param pinRichtung1 Der Pin fuer Richtung 1.
     * @param pinRichtung2 Der Pin fuer Richtung2.
     */
-    RPMotor(int pinEnable, int pinRichtung1, int pinRichtung2) {
+    public RPMotor(int pinEnable, int pinRichtung1, int pinRichtung2) {
         intPins = new int[3];
         boolInitialisierungErfolgt = false;
 

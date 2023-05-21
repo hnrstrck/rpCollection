@@ -16,7 +16,7 @@ public class Scheinwerfer{
 	* Erstelle einen neuen Scheinwerfer.
 	* @param pin Der Pin des angeschlossenen Scheinwerfers.
 	*/
-	Scheinwerfer(int pin){
+	public Scheinwerfer(int pin){
 		pDiode = new RPDiode(pin);
 	}
 

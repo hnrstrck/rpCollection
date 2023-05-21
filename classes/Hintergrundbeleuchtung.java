@@ -14,14 +14,14 @@ public class Hintergrundbeleuchtung{
 	private String standort;
 	private boolean status;
 
-	/**
-	* Erstelle eine neue Hintergrundbeleuchtung.
-	* @param pin Der Pin der angeschlossenen Hintergrundbeleuchtung.
-	* @see Scheinwerfer
-	*/
-	Hintergrundbeleuchtung(int pin){
-		pDiode = new RPDiode(pin);
-	}
+    /**
+    * Erstelle eine neue Hintergrundbeleuchtung.
+    * @param pin Der Pin der angeschlossenen Hintergrundbeleuchtung.
+    * @see Scheinwerfer
+    */
+    public Hintergrundbeleuchtung(int pin){
+        pDiode = new RPDiode(pin);
+    }
 
 	/**
 	* Schalte die Hintergrundbeleuchtung an.
