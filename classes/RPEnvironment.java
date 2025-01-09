@@ -61,7 +61,6 @@ class RPEnvironment {
     {
         if (RPEnvironment.outputConfig == null) {
             RPEnvironment.outputConfig = DigitalOutput.newConfigBuilder(RPEnvironment.getContext())
-                .provider("pigpio-digital-output")
                 .shutdown(DigitalState.LOW)
                 .initial(DigitalState.LOW);
         }
