@@ -13,4 +13,4 @@ echo "Starte Groovy"
 echo "Dies kann einen Moment dauern..."
 echo " "
 
-groovy -classpath '.:./classes:/opt/pi4j/lib/*' $1
+sudo groovy -classpath '.:./classes:/opt/pi4j/lib/*' $1

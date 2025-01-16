@@ -74,7 +74,6 @@ class RPEnvironment {
     {
         if (RPEnvironment.inputConfig == null) {
             RPEnvironment.inputConfig = DigitalInput.newConfigBuilder(RPEnvironment.getContext())
-                .provider("pigpio-digital-input")
                 .pull(PullResistance.OFF);
         }
         return RPEnvironment.inputConfig;
