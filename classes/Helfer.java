@@ -56,9 +56,8 @@ public class Helfer
 
     /**
     * Gib alle Pinne frei und fahre den GPIO herunter.
-    * @throws InterruptedException Exception wird geworfen, falls die Methode gewaltsam beendet wird.
     */
-    public static void herunterfahren() throws InterruptedException{
+    public static void herunterfahren() {
         System.out.println("Fahre alles herunter");
         try{
             RPEnvironment.herunterfahren();
@@ -69,10 +68,9 @@ public class Helfer
 
     /**
     * Gib alle Pinne frei und fahre den GPIO herunter.
-    * @throws InterruptedException Exception wird geworfen, falls die Methode gewaltsam beendet wird.
     * @see herunterfahren
     */
-    public static void freigeben() throws InterruptedException{
+    public static void freigeben() {
         herunterfahren();
     }
 

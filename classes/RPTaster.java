@@ -102,5 +102,6 @@ public final class RPTaster {
     {
         RPTaster taster = new RPTaster(18);
         taster.ueberwache10Mal();
+        Helfer.herunterfahren();
     }
 }

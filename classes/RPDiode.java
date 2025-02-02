@@ -331,5 +331,6 @@ public final class RPDiode {
         diode.an();
         Helfer.warte(3);
         diode.aus();
+        Helfer.herunterfahren();
     }
 }
