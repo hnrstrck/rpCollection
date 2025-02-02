@@ -100,7 +100,7 @@ public final class RPTaster {
     */
     public static void main(String[] args)
     {
-        RPTaster taster = new RPTaster(13);
+        RPTaster taster = new RPTaster(18);
         taster.ueberwache10Mal();
     }
 }

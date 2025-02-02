@@ -354,7 +354,7 @@ public final class RPPwmDiode {
     * Test-Methode
     */
     public static void main(String[] args) {
-        RPPwmDiode diode = new RPPwmDiode(22);
+        RPPwmDiode diode = new RPPwmDiode(23);
         diode.an();
         Helfer.warte(1);
         diode.setzeHelligkeit(25);

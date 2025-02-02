@@ -323,7 +323,7 @@ public final class RPDiode {
     * Test-Methode
     */
     public static void main(String[] args) {
-        RPDiode diode = new RPDiode(22);
+        RPDiode diode = new RPDiode(23);
         diode.an();
         Helfer.warte(3);
         diode.aus();

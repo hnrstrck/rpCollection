@@ -34,6 +34,7 @@ class RPEnvironment {
     */
     public static Context getContext()
     {
+        System.setProperty("org.slf4j.simpleLogger.defaultLogLevel", "warn"); // "info" ist Standard. Alternativen: "trace", "debug", "info", "warn" oder "error"
         if (RPEnvironment.pi4j == null) {
             RPEnvironment.pi4j = Pi4J.newAutoContext();
         }
@@ -86,7 +87,6 @@ class RPEnvironment {
     {
         if (RPEnvironment.pwmConfig == null) {
             RPEnvironment.pwmConfig = Pwm.newConfigBuilder(RPEnvironment.getContext())
-                .provider("pigpio-pwm")
                 .pwmType(PwmType.SOFTWARE);
         }
         return RPEnvironment.pwmConfig;
@@ -97,8 +97,7 @@ class RPEnvironment {
     */
     public static I2CConfigBuilder getI2CConfig() {
         if (RPEnvironment.i2CConfig == null) {
-            RPEnvironment.i2CConfig = I2C.newConfigBuilder(RPEnvironment.getContext())
-                .provider("pigpio-i2c");
+            RPEnvironment.i2CConfig = I2C.newConfigBuilder(RPEnvironment.getContext());
         }
         return RPEnvironment.i2CConfig;
     }
@@ -108,8 +107,7 @@ class RPEnvironment {
     */
     public static SpiConfigBuilder getSpiConfig() {
         if (RPEnvironment.spiConfig == null) {
-            RPEnvironment.spiConfig = Spi.newConfigBuilder(RPEnvironment.getContext())
-                .provider("pigpio-spi");
+            RPEnvironment.spiConfig = Spi.newConfigBuilder(RPEnvironment.getContext());
         }
         return RPEnvironment.spiConfig;
     }

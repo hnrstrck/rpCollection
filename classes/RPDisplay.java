@@ -191,7 +191,8 @@ public class RPDisplay {
     * Test-Methode
     */
     public static void main(String[] args) {
-        RPDisplay display = new RPDisplay(21, 20, 16, 12, 26, 19, 2, 16);
+        //int rs, int e, int d4, int d5, int d6, int d7, int rows, int cols
+        RPDisplay display = new RPDisplay(5, 6, 13, 26, 16, 12, 2, 16);
         display.write(0,0,"Test");
         display.write(1,3,"Test");
     }

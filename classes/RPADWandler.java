@@ -228,8 +228,6 @@ public final class RPADWandler {
         try{
             System.out.println(RPADWandler.readChannel(0));
             System.out.println(RPADWandler.readChannel(1));
-            System.out.println(RPADWandler.readChannel(2));
-            System.out.println(RPADWandler.readChannel(3));
         } catch (IOException f){
             System.out.println("Error: Pin nicht definiert? (IOException)");
         }
