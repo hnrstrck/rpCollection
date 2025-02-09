@@ -162,7 +162,7 @@ public final class RPServoMotor {
     * Test-Methode
     */
     public static void main(String[] args) {
-        RPServoMotor servoMotor = new RPServoMotor(15);
+        RPServoMotor servoMotor = new RPServoMotor(13);
         servoMotor.setPercent(10);
         Helfer.warte(3);
         servoMotor.setPercent(90);
