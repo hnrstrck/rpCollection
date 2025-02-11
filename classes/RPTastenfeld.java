@@ -14,10 +14,10 @@ import java.util.ArrayList;
  * @version 2.0
  */
 public final class RPTastenfeld {
-    protected char[][] feldMatrix = {{'D', 'C', 'B', 'A'},
-                                     {'#', '9', '6', '3'},
-                                     {'0', '8', '5', '2'},
-                                     {'*', '7', '4', '1'}};
+    protected char[][] feldMatrix = {{'1', '2', '3', 'A'},
+                                     {'4', '5', '6', 'B'},
+                                     {'7', '8', '9', 'C'},
+                                     {'*', '0', '#', 'D'}};
 
     private ArrayList<DigitalInput> inputPins = null;
     private ArrayList<DigitalOutput> outputPins = null;
@@ -126,5 +126,24 @@ public final class RPTastenfeld {
         }
 
         return ' ';
+    }
+
+    public static void main(String args[]) {
+        ArrayList<Integer> cols = new ArrayList<Integer>();
+        cols.add(12);
+        cols.add(16);
+        cols.add(26);
+        cols.add(13);
+        ArrayList<Integer> rows = new ArrayList<Integer>();
+        rows.add(18);
+        rows.add(23);
+        rows.add(24);
+        rows.add(25);
+        RPTastenfeld tastenfeld = new RPTastenfeld(rows, cols);
+        for (int count = 1; count <= 10; count++) {
+            System.out.println("Taste:  " + tastenfeld.gibGedrueckteTaste());
+            Helfer.warte(1);
+        }
+        Helfer.herunterfahren();
     }
 }

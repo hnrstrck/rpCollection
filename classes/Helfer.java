@@ -85,4 +85,16 @@ public class Helfer
             System.out.println("Warten abgebrochen!");
         }
     }
+
+    /**
+    * Warte eine bestimmte Zeit in Millisekunden;
+    * @param pZeit Zeit in Millisekunden, die gewartet werden soll.
+    */
+    public static void warteMS(int pZeit){
+        try{
+            Thread.sleep(pZeit);
+        } catch(InterruptedException e){
+            System.out.println("Warten abgebrochen!");
+        }
+    }
 }

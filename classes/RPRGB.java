@@ -568,8 +568,13 @@ public final class RPRGB {
     * Test-Methode
     */
     public static void main(String[] args) {
-        RPRGB diode = new RPRGB(23, 24, 25);
+        RPRGB diode = new RPRGB(25, 24, 23);
+        diode.setzeFarbe(255,0,0);
         diode.an();
+        Helfer.warte(1);
+        diode.setzeFarbe(0,255,0);
+        Helfer.warte(1);
+        diode.setzeFarbe(0,0,255);
         Helfer.warte(1);
         diode.setzeFarbe(125,0,100);
         Helfer.warte(1);

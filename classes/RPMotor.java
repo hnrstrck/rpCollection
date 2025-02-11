@@ -494,7 +494,7 @@ public final class RPMotor {
     * Test-Methode
     */
     public static void main(String[] args) {
-        RPMotor motor = new RPMotor(23, 24, 25);
+        RPMotor motor = new RPMotor(26, 13, 5);
         motor.setzeLaufrichtung(1);
         motor.start(100);
         Helfer.warte(1);
