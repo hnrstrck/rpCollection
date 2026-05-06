@@ -310,7 +310,9 @@ public final class RPDiode {
     public void blinkeEndlosStop(){
         if (boolInitialisierungErfolgt == true){
 
-            threadEndlosBlinken.interrupt();
+            if (threadEndlosBlinken != null) {
+                threadEndlosBlinken.interrupt();
+            }
             blinktGerade = false;
             aus();
         }
@@ -331,6 +333,12 @@ public final class RPDiode {
         diode.an();
         Helfer.warte(3);
         diode.aus();
+        Helfer.warte(3);
+        diode.blinke();
+        Helfer.warte(3);
+        diode.startBlinken(200);
+        Helfer.warte(6);
+        diode.blinkeEndlosStop();
         Helfer.herunterfahren();
     }
 }
